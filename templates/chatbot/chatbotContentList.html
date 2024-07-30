@@ -2,9 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .chat-box {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .user-message {
+            background-color: #d1e7dd;
+            text-align: right;
+        }
+
+        .ai-message {
+            background-color: #f8d7da;
+            text-align: left;
+        }
+
+        .chat-input {
+            display: flex;
+        }
+
+        .chat-input textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+<div class="chat-container">
+    <div class="chat-box" id="chat-box">
+        {% for content in all_contents %}
+            {% if content.type == 'user' %}
+                <div class="chat-message user-message">
+                    <p>{{ content.content }}</p>
+                    <span>{{ content.time }}</span>
+                </div>
+            {% else %}
+                <div class="chat-message ai-message">
+                    <p>{{ content.content }}</p>
+                    <span>{{ content.time }}</span>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="chat-input">
+        <textarea id="user-content" rows="3" placeholder="Type your message here..."></textarea>
+        <button id="send-user-message">Send</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        function scrollChatBox() {
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+        }
+
+        $('#send-user-message').on('click', function () {
+            let userContent = $('#user-content').val();
+            let characterId = {{ character.id }};
+
+            if (userContent.trim() !== "") {
+                $.ajax({
+                    type: 'POST',
+                    url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
+                    data: {
+                        'user_content': userContent,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        // response에서 user_content를 가져옵니다
+                        $('#chat-box').append(
+                            `<div class="chat-message user-message">
+                                <p>${response.user_content}</p>
+                                <span>${response.time1}</span>
+                            </div>`
+                        );
+                        $('#user-content').val('');
+                        scrollChatBox();
+
+                        $.ajax({
+                            type: 'POST',
+                            url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
+                            data: {
+                                'user_input': userContent,
+                                'csrfmiddlewaretoken': '{{ csrf_token }}'
+                            },
+                            success: function (response) {
+                                // response에서 ai_content를 가져옵니다
+                                $('#chat-box').append(
+                                    `<div class="chat-message ai-message">
+                                        <p>${response.ai_content}</p>
+                                        <span>${response.time1}</span>
+                                    </div>`
+                                );
+                                scrollChatBox();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 
 </body>
 </html>
