@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent
-
+from django.utils.dateformat import format
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
@@ -99,10 +99,10 @@ def chatbot_ai_create(request, pk):
         system_input = character_concept(character)
         ai_content = ai(system_input, user_input.user_content)
         create = ChatbotAIContent.objects.create(user=user, userCharacter=character, ai_content=ai_content, )
-
+        formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
         print("==========================")
         print(ai_content)
-        return JsonResponse({'ai_content': ai_content, 'time1': create.time})
+        return JsonResponse({'ai_content': ai_content, 'time1': formatted_time})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
@@ -113,7 +113,8 @@ def chatbot_user_create(request, pk):
         character = UserCharacter.objects.get(id=pk, user=user)
         user_content = request.POST.get('user_content')
         create = ChatbotUserContent.objects.create(user=user, userCharacter=character, user_content=user_content, )
-        return JsonResponse({'user_content': user_content, 'time1': create.time})
+        formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
+        return JsonResponse({'user_content': user_content, 'time1': formatted_time})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 

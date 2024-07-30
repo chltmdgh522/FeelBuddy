@@ -109,7 +109,7 @@
                         $('#chat-box').append(
                             `<div class="chat-message user-message">
                                 <p>${response.user_content}</p>
-                                <span>${response.time1}</span>
+                                <span>Just now</span>
                             </div>`
                         );
                         $('#user-content').val('');
@@ -127,7 +127,7 @@
                                 $('#chat-box').append(
                                     `<div class="chat-message ai-message">
                                         <p>${response.ai_content}</p>
-                                        <span>${response.time1}</span>
+                                        <span>Just now</span>
                                     </div>`
                                 );
                                 scrollChatBox();
