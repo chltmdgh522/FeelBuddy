@@ -1,0 +1,40 @@
+
+{% block content %}
+  <h1>{{ feedback.title }}</h1>
+  <p>{{ feedback.content }}</p>
+  <p>by {{ feedback.user.username }}</p>
+  <button id="like-button" data-liked="{{ is_liked }}">
+    {% if is_liked %}Unlike{% else %}Like{% endif %}
+  </button>
+  <span id="likes-count">{{ feedback.like_set.count }}</span>
+
+  <h2>Comments</h2>
+  <form method="post" action="{% url 'feedback:comment_create' feedback.pk %}">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Add Comment</button>
+  </form>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.content }} by {{ comment.user.username }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('like-button').addEventListener('click', function() {
+    var likeButton = this;
+    var isLiked = likeButton.getAttribute('data-liked') === 'true';
+    var feedbackId = {{ feedback.pk }};
+    var url = isLiked ? '{% url "feedback:like_delete" feedback.pk %}' : '{% url "feedback:like_create" feedback.pk %}';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          document.getElementById('likes-count').innerText = data.likes_count;
+          likeButton.setAttribute('data-liked', !isLiked);
+          likeButton.innerText = isLiked ? 'Like' : 'Unlike';
+      });
+});
+</script>
+{% endblock %}
