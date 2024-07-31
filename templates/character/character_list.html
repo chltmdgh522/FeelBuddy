@@ -1,0 +1,23 @@
+<!-- character/character_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character List</title>
+</head>
+<body>
+    <h1>Your Characters</h1>
+    <ul>
+        {% for character in user_characters %}
+            <li>
+                <h2>{{ character.name }}</h2>
+                <p>{{ character.introduce }}</p>
+                <a href="{% url 'character_update' character.pk %}">Edit</a>
+            </li>
+        {% empty %}
+            <li>No characters found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
