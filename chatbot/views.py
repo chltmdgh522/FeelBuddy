@@ -6,6 +6,7 @@ from django.shortcuts import render
 from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent
 from django.utils.dateformat import format
+
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
@@ -15,6 +16,7 @@ openai.api_key = api_key
 def chatbot_content_list(request, pk):
     user = request.user
     character = UserCharacter.objects.get(id=pk, user=user)
+    characters = UserCharacter.objects.filter(user=user)
     ai_contents = ChatbotAIContent.objects.filter(user=user, userCharacter=character).order_by('time')
     user_contents = ChatbotUserContent.objects.filter(user=user, userCharacter=character).order_by('time')
 
@@ -38,6 +40,7 @@ def chatbot_content_list(request, pk):
     context = {
         'all_contents': all_contents,
         'character': character,
+        'characters': characters,
     }
 
     return render(request, 'chatbot/chatbotContentList.html', context)
@@ -69,19 +72,19 @@ def character_concept(character):
         """
     elif character.adminCharacter.emotion == "슬픔":
         system_input = """
-        너는 분노 캐릭터야 내가 말하는거에 분노에 공감하면서 답변해줘
+        너는 슬픔 캐릭터야 내가 말하는거에 슬픔에 공감하면서 답변해줘
         """
     elif character.adminCharacter.emotion == "두려움":
         system_input = """
-        너는 분노 캐릭터야 내가 말하는거에 분노에 공감하면서 답변해줘
+        너는 두려움 캐릭터야 내가 말하는거에 두려움에 공감하면서 답변해줘
         """
     elif character.adminCharacter.emotion == "불안":
         system_input = """
-        너는 분노 캐릭터야 내가 말하는거에 분노에 공감하면서 답변해줘
+        너는 불안 캐릭터야 내가 말하는거에 불안에 공감하면서 답변해줘
         """
-    elif character.adminCharacter.emotion == "좋음":
+    elif character.adminCharacter.emotion == "기쁨":
         system_input = """
-        너는 분노 캐릭터야 내가 말하는거에 분노에 공감하면서 답변해줘
+        너는 기쁨 캐릭터야 내가 말하는거에 기쁨에 공감하면서 답변해줘
         """
     return system_input
 

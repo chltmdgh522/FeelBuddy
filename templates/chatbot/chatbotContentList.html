@@ -1,145 +1,230 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        .chat-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-
-        .chat-box {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #fff;
-        }
-
-        .chat-message {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .user-message {
-            background-color: #d1e7dd;
-            text-align: right;
-        }
-
-        .ai-message {
-            background-color: #f8d7da;
-            text-align: left;
-        }
-
-        .chat-input {
-            display: flex;
-        }
-
-        .chat-input textarea {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-        }
-
-        .chat-input button {
-            padding: 10px 20px;
-            margin-left: 10px;
-            border: none;
-            border-radius: 10px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-    </style>
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static '/css/chatbot/chatbot.css' %}">
 </head>
 <body>
-<div class="chat-container">
-    <div class="chat-box" id="chat-box">
-        {% for content in all_contents %}
-            {% if content.type == 'user' %}
-                <div class="chat-message user-message">
-                    <p>{{ content.content }}</p>
-                    <span>{{ content.time }}</span>
-                </div>
-            {% else %}
-                <div class="chat-message ai-message">
-                    <p>{{ content.content }}</p>
-                    <span>{{ content.time }}</span>
-                </div>
-            {% endif %}
-        {% endfor %}
+<input type="checkbox" name="btn" id="btn" checked>
+
+<div class="chat-content">
+    <p></p>
+    <div class="buildings">
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
     </div>
-    <div class="chat-input">
-        <textarea id="user-content" rows="3" placeholder="Type your message here..."></textarea>
-        <button id="send-user-message">Send</button>
+    <div class="ground">
+        <div class="sewer"></div>
+    </div>
+    <div class="streetlamp">
+        <div class="base"></div>
+        <div class="basetop"></div>
+        <div class="pole"></div>
+        <div class="poletop"></div>
+        <div class="head">
+            <label for="btn"></label>
+            <div class="top"></div>
+            <div class="glass"></div>
+            <div class="bot"></div>
+        </div>
+        <div class="light"></div>
+        <div class="ground-light"></div>
+    </div>
+    <div class="lamp-header"><p>Feelbuddy</p></div>
+    {% if character.adminCharacter.emotion == '기쁨' %}
+        <img src="/media/joy.png" alt="" class="chat-character">
+    {% elif character.adminCharacter.emotion == '분노' %}
+        <img src="/media/anger.png" alt="" class="chat-character">
+    {% elif character.adminCharacter.emotion == '슬픔' %}
+        <img src="/media/sad.png" alt="" class="chat-character">
+    {% elif character.adminCharacter.emotion == '불안' %}
+        <img src="/media/fear.png" alt="" class="chat-character">
+    {% elif character.adminCharacter.emotion == '두려움' %}
+        <img src="/media/anxiety.png" alt="" class="chat-character">
+    {% endif %}
+    <div class="chat-center">
+        <div class="contacts">
+            <i class="fas fa-bars fa-2x"></i>
+            <h2>Contacts</h2>
+            {% for character in characters %}
+                <div class="contact">
+                    {% if character.adminCharacter.emotion == '기쁨' %}
+
+                        <div class="chat-pic joy"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message">나 진짜 너무 기뻐 ^_^</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '분노' %}
+
+                        <div class="chat-pic anger"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message">와 정말 화나!!</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '불안' %}
+                        <div class="chat-pic fear"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message">나 진짜 가만히 못 있겠어</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '슬픔' %}
+                        <div class="chat-pic sad"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message">나 혼자 있고 싶어.. 너무 슬퍼..</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '두려움' %}
+                        <div class="chat-pic anxiety"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message">어떡해 너무 무섭잖아..</div>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="chat" id="chat">
+            <div class="contact bar">
+                {% if character.adminCharacter.emotion == '기쁨' %}
+                    <div class="chat-pic joy"></div>
+                    <div class="name">{{ character.name }}</div>
+                    <div class="seen">Today at 12:56</div>
+                {% elif character.adminCharacter.emotion == '분노' %}
+                    <div class="chat-pic anger"></div>
+                    <div class="name">{{ character.name }}</div>
+                    <div class="seen">Today at 12:56</div>
+                {% elif character.adminCharacter.emotion == '불안' %}
+                    <div class="chat-pic fear"></div>
+                    <div class="name">{{ character.name }}</div>
+                    <div class="seen">Today at 12:56</div>
+                {% elif character.adminCharacter.emotion == '슬픔' %}
+                    <div class="chat-pic sad"></div>
+                    <div class="name">{{ character.name }}</div>
+                    <div class="seen">Today at 12:56</div>
+                {% elif character.adminCharacter.emotion == '두려움' %}
+                    <div class="chat-pic anxiety"></div>
+                    <div class="name">{{ character.name }}</div>
+                    <div class="seen">Today at 12:56</div>
+                {% endif %}
+            </div>
+            <div class="messages" id="messages">
+                <div class="time">Today at 11:41</div>
+                {% for content in all_contents %}
+                    {% if content.type == 'user' %}
+                        <div class="message parker">{{ content.content }}</div>
+                    {% else %}
+                        <div class="message stark">{{ content.content }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="input">
+                <i class="fas fa-camera"></i>
+                <i class="far fa-laugh-beam"></i>
+                <input type="text" id="user-content" placeholder="Type your message here!">
+                <i class="fas fa-microphone"></i>
+            </div>
+        </div>
     </div>
 </div>
 
+<div class="icon">
+    <div class="icon__home">
+        <ion-icon name="home"></ion-icon>
+    </div>
+    <div class="icon__account">
+        <ion-icon name="person"></ion-icon>
+    </div>
+    <div class="icon__settings">
+        <ion-icon name="settings"></ion-icon>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
 <script>
     $(document).ready(function () {
         function scrollChatBox() {
-            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+            $('#messages').scrollTop($('#messages')[0].scrollHeight);
         }
 
-        $('#send-user-message').on('click', function () {
-            let userContent = $('#user-content').val();
-            let characterId = {{ character.id }};
+        // 엔터 키를 눌렀을 때 이벤트를 추가합니다.
+        $('#user-content').on('keypress', function (event) {
+            if (event.which === 13) { // Enter 키를 감지
+                event.preventDefault(); // 기본 엔터 동작을 막습니다.
+                let userContent = $('#user-content').val();
 
-            if (userContent.trim() !== "") {
-                $.ajax({
-                    type: 'POST',
-                    url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
-                    data: {
-                        'user_content': userContent,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function (response) {
-                        // response에서 user_content를 가져옵니다
-                        $('#chat-box').append(
-                            `<div class="chat-message user-message">
-                                <p>${response.user_content}</p>
-                                <span>Just now</span>
-                            </div>`
-                        );
-                        $('#user-content').val('');
-                        scrollChatBox();
+                if (userContent.trim() !== "") {
+                    // 사용자 메시지를 바로 추가합니다.
+                    $('#messages').append(
+                        `<div class="message parker">
+                       ${userContent}
+                    </div>`
+                    );
+                    $('#user-content').val('');
+                    scrollChatBox();
 
-                        $.ajax({
-                            type: 'POST',
-                            url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
-                            data: {
-                                'user_input': userContent,
-                                'csrfmiddlewaretoken': '{{ csrf_token }}'
-                            },
-                            success: function (response) {
-                                // response에서 ai_content를 가져옵니다
-                                $('#chat-box').append(
-                                    `<div class="chat-message ai-message">
-                                        <p>${response.ai_content}</p>
-                                        <span>Just now</span>
-                                    </div>`
-                                );
-                                scrollChatBox();
-                            }
-                        });
-                    }
-                });
+                    // Typing 애니메이션을 추가합니다.
+                    $('#messages').append(
+                        `<div class="message stark typing">
+                        <div class="typing typing-1"></div>
+                        <div class="typing typing-2"></div>
+                        <div class="typing typing-3"></div>
+                    </div>`
+                    );
+                    scrollChatBox();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
+                        data: {
+                            'user_content': userContent,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function () {
+                            // 2초 후에 AI 메시지와 Typing 애니메이션을 처리합니다.
+                            setTimeout(function () {
+                                // Typing 애니메이션을 제거합니다.
+                                $('.typing').remove();
+
+                                // AI 메시지를 추가합니다.
+                                $.ajax({
+                                    type: 'POST',
+                                    url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
+                                    data: {
+                                        'user_input': userContent,
+                                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                    },
+                                    success: function (response) {
+                                        // response에서 ai_content를 가져옵니다
+                                        $('#messages').append(
+                                            `<div class="message stark">
+                                            ${response.ai_content}
+                                        </div>`
+                                        );
+                                        scrollChatBox();
+                                    }
+                                });
+                            }, 2000); // 2초 딜레이
+                        }
+                    });
+                }
             }
         });
     });
-</script>
 
+
+</script>
 
 </body>
 </html>
