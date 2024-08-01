@@ -35,3 +35,8 @@ class UserCharacterForm(forms.ModelForm):
         super(UserCharacterForm, self).__init__(*args, **kwargs)
         self.fields['adminCharacter'].queryset = AdminCharacter.objects.all()
         self.fields['adminCharacter'].required = False  # 필수 항목이 아님
+
+class UserCharacterNameForm(forms.ModelForm):
+    class Meta:
+        model = UserCharacter
+        fields = ['name']  # 이름만 수정 가능
