@@ -1,0 +1,22 @@
+<!-- character/character_create.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Character</title>
+</head>
+<body>
+    <h1>Select a Character</h1>
+    <ul>
+        {% for admin_character in admin_characters %}
+            <li>
+                <a href="{% url 'character:character_create_detail' admin_character.pk %}">
+                    <img src="{{ admin_character.image }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
+                    <p>{{ admin_character.emotion }}</p>
+                </a>                
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

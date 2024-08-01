@@ -1,17 +1,30 @@
 from django.db import models
-
 from users.models import User
+from django.conf import settings
 
 
 # Create your models here.
 # 사용자가 생성한 캐릭터 테이블
+# 감정과 이미지 파일의 매핑을 위한 상수 정의
+EMOTION_CHOICES = [
+    ('angry', 'Angry'),
+    ('anxiety', 'Anxiety'),
+    ('fear', 'Fear'),
+    ('joy', 'Joy'),
+    ('sad', 'Sad'),
+]
+
 class AdminCharacter(models.Model):
-    emotion = models.CharField(max_length=10)
-    image = models.ImageField(upload_to='characters/img/')  #모델 변화 ---> 이미지 필드 추가
+    emotion = models.CharField(max_length=10, choices=EMOTION_CHOICES, unique=True)
+    image = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return self.emotion
 
+    def save(self, *args, **kwargs):
+        # Set image path based on emotion
+        self.image = f"{settings.MEDIA_URL}character/{self.emotion}.png"
+        super(AdminCharacter, self).save(*args, **kwargs)
 
 class UserCharacter(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 유저 식별자
