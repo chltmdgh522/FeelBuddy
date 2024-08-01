@@ -705,3 +705,25 @@ a {
 a:hover {
     text-decoration: none;
 }
+
+/* 스크롤바 전체 */
+#messages::-webkit-scrollbar {
+    width: 10px; /* 스크롤바의 너비 */
+    background-color: transparent; /* 스크롤바 배경 색을 투명하게 설정 */
+}
+
+/* 스크롤바의 트랙 */
+#messages::-webkit-scrollbar-track {
+    background-color: transparent; /* 스크롤바 트랙 색을 투명하게 설정 */
+}
+
+/* 스크롤바 핸들 */
+#messages::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤바 핸들 색 */
+    border-radius: 10px; /* 핸들의 모서리 둥글기 */
+}
+
+/* 핸들에 마우스를 올렸을 때 */
+#messages::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* 핸들에 마우스를 올렸을 때 색상 */
+}

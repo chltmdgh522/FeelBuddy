@@ -120,13 +120,16 @@
                 {% endif %}
             </div>
             <div class="messages" id="messages">
-                <div class="time">Today at 11:41</div>
-                {% for content in all_contents %}
-                    {% if content.type == 'user' %}
-                        <div class="message parker">{{ content.content }}</div>
-                    {% else %}
-                        <div class="message stark">{{ content.content }}</div>
-                    {% endif %}
+
+                {% for group in grouped_contents %}
+                    <div class="time">{{ group.date }}</div> <!-- 날짜 표시 -->
+                    {% for content in group.messages %}
+                        {% if content.type == 'user' %}
+                            <div class="message parker">{{ content.content }}</div>
+                        {% else %}
+                            <div class="message stark">{{ content.content }}</div>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
             </div>
             <div class="input">
@@ -168,8 +171,8 @@
                     // 사용자 메시지를 바로 추가합니다.
                     $('#messages').append(
                         `<div class="message parker">
-                       ${userContent}
-                    </div>`
+                            ${userContent}
+                        </div>`
                     );
                     $('#user-content').val('');
                     scrollChatBox();
@@ -177,13 +180,14 @@
                     // Typing 애니메이션을 추가합니다.
                     $('#messages').append(
                         `<div class="message stark typing">
-                        <div class="typing typing-1"></div>
-                        <div class="typing typing-2"></div>
-                        <div class="typing typing-3"></div>
-                    </div>`
+                            <div class="typing typing-1"></div>
+                            <div class="typing typing-2"></div>
+                            <div class="typing typing-3"></div>
+                        </div>`
                     );
                     scrollChatBox();
 
+                    // 사용자 메시지를 서버에 전송합니다.
                     $.ajax({
                         type: 'POST',
                         url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
@@ -192,38 +196,36 @@
                             'csrfmiddlewaretoken': '{{ csrf_token }}'
                         },
                         success: function () {
-                            // 2초 후에 AI 메시지와 Typing 애니메이션을 처리합니다.
-                            setTimeout(function () {
-                                // Typing 애니메이션을 제거합니다.
-                                $('.typing').remove();
+                            // AI 응답을 서버에 요청합니다.
+                            $.ajax({
+                                type: 'POST',
+                                url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
+                                data: {
+                                    'user_input': userContent,
+                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                },
+                                success: function (response) {
+                                    // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가합니다.
+                                    setTimeout(function () {
+                                        // Typing 애니메이션을 제거합니다.
+                                        $('.typing').remove();
 
-                                // AI 메시지를 추가합니다.
-                                $.ajax({
-                                    type: 'POST',
-                                    url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
-                                    data: {
-                                        'user_input': userContent,
-                                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                                    },
-                                    success: function (response) {
-                                        // response에서 ai_content를 가져옵니다
+                                        // AI 메시지를 추가합니다.
                                         $('#messages').append(
                                             `<div class="message stark">
-                                            ${response.ai_content}
-                                        </div>`
+                                                ${response.ai_content}
+                                            </div>`
                                         );
                                         scrollChatBox();
-                                    }
-                                });
-                            }, 2000); // 2초 딜레이
+                                    }, 2000); // 2초 딜레이
+                                }
+                            });
                         }
                     });
                 }
             }
         });
     });
-
-
 </script>
 
 </body>
