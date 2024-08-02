@@ -44,9 +44,9 @@
     {% elif character.adminCharacter.emotion == '슬픔' %}
         <img src="/media/sad.png" alt="" class="chat-character">
     {% elif character.adminCharacter.emotion == '불안' %}
-        <img src="/media/fear.png" alt="" class="chat-character">
-    {% elif character.adminCharacter.emotion == '두려움' %}
         <img src="/media/anxiety.png" alt="" class="chat-character">
+    {% elif character.adminCharacter.emotion == '두려움' %}
+        <img src="/media/fear.png" alt="" class="chat-character">
     {% endif %}
     <div class="chat-center">
         <div class="contacts">
@@ -71,7 +71,7 @@
                             <div class="message">와 정말 화나!!</div>
                         </a>
                     {% elif character.adminCharacter.emotion == '불안' %}
-                        <div class="chat-pic fear"></div>
+                        <div class="chat-pic anxiety"></div>
                         <a href="/chatbot/{{ character.id }}">
                             <div class="badge">14</div>
                             <div class="name">{{ character.name }}</div>
@@ -85,11 +85,11 @@
                             <div class="message">나 혼자 있고 싶어.. 너무 슬퍼..</div>
                         </a>
                     {% elif character.adminCharacter.emotion == '두려움' %}
-                        <div class="chat-pic anxiety"></div>
+                        <div class="chat-pic fear"></div>
                         <a href="/chatbot/{{ character.id }}">
                             <div class="badge">14</div>
                             <div class="name">{{ character.name }}</div>
-                            <div class="message">어떡해 너무 무섭잖아..</div>
+                            <div class="message"  id="latest-message">어떡해 너무 무섭잖아..</div>
                         </a>
                     {% endif %}
                 </div>
@@ -100,23 +100,23 @@
                 {% if character.adminCharacter.emotion == '기쁨' %}
                     <div class="chat-pic joy"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Today at 12:56</div>
+                    <div class="seen">Last at {{ last_time }}</div>
                 {% elif character.adminCharacter.emotion == '분노' %}
                     <div class="chat-pic anger"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Today at 12:56</div>
+                    <div class="seen">Last at {{ last_time }} </div>
                 {% elif character.adminCharacter.emotion == '불안' %}
-                    <div class="chat-pic fear"></div>
+                    <div class="chat-pic anxiety"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Today at 12:56</div>
+                    <div class="seen">Last at {{ last_time }}</div>
                 {% elif character.adminCharacter.emotion == '슬픔' %}
                     <div class="chat-pic sad"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Today at 12:56</div>
+                    <div class="seen">Last at {{ last_time }}</div>
                 {% elif character.adminCharacter.emotion == '두려움' %}
-                    <div class="chat-pic anxiety"></div>
+                    <div class="chat-pic fear"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Today at 12:56</div>
+                    <div class="seen">Last at 12:56</div>
                 {% endif %}
             </div>
             <div class="messages" id="messages">
@@ -161,14 +161,17 @@
             $('#messages').scrollTop($('#messages')[0].scrollHeight);
         }
 
-        // 엔터 키를 눌렀을 때 이벤트를 추가합니다.
+        // 페이지 로드 시 스크롤을 맨 아래로 이동
+        scrollChatBox();
+
+        // 엔터 키를 눌렀을 때 이벤트를 추가하기
         $('#user-content').on('keypress', function (event) {
             if (event.which === 13) { // Enter 키를 감지
-                event.preventDefault(); // 기본 엔터 동작을 막습니다.
+                event.preventDefault(); // 기본 엔터 동작을 막기
                 let userContent = $('#user-content').val();
 
                 if (userContent.trim() !== "") {
-                    // 사용자 메시지를 바로 추가합니다.
+                    // 사용자 메시지를 바로 추가하기
                     $('#messages').append(
                         `<div class="message parker">
                             ${userContent}
@@ -177,7 +180,7 @@
                     $('#user-content').val('');
                     scrollChatBox();
 
-                    // Typing 애니메이션을 추가합니다.
+                    // Typing 애니메이션을 추가하기
                     $('#messages').append(
                         `<div class="message stark typing">
                             <div class="typing typing-1"></div>
@@ -187,7 +190,7 @@
                     );
                     scrollChatBox();
 
-                    // 사용자 메시지를 서버에 전송합니다.
+                    // 사용자 메시지를 서버에 전송
                     $.ajax({
                         type: 'POST',
                         url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
@@ -196,7 +199,7 @@
                             'csrfmiddlewaretoken': '{{ csrf_token }}'
                         },
                         success: function () {
-                            // AI 응답을 서버에 요청합니다.
+                            // AI 응답을 서버에 요청
                             $.ajax({
                                 type: 'POST',
                                 url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
@@ -205,7 +208,7 @@
                                     'csrfmiddlewaretoken': '{{ csrf_token }}'
                                 },
                                 success: function (response) {
-                                    // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가합니다.
+                                    // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가
                                     setTimeout(function () {
                                         // Typing 애니메이션을 제거합니다.
                                         $('.typing').remove();
@@ -216,6 +219,11 @@
                                                 ${response.ai_content}
                                             </div>`
                                         );
+                                            
+                                        // 기존 메시지 업데이트
+                                       // $('#latest-message').text(response.ai_content);
+
+                                          
                                         scrollChatBox();
                                     }, 2000); // 2초 딜레이
                                 }
@@ -227,6 +235,7 @@
         });
     });
 </script>
+
 
 </body>
 </html>

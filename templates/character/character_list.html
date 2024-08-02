@@ -1,0 +1,29 @@
+<!-- character/character_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character List</title>
+</head>
+<body>
+    <h1>Your Characters</h1>
+    <ul>
+        {% for character in user_characters %}
+            <li>
+                <h2>{{ character.name }}</h2>
+                <p>{{ character.introduce }}</p>
+                <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}" style="width: 100px; height: 100px;">
+                <a href="{% url 'character:character_update' character.pk %}">Edit</a>
+            </li>
+        {% empty %}
+            <li>No characters found.</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{% url 'character:character_create' %}">
+        <button>Create New Character</button>
+    </a>
+</body>
+</html>

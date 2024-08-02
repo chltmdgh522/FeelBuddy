@@ -2,9 +2,9 @@ import openai
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
-
+import pytz
 from character.models import UserCharacter
-from chatbot.models import ChatbotAIContent, ChatbotUserContent
+from chatbot.models import ChatbotAIContent, ChatbotUserContent, EmotionLog
 from django.utils.dateformat import format
 
 # OpenAI API 키 설정
@@ -13,7 +13,7 @@ openai.api_key = api_key
 
 from collections import defaultdict
 from django.utils.dateformat import format
-from datetime import date
+from datetime import date, datetime
 
 
 @login_required
@@ -40,6 +40,14 @@ def chatbot_content_list(request, pk):
         })
 
     all_contents.sort(key=lambda x: x['time'])
+    # 한국 표준시(KST)로 변환
+    timezone = pytz.timezone('Asia/Seoul')
+    if all_contents:
+        last_time = all_contents[-1]['time']
+        last_time_kst = last_time.astimezone(timezone)  # KST로 변환
+        last_time_formatted = last_time_kst.strftime('%H:%M')  # 형식 지정
+    else:
+        last_time_formatted = None
 
     # 날짜별로 메시지를 그룹화
     grouped_contents = []
@@ -51,10 +59,15 @@ def chatbot_content_list(request, pk):
             grouped_contents.append({'date': message_date, 'messages': []})
         grouped_contents[-1]['messages'].append(content)
 
+    last_messages = grouped_contents[-1]['messages'][-1]['content']
+    messagesLast = last_messages[:10]
+    print(messagesLast)
     context = {
         'grouped_contents': grouped_contents,
         'character': character,
         'characters': characters,
+        'last_time': last_time_formatted,
+        'messagesLast': messagesLast,
     }
 
     return render(request, 'chatbot/chatbotContentList.html', context)
@@ -215,13 +228,14 @@ def chatbot_ai_create(request, pk):
             user=user,
             userCharacter=character
         ).order_by('-time').first()
-        print(user_input.user_content)
         system_input = character_concept(character)
         ai_content = ai(system_input, user_input.user_content)
         create = ChatbotAIContent.objects.create(user=user, userCharacter=character, ai_content=ai_content, )
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
-        print("==========================")
-        print(ai_content)
+
+        # 마지막 문자 확인
+        character.name = ai_content
+        character.save()
         return JsonResponse({'ai_content': ai_content, 'time1': formatted_time})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
@@ -233,6 +247,13 @@ def chatbot_user_create(request, pk):
         character = UserCharacter.objects.get(id=pk, user=user)
         user_content = request.POST.get('user_content')
         create = ChatbotUserContent.objects.create(user=user, userCharacter=character, user_content=user_content, )
+        EmotionLog.objects.create(
+            user=user,
+            chatbotUserContent=create
+        )
+
+
+
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
         return JsonResponse({'user_content': user_content, 'time1': formatted_time})
     return JsonResponse({'error': 'Invalid request'}, status=400)
