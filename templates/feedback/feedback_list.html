@@ -1,0 +1,12 @@
+{% block content %}
+  <h1>Feedback List</h1>
+  <a href="{% url 'feedback:feedback_create' %}">Create Feedback</a>
+  <ul>
+    {% for feedback in feedbacks %}
+      <li>
+        <a href="{% url 'feedback:feedback_detail' feedback.pk %}">{{ feedback.title }}</a> by {{ feedback.user.username }}
+        ({{ feedback.like_set.count }} likes)
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

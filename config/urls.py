@@ -23,4 +23,6 @@ urlpatterns = [
     path('', include('feedback.urls')),
     path('', include('chatbot.urls')),
     path('', include('character.urls')),
+    path('accounts/', include('allauth.urls')), #소셜로그인
+
 ]
