@@ -87,8 +87,7 @@ def trash_restore(request, pk):
         character = UserCharacter.objects.get(pk=pk)
         character.trash = False
         character.save()
-        print('gdgdgdgdgd')
-    return redirect('character:trash')
+    return redirect('character:character_list')
 
 
 @login_required
