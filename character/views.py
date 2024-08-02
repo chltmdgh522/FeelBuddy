@@ -1,3 +1,4 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserCharacter
 from django.contrib.auth.models import AnonymousUser  # 로그인 기능없이 테스트를 해보기 위해서
@@ -65,17 +66,34 @@ def character_update(request, pk):
     return render(request, 'character/character_update.html', {'form': form, 'user_character': user_character})
 
 
-def trash_delete(request):
-    return 0
+@login_required
+def trash_delete(request, pk):
+    if request.method == 'POST':
+        UserCharacter.objects.get(pk=pk).delete()
+        return redirect('character:trash')
+    return render(request, 'user/test.html')
 
 
+@login_required
 def trash(request):
-    return 0
+    character_trash = UserCharacter.objects.filter(trash=True)
+    context = {'character_trash': character_trash}
+    return render(request, 'character/trash.html', context)
 
 
-def trash_restore(request):
-    return 0
+@login_required
+def trash_restore(request, pk):
+    if request.method == 'POST':
+        character = UserCharacter.objects.get(pk=pk)
+        character.trash = False
+        character.save()
+        print('gdgdgdgdgd')
+    return redirect('character:trash')
 
 
-def trash_perfect_delete(request):
-    return 0
+@login_required
+def trash_perfect_delete(request, pk):
+    if request.method == 'POST':
+        character = UserCharacter.objects.get(pk=pk)
+        character.delete()
+    return redirect('character:trash')

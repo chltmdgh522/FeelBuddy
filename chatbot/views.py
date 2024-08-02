@@ -1,7 +1,7 @@
 import openai
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import pytz
 from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent, EmotionLog
@@ -24,54 +24,62 @@ def chatbot_content_list(request, pk):
     ai_contents = ChatbotAIContent.objects.filter(user=user, userCharacter=character).order_by('time')
     user_contents = ChatbotUserContent.objects.filter(user=user, userCharacter=character).order_by('time')
 
-    # 대화 내용을 하나의 리스트로 합치고 시간순으로 정렬
-    all_contents = []
-    for content in user_contents:
-        all_contents.append({
-            'type': 'user',
-            'content': content.user_content,
-            'time': content.time
-        })
-    for content in ai_contents:
-        all_contents.append({
-            'type': 'ai',
-            'content': content.ai_content,
-            'time': content.time
-        })
+    if not character.trash:
+        # 대화 내용을 하나의 리스트로 합치고 시간순으로 정렬
+        all_contents = []
+        for content in user_contents:
+            all_contents.append({
+                'type': 'user',
+                'content': content.user_content,
+                'time': content.time
+            })
+        for content in ai_contents:
+            all_contents.append({
+                'type': 'ai',
+                'content': content.ai_content,
+                'time': content.time
+            })
 
-    all_contents.sort(key=lambda x: x['time'])
-    # 한국 표준시(KST)로 변환
-    timezone = pytz.timezone('Asia/Seoul')
-    if all_contents:
-        last_time = all_contents[-1]['time']
-        last_time_kst = last_time.astimezone(timezone)  # KST로 변환
-        last_time_formatted = last_time_kst.strftime('%H:%M')  # 형식 지정
+        all_contents.sort(key=lambda x: x['time'])
+
+        # 한국 표준시(KST)로 변환
+        timezone = pytz.timezone('Asia/Seoul')
+        if all_contents:
+            last_time = all_contents[-1]['time']
+            last_time_kst = last_time.astimezone(timezone)  # KST로 변환
+            last_time_formatted = last_time_kst.strftime('%H:%M')  # 형식 지정
+        else:
+            last_time_formatted = None
+
+        # 날짜별로 메시지를 그룹화
+        grouped_contents = []
+        current_date = None
+        for content in all_contents:
+            message_date = content['time'].date()
+            if current_date != message_date:
+                current_date = message_date
+                grouped_contents.append({'date': message_date, 'messages': []})
+            grouped_contents[-1]['messages'].append(content)
+
+        # `grouped_contents`가 비어있는지 확인
+        if grouped_contents and len(grouped_contents[-1]['messages']) > 0:
+            last_messages = grouped_contents[-1]['messages'][-1]['content']
+            messagesLast = last_messages[:10]
+        else:
+            messagesLast = []  # `grouped_contents`가 비어있거나 마지막 메시지가 없는 경우 빈 리스트
+
+        print(messagesLast)
+
+        context = {
+            'grouped_contents': grouped_contents,
+            'character': character,
+            'characters': characters,
+            'last_time': last_time_formatted,
+            'messagesLast': messagesLast,
+        }
+        return render(request, 'chatbot/chatbotContentList.html', context)
     else:
-        last_time_formatted = None
-
-    # 날짜별로 메시지를 그룹화
-    grouped_contents = []
-    current_date = None
-    for content in all_contents:
-        message_date = content['time'].date()
-        if current_date != message_date:
-            current_date = message_date
-            grouped_contents.append({'date': message_date, 'messages': []})
-        grouped_contents[-1]['messages'].append(content)
-
-    last_messages = grouped_contents[-1]['messages'][-1]['content']
-    messagesLast = last_messages[:10]
-    print(messagesLast)
-    context = {
-        'grouped_contents': grouped_contents,
-        'character': character,
-        'characters': characters,
-        'last_time': last_time_formatted,
-        'messagesLast': messagesLast,
-    }
-
-    return render(request, 'chatbot/chatbotContentList.html', context)
-
+        return redirect('users:main')
 
 def ai(system_input, user_input):
     # GPT-4와의 대화
@@ -234,8 +242,8 @@ def chatbot_ai_create(request, pk):
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
 
         # 마지막 문자 확인
-        character.name = ai_content
-        character.save()
+        # character.name = ai_content
+        # character.save()
         return JsonResponse({'ai_content': ai_content, 'time1': formatted_time})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
@@ -251,8 +259,6 @@ def chatbot_user_create(request, pk):
             user=user,
             chatbotUserContent=create
         )
-
-
 
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
         return JsonResponse({'user_content': user_content, 'time1': formatted_time})

@@ -54,43 +54,45 @@
             <h2>Contacts</h2>
             {% for character in characters %}
                 <div class="contact">
-                    {% if character.adminCharacter.emotion == '기쁨' %}
+                    {% if not character.trash  %}
+                        {% if character.adminCharacter.emotion == '기쁨' %}
 
-                        <div class="chat-pic joy"></div>
-                        <a href="/chatbot/{{ character.id }}">
-                            <div class="badge">14</div>
-                            <div class="name">{{ character.name }}</div>
-                            <div class="message">나 진짜 너무 기뻐 ^_^</div>
-                        </a>
-                    {% elif character.adminCharacter.emotion == '분노' %}
+                            <div class="chat-pic joy"></div>
+                            <a href="/chatbot/{{ character.id }}">
+                                <div class="badge">14</div>
+                                <div class="name">{{ character.name }}</div>
+                                <div class="message">나 진짜 너무 기뻐 ^_^</div>
+                            </a>
+                        {% elif character.adminCharacter.emotion == '분노' %}
 
-                        <div class="chat-pic anger"></div>
-                        <a href="/chatbot/{{ character.id }}">
-                            <div class="badge">14</div>
-                            <div class="name">{{ character.name }}</div>
-                            <div class="message">와 정말 화나!!</div>
-                        </a>
-                    {% elif character.adminCharacter.emotion == '불안' %}
-                        <div class="chat-pic anxiety"></div>
-                        <a href="/chatbot/{{ character.id }}">
-                            <div class="badge">14</div>
-                            <div class="name">{{ character.name }}</div>
-                            <div class="message">나 진짜 가만히 못 있겠어</div>
-                        </a>
-                    {% elif character.adminCharacter.emotion == '슬픔' %}
-                        <div class="chat-pic sad"></div>
-                        <a href="/chatbot/{{ character.id }}">
-                            <div class="badge">14</div>
-                            <div class="name">{{ character.name }}</div>
-                            <div class="message">나 혼자 있고 싶어.. 너무 슬퍼..</div>
-                        </a>
-                    {% elif character.adminCharacter.emotion == '두려움' %}
-                        <div class="chat-pic fear"></div>
-                        <a href="/chatbot/{{ character.id }}">
-                            <div class="badge">14</div>
-                            <div class="name">{{ character.name }}</div>
-                            <div class="message"  id="latest-message">어떡해 너무 무섭잖아..</div>
-                        </a>
+                            <div class="chat-pic anger"></div>
+                            <a href="/chatbot/{{ character.id }}">
+                                <div class="badge">14</div>
+                                <div class="name">{{ character.name }}</div>
+                                <div class="message">와 정말 화나!!</div>
+                            </a>
+                        {% elif character.adminCharacter.emotion == '불안' %}
+                            <div class="chat-pic anxiety"></div>
+                            <a href="/chatbot/{{ character.id }}">
+                                <div class="badge">14</div>
+                                <div class="name">{{ character.name }}</div>
+                                <div class="message">나 진짜 가만히 못 있겠어</div>
+                            </a>
+                        {% elif character.adminCharacter.emotion == '슬픔' %}
+                            <div class="chat-pic sad"></div>
+                            <a href="/chatbot/{{ character.id }}">
+                                <div class="badge">14</div>
+                                <div class="name">{{ character.name }}</div>
+                                <div class="message">나 혼자 있고 싶어.. 너무 슬퍼..</div>
+                            </a>
+                        {% elif character.adminCharacter.emotion == '두려움' %}
+                            <div class="chat-pic fear"></div>
+                            <a href="/chatbot/{{ character.id }}">
+                                <div class="badge">14</div>
+                                <div class="name">{{ character.name }}</div>
+                                <div class="message" id="latest-message">어떡해 너무 무섭잖아..</div>
+                            </a>
+                        {% endif %}
                     {% endif %}
                 </div>
             {% endfor %}
@@ -219,11 +221,11 @@
                                                 ${response.ai_content}
                                             </div>`
                                         );
-                                            
-                                        // 기존 메시지 업데이트
-                                       // $('#latest-message').text(response.ai_content);
 
-                                          
+                                        // 기존 메시지 업데이트
+                                        // $('#latest-message').text(response.ai_content);
+
+
                                         scrollChatBox();
                                     }, 2000); // 2초 딜레이
                                 }
