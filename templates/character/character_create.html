@@ -12,7 +12,7 @@
         {% for admin_character in admin_characters %}
             <li>
                 <a href="{% url 'character:character_create_detail' admin_character.pk %}">
-                    <img src="{{ admin_character.image }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
+                    <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
                     <p>{{ admin_character.emotion }}</p>
                 </a>                
             </li>

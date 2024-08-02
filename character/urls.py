@@ -25,7 +25,4 @@ urlpatterns = [
 
     path('trash/perfect/delete/<int:pk>', trash_perfect_delete, name='trash_perfect_delete'),  # 이거는 캐릭터 영구 삭제 url 즉 휴지통에서만 작동할수 있는 url임
 
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

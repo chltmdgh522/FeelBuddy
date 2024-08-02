@@ -9,7 +9,7 @@ class AdminCharacterForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super(AdminCharacterForm, self).save(commit=False)
-        media_path = settings.MEDIA_URL + 'characters/'
+        media_path = 'character/'
         if instance.emotion == 'angry':
             instance.image = media_path + 'angry.png'
         elif instance.emotion == 'anxiety':

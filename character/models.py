@@ -16,15 +16,16 @@ EMOTION_CHOICES = [
 
 class AdminCharacter(models.Model):
     emotion = models.CharField(max_length=10, choices=EMOTION_CHOICES, unique=True)
-    image = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):
         return self.emotion
 
     def save(self, *args, **kwargs):
-        # Set image path based on emotion
-        self.image = f"{settings.MEDIA_URL}character/{self.emotion}.png"
+        # 이미지 경로 설정에서 settings.MEDIA_URL 제거
+        self.image = f"character/{self.emotion}.png"
         super(AdminCharacter, self).save(*args, **kwargs)
+
 
 class UserCharacter(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 유저 식별자
