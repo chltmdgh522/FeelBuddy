@@ -14,7 +14,7 @@
                 <h2>{{ character.name }}</h2>
                 <p>{{ character.introduce }}</p>
                 <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}" style="width: 100px; height: 100px;">
-                <a href="{% url 'character:character_update' character.pk %}">Edit</a>
+                <a href="{% url 'character:character_update' character.pk %}">Edit</a> <!-- 수정된 부분 -->
             </li>
         {% empty %}
             <li>No characters found.</li>
