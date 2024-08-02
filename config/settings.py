@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-w&ru*a=8k++v5gtnuacib$5(kfes@u!mpzp4@*jclgnv7bu$e&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['121.173.113.60', 'localhost']
+ALLOWED_HOSTS = ['121.173.113.60', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -151,3 +151,28 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# 소셜 계정 프로바이더 설정
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '375689531334-oa582g2gk7dvoo6nn94ggehd5opvcoeb.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    },
+    'naver': {
+        'APP': {
+            'client_id': '20M3Zwb2VpH574y0OHQN',
+            'secret': 'iDD27qtz9e',
+            'key': ''
+        }
+    },
+    'kakao': {
+        'APP': {
+            'client_id': '4703a49559d7241fea4341b24a9b8dd8',
+            'secret': 'FvTb3LFhgpT4jufmI2o3dSwYf33CZE3E',  
+            'key': ''
+        }
+    }
+}
