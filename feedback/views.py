@@ -22,15 +22,19 @@ def feedback_detail(request, pk):
 @login_required
 def feedback_create(request):
     if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            feedback = form.save(commit=False)
-            feedback.user = request.user
-            feedback.save()
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        img_url = request.FILES.get('img_url')  
+
+        if title and content:
+            feedback = Community.objects.create(
+                title=title,
+                content=content,
+                user=request.user,
+                img_url=img_url  
+            )
             return redirect('feedback:feedback_list')
-    else:
-        form = FeedbackForm()
-    return render(request, 'feedback/feedback_form.html', {'form': form})
+    return render(request, 'feedback/feedback_form.html')
 
 @login_required
 def feedback_update(request, pk):
@@ -55,14 +59,15 @@ def feedback_delete(request, pk):
 
 @login_required
 def comment_create(request, pk):
-    feedback = get_object_or_404(Community, pk=pk)
+    community = get_object_or_404(Community, pk=pk)  
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.community = feedback
-            comment.save()
+        content = request.POST.get('content')
+        if content:
+            Comment.objects.create(
+                community=community,  
+                user=request.user,
+                content=content
+            )
     return redirect('feedback:feedback_detail', pk=pk)
 
 @login_required
