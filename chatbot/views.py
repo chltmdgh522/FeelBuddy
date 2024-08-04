@@ -20,7 +20,7 @@ from datetime import date, datetime
 def chatbot_content_list(request, pk):
     user = request.user
     character = UserCharacter.objects.get(id=pk, user=user)
-    characters = UserCharacter.objects.filter(user=user)
+    characters = UserCharacter.objects.filter(user=user, trash=False)
     ai_contents = ChatbotAIContent.objects.filter(user=user, userCharacter=character).order_by('time')
     user_contents = ChatbotUserContent.objects.filter(user=user, userCharacter=character).order_by('time')
 
@@ -70,16 +70,18 @@ def chatbot_content_list(request, pk):
 
         print(messagesLast)
 
+
         context = {
             'grouped_contents': grouped_contents,
             'character': character,
             'characters': characters,
             'last_time': last_time_formatted,
             'messagesLast': messagesLast,
-        }
+            }
         return render(request, 'chatbot/chatbotContentList.html', context)
     else:
         return redirect('users:main')
+
 
 def ai(system_input, user_input):
     # GPT-4와의 대화
