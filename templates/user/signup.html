@@ -20,12 +20,12 @@
                 <img class="form__icon" src="#" alt="">
             </div>
             <span class="form__span">or use email for registration</span>
-            
+
             <!-- 오류 메시지 표시 -->
             {% if error %}
                 <div class="form__error" style="color: red;">{{ error }}</div>
             {% endif %}
-        
+
             <input class="form__input" type="text" placeholder="Name" name="name" required>
             <input class="form__input" type="email" placeholder="Email" name="email" required>
             <input class="form__input" type="text" placeholder="ID" name="username" required>
@@ -34,7 +34,8 @@
         </form>
     </div>
     <div class="container b-container" id="b-container">
-        <form id="b-form" class="form" method="" action="">
+        <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
+            {% csrf_token %}
             <h2 class="form_title title">Sign in to Website</h2>
             <div class="form__icons">
                 <img class="form__icon" src="#" alt="">
@@ -42,10 +43,14 @@
                 <img class="form__icon" src="#" alt="">
             </div>
             <span class="form__span">or use your email account</span>
-            <input class="form__input" type="text" placeholder="Email">
-            <input class="form__input" type="password" placeholder="Password">
+            {% if error %}
+                <div class="form__error" style="color: red;">{{ error }}</div>
+            {% endif %}
+
+            <input class="form__input" type="text" placeholder="ID" name="username">
+            <input class="form__input" type="password" placeholder="Password" name="password">
             <a class="form__link" href="#">Forgot your password?</a>
-            <button class="form__button button submit">Log IN</button>
+            <button class="switch__button button switch-btn" type="submit">Log IN</button>
         </form>
     </div>
     <div class="switch" id="switch-cnt">
@@ -66,4 +71,50 @@
 </div>
 
 </body>
+
+<script>
+
+
+    let switchCtn = document.querySelector("#switch-cnt");
+    let switchC1 = document.querySelector("#switch-c1");
+    let switchC2 = document.querySelector("#switch-c2");
+    let switchCircle = document.querySelectorAll(".switch__circle");
+    let switchBtn = document.querySelectorAll(".switch-btn");
+    let aContainer = document.querySelector("#a-container");
+    let bContainer = document.querySelector("#b-container");
+    let allButtons = document.querySelectorAll(".submit");
+
+    let getButtons = (e) => e.preventDefault()
+
+    let changeForm = (e) => {
+
+        switchCtn.classList.add("is-gx");
+        setTimeout(function () {
+            switchCtn.classList.remove("is-gx");
+        }, 1500)
+
+        switchCtn.classList.toggle("is-txr");
+        switchCircle[0].classList.toggle("is-txr");
+        switchCircle[1].classList.toggle("is-txr");
+
+        switchC1.classList.toggle("is-hidden");
+        switchC2.classList.toggle("is-hidden");
+        aContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-z200");
+    }
+
+    let mainF = (e) => {
+        for (var i = 0; i < allButtons.length; i++)
+            allButtons[i].addEventListener("click", getButtons);
+        for (var i = 0; i < switchBtn.length; i++)
+            switchBtn[i].addEventListener("click", changeForm)
+        // SIGN IN 버튼을 자동으로 클릭하여 로그인 폼을 표시
+        if (window.location.pathname === '/login/') {
+            document.querySelector("#switch-c1 .switch-btn").click();
+        }
+    }
+
+    window.addEventListener("load", mainF);
+</script>
 </html>

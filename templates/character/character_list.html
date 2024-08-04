@@ -1,29 +1,109 @@
-<!-- character/character_list.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character List</title>
+    <title>Falling Ingredients Sandwich</title>
+ <link rel="stylesheet" href="{% static '/css/character/character_list.css' %}">
 </head>
 <body>
-    <h1>Your Characters</h1>
-    <ul>
-        {% for character in user_characters %}
-            <li>
-                <h2>{{ character.name }}</h2>
-                <p>{{ character.introduce }}</p>
-                <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}" style="width: 100px; height: 100px;">
-                <a href="{% url 'character:character_update' character.pk %}">Edit</a> <!-- 수정된 부분 -->
-            </li>
-        {% empty %}
-            <li>No characters found.</li>
-        {% endfor %}
-    </ul>
+    <div class="ground"></div>
 
-    <br>
-    <a href="{% url 'character:character_create' %}">
-        <button>Create New Character</button>
-    </a>
+    <button id="createButton">Create</button>
+    <button id="deleteButton">Delete</button> 
+
+    
+    <div class="character-main" id="characterMain">
+        <div class="character-scene">
+                <div class="table1 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-character"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front"></div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="charfall hidden">
+                    <img src="/media/joy.png" alt="" class="">
+                </div>
+        </div>
+        <div class="character-scene">
+            <!-- <div class="ground"></div> -->
+        
+                <div class="table2 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-character"></div> 
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front"></div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="charfall hidden">
+                    <img src="/media/fear.png" alt="" class="">
+                </div>
+        </div>
+        <div class="character-scene">
+            <div class="table3 hidden">
+                <div class="table-top">
+                    <div class="top-slider">
+                        <div class="shadow-character"></div>
+                    </div>
+                </div>
+                <div class="table-bottom"></div>
+                <div class="table-left"></div>
+                <div class="table-right"></div>
+                <div class="table-front"></div>
+                <div class="table-back"></div>
+            </div>
+            <div class="charfall hidden">
+                <img src="/media/anger.png" alt="" class="">
+            </div>
+        </div>
+        <div class="character-scene">
+            <div class="table4 hidden">
+                <div class="table-top">
+                    <div class="top-slider">
+                        <div class="shadow-character"></div>
+                    </div>
+                </div>
+                <div class="table-bottom"></div>
+                <div class="table-left"></div>
+                <div class="table-right"></div>
+                <div class="table-front"></div>
+                <div class="table-back"></div>
+            </div>
+            <div class="charfall hidden">
+                <img src="/media/anxiety.png" alt="" class="">
+            </div>
+        </div>
+        <div class="character-scene">
+            <div class="table5 hidden">
+                <div class="table-top">
+                    <div class="top-slider">
+                        <div class="shadow-character"></div>
+                    </div>
+                </div>
+                <div class="table-bottom"></div>
+                <div class="table-left"></div>
+                <div class="table-right"></div>
+                <div class="table-front"></div>
+                <div class="table-back"></div>
+            </div>
+            <div class="charfall hidden">
+                <img src="/media/sad.png" alt="" class="">
+            </div>
+        </div>
+
+    </div>
+    <script src="sandwitch.js"></script>
 </body>
 </html>

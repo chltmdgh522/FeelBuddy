@@ -28,9 +28,10 @@ def signup(request):
             user = User.objects.create(
                 username=username,
                 email=email,
-                password=password,
                 name=name  # 'name' 필드를 'first_name'으로 사용
             )
+            user.set_password(password)  # 비밀번호 해시화
+            user.save()
             return redirect('users:login')
         except Exception as e:
             return render(request, 'user/signup.html', {'error': '회원가입에 실패했습니다.'})
@@ -40,17 +41,17 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                auth_login(request, user)
-                return redirect('users:main')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'user/login.html', {'form': form})
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            print("sadfasdfasdfasdf")
+            return redirect('character:character_list')
+        else:
+            return render(request, 'user/signup.html', {'error': '일치하는 계정이 없습니다.'})
+    return render(request, 'user/signup.html')
 
 
 def logout(request):
