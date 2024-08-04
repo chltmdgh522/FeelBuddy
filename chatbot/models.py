@@ -19,7 +19,6 @@ class ChatbotAIContent(models.Model):
     ai_content = models.TextField()  # 인공지능 대화
     time = models.DateTimeField(auto_now_add=True)  # 대화생성시간
 
-
 # 감정 기록 로그(아마 대화양 즉 대화 건수)
 class EmotionLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 유저 식별자

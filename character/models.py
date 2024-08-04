@@ -23,6 +23,7 @@ class UserCharacter(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 유저 식별자
     adminCharacter = models.ForeignKey(AdminCharacter, on_delete=models.CASCADE)  # 초기 캐릭터 식별자
     introduce = models.TextField()  # 생성 이유
+    last_content = models.TextField(default=" ")  # 인공지능 마지막 대화
     trash = models.BooleanField(default=False)  # 캐릭터 휴지통 플래그
     name = models.CharField(max_length=30)  # 캐릭터 이름
 

@@ -70,14 +70,13 @@ def chatbot_content_list(request, pk):
 
         print(messagesLast)
 
-
         context = {
             'grouped_contents': grouped_contents,
             'character': character,
             'characters': characters,
             'last_time': last_time_formatted,
             'messagesLast': messagesLast,
-            }
+        }
         return render(request, 'chatbot/chatbotContentList.html', context)
     else:
         return redirect('users:main')
@@ -244,9 +243,20 @@ def chatbot_ai_create(request, pk):
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
 
         # 마지막 문자 확인
-        # character.name = ai_content
-        # character.save()
-        return JsonResponse({'ai_content': ai_content, 'time1': formatted_time})
+        character.last_content = ai_content[:10] + '...' if len(ai_content) > 10 else ai_content
+
+        def parse_korean_datetime(date_str):
+            date_str = date_str.replace('오전', 'AM').replace('오후', 'PM')
+            return datetime.strptime(date_str, '%Y년 %m월 %d일 %I:%M %p')
+
+        last_time = parse_korean_datetime(formatted_time)
+        last_time = pytz.utc.localize(last_time)
+        timezone = pytz.timezone('Asia/Seoul')
+        last_time_kst = last_time.astimezone(timezone)
+        last_time_formatted = last_time_kst.strftime('%H:%M')
+
+        character.save()
+        return JsonResponse({'ai_content': ai_content, 'time1': last_time_formatted, 'id2': character.id})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
