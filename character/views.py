@@ -14,11 +14,12 @@ from .forms import UserCharacterForm
 
 # Create your views here.
 
+@login_required
 def character_list(request):
     if isinstance(request.user, AnonymousUser):
         user_characters = []  # 빈 리스트로 설정하거나 다른 처리를 할 수 있습니다.
     else:
-        user_characters = UserCharacter.objects.filter(user=request.user)
+        user_characters = UserCharacter.objects.filter(user=request.user, trash=False)
     return render(request, 'character/character_list.html', {'user_characters': user_characters})
 
 

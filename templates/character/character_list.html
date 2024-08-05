@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>character list page</title>
     <link rel="stylesheet" href="{% static '/css/character/favorite.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list.css' %}">
 
     <link rel="stylesheet" href="{% static '/css/character/heart.css' %}">
 </head>
 <body>
 <div class="ground"></div>
-
-<button id="createButton">Create</button>
+   <button id="createButton" onclick="location.href='/character/create'">Create</button>
+   <button id="createButton2" onclick="location.href='/trash'">Trash</button>
 <form class="col-auto mx-2" method="POST" action='{% url 'character:trash_delete' %}'>
     {% csrf_token %}
-    <input type="submit" value="Delete">
+    <input id="deleteButton" type="submit" value="Delete">
 
 
     <div class="character-main" id="characterMain">
@@ -263,7 +264,7 @@
             console.log(checkedItems)
             if (checkedItems.length === 0) {
                 event.preventDefault();
-                alert('Please select items to delete.');
+                alert('선택한 캐릭터가 없습니다.');
             }
         });
     });
