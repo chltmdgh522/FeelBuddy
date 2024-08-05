@@ -6,19 +6,12 @@ import pytz
 from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent, EmotionLog
 from django.utils.dateformat import format
-import matplotlib.pyplot as plt
-import io
-import base64
 from collections import defaultdict
-import matplotlib.font_manager as fm  # 여기에서 fm으로 import 합니다.
 
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
 
-#matplotlib 폰트 설정(넣어줘야 한글 안깨짐)
-plt.rcParams['font.family'] ='Malgun Gothic'
-plt.rcParams['axes.unicode_minus'] =False
 
 from collections import defaultdict
 from django.utils.dateformat import format
@@ -301,20 +294,5 @@ def emotion(request):
         if emotion in emotion_counts:
             emotion_counts[emotion] += ChatbotUserContent.objects.filter(user=user, userCharacter=character).count()
             emotion_counts[emotion] += ChatbotAIContent.objects.filter(user=user, userCharacter=character).count()
-    
-    #그래프 생성
-    plt.figure(figsize=(10, 5))
-    plt.bar(emotion_counts.keys(), emotion_counts.values(), color='skyblue')
-    plt.xlabel('감정')
-    plt.ylabel('대화 횟수')
-    plt.title('감정별 대화양')
 
-    # 그래프를 이미지로 변환하여 HTML에 전달
-    buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
-    image_base64 = base64.b64encode(image_png).decode('utf-8')
-
-    return render(request, 'chatbot/emotion.html', {'chart': image_base64})
+    return render(request, 'chatbot/log.html', {'emotion_counts': emotion_counts})
