@@ -1,5 +1,7 @@
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import UserCharacter
 from django.contrib.auth.models import AnonymousUser  # 로그인 기능없이 테스트를 해보기 위해서
 from .forms import UserCharacterNameForm
@@ -12,11 +14,12 @@ from .forms import UserCharacterForm
 
 # Create your views here.
 
+@login_required
 def character_list(request):
     if isinstance(request.user, AnonymousUser):
         user_characters = []  # 빈 리스트로 설정하거나 다른 처리를 할 수 있습니다.
     else:
-        user_characters = UserCharacter.objects.filter(user=request.user)
+        user_characters = UserCharacter.objects.filter(user=request.user, trash=False)
     return render(request, 'character/character_list.html', {'user_characters': user_characters})
 
 
@@ -67,11 +70,17 @@ def character_update(request, pk):
 
 
 @login_required
-def trash_delete(request, pk):
+def trash_delete(request):
     if request.method == 'POST':
-        UserCharacter.objects.get(pk=pk).delete()
-        return redirect('character:trash')
-    return render(request, 'user/test.html')
+        ids = request.POST.getlist('character_ids')
+        for i in ids:
+            print(i)
+        print(ids)
+        if ids:
+            UserCharacter.objects.filter(id__in=ids).update(trash=True)
+
+        return redirect('character:trash')  # 적절한 리다이렉트 URL로 변경 필요
+    return JsonResponse({'success': False}, status=400)
 
 
 @login_required

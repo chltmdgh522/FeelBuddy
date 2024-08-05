@@ -1,15 +1,24 @@
 import openai
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 import pytz
 from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent, EmotionLog
 from django.utils.dateformat import format
+import matplotlib.pyplot as plt
+import io
+import base64
+from collections import defaultdict
+import matplotlib.font_manager as fm  # 여기에서 fm으로 import 합니다.
 
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
+
+#matplotlib 폰트 설정(넣어줘야 한글 안깨짐)
+plt.rcParams['font.family'] ='Malgun Gothic'
+plt.rcParams['axes.unicode_minus'] =False
 
 from collections import defaultdict
 from django.utils.dateformat import format
@@ -20,7 +29,7 @@ from datetime import date, datetime
 def chatbot_content_list(request, pk):
     user = request.user
     character = UserCharacter.objects.get(id=pk, user=user)
-    characters = UserCharacter.objects.filter(user=user)
+    characters = UserCharacter.objects.filter(user=user, trash=False)
     ai_contents = ChatbotAIContent.objects.filter(user=user, userCharacter=character).order_by('time')
     user_contents = ChatbotUserContent.objects.filter(user=user, userCharacter=character).order_by('time')
 
@@ -80,6 +89,7 @@ def chatbot_content_list(request, pk):
         return render(request, 'chatbot/chatbotContentList.html', context)
     else:
         return redirect('users:main')
+
 
 def ai(system_input, user_input):
     # GPT-4와의 대화
@@ -242,9 +252,20 @@ def chatbot_ai_create(request, pk):
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
 
         # 마지막 문자 확인
-        # character.name = ai_content
-        # character.save()
-        return JsonResponse({'ai_content': ai_content, 'time1': formatted_time})
+        character.last_content = ai_content[:10] + '...' if len(ai_content) > 10 else ai_content
+
+        def parse_korean_datetime(date_str):
+            date_str = date_str.replace('오전', 'AM').replace('오후', 'PM')
+            return datetime.strptime(date_str, '%Y년 %m월 %d일 %I:%M %p')
+
+        last_time = parse_korean_datetime(formatted_time)
+        last_time = pytz.utc.localize(last_time)
+        timezone = pytz.timezone('Asia/Seoul')
+        last_time_kst = last_time.astimezone(timezone)
+        last_time_formatted = last_time_kst.strftime('%H:%M')
+
+        character.save()
+        return JsonResponse({'ai_content': ai_content, 'time1': last_time_formatted, 'id2': character.id})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
@@ -267,4 +288,33 @@ def chatbot_user_create(request, pk):
 
 @login_required
 def emotion(request):
-    return 0
+    user = request.user
+    emotions = ["기쁨", "분노", "슬픔", "불안", "두려움"]
+    emotion_counts = {emotion: 0 for emotion in emotions} #각 감정별로 대화 횟수를 저장하기 위한 딕셔너리
+
+    # 유저 캐릭터 대화 내용 가져오기
+    user_characters = UserCharacter.objects.filter(user=user)
+
+    #각 캐릭터 대화 횟수 계산
+    for character in user_characters:
+        emotion = character.adminCharacter.emotion
+        if emotion in emotion_counts:
+            emotion_counts[emotion] += ChatbotUserContent.objects.filter(user=user, userCharacter=character).count()
+            emotion_counts[emotion] += ChatbotAIContent.objects.filter(user=user, userCharacter=character).count()
+    
+    #그래프 생성
+    plt.figure(figsize=(10, 5))
+    plt.bar(emotion_counts.keys(), emotion_counts.values(), color='skyblue')
+    plt.xlabel('감정')
+    plt.ylabel('대화 횟수')
+    plt.title('감정별 대화양')
+
+    # 그래프를 이미지로 변환하여 HTML에 전달
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+    image_base64 = base64.b64encode(image_png).decode('utf-8')
+
+    return render(request, 'chatbot/emotion.html', {'chart': image_base64})

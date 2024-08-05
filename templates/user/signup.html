@@ -1,10 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+<div class="main">
+    <div class="container a-container" id="a-container">
+        <form id="a-form" class="form" method="post" action="{% url 'users:signup' %}">
+            {% csrf_token %}
+            <h2 class="form_title title">Create Account</h2>
+            <div class="form__icons">
+                <img class="form__icon" src="#" alt="">
+                <img class="form__icon" src="#" alt="">
+                <img class="form__icon" src="#" alt="">
+            </div>
+            <span class="form__span">or use email for registration</span>
+
+            <!-- 오류 메시지 표시 -->
+            {% if error %}
+                <div class="form__error" style="color: red;">{{ error }}</div>
+            {% endif %}
+
+            <input class="form__input" type="text" placeholder="Name" name="name" required>
+            <input class="form__input" type="email" placeholder="Email" name="email" required>
+            <input class="form__input" type="text" placeholder="ID" name="username" required>
+            <input class="form__input" type="password" placeholder="Password" name="password" required>
+            <button class="switch__button button switch-btn" type="submit">SIGN UP</button>
+        </form>
+    </div>
+    <div class="container b-container" id="b-container">
+        <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
+            {% csrf_token %}
+            <h2 class="form_title title">Sign in to Website</h2>
+            <div class="form__icons">
+                <img class="form__icon" src="#" alt="">
+                <img class="form__icon" src="#" alt="">
+                <img class="form__icon" src="#" alt="">
+            </div>
+            <span class="form__span">or use your email account</span>
+            {% if error %}
+                <div class="form__error" style="color: red;">{{ error }}</div>
+            {% endif %}
+
+            <input class="form__input" type="text" placeholder="ID" name="username">
+            <input class="form__input" type="password" placeholder="Password" name="password">
+            <a class="form__link" href="#">Forgot your password?</a>
+            <button class="switch__button button switch-btn" type="submit">Log IN</button>
+        </form>
+    </div>
+    <div class="switch" id="switch-cnt">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circle--t"></div>
+        <div class="switch__container" id="switch-c1">
+            <h2 class="switch__title title">Welcome Back !</h2>
+            <p class="switch__description description">To keep connected with us please login with your personal
+                info</p>
+            <button class="switch__button button switch-btn">SIGN IN</button>
+        </div>
+        <div class="switch__container is-hidden" id="switch-c2">
+            <h2 class="switch__title title">Hello Friend !</h2>
+            <p class="switch__description description">Enter your personal details and start journey with us</p>
+            <button class="switch__button button switch-btn">SIGN UP</button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
 
 
-{% block content %}
-  <h2>Sign Up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
-{% endblock %}
+    let switchCtn = document.querySelector("#switch-cnt");
+    let switchC1 = document.querySelector("#switch-c1");
+    let switchC2 = document.querySelector("#switch-c2");
+    let switchCircle = document.querySelectorAll(".switch__circle");
+    let switchBtn = document.querySelectorAll(".switch-btn");
+    let aContainer = document.querySelector("#a-container");
+    let bContainer = document.querySelector("#b-container");
+    let allButtons = document.querySelectorAll(".submit");
+
+    let getButtons = (e) => e.preventDefault()
+
+    let changeForm = (e) => {
+
+        switchCtn.classList.add("is-gx");
+        setTimeout(function () {
+            switchCtn.classList.remove("is-gx");
+        }, 1500)
+
+        switchCtn.classList.toggle("is-txr");
+        switchCircle[0].classList.toggle("is-txr");
+        switchCircle[1].classList.toggle("is-txr");
+
+        switchC1.classList.toggle("is-hidden");
+        switchC2.classList.toggle("is-hidden");
+        aContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-z200");
+    }
+
+    let mainF = (e) => {
+        for (var i = 0; i < allButtons.length; i++)
+            allButtons[i].addEventListener("click", getButtons);
+        for (var i = 0; i < switchBtn.length; i++)
+            switchBtn[i].addEventListener("click", changeForm)
+        // SIGN IN 버튼을 자동으로 클릭하여 로그인 폼을 표시
+        if (window.location.pathname === '/login/') {
+            document.querySelector("#switch-c1 .switch-btn").click();
+        }
+    }
+
+    window.addEventListener("load", mainF);
+</script>
+</html>

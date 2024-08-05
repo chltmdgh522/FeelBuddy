@@ -5,6 +5,32 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static '/css/chatbot/chatbot.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        /* 기본 resizable 핸들 숨기기 */
+        .ui-resizable-handle {
+            display: none;
+        }
+
+        /* chat 요소에 커서 변경 추가 */
+        #chat {
+  
+            
+        }
+
+        /* 커서가 chat 요소의 모서리에 위치할 때 커서 모양 변경 */
+        #chat:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            cursor: se-resize;
+        }
+    </style>
 </head>
 <body>
 <input type="checkbox" name="btn" id="btn" checked>
@@ -52,48 +78,54 @@
         <div class="contacts">
             <i class="fas fa-bars fa-2x"></i>
             <h2>Contacts</h2>
+
             {% for character in characters %}
                 <div class="contact">
-                    {% if not character.trash  %}
-                        {% if character.adminCharacter.emotion == '기쁨' %}
 
-                            <div class="chat-pic joy"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message">나 진짜 너무 기뻐 ^_^</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '분노' %}
+                    {% if character.adminCharacter.emotion == '기쁨' %}
 
-                            <div class="chat-pic anger"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message">와 정말 화나!!</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '불안' %}
-                            <div class="chat-pic anxiety"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message">나 진짜 가만히 못 있겠어</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '슬픔' %}
-                            <div class="chat-pic sad"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message">나 혼자 있고 싶어.. 너무 슬퍼..</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '두려움' %}
-                            <div class="chat-pic fear"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message" id="latest-message">어떡해 너무 무섭잖아..</div>
-                            </a>
-                        {% endif %}
+                        <div class="chat-pic joy"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message"
+                                 id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '분노' %}
+
+                        <div class="chat-pic anger"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message"
+                                 id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '불안' %}
+                        <div class="chat-pic anxiety"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message"
+                                 id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '슬픔' %}
+                        <div class="chat-pic sad"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message"
+                                 id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
+                        </a>
+                    {% elif character.adminCharacter.emotion == '두려움' %}
+                        <div class="chat-pic fear"></div>
+                        <a href="/chatbot/{{ character.id }}">
+                            <div class="badge">14</div>
+                            <div class="name">{{ character.name }}</div>
+                            <div class="message"
+                                 id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
+                        </a>
                     {% endif %}
+
                 </div>
             {% endfor %}
         </div>
@@ -102,23 +134,23 @@
                 {% if character.adminCharacter.emotion == '기쁨' %}
                     <div class="chat-pic joy"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Last at {{ last_time }}</div>
+                    <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
                 {% elif character.adminCharacter.emotion == '분노' %}
                     <div class="chat-pic anger"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Last at {{ last_time }} </div>
+                    <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }} </div>
                 {% elif character.adminCharacter.emotion == '불안' %}
                     <div class="chat-pic anxiety"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Last at {{ last_time }}</div>
+                    <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
                 {% elif character.adminCharacter.emotion == '슬픔' %}
                     <div class="chat-pic sad"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Last at {{ last_time }}</div>
+                    <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
                 {% elif character.adminCharacter.emotion == '두려움' %}
                     <div class="chat-pic fear"></div>
                     <div class="name">{{ character.name }}</div>
-                    <div class="seen">Last at 12:56</div>
+                    <div class="seen" id="latest-time-{{ character.id }}">Last at 12:56</div>
                 {% endif %}
             </div>
             <div class="messages" id="messages">
@@ -155,8 +187,9 @@
         <ion-icon name="settings"></ion-icon>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+<script>
+    
+</script>
 <script>
     $(document).ready(function () {
         function scrollChatBox() {
@@ -222,9 +255,14 @@
                                             </div>`
                                         );
 
-                                        // 기존 메시지 업데이트
-                                        // $('#latest-message').text(response.ai_content);
+                                        let aiContent = response.ai_content;
+                                        let truncatedContent = aiContent.length > 10 ? aiContent.slice(0, 10) + '...' : aiContent;
 
+                                        let time = response.time1
+                                        // 메시지 업데이트
+                                        $('#latest-message-' + response.id2).text(truncatedContent);
+                                        // 시간 업데이트
+                                        $('#latest-time-' + response.id2).text('Last at ' + time);
 
                                         scrollChatBox();
                                     }, 2000); // 2초 딜레이
@@ -234,6 +272,11 @@
                     });
                 }
             }
+        });
+               // Resizable 설정
+        $("#chat").resizable({
+            minWidth: 300,  
+            minHeight: 400  
         });
     });
 </script>

@@ -2,6 +2,11 @@
 {% block content %}
   <h1>{{ feedback.title }}</h1>
   <p>{{ feedback.content }}</p>
+  
+  {% if feedback.img_url %}
+    <img src="{{ feedback.img_url.url }}" alt="Image for {{ feedback.title }}" style="max-width: 100%; height: auto;">
+  {% endif %}
+
   <p>by {{ feedback.user.username }}</p>
   {% if feedback.user == request.user %}
     <form method="post" action="{% url 'feedback:feedback_delete' feedback.pk %}" style="display:inline;">
