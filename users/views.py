@@ -10,7 +10,6 @@ from .models import User
 def main(request):
     return render(request, 'user/test.html')
 
-
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')

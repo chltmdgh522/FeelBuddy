@@ -1,11 +1,36 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static '/css/chatbot/chatbot.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        /* 기본 resizable 핸들 숨기기 */
+        .ui-resizable-handle {
+            display: none;
+        }
+
+        /* chat 요소에 커서 변경 추가 */
+        #chat {
+  
+            
+        }
+
+        /* 커서가 chat 요소의 모서리에 위치할 때 커서 모양 변경 */
+        #chat:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            cursor: se-resize;
+        }
+    </style>
 </head>
 <body>
 <input type="checkbox" name="btn" id="btn" checked>
@@ -162,8 +187,9 @@
         <ion-icon name="settings"></ion-icon>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+<script>
+    
+</script>
 <script>
     $(document).ready(function () {
         function scrollChatBox() {
@@ -246,6 +272,11 @@
                     });
                 }
             }
+        });
+               // Resizable 설정
+        $("#chat").resizable({
+            minWidth: 300,  
+            minHeight: 400  
         });
     });
 </script>

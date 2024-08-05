@@ -549,6 +549,9 @@ label[for=btn] {
     /* background: white; */
     background: rgba(44, 62, 80, 0.9);
     box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 0rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
+
+    overflow: auto;
+    resize: both; /* 이 부분은 CSS resize 속성을 유지 */
 }
 
 .chat .contact.bar {

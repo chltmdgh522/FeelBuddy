@@ -7,7 +7,7 @@ class Community(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField()
     content = models.TextField()
-    img_url = models.TextField()
+    img_url = models.ImageField(upload_to='images/', blank=True, null=True)  #TextField를 ImageField로 변경
     create_community = models.DateField(auto_now_add=True)
 
 
