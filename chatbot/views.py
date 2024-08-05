@@ -7,6 +7,8 @@ from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent, EmotionLog
 from django.utils.dateformat import format
 from collections import defaultdict
+from django.utils import timezone
+from django.db.models import Count
 
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
@@ -267,6 +269,7 @@ def chatbot_user_create(request, pk):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+#감정로그 (누적 대화량)
 @login_required
 def emotion(request):
     user = request.user
@@ -276,11 +279,38 @@ def emotion(request):
     # 유저 캐릭터 대화 내용 가져오기
     user_characters = UserCharacter.objects.filter(user=user)
 
-    #각 캐릭터 대화 횟수 계산
+    #각 캐릭터 누적 대화량
     for character in user_characters:
         emotion = character.adminCharacter.emotion
         if emotion in emotion_counts:
             emotion_counts[emotion] += ChatbotUserContent.objects.filter(user=user, userCharacter=character).count()
             emotion_counts[emotion] += ChatbotAIContent.objects.filter(user=user, userCharacter=character).count()
 
-    return render(request, 'chatbot/log.html', {'emotion_counts': emotion_counts})
+    return render(request, 'chatbot/log.html', {
+        'emotion_counts': emotion_counts,
+    })
+
+
+#감정로그(일주일 간 대화량)
+@login_required
+def weekly_emotion_log(request):
+    user = request.user
+    emotions = ["기쁨", "분노", "슬픔", "불안", "두려움"]
+
+    # 일주일 간의 감정별 대화량 계산
+    one_week_ago = timezone.now() - timezone.timedelta(days=7)
+    weekly_emotion_counts = {emotion: 0 for emotion in emotions}
+
+    user_characters = UserCharacter.objects.filter(user=user)
+
+    for character in user_characters:
+        emotion = character.adminCharacter.emotion
+        if emotion in weekly_emotion_counts:
+            weekly_emotion_counts[emotion] += ChatbotUserContent.objects.filter(
+                user=user, userCharacter=character, time__gte=one_week_ago).count()
+            weekly_emotion_counts[emotion] += ChatbotAIContent.objects.filter(
+                user=user, userCharacter=character, time__gte=one_week_ago).count()
+
+    return render(request, 'chatbot/weekly_log.html', {
+        'weekly_emotion_counts': weekly_emotion_counts
+    })
