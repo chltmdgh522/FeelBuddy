@@ -85,7 +85,8 @@ def trash_delete(request):
 
 @login_required
 def trash(request):
-    character_trash = UserCharacter.objects.filter(trash=True)
+
+    character_trash = UserCharacter.objects.filter(user=request.user, trash=True)
     context = {'character_trash': character_trash}
     return render(request, 'character/trash.html', context)
 
