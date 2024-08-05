@@ -46,7 +46,6 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            print("sadfasdfasdfasdf")
             return redirect('character:character_list')
         else:
             return render(request, 'user/signup.html', {'error': '일치하는 계정이 없습니다.'})

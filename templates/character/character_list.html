@@ -21,7 +21,9 @@
 
     <div class="character-main" id="characterMain">
         {% for character in user_characters %}
+            
             <div class="character-scene" id="charscene{{ character.id }}">
+         
                 <div class="table1 hidden">
                     <div class="table-top">
                         <div class="top-slider">
@@ -32,6 +34,7 @@
                     <div class="table-left"></div>
                     <div class="table-right"></div>
                     <div class="table-front">
+                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <div class="table-button">
                             <div class="table-toggle">
                                 <input type="checkbox" id="table-btn{{ character.id }}" name="character_ids" value="{{ character.id }}">
@@ -236,11 +239,11 @@
                             </div>
 
                         </div>
+                        </a>
                     </div>
                     <div class="table-back"></div>
                 </div>
-
-
+         
                 <div class="charfall hidden">
 
                     <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
@@ -248,6 +251,7 @@
                 </div>
 
             </div>
+       
         {% empty %}
             <li>No characters found.</li>
         {% endfor %}
