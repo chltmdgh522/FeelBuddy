@@ -19,7 +19,15 @@
     <div>
         {% csrf_token %}
         {% if user.is_authenticated %}
-            <p>{{ user.name }}님이 로그인 중</p>
+            <p>
+                <a href="{% url 'users:profile' %}">
+                    {% if user.profile.nickname %}
+                        {{ user.profile.nickname }}
+                    {% else %}
+                        익명
+                    {% endif %}
+                </a>님이 로그인 중
+            </p>
         {% endif %}
     </div>
 
