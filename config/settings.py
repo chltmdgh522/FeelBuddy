@@ -41,15 +41,15 @@ INSTALLED_APPS = [
     'users',
     'character',
 
-    #구글 소셜로그인
+    # 구글 소셜로그인
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    #네이버 소셜로그인
+    # 네이버 소셜로그인
     'allauth.socialaccount.providers.naver',
-    #카카오
+    # 카카오
     'allauth.socialaccount.providers.kakao',
 ]
 
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware', #구글소셜로그인
+    'allauth.account.middleware.AccountMiddleware',  # 구글소셜로그인
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -144,7 +144,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#구글 소셜로그인 관련 설정
+# 구글 소셜로그인 관련 설정
 SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -171,7 +171,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'kakao': {
         'APP': {
             'client_id': '4703a49559d7241fea4341b24a9b8dd8',
-            'secret': 'FvTb3LFhgpT4jufmI2o3dSwYf33CZE3E',  
+            'secret': 'FvTb3LFhgpT4jufmI2o3dSwYf33CZE3E',
             'key': ''
         }
     }
