@@ -18,17 +18,6 @@ class AdminCharacter(models.Model):
     emotion = models.CharField(max_length=10, choices=EMOTION_CHOICES, unique=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
 
-<<<<<<< HEAD
-    def __str__(self):
-        return self.emotion
-
-    def save(self, *args, **kwargs):
-        # 이미지 경로 설정에서 settings.MEDIA_URL 제거
-        self.image = f"character/{self.emotion}.png"
-        super(AdminCharacter, self).save(*args, **kwargs)
-=======
->>>>>>> develop
-
 
 class UserCharacter(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 유저 식별자

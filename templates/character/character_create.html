@@ -15,12 +15,7 @@
         {% if admin_character.id not in user_character_ids %}
             <li>
                 <a href="{% url 'character:character_create_detail' admin_character.pk %}">
-<<<<<<< HEAD
                     <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
-=======
-                    <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}"
-                         style="width: 100px; height: 100px;">
->>>>>>> develop
                     <p>{{ admin_character.emotion }}</p>
                 </a>
             </li>
