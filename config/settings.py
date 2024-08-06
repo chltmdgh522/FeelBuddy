@@ -92,8 +92,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'feelbuddy',  # MySQL 데이터베이스 이름
+        'USER': 'root',     # MySQL 사용자 이름
+        'PASSWORD': '0522',  # MySQL 사용자 비밀번호
+        'HOST': 'localhost',           # MySQL 서버 주소 (로컬 서버의 경우 'localhost' 또는 '127.0.0.1')
+        'PORT': '3306',                # MySQL 서버 포트 (기본값은 3306)
     }
 }
 

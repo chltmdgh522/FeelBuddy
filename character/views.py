@@ -79,13 +79,12 @@ def trash_delete(request):
         if ids:
             UserCharacter.objects.filter(id__in=ids).update(trash=True)
 
-        return redirect('character:trash')  # 적절한 리다이렉트 URL로 변경 필요
+        return redirect('character:character_list')  # 적절한 리다이렉트 URL로 변경 필요
     return JsonResponse({'success': False}, status=400)
 
 
 @login_required
 def trash(request):
-
     character_trash = UserCharacter.objects.filter(user=request.user, trash=True)
     context = {'character_trash': character_trash}
     return render(request, 'character/trash.html', context)
