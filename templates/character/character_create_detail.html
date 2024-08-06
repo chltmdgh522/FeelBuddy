@@ -1,0 +1,25 @@
+<!-- character/character_create_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User Character</title>
+</head>
+<body>
+    <h1>Create Character for {{ admin_character.emotion }}</h1>
+    <form method="POST" action="{% url 'character:character_create_detail' admin_character.pk %}">
+        {% csrf_token %}
+        <p>
+            <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
+        </p>
+        <label for="name">Character Name:</label>
+        <input type="text" name="name" required>
+        <br>
+        <label for="introduce">Introduce:</label>
+        <textarea name="introduce" required></textarea>
+        <br>
+        <button type="submit">Create Character</button>
+    </form>
+</body>
+</html>
