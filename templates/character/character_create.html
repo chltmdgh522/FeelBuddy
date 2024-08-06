@@ -7,16 +7,25 @@
     <title>Select Character</title>
 </head>
 <body>
-    <h1>Select a Character</h1>
-    <ul>
-        {% for admin_character in admin_characters %}
+<h1>Select a Character</h1>
+<ul>
+    {% for admin_character in admin_characters %}
+        <!-- 무한생성 막아야됨 그래서 if문 넣음 !-->
+        
+        {% if admin_character.id not in user_character_ids %}
             <li>
                 <a href="{% url 'character:character_create_detail' admin_character.pk %}">
+<<<<<<< HEAD
                     <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
+=======
+                    <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}"
+                         style="width: 100px; height: 100px;">
+>>>>>>> develop
                     <p>{{ admin_character.emotion }}</p>
-                </a>                
+                </a>
             </li>
-        {% endfor %}
-    </ul>
+        {% endif %}
+    {% endfor %}
+</ul>
 </body>
 </html>

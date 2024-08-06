@@ -7,8 +7,8 @@ class Community(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField()
     content = models.TextField()
-    img_url = models.TextField()
-    create_community = models.DateField()
+    img_url = models.ImageField(upload_to='images/', blank=True, null=True)  #TextField를 ImageField로 변경
+    create_community = models.DateField(auto_now_add=True)
 
 
 class Comment(models.Model):
@@ -20,4 +20,4 @@ class Comment(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
-    create_like = models.DateField()
+    create_like = models.DateField(auto_now_add=True)

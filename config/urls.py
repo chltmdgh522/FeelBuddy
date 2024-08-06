@@ -25,6 +25,8 @@ urlpatterns = [
     path('', include('feedback.urls')),
     path('', include('chatbot.urls')),
     path('', include('character.urls')),
+    path('accounts/', include('allauth.urls')), #소셜로그인
+
 ]
 
 # 이미지 파일 서빙을 위해 추가 

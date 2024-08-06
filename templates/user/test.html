@@ -1,3 +1,4 @@
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,22 @@
     <title>Title</title>
 </head>
 <body>
+    <div>
+        <a href="{% url 'users:signup' %}">회원가입</a>
+        <a href="{% url 'users:login' %}">로그인</a>
+        <a href="{% url 'users:logout' %}">로그아웃</a>
+        <a href="{% url 'google_login' %}"><p>login with Google</p></a>
+        <a href="{% provider_login_url 'naver' %}"><p>login with Naver</p></a>
+        <a href="{% provider_login_url 'kakao' %}"><p>login with Kakao</p></a>
+
+        <a href="{% url 'feedback:feedback_list' %}">피드백페이지로 이동</a>
+    </div>
+    <div>
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <p>{{ user.name }}님이 로그인 중</p>
+        {% endif %}
+    </div>
 
 </body>
 </html>

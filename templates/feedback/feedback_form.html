@@ -1,0 +1,13 @@
+{% block content %}
+  <h1>Create Feedback</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required><br><br>
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" required></textarea><br><br>
+    <label for="img_url">Upload Image:</label>
+    <input type="file" id="img_url" name="img_url"><br><br>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

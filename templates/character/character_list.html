@@ -1,29 +1,278 @@
-<!-- character/character_list.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character List</title>
+    <title>character list page</title>
+    <link rel="stylesheet" href="{% static '/css/character/favorite.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/character/heart.css' %}">
 </head>
 <body>
-    <h1>Your Characters</h1>
-    <ul>
+<div class="ground"></div>
+   <button id="createButton" onclick="location.href='/character/create'">Create</button>
+   <button id="createButton2" onclick="location.href='/trash'">Trash</button>
+<form class="col-auto mx-2" method="POST" action='{% url 'character:trash_delete' %}'>
+    {% csrf_token %}
+    <input id="deleteButton" type="submit" value="Delete">
+
+
+    <div class="character-main" id="characterMain">
         {% for character in user_characters %}
-            <li>
-                <h2>{{ character.name }}</h2>
-                <p>{{ character.introduce }}</p>
-                <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}" style="width: 100px; height: 100px;">
-                <a href="{% url 'character:character_update' character.pk %}">Edit</a> <!-- 수정된 부분 -->
-            </li>
+            
+            <div class="character-scene" id="charscene{{ character.id }}">
+         
+                <div class="table1 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-character"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn{{ character.id }}" name="character_ids" value="{{ character.id }}">
+                                <label for="table-btn{{ character.id }}">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <section class="heart-content">
+                                <div class="anicon-heart">
+                                    <input
+                                            type="checkbox"
+                                            id="checkbox"
+                                            class="anicon-heart__checkbox"
+                                    />
+                                    <label for="checkbox">
+                                        <svg
+                                                id="heart-svg"
+                                                class="anicon-heart__svg"
+                                                viewBox="467 392 58 57"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g
+                                                    fill="none"
+                                                    fill-rule="evenodd"
+                                                    transform="translate(467 392)"
+                                            >
+                                                <path
+                                                        class="anicon-heart__heart"
+                                                        d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                        fill="var(--color-neutral-100)"
+                                                />
+                                                <circle
+                                                        class="anicon-heart__circ"
+                                                        fill="var(--color-red-100)"
+                                                        opacity="0"
+                                                        cx="29.5"
+                                                        cy="29.5"
+                                                        r="1.5"
+                                                />
+                                                <g
+                                                        class="anicon-heart__group1"
+                                                        opacity="0"
+                                                        transform="translate(24)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-blue-100)"
+                                                            cx="2.5"
+                                                            cy="3"
+                                                            r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-blue-100)"
+                                                            cx="7.5"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                                <g
+                                                        class="anicon-heart__group2"
+                                                        opacity="0"
+                                                        transform="translate(44 6)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-purple-100)"
+                                                            cx="5"
+                                                            cy="6"
+                                                            r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-purple-100)"
+                                                            cx="2"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                                <g
+                                                        class="anicon-heart__group3"
+                                                        opacity="0"
+                                                        transform="translate(52 28)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-green-100)"
+                                                            cx="2"
+                                                            cy="7"
+                                                            r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-green-100)"
+                                                            cx="4"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                                <g
+                                                        class="anicon-heart__group4"
+                                                        opacity="0"
+                                                        transform="translate(35 50)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-red-200)"
+                                                            cx="6"
+                                                            cy="5"
+                                                            r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-red-200)"
+                                                            cx="2"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                                <g
+                                                        class="anicon-heart__group5"
+                                                        opacity="0"
+                                                        transform="translate(14 50)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-blue-100)"
+                                                            cx="6"
+                                                            cy="5"
+                                                            r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-blue-100)"
+                                                            cx="2"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                                <g
+                                                        class="anicon-heart__group6"
+                                                        opacity="0"
+                                                        transform="translate(0 28)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-purple-200)"
+                                                            cx="2" cy="7" r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-purple-200)"
+                                                            cx="3"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                                <g
+                                                        class="anicon-heart__group7"
+                                                        opacity="0"
+                                                        transform="translate(7 6)"
+                                                >
+                                                    <circle
+                                                            class="ani-heart__dot1"
+                                                            fill="var(--color-purple-300)"
+                                                            cx="2"
+                                                            cy="6"
+                                                            r="2"
+                                                    />
+                                                    <circle
+                                                            class="ani-heart__dot2"
+                                                            fill="var(--color-purple-300)"
+                                                            cx="5"
+                                                            cy="2"
+                                                            r="2"
+                                                    />
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </label>
+                                </div>
+                            </section>
+
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                        </a>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+         
+                <div class="charfall hidden">
+
+                    <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
+                         class="">
+                </div>
+
+            </div>
+       
         {% empty %}
             <li>No characters found.</li>
         {% endfor %}
-    </ul>
 
-    <br>
-    <a href="{% url 'character:character_create' %}">
-        <button>Create New Character</button>
-    </a>
+
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form').addEventListener('submit', function (event) {
+            console.log("----------------------------------------------")
+            const checkedItems = document.querySelectorAll('input[name="character_ids"]:checked');
+            console.log(checkedItems)
+            if (checkedItems.length === 0) {
+                event.preventDefault();
+                alert('선택한 캐릭터가 없습니다.');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

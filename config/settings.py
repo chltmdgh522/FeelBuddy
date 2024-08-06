@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-w&ru*a=8k++v5gtnuacib$5(kfes@u!mpzp4@*jclgnv7bu$e&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['121.173.113.60', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -41,6 +40,17 @@ INSTALLED_APPS = [
     'feedback',
     'users',
     'character',
+
+    # 구글 소셜로그인
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # 네이버 소셜로그인
+    'allauth.socialaccount.providers.naver',
+    # 카카오
+    'allauth.socialaccount.providers.kakao',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # 구글소셜로그인
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -107,9 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'ko-kr'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -134,3 +144,35 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 구글 소셜로그인 관련 설정
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL = '/character/list'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# 소셜 계정 프로바이더 설정
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '375689531334-oa582g2gk7dvoo6nn94ggehd5opvcoeb.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    },
+    'naver': {
+        'APP': {
+            'client_id': '20M3Zwb2VpH574y0OHQN',
+            'secret': 'iDD27qtz9e',
+            'key': ''
+        }
+    },
+    'kakao': {
+        'APP': {
+            'client_id': '4703a49559d7241fea4341b24a9b8dd8',
+            'secret': 'FvTb3LFhgpT4jufmI2o3dSwYf33CZE3E',
+            'key': ''
+        }
+    }
+}
