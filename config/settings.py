@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-w&ru*a=8k++v5gtnuacib$5(kfes@u!mpzp4@*jclgnv7bu$e&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['121.173.113.60', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -93,10 +95,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'feelbuddy',  # MySQL 데이터베이스 이름
-        'USER': 'root',     # MySQL 사용자 이름
-        'PASSWORD': '0522',  # MySQL 사용자 비밀번호
-        'HOST': 'localhost',           # MySQL 서버 주소 (로컬 서버의 경우 'localhost' 또는 '127.0.0.1')
+        'NAME': env('DB_NAME'),  # MySQL 데이터베이스 이름
+        'USER': env('DB_USER'),     # MySQL 사용자 이름
+        'PASSWORD': env('DB_PASSWORD'),  # MySQL 사용자 비밀번호
+        'HOST': env('DB_HOST'),           # MySQL 서버 주소 (로컬 서버의 경우 'localhost' 또는 '127.0.0.1')
         'PORT': '3306',                # MySQL 서버 포트 (기본값은 3306)
     }
 }
