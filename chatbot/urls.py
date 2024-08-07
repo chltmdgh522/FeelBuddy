@@ -18,6 +18,7 @@ urlpatterns = [
 
     # 감정 기록 페이지
     path('emotion/', emotion, name='emotion'),
+    path('weekly_emotion_log/', weekly_emotion_log, name='weekly_emotion_log'),
 
 ]
 if settings.DEBUG:
