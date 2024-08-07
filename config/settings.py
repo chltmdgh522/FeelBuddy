@@ -101,6 +101,9 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),  # MySQL 사용자 비밀번호
         'HOST': env('DB_HOST'),           # MySQL 서버 주소 (로컬 서버의 경우 'localhost' 또는 '127.0.0.1')
         'PORT': '3306',                # MySQL 서버 포트 (기본값은 3306)
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
     }
 }
 

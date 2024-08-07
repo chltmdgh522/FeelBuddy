@@ -247,7 +247,9 @@ def chatbot_ai_create(request, pk):
             userCharacter=character
         ).order_by('-time').first()
         system_input = character_concept(character)
+        print("gdgd")
         ai_content = ai(system_input, user_input.user_content)
+        print(ai_content)
         create = ChatbotAIContent.objects.create(user=user, userCharacter=character, ai_content=ai_content, )
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
 
