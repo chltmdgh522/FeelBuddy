@@ -142,7 +142,7 @@ USE_TZ = True
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # 정적 파일이 실제 서빙될 URL 경로를 설정합니다.
 STATIC_URL = '/static/'
 
