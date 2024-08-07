@@ -8,7 +8,7 @@ from .models import User
 # Create your views here.
 
 def main(request):
-    return render(request, 'user/test.html')
+    return render(request, 'user/main.html')
 
 def signup(request):
     if request.method == 'POST':
