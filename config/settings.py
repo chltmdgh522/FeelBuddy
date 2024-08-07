@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'feedback',
     'users',
     'character',
+    'django_extensions',
 
     # 구글 소셜로그인
     'django.contrib.sites',
@@ -149,12 +150,9 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-<<<<<<< HEAD
+
 LOGIN_REDIRECT_URL = '/character/list'
 #SOCIALACCOUNT_LOGIN_ON_GET = True
-=======
-
->>>>>>> feature/jinmyung2
 
 # 소셜 계정 프로바이더 설정
 SOCIALACCOUNT_PROVIDERS = {

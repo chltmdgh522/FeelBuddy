@@ -4,7 +4,12 @@
   <ul>
     {% for feedback in feedbacks %}
       <li>
-        <a href="{% url 'feedback:feedback_detail' feedback.pk %}">{{ feedback.title }}</a> by {{ feedback.user.username }}
+        <a href="{% url 'feedback:feedback_detail' feedback.pk %}">{{ feedback.title }}</a> by 
+        {% if feedback.user.profile.nickname %}
+          {{ feedback.user.profile.nickname }}
+        {% else %}
+          {{ feedback.user.username }}  <!-- 닉네임이 없는 경우 username표시됨 (임시) -->
+        {% endif %}
         ({{ feedback.like_set.count }} likes)
       </li>
     {% endfor %}
