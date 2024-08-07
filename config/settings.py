@@ -160,6 +160,9 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/character/list'
+# settings.py
+LOGIN_URL = '/login/'
+
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # 소셜 계정 프로바이더 설정
