@@ -1,8 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Edit Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 페이지</title>
+    <link rel="stylesheet" href="{% static '/css/user/profile.css' %}">
     <style>
         input[readonly] {
             border: none;
@@ -14,9 +18,48 @@
         }
     </style>
 </head>
+
 <body>
-    <h2>Edit Profile</h2>
-    <p>Edit profile image and nickname.</p>
+    <button class="profile-card" id="profile-btn">
+        <div class="profile-left">
+            <div class="profile-left-content">
+                <!-- 프로필 사진 표시 -->
+                <img id="profile-picture-preview" src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/characters/fear.png{% endif %}" class="user-image">
+                <p class="user-name">{{ profile.nickname }}</p>
+            </div>
+        </div>
+
+        <div class="profile-right">
+            <div class="profile-email">
+                <div class="profile-contact">
+                    <div class="profile-envelope">
+                        <div class="email-top">
+                            <div class="email-outer">
+                                <div class="email-inner"></div>
+                            </div>
+                        </div>
+                        <div class="email-bottom"></div>
+                        <div class="email-left"></div>
+                        <div class="email-right"></div>
+                        <div class="email-cover"></div>
+                        <div class="email-paper">
+                            <a class="mail" href="#">
+                                <div class="i"></div>{{ user.email }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-right-list">
+                <ul>
+                    <li><span class=""></span>찜</li>
+                    <li><span class=""></span>log</li>
+                    <li><span class=""></span>댓글</li>
+                    <li><span class=""></span>즐찾</li>
+                </ul>
+            </div>
+        </div>
+    </button>
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -24,8 +67,6 @@
             <tr>
                 <td>Photo</td>
                 <td>
-                    <img id="profile-picture-preview" src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/images/default_image.png{% endif %}" alt="Profile Picture" width="100">
-                    <br>
                     <button type="button" onclick="editProfilePicture()">Edit</button>
                     <button type="button" onclick="deleteProfilePicture()">Delete</button>
                     <input type="file" id="profile_picture" name="profile_picture" style="display:none;" onchange="previewImage(event)">
@@ -92,9 +133,7 @@
             alert("Nickname deleted. Enter a new one or confirm changes.");
         }
     </script>
+
 </body>
+
 </html>
-
-
-
-
