@@ -6,10 +6,24 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile, User
+from django.core.exceptions import ObjectDoesNotExist
+import random
 # Create your views here.
 
 def main(request):
-    return render(request, 'user/test.html')
+    user = request.user
+    try:
+        profile = Profile.objects.get(user=user)
+        display_name = profile.get_random_nickname()
+    except ObjectDoesNotExist:
+        random_names = ['화사한 유채꽃', '푸른 바다', '밝은 햇살', '고요한 달빛']
+        display_name = random.choice(random_names)
+
+    context = {
+        'display_name': display_name
+    }
+
+    return render(request, 'user/test.html', context)
 
 def signup(request):
     if request.method == 'POST':

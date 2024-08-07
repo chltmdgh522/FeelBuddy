@@ -30,11 +30,7 @@
         {% if user.is_authenticated %}
             <p>
                 <a href="{% url 'users:profile' %}">
-                    {% if user.profile.nickname %}
-                        {{ user.profile.nickname }}
-                    {% else %}
-                        익명
-                    {% endif %}
+                    {{ display_name }}
                 </a>님이 로그인 중
             </p>
         {% endif %}
