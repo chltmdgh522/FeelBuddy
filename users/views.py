@@ -2,9 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm
-from .models import User
+<<<<<<< HEAD
 
 
+
+=======
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Profile, User
+>>>>>>> feature/jinmyung2
 # Create your views here.
 
 def main(request):
@@ -55,3 +62,33 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('users:main')
+
+@login_required
+def profile(request):
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        nickname = request.POST.get('nickname', '')
+        profile_picture = request.FILES.get('profile_picture')
+        delete_picture = request.POST.get('delete_picture') == 'true'
+
+        if nickname == '':
+            profile.nickname = ''  # 닉네임 삭제 처리
+        else:
+            profile.nickname = nickname
+
+        if delete_picture:
+            profile.profile_picture = None  # 프로필 사진 삭제 처리
+        elif profile_picture:
+            profile.profile_picture = profile_picture  # 새 프로필 사진 업로드
+
+        profile.save()
+        return redirect('users:profile')
+
+    context = {
+        'user': user,
+        'profile': profile,
+    }
+
+    return render(request, 'user/profile.html', context)

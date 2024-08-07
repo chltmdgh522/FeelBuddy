@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감정 로그 페이지(주간)</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/chatbot/log.css' %}" type="text/css">   
+</head>
+<body>
+    <article>
+        <div>
+            <h1>Emotion Tracker</h1>
+            <p>각 캐릭터와의 일주일 간의 대화량을 보여줍니다.</p>
+        </div>
+        <button hidden>Show details</button>
+        
+        <ul>
+            {% for emotion, count in weekly_emotion_counts.items %}
+            <li style="--steps: {{ count }}" tabindex="0" aria-label="{{ emotion }}: {{ count }} steps" data-emotion="{{ emotion }}">
+                <b>{{ emotion }}</b>
+                <div>{{ count }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+        <button hidden tabindex="-1">Hide details</button>
+        <script src="{% static 'js/chatbot/log.js' %}"></script>
+    </article>
+</body>
+</html>
