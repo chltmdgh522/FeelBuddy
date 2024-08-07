@@ -2,16 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm
-<<<<<<< HEAD
-
-
-
-=======
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile, User
->>>>>>> feature/jinmyung2
 # Create your views here.
 
 def main(request):
