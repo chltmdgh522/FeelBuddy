@@ -10,7 +10,11 @@ from .models import User
 def main(request):
     return render(request, 'user/main.html')
 
+
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
+
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -39,6 +43,8 @@ def signup(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
