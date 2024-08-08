@@ -4,271 +4,874 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>character list page</title>
-    <link rel="stylesheet" href="{% static '/css/character/favorite.css' %}">
-    <link rel="stylesheet" href="{% static '/css/character/character_list.css' %}">
+    <title>Document</title>
+    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="stylesheet" href="{% static '/css/character/heart.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/blueback.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/bulb.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/camp.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/character_list.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/charbox.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/desk.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/icon.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/lighthouse1.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/shut1.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/window.css' %}">
+
+    <style>
+        .arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 10;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .arrow.left {
+            left: 10vmin;
+        }
+
+        .arrow.right {
+            right: 10vmin;
+        }
+
+        .room {
+            display: none;
+        }
+
+        .room.active {
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-<div class="ground"></div>
-   <button id="createButton" onclick="location.href='/character/create'">Create</button>
-   <button id="createButton2" onclick="location.href='/trash'">Trash</button>
-<form class="col-auto mx-2" method="POST" action='{% url 'character:trash_delete' %}'>
-    {% csrf_token %}
-    <input id="deleteButton" type="submit" value="Delete">
+<button id="create" onclick="location.href='/character/create'">create</button>
+<button id="delete">delete</button>
 
+<div class="door">
+    <div id="lock"></div>
+    <span id="keylock" class="off">Feelbuddy</span>
+    <span id="movement" class="off">lock</span>
+    <div class="icon">
+        <a href="{% url 'users:main' %}">
+            <div class="icon__home">
 
-    <div class="character-main" id="characterMain">
-        {% for character in user_characters %}
-            
-            <div class="character-scene" id="charscene{{ character.id }}">
-         
-                <div class="table1 hidden">
-                    <div class="table-top">
-                        <div class="top-slider">
-                            <div class="shadow-character"></div>
-                        </div>
-                    </div>
-                    <div class="table-bottom"></div>
-                    <div class="table-left"></div>
-                    <div class="table-right"></div>
-                    <div class="table-front">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                        <div class="table-button">
-                            <div class="table-toggle">
-                                <input type="checkbox" id="table-btn{{ character.id }}" name="character_ids" value="{{ character.id }}">
-                                <label for="table-btn{{ character.id }}">
-                                    <span class="table-thumb"></span>
-                                </label>
-                            </div>
-                            <section class="heart-content">
-                                <div class="anicon-heart">
-                                    <input
-                                            type="checkbox"
-                                            id="checkbox"
-                                            class="anicon-heart__checkbox"
-                                    />
-                                    <label for="checkbox">
-                                        <svg
-                                                id="heart-svg"
-                                                class="anicon-heart__svg"
-                                                viewBox="467 392 58 57"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g
-                                                    fill="none"
-                                                    fill-rule="evenodd"
-                                                    transform="translate(467 392)"
-                                            >
-                                                <path
-                                                        class="anicon-heart__heart"
-                                                        d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
-                                                        fill="var(--color-neutral-100)"
-                                                />
-                                                <circle
-                                                        class="anicon-heart__circ"
-                                                        fill="var(--color-red-100)"
-                                                        opacity="0"
-                                                        cx="29.5"
-                                                        cy="29.5"
-                                                        r="1.5"
-                                                />
-                                                <g
-                                                        class="anicon-heart__group1"
-                                                        opacity="0"
-                                                        transform="translate(24)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-blue-100)"
-                                                            cx="2.5"
-                                                            cy="3"
-                                                            r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-blue-100)"
-                                                            cx="7.5"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                                <g
-                                                        class="anicon-heart__group2"
-                                                        opacity="0"
-                                                        transform="translate(44 6)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-purple-100)"
-                                                            cx="5"
-                                                            cy="6"
-                                                            r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-purple-100)"
-                                                            cx="2"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                                <g
-                                                        class="anicon-heart__group3"
-                                                        opacity="0"
-                                                        transform="translate(52 28)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-green-100)"
-                                                            cx="2"
-                                                            cy="7"
-                                                            r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-green-100)"
-                                                            cx="4"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                                <g
-                                                        class="anicon-heart__group4"
-                                                        opacity="0"
-                                                        transform="translate(35 50)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-red-200)"
-                                                            cx="6"
-                                                            cy="5"
-                                                            r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-red-200)"
-                                                            cx="2"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                                <g
-                                                        class="anicon-heart__group5"
-                                                        opacity="0"
-                                                        transform="translate(14 50)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-blue-100)"
-                                                            cx="6"
-                                                            cy="5"
-                                                            r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-blue-100)"
-                                                            cx="2"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                                <g
-                                                        class="anicon-heart__group6"
-                                                        opacity="0"
-                                                        transform="translate(0 28)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-purple-200)"
-                                                            cx="2" cy="7" r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-purple-200)"
-                                                            cx="3"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                                <g
-                                                        class="anicon-heart__group7"
-                                                        opacity="0"
-                                                        transform="translate(7 6)"
-                                                >
-                                                    <circle
-                                                            class="ani-heart__dot1"
-                                                            fill="var(--color-purple-300)"
-                                                            cx="2"
-                                                            cy="6"
-                                                            r="2"
-                                                    />
-                                                    <circle
-                                                            class="ani-heart__dot2"
-                                                            fill="var(--color-purple-300)"
-                                                            cx="5"
-                                                            cy="2"
-                                                            r="2"
-                                                    />
-                                                </g>
-                                            </g>
-                                        </svg>
-                                    </label>
-                                </div>
-                            </section>
-
-                            <div class="favorite-content">
-                                <div class="Fav">
-                                    <input id="fav-checkbox" class="Fav-checkbox" type="checkbox">
-                                    <label for="fav-checkbox" class="Fav-label"><span
-                                            class="Fav-label-text">Favourite</span></label>
-                                    <div class="Fav-bloom"></div>
-                                    <div class="Fav-sparkle">
-                                        <div class="Fav-sparkle-line"></div>
-                                        <div class="Fav-sparkle-line"></div>
-                                        <div class="Fav-sparkle-line"></div>
-                                        <div class="Fav-sparkle-line"></div>
-                                        <div class="Fav-sparkle-line"></div>
-                                    </div>
-                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                        <title>Star Icon</title>
-                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
-                                    </svg>
-                                </div>
-                            </div>
-
-                        </div>
-                        </a>
-                    </div>
-                    <div class="table-back"></div>
-                </div>
-         
-                <div class="charfall hidden">
-
-                    <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
-                         class="">
-                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
+                </svg>
 
             </div>
-       
-        {% empty %}
-            <li>No characters found.</li>
-        {% endfor %}
+        </a>
+        <a href="{% url 'users:main' %}">
+            <div class="icon__account">
 
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
+                </svg>
 
+            </div>
+        </a>
+        {% if first_item %}
+            <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+                <div class="icon__chat">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                    </svg>
+                </div>
+            </a>
+        {% endif %}
+        <a href="{% url 'users:main' %}">
+            <div class="icon__log">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
+                </svg>
+            </div>
+        </a>
+        <a href="{% url 'character:trash' %}">
+            <div class="icon__delete">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+                </svg>
+            </div>
+        </a>
     </div>
-</form>
+
+</div>
+<main class="room-building">
+    <div class="arrow left">&larr;</div>
+    <div class="arrow right">&rarr;</div>
+
+
+    <section class="room active" id="room1">
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+                                    <form class="col-auto mx-2" method="POST"
+                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
+                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
+                                                class="fas fa-trash" id="trash-icon"></i></span>
+                                    </form>
+
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span
+                                                class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 64 64">
+                                            <title>Star Icon</title>
+                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+        <div class="room1-walls">
+
+
+            <div id="blueback-scene">
+                <div class="blueback-sky">
+                    <div class="blueback-stars layer" data-depth="0.3">
+                        <div class="blueback-star"></div>
+                        <div class="blueback-star"></div>
+                        <div class="blueback-star"></div>
+                    </div>
+                </div>
+                <div class="blueback-container">
+                    <div class="blueback-top layer" data-depth="0.1">
+                        <div class="blueback-light-house">
+                            <div class="blueback-top-triangle">
+                                <div class="blueback-top-triangle-circle-top"></div>
+                                <div class="blueback-top-triangle-circle-middle"></div>
+                                <div class="blueback-top-triangle-circle"></div>
+                                <div class="blueback-glow layer" data-depth="0.01"></div>
+                                <div class="blueback-shining-lights-container">
+                                    <div class="blueback-shining-light-left"></div>
+                                    <div class="blueback-shining-light-right"></div>
+                                </div>
+                                <div class="blueback-top-ledge"></div>
+                                <div class="blueback-top-bars">
+                                    <div class="blueback-top-bar-1 topbar"></div>
+                                    <div class="blueback-top-bar-2 topbar"></div>
+                                    <div class="blueback-top-bar-3 topbar"></div>
+                                    <div class="blueback-top-bar-4 topbar"></div>
+                                    <div class="blueback-top-bar-5 topbar"></div>
+                                    <div class="blueback-top-bar-6 topbar"></div>
+                                </div>
+                                <div class="blueback-top-railings">
+                                    <div class="blueback-top-railing-1 railing"></div>
+                                    <div class="blueback-top-railing-2 railing"></div>
+                                    <div class="blueback-top-railing-3 railing"></div>
+                                    <div class="blueback-top-railing-4 railing"></div>
+                                    <div class="blueback-top-railing-5 railing"></div>
+                                    <div class="blueback-top-railing-6 railing"></div>
+                                </div>
+                                <div class="blueback-mid-ledge"></div>
+                                <div class="blueback-mid-railings">
+                                    <div class="blueback-overlay"></div>
+                                    <div class="blueback-mid-railings-rail">
+                                        <div class="blueback-mid-rail blueback-mid-rail-1"></div>
+                                        <div class="blueback-mid-rail blueback-mid-rail-2"></div>
+                                        <div class="blueback-mid-rail blueback-mid-rail-3"></div>
+                                        <div class="blueback-mid-rail blueback-mid-rail-5"></div>
+                                        <div class="blueback-mid-rail blueback-mid-rail-6"></div>
+                                    </div>
+                                    <div class="blueback-left-mid-railings"></div>
+                                    <div class="blueback-right-mid-railings"></div>
+                                </div>
+                            </div>
+                            <div class="blueback-panel-container" id="rotate-x">
+                                <div class="blueback-left-mid-roof"></div>
+                                <div class="blueback-left-mid-roof-2"></div>
+                                <div class="blueback-panel"></div>
+                            </div>
+                            <div class="blueback-light"></div>
+                            <div class="blueback-right-attachment">
+                                <div class="blueback-right-roof"></div>
+                                <div class="blueback-right-building"></div>
+                            </div>
+                            <div class="blueback-lighthouse-lights">
+                                <div class="blueback-light-right-top blueback-light"></div>
+                                <div class="blueback-light-left-middle blueback-light"></div>
+                            </div>
+                            <div class="blueback-lighthouse-bottom-lights">
+                                <div class="blueback-light-right-bottom blueback-light"></div>
+                                <div class="blueback-light-left-bottom blueback-light"></div>
+                            </div>
+                            <div class="blueback-back-rocks">
+                                <div class="blueback-back-rock-1"></div>
+                                <div class="blueback-back-rock-2"></div>
+                                <div class="blueback-back-rock-3"></div>
+                            </div>
+                            <div class="blueback-front-rocks">
+                                <div class="blueback-front-rock-1"></div>
+                                <div class="blueback-satellite"></div>
+                                <div class="blueback-front-rock-2"></div>
+                                <div class="blueback-front-rock-3"></div>
+                            </div>
+                            <div class="blueback-shooting-stars"></div>
+                            <div class="blueback-glow-shine-container blueback-layer" data-depth="0.1">
+                                <div class="blueback-glow-shine-5 blueback-shine-circle"></div>
+                                <div class="blueback-glow-shine-4 blueback-shine-circle"></div>
+                                <div class="blueback-glow-shine-3 blueback-shine-circle"></div>
+                                <div class="blueback-glow-shine-1 blueback-shine-circle"></div>
+                                <div class="blueback-glow-shine-2 blueback-shine-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blueback-bottom">
+                        <div class="blueback-ocean">
+                            <div class="blueback-top-tier-1 ocean-layer"></div>
+                            <div class="blueback-top-tier-2 ocean-layer"></div>
+                            <div class="blueback-top-tier-3 ocean-layer"></div>
+                            <div class="blueback-top-tier-4 ocean-layer"></div>
+                            <div class="blueback-top-tier-5 ocean-layer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="room" id="room2">
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+                                    <form class="col-auto mx-2" method="POST"
+                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
+                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
+                                                class="fas fa-trash" id="trash-icon"></i></span>
+                                    </form>
+
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span
+                                                class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 64 64">
+                                            <title>Star Icon</title>
+                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+        <div class="room2-walls">
+            <!-- 열기구 창문 시작 -->
+            <div class="balloon-container">
+                <div class="sun sun-1"></div>
+                <div class="sun sun-2"></div>
+                <div class="sun sun-3"></div>
+                <div class="sun sun-4"></div>
+                <div class="landscape landscape-1"></div>
+                <div class="landscape landscape-2"></div>
+                <div class="landscape landscape-3"></div>
+                <div class="landscape landscape-4"></div>
+                <div class="landscape landscape-5"></div>
+                <div class="tree tree-1"></div>
+                <div class="tree tree-2"></div>
+                <div class="tree tree-3"></div>
+                <div class="tree tree-4"></div>
+                <div class="tree tree-5"></div>
+                <div class="tree tree-6"></div>
+                <div class="tree tree-7"></div>
+                <div class="moon-1"></div>
+                <div class="moon-2"></div>
+                <div class="baloon">
+                    <div class="baloon-1">
+                        <div class="strip-1">
+                            <div class="strip-2"></div>
+                        </div>
+                        <div class="bottom-strip"></div>
+                    </div>
+                    <div class="line line-1"></div>
+                    <div class="line line-2"></div>
+                    <div class="line line-3"></div>
+                    <div class="line line-4"></div>
+                    <div class="basket">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 열기구 창문 끝 -->
+
+
+        </div>
+
+    </section>
+
+    <section class="room" id="room3">
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+                                    <form class="col-auto mx-2" method="POST"
+                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
+                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
+                                                class="fas fa-trash" id="trash-icon"></i></span>
+                                    </form>
+
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span
+                                                class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 64 64">
+                                            <title>Star Icon</title>
+                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="room3-walls">
+            <div class="desk-wrapper">
+                <div>
+                    <div class="window">
+                        <div>
+                            <div class="window__inner-1">
+                                <div class="top-square">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="bottom-right bottom-right--1"></div>
+                                <div class="bottom-right bottom-right--2"></div>
+                                <div class="left-square"></div>
+                                <div class="small-window">
+                                    <div class="grid mb-12">
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items "></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                    </div>
+                                    <div class="grid">
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="window__inner-2">
+                                <div class="bottom-right bottom-right--1"></div>
+                                <div class="bottom-right bottom-right--2"></div>
+                                <div class="big-window">
+                                    <div class="grid">
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on "></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class=" grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on-ans"></div>
+                                        <div class=" grid__items ligth-on "></div>
+                                        <div class=" grid__items ligth-on "></div>
+                                    </div>
+                                    <div class=" grid">
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on "></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="window__inner-3">
+                                <div class="grid">
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                    <div class="grid__items"></div>
+                                </div>
+
+                            </div>
+                            <div class="bottom-right--3rd"></div>
+                            <div class="bottom-right--4rd">
+                                <div class="grid">
+                                    <div class="grid__items ligth-on"></div>
+                                    <div class="grid__items ligth-on"></div>
+                                    <div class="grid__items ligth-on"></div>
+                                    <div class="grid__items ligth-on"></div>
+                                </div>
+                            </div>
+                            <div class="skew-w"></div>
+                        </div>
+                    </div>
+                    <div class="laptop"></div>
+                </div>
+                <div class="lamp">
+                    <div class="lamp__ligth"></div>
+                    <div class="lamp__top"></div>
+                    <div class="lamp__middle"></div>
+                    <div class="lamp__bottom"></div>
+                </div>
+                <div class="desk-top"></div>
+                <div class="desk-bottom"></div>
+                <div class="coffe-cup">
+                    <div class="cup">
+                        <div class="cloud cloud--1"></div>
+                        <div class="cloud cloud--2"></div>
+                        <div class="cloud cloud--3"></div>
+                        <div class="cloud cloud--4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <section class="room" id="room4">
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+                                    <form class="col-auto mx-2" method="POST"
+                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
+                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
+                                                class="fas fa-trash" id="trash-icon"></i></span>
+                                    </form>
+
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span
+                                                class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 64 64">
+                                            <title>Star Icon</title>
+                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="room4-walls">
+            <div class="bg">
+                <div class="sky">
+                    <div class="forest">
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                        <div class="forest__item">
+                            <div class="forest__tree forest__tree--1"></div>
+                            <div class="forest__tree forest__tree--2"></div>
+                            <div class="forest__tree forest__tree--3"></div>
+                            <div class="forest__tree forest__tree--4"></div>
+                        </div>
+                    </div>
+                    <div class="main">
+                        <div class="tent">
+                            <div class="tent__side"></div>
+                            <div class="tent__front">
+                                <div class="tent__door"></div>
+                            </div>
+                        </div>
+                        <div class="tree">
+                            <div class="tree__item tree__item--1"></div>
+                            <div class="tree__item tree__item--2"></div>
+                        </div>
+                        <div class="rock">
+                            <div class="rock__item rock__item--1"></div>
+                            <div class="rock__item rock__item--2"></div>
+                            <div class="rock__item rock__item--3"></div>
+                        </div>
+                        <div class="cloud cloud--1">
+                            <div class="cloud__item"></div>
+                        </div>
+                        <div class="cloud cloud--2">
+                            <div class="cloud__item"></div>
+                        </div>
+                        <div class="cloud cloud--3">
+                            <div class="cloud__item"></div>
+                        </div>
+                        <div class="cloud cloud--4">
+                            <div class="cloud__item"></div>
+                        </div>
+                        <div class="trunk">
+                            <div class="trunk__item trunk__item--1"></div>
+                            <div class="trunk__item trunk__item--2"></div>
+                            <div class="trunk__item trunk__item--3"></div>
+                        </div>
+                        <div class="fire">
+                            <div class="fire__item"></div>
+                            <div class="fire__trunk fire__trunk--1"></div>
+                            <div class="fire__trunk fire__trunk--2"></div>
+                            <div class="fire__light"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="room" id="room5">
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+                                    <form class="col-auto mx-2" method="POST"
+                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
+                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
+                                                class="fas fa-trash" id="trash-icon"></i></span>
+                                    </form>
+
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span
+                                                class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                            <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 64 64">
+                                            <title>Star Icon</title>
+                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div id="bulb" class="bulb">
+            <div class="bulb__holder"></div>
+            <div class="bulb__body"></div>
+        </div>
+
+        <div id="toggle" class="toggle">
+            <button class="toggle__btn">
+                <span class="toggle__toggler"></span>
+            </button>
+        </div>
+        <div class="room5-walls">
+            <div class="clock">
+                <div class="hour">
+                    <div id="hr" class="hr"></div>
+                </div>
+
+                <div class="min">
+                    <div id="mn" class="mn"></div>
+                </div>
+
+                <div class="sec">
+                    <div id="sc" class="sc"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+<script src="{% static '/js/character/character_list/blueback.js' %}"></script>
+<script src="{% static '/js/character/character_list/bulb.js' %}"></script>
+<script src="{% static '/js/character/character_list/clock.js' %}"></script>
+<script src="{% static '/js/character/character_list/wall.js' %}"></script>
+<script>
+    const rooms = document.querySelectorAll('.room'); // 모든 방 요소를 선택
+    const leftArrow = document.querySelector('.arrow.left'); // 왼쪽 화살표 버튼을 선택
+    const rightArrow = document.querySelector('.arrow.right'); // 오른쪽 화살표 버튼을 선택
+    let currentRoom = 0; // 현재 보이는 방의 인덱스를 추적
+
+    function showRoom(index) {
+        rooms.forEach((room, i) => {
+            room.classList.toggle('active', i === index); // 인덱스가 일치하는 방에 active 클래스를 추가
+        });
+    }
+
+    leftArrow.addEventListener('click', () => {
+        currentRoom = (currentRoom - 1 + rooms.length) % rooms.length; // 왼쪽 화살표 클릭 시 이전 방으로 이동
+        showRoom(currentRoom); // 새로운 현재 방을 표시
+    });
+
+    rightArrow.addEventListener('click', () => {
+        currentRoom = (currentRoom + 1) % rooms.length; // 오른쪽 화살표 클릭 시 다음 방으로 이동
+        showRoom(currentRoom); // 새로운 현재 방을 표시
+    });
+
+    showRoom(currentRoom); // 페이지 로드 시 첫 번째 방을 표시
+</script>
+<script>
+    document.getElementById('deleteButton').addEventListener('click', () => {
+        const characters = document.querySelectorAll('.character-scene');
+        characters.forEach(character => {
+            if (!character.classList.contains('hidden')) {
+                character.classList.add('fall');
+                setTimeout(() => {
+                    character.classList.add('hidden');
+                    character.classList.remove('fall');
+                }, 1000); // 애니메이션 지속 시간 이후에 hidden 클래스를 추가
+            }
+        });
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('form').addEventListener('submit', function (event) {
-            console.log("----------------------------------------------")
-            const checkedItems = document.querySelectorAll('input[name="character_ids"]:checked');
-            console.log(checkedItems)
-            if (checkedItems.length === 0) {
-                event.preventDefault();
-                alert('선택한 캐릭터가 없습니다.');
+        document.getElementById('trash-icon').addEventListener('click', function () {
+            const form = document.getElementById('trash-form');
+
+            // 필요에 따라 확인 로직 추가 가능
+            // 예: 사용자가 폼 제출을 확인하도록 요구할 때
+            if (confirm('정말로 삭제하시겠습니까?')) {
+                form.submit();
             }
         });
     });

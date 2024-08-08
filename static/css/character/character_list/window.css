@@ -1,0 +1,256 @@
+* {
+    padding:0;
+    margin: 0;
+  }
+  .room2-walls {
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #f7f7f7; */
+  }
+  
+  .balloon-container {
+    width: 160px;
+    height: 335px;
+    position: relative;
+    border-radius: 100px;
+    background: linear-gradient(to bottom, #e097c0 0%, #e6b8b8 50%, #f6f7e2 100%);
+    box-shadow: 0px 0px 20px rgba(0,0,0, 0.30); 
+    overflow: hidden;
+    margin-bottom: 50px;
+    margin-left: 50px;
+  }
+  .sun {
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%)
+  }
+  
+  .sun-1 {
+    background-color:#e8c2b9;
+    width: 170px;
+    height: 170px;
+    top:37%;
+    opacity: .5;
+  }
+  
+  .sun-2 {
+    background-color:#e9c9c2;
+    width: 150px;
+    height: 150px;
+    top:43%;
+    opacity: .7;
+  }
+  
+  .sun-3 {
+    background-color:#ecd4c9;
+    width: 120px;
+    height: 120px;
+    top:48%;
+    opacity: .8;
+  }
+  
+  .sun-4 {
+    background-color:#f6f7e2;
+    width: 90px;
+    height: 90px;
+    top:52%;  
+  }
+  
+  .landscape {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+  }
+  
+  .landscape-1 {
+    background-color: #e2a1b6;
+    bottom: 50px;
+  
+    transform: rotate(-8deg);
+  }
+  
+  .landscape-2 {
+    background-color: #d97e8d;
+    bottom: 40px;
+    left: -10px;
+    transform: rotate(8deg);
+  }
+  
+  .landscape-3 {
+    background-color: #a5337f;
+    bottom: 30px;
+    transform: rotate(-8deg);
+  }
+  
+  .landscape-4 {
+    background-color: #6c2051;
+    bottom: 5px;
+    left: -10px;
+    transform: rotate(5deg);
+  }
+  
+  .landscape-5 {
+    background-color: #260518;
+    bottom: -10px;
+    transform: rotate(-5deg);
+  }
+  
+  .tree {
+    position: absolute;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  
+  .tree-2 {
+    background-color: #a53374;
+    top: 66%;
+    left: 30%;
+    height: 15px;
+    width: 7px;
+  }
+  
+  .tree-3 {
+    background-color: #bf6a9f;
+    top: 64%;
+    left: 80%;
+    height: 15px;
+    width: 7px;
+  }
+  
+  .tree-4 {
+    background-color: #5f1245;
+    top: 71%;
+    left: 60%;
+    height: 20px;
+    width: 10px;
+  }
+  .tree-5 {
+    background-color: #5f1245;
+    top: 71%;
+    left: 85%;
+    height: 25px;
+    width: 10px;
+  }
+  
+  .tree-6 {
+    background-color: #3e112e;
+    top: 75%;
+    left: 39%;
+    height: 25px;
+    width: 10px;
+  }
+  
+  .tree-7 {
+    background-color: #3e112e;
+    top: 75%;
+    left: 15%;
+    height: 32px;
+    width: 12px;
+  }
+  
+  .baloon { 
+    position: absolute;
+    left: 0%;
+    top: 10%;
+    animation: balloonmove 15s linear infinite;
+  }
+  
+  
+  .baloon-1 {
+    position: relative;
+    clip-path: polygon(9% 20%,19% 11%,29% 5%,40% 1%,50% 0%,60% 1%,70% 5%,81% 11%,91% 20%,96% 31%,97% 46%,92% 59%,67% 100%,34% 100%,8% 58%,3% 46%,4% 31%);
+    width: 55px;
+    height: 50px;
+    background: linear-gradient(to right, #6e1b51 50%, #d97e90 50%);
+  
+  }
+  
+  .strip-1 {
+    position: relative;
+    clip-path: polygon(9% 20%,19% 11%,29% 5%,40% 1%,50% 0%,60% 1%,70% 5%,81% 11%,91% 20%,96% 31%,97% 46%,92% 59%,67% 100%,34% 100%,8% 58%,3% 46%,4% 31%);
+    width: 35px;
+    height: 50px;
+    left:20%;
+    background: linear-gradient(to right, #b487a7 50%, #e8c1c9 50%);
+    
+  }
+  
+  .strip-2 {
+    position: relative;
+    clip-path: polygon(9% 20%,19% 11%,29% 5%,40% 1%,50% 0%,60% 1%,70% 5%,81% 11%,91% 20%,96% 31%,97% 46%,92% 59%,67% 100%,34% 100%,8% 58%,3% 46%,4% 31%);
+    width: 14px;
+    height: 50px;
+    left:26%;
+    background: #c3475c; 
+  }
+  
+  .bottom-strip {
+    position: relative;
+    background: #6e1b51;
+    width: 70px;
+    height: 20px;
+    top:-10%;
+  }
+  
+  .basket {
+    position: absolute;
+    width: 15px;
+    height: 12px;
+    background: linear-gradient(to right, #6f2935 50%, #c6475c 50%) ;
+    top:110%;
+    left: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    transform: translate(-50%, 0%);
+    
+  }
+  
+  .basket span {
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    top: 20%;
+    background: linear-gradient(to right, #88747f 50%, #e7bbc2 50%);
+  }
+  
+  .line {
+    position: absolute;
+    background: #8c565a;
+    width: 1px;
+    height:10px;    
+  }
+  
+  .line-1 {
+    left: 36%;
+    transform: rotate(-10deg);
+  }
+  
+  .line-2 {
+    left: 44%;
+    transform: rotate(-8deg);
+  }
+  
+  .line-3 {
+    left: 54%;
+    transform: rotate(8deg);
+  }
+  
+  .line-4 {
+    left: 64%;
+    transform: rotate(10deg);
+  }
+  
+  @keyframes balloonmove{
+    0%{
+      transform: translate(-50%, 20px);
+      }
+    50% {
+      transform: translate(100%, -20px);
+    }
+    100%{
+      transform: translate(300%, 20px);
+      }
+  }
+  

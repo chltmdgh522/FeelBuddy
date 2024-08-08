@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('character/update/<int:pk>', character_update, name='character_update'), # 캐릭터 이름만 수정                   {{ 차이 }} --> 캐릭터의 이름은 감정 그 자체로 해서 변화시킬 수 없는것으로 구상한것이었음
 
-    path('trash/delete/', trash_delete, name='trash_delete'), # 이거는 캐릭터 삭제버튼 url 즉 휴지통으로  이동 post 만 접속가능하게 해야됨
+    path('trash/delete/<int:pk>', trash_delete, name='trash_delete'), # 이거는 캐릭터 삭제버튼 url 즉 휴지통으로  이동 post 만 접속가능하게 해야됨
 
     path('trash', trash, name='trash'),  # 여기는 삭제된 캐릭터의 휴지통 페이지
 
