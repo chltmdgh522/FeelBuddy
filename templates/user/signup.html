@@ -49,7 +49,7 @@
 
             <input class="form__input" type="text" placeholder="ID" name="username">
             <input class="form__input" type="password" placeholder="Password" name="password">
-            <a class="form__link" href="#">Forgot your password?</a>
+            <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
             <button class="switch__button button switch-btn" type="submit">Log IN</button>
         </form>
     </div>
