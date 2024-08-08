@@ -12,12 +12,15 @@ import random
 
 def main(request):
     user = request.user
-    try:
-        profile = Profile.objects.get(user=user)
-        display_name = profile.get_random_nickname()
-    except ObjectDoesNotExist:
-        random_names = ['화사한 유채꽃', '푸른 바다', '밝은 햇살', '고요한 달빛']
-        display_name = random.choice(random_names)
+    if user.is_anonymous:  # 로그인하지 않은 사용자인 경우 ######
+        display_name = "Anonymous User"
+    else:
+        try:
+            profile = Profile.objects.get(user=user)
+            display_name = profile.nickname  # 2차 수정
+        except ObjectDoesNotExist:
+            random_names = ['화사한 유채꽃', '푸른 바다', '밝은 햇살', '고요한 달빛']
+            display_name = random.choice(random_names)
 
     context = {
         'display_name': display_name
@@ -46,6 +49,12 @@ def signup(request):
             )
             user.set_password(password)  # 비밀번호 해시화
             user.save()
+
+            ################### 프로필 객체 생성 및 닉네임 할당 (2차 수정)
+            profile = Profile.objects.create(user=user)
+            profile.nickname = profile.get_random_nickname()  # 랜덤 닉네임 할당
+            profile.save()
+
             return redirect('users:login')
         except Exception as e:
             return render(request, 'user/signup.html', {'error': '회원가입에 실패했습니다.'})
