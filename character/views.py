@@ -19,8 +19,30 @@ def character_list(request):
     if isinstance(request.user, AnonymousUser):
         user_characters = []  # 빈 리스트로 설정하거나 다른 처리를 할 수 있습니다.
     else:
+        first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
+
         user_characters = UserCharacter.objects.filter(user=request.user, trash=False)
-    return render(request, 'character/character_list.html', {'user_characters': user_characters})
+        context = {
+            'first_item': first_item,
+            'user_characters': user_characters
+        }
+    return render(request, 'character/character_list.html', context)
+
+
+@login_required
+def character_detail(request, pk):
+    if request.method == 'POST':
+        characterEdit = UserCharacter.objects.get(pk=pk)
+        characterEdit.name = request.POST.get('name')
+        characterEdit.introduce = request.POST.get('introduce')
+        characterEdit.save()
+        return redirect('character:character_list')
+    character = UserCharacter.objects.get(pk=pk)
+    context = {
+        'character': character
+    }
+
+    return render(request, 'character/character_detail.html', context)
 
 
 def character_create(request):
@@ -70,22 +92,16 @@ def character_update(request, pk):
 
 
 @login_required
-def trash_delete(request):
+def trash_delete(request, pk):
     if request.method == 'POST':
-        ids = request.POST.getlist('character_ids')
-        for i in ids:
-            print(i)
-        print(ids)
-        if ids:
-            UserCharacter.objects.filter(id__in=ids).update(trash=True)
+        UserCharacter.objects.filter(id=pk).update(trash=True)
 
-        return redirect('character:trash')  # 적절한 리다이렉트 URL로 변경 필요
+        return redirect('character:character_list')  # 적절한 리다이렉트 URL로 변경 필요
     return JsonResponse({'success': False}, status=400)
 
 
 @login_required
 def trash(request):
-
     character_trash = UserCharacter.objects.filter(user=request.user, trash=True)
     context = {'character_trash': character_trash}
     return render(request, 'character/trash.html', context)
