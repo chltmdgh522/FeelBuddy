@@ -30,10 +30,16 @@ def character_list(request):
 
 
 @login_required
-def character_detail(request,pk):
+def character_detail(request, pk):
+    if request.method == 'POST':
+        characterEdit = UserCharacter.objects.get(pk=pk)
+        characterEdit.name = request.POST.get('name')
+        characterEdit.introduce = request.POST.get('introduce')
+        characterEdit.save()
+        return redirect('character:character_list')
     character = UserCharacter.objects.get(pk=pk)
-    context={
-        'character':character
+    context = {
+        'character': character
     }
 
     return render(request, 'character/character_detail.html', context)
@@ -90,7 +96,7 @@ def trash_delete(request, pk):
     if request.method == 'POST':
         UserCharacter.objects.filter(id=pk).update(trash=True)
 
-        return redirect('character:trash')  # 적절한 리다이렉트 URL로 변경 필요
+        return redirect('character:character_list')  # 적절한 리다이렉트 URL로 변경 필요
     return JsonResponse({'success': False}, status=400)
 
 

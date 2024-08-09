@@ -60,7 +60,7 @@
 </head>
 <body>
 <button id="create" onclick="location.href='/character/create'">create</button>
-<button id="delete">delete</button>
+
 
 <div class="door">
     <div id="lock"></div>
@@ -94,7 +94,7 @@
                 </div>
             </a>
         {% endif %}
-        <a href="{% url 'users:main' %}">
+        <a href="{% url 'chatbot:emotion' %}">
             <div class="icon__log">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
@@ -133,34 +133,9 @@
                         <div class="table-front">
                             <div class="table-button">
                                 <div class="">
-                                    <form class="col-auto mx-2" method="POST"
-                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
-                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
-                                                class="fas fa-trash" id="trash-icon"></i></span>
-                                    </form>
-
+                                 
                                 </div>
-                                <div class="favorite-content">
-                                    <div class="Fav">
-                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
-                                        <label for="fav-checkbox-1" class="Fav-label"><span
-                                                class="Fav-label-text">Favourite</span></label>
-                                        <div class="Fav-bloom"></div>
-                                        <div class="Fav-sparkle">
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                        </div>
-                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 64 64">
-                                            <title>Star Icon</title>
-                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-
+                       
                             </div>
                         </div>
                         <div class="table-back"></div>
@@ -183,14 +158,14 @@
 
             <div id="blueback-scene">
                 <div class="blueback-sky">
-                    <div class="blueback-stars layer" data-depth="0.3">
+                    <div class="blueback-stars layer">
                         <div class="blueback-star"></div>
                         <div class="blueback-star"></div>
                         <div class="blueback-star"></div>
                     </div>
                 </div>
                 <div class="blueback-container">
-                    <div class="blueback-top layer" data-depth="0.1">
+                    <div class="blueback-top layer">
                         <div class="blueback-light-house">
                             <div class="blueback-top-triangle">
                                 <div class="blueback-top-triangle-circle-top"></div>
@@ -304,33 +279,9 @@
                         <div class="table-front">
                             <div class="table-button">
                                 <div class="">
-                                    <form class="col-auto mx-2" method="POST"
-                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
-                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
-                                                class="fas fa-trash" id="trash-icon"></i></span>
-                                    </form>
-
+                                  
                                 </div>
-                                <div class="favorite-content">
-                                    <div class="Fav">
-                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
-                                        <label for="fav-checkbox-1" class="Fav-label"><span
-                                                class="Fav-label-text">Favourite</span></label>
-                                        <div class="Fav-bloom"></div>
-                                        <div class="Fav-sparkle">
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                        </div>
-                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 64 64">
-                                            <title>Star Icon</title>
-                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                              
 
                             </div>
                         </div>
@@ -411,33 +362,10 @@
                         <div class="table-front">
                             <div class="table-button">
                                 <div class="">
-                                    <form class="col-auto mx-2" method="POST"
-                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
-                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
-                                                class="fas fa-trash" id="trash-icon"></i></span>
-                                    </form>
+                                 
 
                                 </div>
-                                <div class="favorite-content">
-                                    <div class="Fav">
-                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
-                                        <label for="fav-checkbox-1" class="Fav-label"><span
-                                                class="Fav-label-text">Favourite</span></label>
-                                        <div class="Fav-bloom"></div>
-                                        <div class="Fav-sparkle">
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                        </div>
-                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 64 64">
-                                            <title>Star Icon</title>
-                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                             
 
                             </div>
                         </div>
@@ -603,33 +531,10 @@
                         <div class="table-front">
                             <div class="table-button">
                                 <div class="">
-                                    <form class="col-auto mx-2" method="POST"
-                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
-                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
-                                                class="fas fa-trash" id="trash-icon"></i></span>
-                                    </form>
+                                 
 
                                 </div>
-                                <div class="favorite-content">
-                                    <div class="Fav">
-                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
-                                        <label for="fav-checkbox-1" class="Fav-label"><span
-                                                class="Fav-label-text">Favourite</span></label>
-                                        <div class="Fav-bloom"></div>
-                                        <div class="Fav-sparkle">
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                        </div>
-                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 64 64">
-                                            <title>Star Icon</title>
-                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                               
 
                             </div>
                         </div>
@@ -759,33 +664,10 @@
                         <div class="table-front">
                             <div class="table-button">
                                 <div class="">
-                                    <form class="col-auto mx-2" method="POST"
-                                          action='{% url 'character:trash_delete' character.pk %}' id="trash-form">
-                                        <span class="table-thumb" style="color: white; cursor: pointer;"><i
-                                                class="fas fa-trash" id="trash-icon"></i></span>
-                                    </form>
+                                   
 
                                 </div>
-                                <div class="favorite-content">
-                                    <div class="Fav">
-                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
-                                        <label for="fav-checkbox-1" class="Fav-label"><span
-                                                class="Fav-label-text">Favourite</span></label>
-                                        <div class="Fav-bloom"></div>
-                                        <div class="Fav-sparkle">
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                            <div class="Fav-sparkle-line"></div>
-                                        </div>
-                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 64 64">
-                                            <title>Star Icon</title>
-                                            <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+       
 
                             </div>
                         </div>
