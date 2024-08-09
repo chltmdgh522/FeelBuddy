@@ -9,7 +9,7 @@ from django.utils.dateformat import format
 from collections import defaultdict
 from django.utils import timezone
 from django.db.models import Count
-
+import speech_recognition as sr
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
@@ -102,6 +102,31 @@ def ai(system_input, user_input):
         max_tokens=1000
     )
     return response.choices[0].message['content']
+
+def tts(request):
+    if request.method == 'POST':
+        recognizer = sr.Recognizer()
+        with sr.Microphone() as source:
+            print("말씀하세요...")
+            audio = recognizer.listen(source)
+
+        try:
+            print("음성 인식 중...")
+            text = recognizer.recognize_google(audio, language="ko-KR")
+            print("녹음된 내용: " + text)
+
+
+            return JsonResponse({'text': text})
+
+        except sr.UnknownValueError:
+            return JsonResponse({'text': "음성을 인식할 수 없습니다."})
+
+        except sr.RequestError as e:
+            return JsonResponse({'text': f"구글 음성 인식 서비스에 접근할 수 없습니다; {e}"})
+
+    return JsonResponse({'text': "Invalid request"}, status=400)
+
+
 
 
 def character_concept(character):

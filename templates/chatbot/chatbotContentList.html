@@ -1,85 +1,66 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static '/css/chatbot/chatbot2.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/chatbotcall2.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/lighthouse.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/music.css' %}">
     <link rel="stylesheet" href="{% static '/css/chatbot/icon.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
-        .chat-arrow {
-            position: absolute;
-            /* 화면에 고정된 위치에 배치 */
-            top: 50%;
-            /* 화면의 세로 중앙에 배치 */
-            transform: translateY(-50%);
-            /* 세로 중앙 정렬을 위해 Y축 변환 */
-            font-size: 2em;
-            /* 화살표의 크기 */
-            cursor: pointer;
-            /* 커서를 손 모양으로 변경 */
-            z-index: 10;
-            /* 다른 요소들 위에 표시 */
-            color: white;
-            /* 화살표 색상 */
-            background-color: rgba(0, 0, 0, 0.5);
-            /* 배경 색상 및 투명도 */
-            padding: 10px;
-            /* 여백 추가 */
-            border-radius: 50%;
-            /* 둥근 모서리 */
-        }
-
-        .chat-arrow.left {
-            left: 10vmin;
-            /* 왼쪽 화살표의 위치 */
-        }
-
-        .chat-arrow.right {
-            right: 10vmin;
-            /* 오른쪽 화살표의 위치 */
-        }
-
-        .chat-content {
+        /* 기본 resizable 핸들 숨기기 */
+        .ui-resizable-handle {
             display: none;
-            /* 기본적으로 모든 방을 보이지 않게 설정 */
         }
 
-        .chat-content.active {
-            display: block;
-            /* active 클래스가 있는 방만 보이도록 설정 */
+        /* chat 요소에 커서 변경 추가 */
+        #chat {
+
+
+        }
+
+        /* 커서가 chat 요소의 모서리에 위치할 때 커서 모양 변경 */
+        #chat:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            cursor: se-resize;
         }
     </style>
 </head>
-
 <body>
-    <div class="chat-arrow left">&larr;</div>
-    <div class="chat-arrow right">&rarr;</div>
-    <h1>웹 사이틑</h1>
-    <div class="icon">
-        <div class="icon__home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path></svg> 
-        </div>
-        <div class="icon__account">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path></svg>  
-        </div>
-        <div class="icon__list">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path></svg>
-        </div>
-        <div class="icon__log">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path></svg>
-        </div>
-     </div>
-    <!-- 램프 효과 -->
-    <input type="checkbox" name="btn" id="btn" checked>
+<div class="icon">
+    <div class="icon__home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
+        </svg>
+    </div>
+    <div class="icon__account">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
+        </svg>
+    </div>
+    <div class="icon__list">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
+        </svg>
+    </div>
+    <div class="icon__log">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
+        </svg>
+    </div>
+</div>
+<input type="checkbox" name="btn" id="btn" checked>
 
-   <div class="chat-content">
+<div class="chat-content">
     <p></p>
     <div class="buildings">
         <div class="window"></div>
@@ -214,190 +195,148 @@
                 <i class="fas fa-camera"></i>
                 <i class="far fa-laugh-beam"></i>
                 <input type="text" id="user-content" placeholder="Type your message here!">
-                <i class="fas fa-microphone"></i>
+                <i id="record-btn" class="fas fa-microphone"></i>
             </div>
         </div>
     </div>
 </div>
-    <div class="chat-content">
-        <div class="chat-buildings">
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-        </div>
-        <div class="chat-ground">
-            <div class="chat-sewer"></div>
-        </div>
-        <!-- 두 번째 테마 시작 -->
-        <div class="main-container">
-            <div class="main-header">
-                <div class="header-logo">Feelbuddy</div>
-                <div class="header-left">
-                    <i class="fas fa-chevron-left"></i>
-                    <a class="service">chatbot</a>
-                    <div class="group-button button">
-                        <i class="fas fa-users"></i>
-                        <a>Emotions</a>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="header-right-box">
-                        <div class="box border-10 bg-icon"></div>
-                        <div class="box flex-col">
-                            <div class="box-1 lg-box"></div>
-                            <div class="dark-green"></div>
-                            <div class="light-green"></div>
-                        </div>
-                        <div class="box  flex">
-                            <div class="box-1 sm-box"></div>
-                            <div class="box-2 sm-box"></div>
-                            <div class="box-3 sm-box"></div>
-                            <div class="box-4 sm-box"></div>
-                        </div>
-                    </div>
-
-                    <div class="header-right-buttons">
-                        <div class="chat-button button">
-                            <i class="far fa-comment-dots"></i>
-                            <a>Chat</a>
-                        </div>
-                        <div class="parti-button button">
-                            <i class="fas fa-users"></i>
-                            <a>Characters</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-chat-content">
 
 
-                <div class="left-side">
-                    <div class="left-side-menu">
-                        <i class="fas fa-home icon-color"></i>
-                        <i class="fas fa-video  icon-active"></i>
-                        <div class="left-side-image1 icon-color">
-                            <img src="/media/fear.png" alt="">
-                        </div>
-                        <div class="left-side-image2 icon-color">
-                            <img src="/media/anger.png" alt="">
-                        </div>
-                        <div class="left-side-image3 icon-color">
-                            <img src="/media/anxiety.png" alt="">
-                        </div>
-                        <div class="left-side-image4 icon-color">
-                            <img src="/media/sad.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="middle">
-                    <div class="middle-img">
-                        <div class="call-view">
-                            <div class="call-view__tracks">
-                                <div class="remote-track--container">
-                                    <div class="remote-track--picture-placeholder--container">
-                                        <div class="remote-track--picture-placeholder__background"
-                                            style="background-image: url('/media/joy.png');"></div>
-                                        <div class="remote-track--picture-placeholder"
-                                            style="background-image: url('/media/joy.png');"></div>
-                                    </div>
-                                    <div class="input-status-container">
-                                        <div class="input-status">
-                                            <i class="fas fa-video" style="color: #FAFAFA;"></i>
-                                        </div>
+<script>
 
-                                        <div class="input-status">
-                                            <i class="fas fa-volume-mute" style="color: #FAFAFA;"></i>
-                                        </div>
-                                    </div>
-                                    <div class="call-view__controls-container">
-                                        <div class="call-view__controls">
-                                            <div id="btn--end-call" class="call-view__controls__icon-btn important">
-                                                <i class="fas fa-video" style="color: #FAFAFA;"></i>
-                                            </div>
-                                            <div id="btn--toggle-mic" class="call-view__controls__icon-btn">
-                                                <i class="fas fa-volume-mute" style="color: #FF3346;"></i>
-                                            </div>
-                                            <div id="btn--toggle-screen-sharing" class="call-view__controls__icon-btn">
-                                                <i class="fas fa-square" style="color: #27A4FD;"></i>
-                                            </div>
-                                            <div id="btn--settings" class="call-view__controls__icon-btn">
-                                                <i class="fas fa-ellipsis-h" style="color: #27A4FD;"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="right-side">
-                    <div class="chat-box">
-                        <div class="chat-box-title">
-                            <a>Joy</a>
-                            <a class="time">10:20 PM</a>
-                        </div>
-                        <p class="chat-message">안녕하세요? 조이입니다</p>
-                        <div class="profile-picture">
-                            <img src="/media/joy.png" alt="">
-                        </div>
-
-                    </div>
-
-                    <div class="type-message">
-                        <div class="type-message-bottom">
-                            <input type="text" placeholder="Type a message...">
-                            <a class="send">Send</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-
-
-    
-    </div>
-    <script>
-        const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소를 선택
-        const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
-        const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
-        let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
-
-        function showChat(index) {
-            chats.forEach((chat, i) => {
-                chat.classList.toggle('active', i === index); // 인덱스가 일치하는 채팅에 active 클래스를 추가
-            });
+</script>
+<script>
+    $(document).ready(function () {
+        function scrollChatBox() {
+            $('#messages').scrollTop($('#messages')[0].scrollHeight);
         }
 
-        leftArrow.addEventListener('click', () => {
-            currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
-            showChat(currentChat); // 새로운 현재 채팅을 표시
-        });
+        // 페이지 로드 시 스크롤을 맨 아래로 이동
+        scrollChatBox();
 
-        rightArrow.addEventListener('click', () => {
-            currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
-            showChat(currentChat); // 새로운 현재 채팅을 표시
-        });
+        // 엔터 키를 눌렀을 때 이벤트를 추가하기
+        $('#user-content').on('keypress', function (event) {
+            if (event.which === 13) { // Enter 키를 감지
+                event.preventDefault(); // 기본 엔터 동작을 막기
+                let userContent = $('#user-content').val();
 
-        showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
+                if (userContent.trim() !== "") {
+                    // 사용자 메시지를 바로 추가하기
+                    $('#messages').append(
+                        `<div class="message parker">
+                            ${userContent}
+                        </div>`
+                    );
+                    $('#user-content').val('');
+                    scrollChatBox();
+
+                    // Typing 애니메이션을 추가하기
+                    $('#messages').append(
+                        `<div class="message stark typing">
+                            <div class="typing typing-1"></div>
+                            <div class="typing typing-2"></div>
+                            <div class="typing typing-3"></div>
+                        </div>`
+                    );
+                    scrollChatBox();
+
+                    // 사용자 메시지를 서버에 전송
+                    $.ajax({
+                        type: 'POST',
+                        url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
+                        data: {
+                            'user_content': userContent,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function () {
+                            // AI 응답을 서버에 요청
+                            $.ajax({
+                                type: 'POST',
+                                url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
+                                data: {
+                                    'user_input': userContent,
+                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                },
+                                success: function (response) {
+                                    // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가
+                                    setTimeout(function () {
+                                        // Typing 애니메이션을 제거합니다.
+                                        $('.typing').remove();
+
+                                        // AI 메시지를 추가합니다.
+                                        $('#messages').append(
+                                            `<div class="message stark">
+                                                ${response.ai_content}
+                                            </div>`
+                                        );
+
+                                        let aiContent = response.ai_content;
+                                        let truncatedContent = aiContent.length > 10 ? aiContent.slice(0, 10) + '...' : aiContent;
+
+                                        let time = response.time1
+                                        // 메시지 업데이트
+                                        $('#latest-message-' + response.id2).text(truncatedContent);
+                                        // 시간 업데이트
+                                        $('#latest-time-' + response.id2).text('Last at ' + time);
+
+                                        scrollChatBox();
+                                    }, 2000); // 2초 딜레이
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        // Resizable 설정
+        $("#chat").resizable({
+            minWidth: 300,
+            minHeight: 400
+        });
+    });
+</script>
+ <script>
+        $(document).ready(function(){
+            $('#record-btn').click(function(){
+                // 알림창 표시
+                alert("10초 뒤에 말씀하세요. 5초동안 말씀해주시면 됩니다.");
+
+                // 10초 후에 녹음 시작
+                setTimeout(function(){
+                    $.ajax({
+                        url: '{% url "chatbot:tts" %}',
+                        method: 'POST',
+                        headers: {'X-CSRFToken': getCookie('csrftoken')},
+                        success: function(response){
+                            console.log(response.text);
+                            $('#user-content').val(response.text);
+                        },
+                        error: function(xhr, status, error){
+                            console.error("오류 발생:", error);
+                        }
+                    });
+                }, 10000); // 10초(10000ms) 후 실행
+            });
+
+            // CSRF 토큰 가져오는 함수
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    let cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
     </script>
-
-
-
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script src="chatbot.js"></script>
-    <audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
-    <script src="/static/music.js"></script>
-
+</body>
+</html>
 
 </body>
-
 </html>
