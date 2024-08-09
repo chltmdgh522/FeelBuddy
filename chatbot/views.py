@@ -77,7 +77,7 @@ def chatbot_content_list(request, pk):
         else:
             messagesLast = []  # `grouped_contents`가 비어있거나 마지막 메시지가 없는 경우 빈 리스트
 
-        print(messagesLast)
+
 
         context = {
             'grouped_contents': grouped_contents,

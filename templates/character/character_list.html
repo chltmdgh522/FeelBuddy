@@ -119,6 +119,7 @@
     <section class="room active" id="room1">
         <div class="character-main" id="characterMain">
             {% for character in user_characters %}
+
                 <div class="character-scene">
                     <div class="table1 hidden">
                         <div class="table-top">
@@ -165,11 +166,14 @@
                         <div class="table-back"></div>
                     </div>
                     <div class="cheese hidden">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </a>
                     </div>
                 </div>
+
             {% endfor %}
 
 
@@ -286,6 +290,7 @@
     <section class="room" id="room2">
         <div class="character-main" id="characterMain">
             {% for character in user_characters %}
+
                 <div class="character-scene">
                     <div class="table1 hidden">
                         <div class="table-top">
@@ -331,12 +336,17 @@
                         </div>
                         <div class="table-back"></div>
                     </div>
-                    <div class="cheese hidden">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
+
+                    <div class="cheese hidden a">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </a>
                     </div>
+
                 </div>
+
             {% endfor %}
 
 

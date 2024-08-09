@@ -29,6 +29,16 @@ def character_list(request):
     return render(request, 'character/character_list.html', context)
 
 
+@login_required
+def character_detail(request,pk):
+    character = UserCharacter.objects.get(pk=pk)
+    context={
+        'character':character
+    }
+
+    return render(request, 'character/character_detail.html', context)
+
+
 def character_create(request):
     admin_characters = AdminCharacter.objects.all()
     user_characters = UserCharacter.objects.filter(user=request.user)
