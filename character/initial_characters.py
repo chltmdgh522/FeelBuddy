@@ -1,5 +1,18 @@
 # initial_characters.py
-from .models import AdminCharacter
+import sys
+import os
+
+# 프로젝트 루트 디렉토리를 추가합니다.
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Django 설정 로드
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
+import django
+django.setup()
+
+from character.models import AdminCharacter #상대임포트 절대임포트로 변경
+#from .models import AdminCharacter
 from django.conf import settings
 
 def create_initial_characters():
@@ -7,3 +20,4 @@ def create_initial_characters():
     for emotion in emotions:
         image_path = f"{settings.MEDIA_URL}characters/{emotion}.png"
         AdminCharacter.objects.get_or_create(emotion=emotion, defaults={'image': image_path})
+

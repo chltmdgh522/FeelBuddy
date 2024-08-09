@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 페이지</title>
+    <link rel="stylesheet" href="{% static '/css/user/profile.css' %}">
+    <style>
+        input[readonly] {
+            border: none;
+            background-color: transparent;
+        }
+        input.editable {
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="profile-card" id="profile-btn">
+        <div class="profile-left">
+            <div class="profile-left-content">
+                <!-- 프로필 사진 표시 -->
+                <img id="profile-picture-preview" src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/characters/fear.png{% endif %}" class="user-image">
+                <p class="user-name">{{ profile.nickname }}</p>
+            </div>
+        </div>
+
+        <div class="profile-right">
+            <div class="profile-email">
+                <div class="profile-contact">
+                    <div class="profile-envelope">
+                        <div class="email-top">
+                            <div class="email-outer">
+                                <div class="email-inner"></div>
+                            </div>
+                        </div>
+                        <div class="email-bottom"></div>
+                        <div class="email-left"></div>
+                        <div class="email-right"></div>
+                        <div class="email-cover"></div>
+                        <div class="email-paper">
+                            <a class="mail" href="#">
+                                <div class="i"></div>{{ user.email }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-right-list">
+                <ul>
+                    <li><span class=""></span>찜</li>
+                    <li><span class=""></span>log</li>
+                    <li><span class=""></span>댓글</li>
+                    <li><span class=""></span>즐찾</li>
+                </ul>
+            </div>
+        </div>
+    </button>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Photo</td>
+                <td>
+                    <button type="button" onclick="editProfilePicture()">Edit</button>
+                    <button type="button" onclick="deleteProfilePicture()">Delete</button>
+                    <input type="file" id="profile_picture" name="profile_picture" style="display:none;" onchange="previewImage(event)">
+                    <input type="hidden" id="delete_picture" name="delete_picture" value="false">
+                </td>
+            </tr>
+            <tr>
+                <td>Nickname</td>
+                <td>
+                    <input type="text" id="nickname" name="nickname" value="{{ profile.nickname }}" readonly>
+                    <button type="button" onclick="toggleEditNickname()">Edit</button>
+                    <button type="button" onclick="deleteNickname()">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="text" id="email" name="email" value="{{ user.email }}" readonly>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Confirm</button>
+        <button type="button" onclick="window.location.href='{{ request.path }}'">Cancel</button>
+    </form>
+
+    <script>
+        function toggleEditNickname() {
+            var element = document.getElementById('nickname');
+            if (element.readOnly) {
+                element.readOnly = false;
+                element.classList.add('editable');
+            } else {
+                element.readOnly = true;
+                element.classList.remove('editable');
+            }
+        }
+
+        function editProfilePicture() {
+            var element = document.getElementById('profile_picture');
+            element.style.display = 'inline';  // 파일 선택 필드를 보이도록 설정
+        }
+
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('profile-picture-preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+            document.getElementById('delete_picture').value = 'false';
+        }
+
+        function deleteProfilePicture() {
+            var defaultImagePath = '/media/images/default_image.png';  // 기본 이미지 경로 설정
+            document.getElementById('profile-picture-preview').src = defaultImagePath;
+            document.getElementById('profile_picture').value = '';
+            document.getElementById('delete_picture').value = 'true';
+            alert("Profile picture will be deleted upon confirmation.");
+        }
+
+        function deleteNickname() {
+            document.getElementById('nickname').value = '';
+            alert("Nickname deleted. Enter a new one or confirm changes.");
+        }
+    </script>
+
+</body>
+
+</html>

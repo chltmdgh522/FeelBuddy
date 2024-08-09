@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{% static '/css/chatbot/chatbot2.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/icon.css' %}">
+    <link rel="stylesheet" href="{% static '/css/chatbot/chatbot.css' %}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
@@ -19,8 +16,8 @@
 
         /* chat 요소에 커서 변경 추가 */
         #chat {
-
-
+  
+            
         }
 
         /* 커서가 chat 요소의 모서리에 위치할 때 커서 모양 변경 */
@@ -36,28 +33,6 @@
     </style>
 </head>
 <body>
-<div class="icon">
-    <div class="icon__home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-        </svg>
-    </div>
-    <div class="icon__account">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-        </svg>
-    </div>
-    <div class="icon__list">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
-        </svg>
-    </div>
-    <div class="icon__log">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-        </svg>
-    </div>
-</div>
 <input type="checkbox" name="btn" id="btn" checked>
 
 <div class="chat-content">
@@ -195,15 +170,25 @@
                 <i class="fas fa-camera"></i>
                 <i class="far fa-laugh-beam"></i>
                 <input type="text" id="user-content" placeholder="Type your message here!">
-                <i id="record-btn" class="fas fa-microphone"></i>
+                <i class="fas fa-microphone"></i>
             </div>
         </div>
     </div>
 </div>
 
-
+<div class="icon">
+    <div class="icon__home">
+        <ion-icon name="home"></ion-icon>
+    </div>
+    <div class="icon__account">
+        <ion-icon name="person"></ion-icon>
+    </div>
+    <div class="icon__settings">
+        <ion-icon name="settings"></ion-icon>
+    </div>
+</div>
 <script>
-
+    
 </script>
 <script>
     $(document).ready(function () {
@@ -288,55 +273,14 @@
                 }
             }
         });
-        // Resizable 설정
+               // Resizable 설정
         $("#chat").resizable({
-            minWidth: 300,
-            minHeight: 400
+            minWidth: 300,  
+            minHeight: 400  
         });
     });
 </script>
- <script>
-        $(document).ready(function(){
-            $('#record-btn').click(function(){
-                // 알림창 표시
-                alert("10초 뒤에 말씀하세요. 5초동안 말씀해주시면 됩니다.");
 
-                // 10초 후에 녹음 시작
-                setTimeout(function(){
-                    $.ajax({
-                        url: '{% url "chatbot:tts" %}',
-                        method: 'POST',
-                        headers: {'X-CSRFToken': getCookie('csrftoken')},
-                        success: function(response){
-                            console.log(response.text);
-                            $('#user-content').val(response.text);
-                        },
-                        error: function(xhr, status, error){
-                            console.error("오류 발생:", error);
-                        }
-                    });
-                }, 10000); // 10초(10000ms) 후 실행
-            });
-
-            // CSRF 토큰 가져오는 함수
-            function getCookie(name) {
-                let cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    let cookies = document.cookie.split(';');
-                    for (let i = 0; i < cookies.length; i++) {
-                        let cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-        });
-    </script>
-</body>
-</html>
 
 </body>
 </html>

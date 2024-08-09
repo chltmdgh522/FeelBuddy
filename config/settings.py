@@ -43,15 +43,16 @@ INSTALLED_APPS = [
     'users',
     'character',
 
-    #구글 소셜로그인
+
+    # 구글 소셜로그인
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    #네이버 소셜로그인
+    # 네이버 소셜로그인
     'allauth.socialaccount.providers.naver',
-    #카카오
+    # 카카오
     'allauth.socialaccount.providers.kakao',
 ]
 
@@ -63,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware', #구글소셜로그인
+    'allauth.account.middleware.AccountMiddleware',  # 구글소셜로그인
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -154,16 +155,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigA utoField'
 
-#구글 소셜로그인 관련 설정
+# 구글 소셜로그인 관련 설정
 SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-LOGIN_REDIRECT_URL = '/character/list'
-# settings.py
-LOGIN_URL = '/login/'
 
-SOCIALACCOUNT_LOGIN_ON_GET = True
+LOGIN_REDIRECT_URL = '/character/list'
+#SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # 소셜 계정 프로바이더 설정
 SOCIALACCOUNT_PROVIDERS = {
@@ -184,8 +183,17 @@ SOCIALACCOUNT_PROVIDERS = {
     'kakao': {
         'APP': {
             'client_id': '4703a49559d7241fea4341b24a9b8dd8',
-            'secret': 'FvTb3LFhgpT4jufmI2o3dSwYf33CZE3E',  
+            'secret': 'FvTb3LFhgpT4jufmI2o3dSwYf33CZE3E',
             'key': ''
         }
     }
 }
+
+#비밀번호 재설정 위한 이메일 설정
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jmj00327@gmail.com'
+EMAIL_HOST_PASSWORD = 'qzhr lliw epgp chfw'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

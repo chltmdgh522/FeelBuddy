@@ -85,31 +85,53 @@
             <div id="game-and-watch-gameboy-title"><span>Nintendo</span> Game Boy &trade;</div>
             <div id="game-and-watch-right">
                 <div id="game-and-watch-game-start">
-                    <div id="game-and-watch-start-one">
-                        <div class="game-and-watch-start-inner"><a href="{% url 'users:login' %}"></a></div>
-                    </div>
-                    <div id="game-and-watch-gamea-text">Login</div>
-                    <div id="game-and-watch-start-two">
-                        <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"></a></div>
-                    </div>
-                    <div id="game-and-watch-gameb-text">Signup</div>
+                    {% if user.is_authenticated %}
+                        <div id="game-and-watch-start-one">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:logout' %}"></a></div>
+                        </div>
+                        <div id="game-and-watch-gamea-text">Logout</div>
+
+                    {% else %}
+                        <div id="game-and-watch-start-one">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:login' %}"></a></div>
+                        </div>
+                        <div id="game-and-watch-gamea-text">Login</div>
+                        <div id="game-and-watch-start-two">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"></a></div>
+                        </div>
+                        <div id="game-and-watch-gameb-text">Signup</div>
+                    {% endif %}
+
+               
                     <div id="game-and-watch-start-three">
-                        <div class="game-and-watch-start-inner"><a href="#timebut"></a></div>
+                        <div class="game-and-watch-start-inner"><a href="{% url 'feedback:feedback_list' %}"></a></div>
                     </div>
-                    <div id="game-and-watch-time-text">Time</div>
-                    <div id="gameboy-settings-text">Sign
-                        <div id="gameboy-start-text">Login</div>
-                    </div>
+                    <div id="game-and-watch-time-text">Feedback</div>
+
+                    {% if user.is_authenticated %}
+             
+                    {% else %}
+                        <div id="gameboy-settings-text">Sign
+                            <div id="gameboy-start-text">Login</div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div id="game-and-watch-game-settings">
-                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}"></a></div>
-                    Login
-                    <div
-                            id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}"></a></div>
-                    Sign
+                    {% if user.is_authenticated %}
+                        <div
+                                id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:logout' %}"></a></div>
+                        Logout
+                    {% else %}
+
+                        <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}"></a></div>
+                        Login
+                        <div
+                                id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}"></a></div>
+                        Sign
+                    {% endif %}
                 </div>
                 <div id="game-and-watch-rightbutton">
-                    <div id="mini-classic-rightbutton-text">Time/ Jump</div>
+                    <div id="mini-classic-rightbutton-text">Start</div>
                     <div id="game-and-watch-rightbutton-in"><a href="{% url 'character:character_list' %}"></a></div>
                     <div id="game-and-watch-rightbutton-text">Start</div>
                 </div>
@@ -164,7 +186,7 @@
     <div class="interactive"></div>
 </div>
 
-<script src="main.js"></script>
+<script src="/js/user/main.js"></script>
 </body>
 
 </html>

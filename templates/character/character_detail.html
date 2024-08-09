@@ -15,7 +15,10 @@
         <span id="keylock" class="off">Feelbuddy</span>
         <span id="movement" class="off">unlock</span>
         <div class="envelope-button">
-            <button id="envelope-send-button" href="#">Send</button>
+            <form method="post" action="{% url 'character:trash_delete' character.pk %}">
+                {% csrf_token %}
+                <button id="envelope-send-button" type="submit">Delete</button>
+            </form>
         </div>
 
         <div class="newcreate-content">
@@ -28,28 +31,31 @@
                     <div class="envelope-content">
                         <div class="form-wrapper">
                             <form method="POST"
-                                  action="{% url 'character:character_create_detail' admin_character.pk %}">
+                                  action="{% url 'character:character_detail' character.pk %}">
                                 {% csrf_token %}
                                 <div class="top-wrapper">
                                     <div class="top-wrapper-character">
-                                        <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}">
+                                        <img src="{{ character.adminCharacter.image.url }}"
+                                             alt="{{ character.adminCharacter.emotion }}">
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
                                     <div class="envelope-input">
                                         <label>Name</label>
-                                        <input type="text" placeholder="캐릭터의 이름을 생성해주세요" name="name" required/>
+                                        <input type="text" placeholder="캐릭터의 이름을 생성해주세요" name="name" required
+                                               value="{{ character.name }}"
+                                        />
                                     </div>
                                     <div class="envelope-input">
                                         <label>Message</label>
                                         <textarea rows="5" placeholder="지금 그 감정에 대해 느끼고 있는 것을 적어보세요" name="introduce"
-                                                  required></textarea>
+                                                  required>{{ character.introduce }}</textarea>
                                     </div>
 
 
                                     <div class="envelope-submit">
                                         <button type="submit" class="submit-card" id="submitCard">
-                                            save
+                                            Edit
                                         </button>
                                     </div>
                                 </div>
@@ -62,7 +68,7 @@
         </div>
     </div>
 </div>
-<script src="{% static '/js/character/character_create_detail/textform.js' %}"></script>
+<script src="{% static '/js/character/textform.js' %}"></script>
 
 </body>
 
