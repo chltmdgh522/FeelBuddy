@@ -1,0 +1,44 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'users:signup' %}">회원가입</a>
+        <a href="{% url 'users:login' %}">로그인</a>
+        <a href="{% url 'users:logout' %}">로그아웃</a>
+        <form action="{% provider_login_url 'google' %}" method="post">
+            {% csrf_token %}
+            <button>login with Google</button>
+        </form>
+        <form action="{% provider_login_url 'naver' %}" method="post">
+            {% csrf_token %}
+            <button>login with Naver</button>
+        </form>
+        <form action="{% provider_login_url 'kakao' %}" method="post">
+            {% csrf_token %}
+            <button>login with Kakao</button>
+        </form>
+
+        <a href="{% url 'feedback:feedback_list' %}">피드백페이지로 이동</a>
+    </div>
+    <div>
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <p>
+                <a href="{% url 'users:profile' %}">
+                    {% if user.profile.nickname %}
+                        {{ user.profile.nickname }}
+                    {% else %}
+                        익명
+                    {% endif %}
+                </a>님이 로그인 중
+            </p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
