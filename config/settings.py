@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'feedback',
     'users',
     'character',
-    'django_extensions',
+
 
     # 구글 소셜로그인
     'django.contrib.sites',

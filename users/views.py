@@ -19,12 +19,14 @@ from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
-UserModel = get_user_model()
-
 def main(request):
-    return render(request, 'user/test.html')
+    return render(request, 'user/main.html')
+
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
+
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -52,6 +54,8 @@ def signup(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -103,17 +107,17 @@ def profile(request):
 def password_reset_request(request):
     if request.method == 'POST':
         step = request.session.get('password_reset_step', 1)
-        
+
         if step == 1: #1단계: 사용자 id 확인
             username = request.POST.get('username')
             try:
-                user = User.objects.get(username=username) 
+                user = User.objects.get(username=username)
                 request.session['password_reset_username'] = username
                 request.session['password_reset_step'] = 2
                 return render(request, 'user/password_reset.html', {'step': 2})
             except User.DoesNotExist:
                 return render(request, 'user/password_reset.html', {'step': 1, 'error': 'Username not found.'})
-        
+
         elif step == 2: #2단계: 회원정보에 등록된 이메일 입력
             email = request.POST.get('email')
             username = request.session.get('password_reset_username')
@@ -142,7 +146,7 @@ def password_reset_request(request):
                     fail_silently=False,
                 )
 
-                request.session['password_reset_step'] = 1  
+                request.session['password_reset_step'] = 1
                 return redirect('users:password_reset_done')
             else:
                 #이메일 일치하지 않을 경우 오류메시지
