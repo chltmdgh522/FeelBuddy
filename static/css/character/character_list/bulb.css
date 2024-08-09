@@ -1,0 +1,249 @@
+:root {
+    --light-transition: background ease 50ms;
+    --body-light-off: radial-gradient(var(--main-color), black);
+    --body-light-on: radial-gradient(
+      circle,
+      rgba(195, 195, 195, 1) 0%,
+      rgba(34, 34, 34, 1) 100%
+    );
+    --ceiling-distance: 20vh;
+    --main-color: #333;
+    --light-color: #fff;
+    --enable-color: #f2f3f4;
+    --disable-color: #474747;
+  }
+
+  .room5-walls {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--body-light-off);
+    color: var(--light-color);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: normal;
+  }
+
+  .room5-walls.on {
+    background: var(--body-light-on);
+  }
+
+  /* Bulb */
+  .bulb {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: 50%;
+    top: var(--ceiling-distance);
+  }
+
+  .bulb.bulb_on::before,
+  .bulb_on .bulb__holder {
+    background-color: #353535;
+  }
+
+  .bulb_on .bulb__body {
+    background-color: var(--enable-color);
+    box-shadow: 0px 0px 50px 150px rgb(229 229 229 / 50%);
+  }
+
+  .bulb::before {
+    width: 6px;
+    height: var(--ceiling-distance);
+    background-color: black;
+    position: absolute;
+    left: -2px;
+    bottom: 1px;
+    z-index: 1;
+    transition: var(--light-transition);
+    content: "";
+  }
+
+  .bulb__holder {
+    width: 40px;
+    aspect-ratio: 8 / 5;
+    background-color: black;
+    border-radius: 20px 20px 0 0;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    z-index: 1;
+    transition: var(--light-transition);
+  }
+
+  .bulb__body {
+    width: 80px;
+    background-color: var(--disable-color);
+    aspect-ratio: 1 / 1;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%) translateY(-6%);
+    border-radius: 50%;
+    transition: var(--light-transition);
+  }
+
+  /* Toggle */
+  .toggle {
+    --border-radius: max(5px, 1vw);
+    position: absolute;
+    top: 13vw;
+    right: 30vw;
+    width: 5vw;
+    height: 5vw;
+    min-width: 90px;
+    min-height: 90px;
+    border: 1px solid var(--main-color);
+    border-radius: var(--border-radius);
+    background-color: var(--disable-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .toggle_on {
+    background-color: var(--light-color);
+  }
+
+  .toggle_on .toggle__btn {
+    align-items: flex-end;
+    background-color: #878787;
+  }
+
+  .toggle_on .toggle__toggler {
+    background-color: var(--light-color);
+  }
+
+  .toggle__btn {
+    width: 30%;
+    height: 45%;
+    border: 0;
+    box-shadow: 0 0 0px 1px var(--main-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    background-color: #272727;
+    display: flex;
+    padding: 0;
+  }
+
+  .toggle__toggler {
+    width: 100%;
+    height: 85%;
+    border-radius: var(--border-radius);
+    background-color: var(--disable-color);
+  }
+
+
+
+
+
+  /* ======시계 시작======= */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  *:focus {
+    outline: 0;
+  }
+
+  html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+
+  .clock:before {
+    background-color: #848484;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    content: '';
+    height: 15px;
+    position: absolute;
+    width: 15px;
+    z-index: 1;
+  }
+
+  .clock {
+    align-items: center;
+    background: url('https://lh3.googleusercontent.com/HVEEVtrtMoj8II6b8pRZy0MoEUMqhUmcHcyAMs37B3Wf33Hn1Wvrt_jlyDu8sTqZhfiEAtEdUIJ2PcQcDsKX=w2560-h1329') #ffffff center center / cover no-repeat scroll;
+    border: 10px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1) inset,
+                0 20px 20px rgba(0, 0, 0, 0.2),
+                0 0 0 4px #ffffff;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    width: 150px;
+    margin-bottom: 200px;
+    position: absolute;
+    top:150px;
+    left: 170px;
+    /* 추가된 부분 */
+    opacity: 0.2;
+    transition: opacity 0.5s ease;
+}
+
+.clock_on {
+    /* 추가된 부분 */
+    opacity: 1;
+}
+
+
+  .clock .hour,
+  .clock .min,
+  .clock .sec {
+    position: absolute;
+  }
+
+  .clock .hour .hr:before {
+    background-color: #848484;
+    border-radius: 6px 6px 0 0;
+    content: '';
+    height: 40px;
+    width: 8px;
+    z-index: 1;
+  }
+
+  .clock .hour,
+  .clock .hour .hr {
+    height: 80px;
+    width: 120px;
+  }
+
+  .clock .min .mn:before {
+    background-color: #d6d6d6;
+    border-radius: 6px 6px 0 0;
+    content: '';
+    height: 50px;
+    width: 4px;
+    z-index: 2;
+  }
+
+  .clock .min,
+  .clock .min .mn {
+    height: 100px;
+    width: 190px;
+  }
+
+  .clock .sec,
+  .clock .sec .sc {
+    height: 120px;
+    width: 230px;
+  }
+
+  .clock .sec .sc:before {
+    background-color: #ff6767;
+    border-radius: 6px 6px 0 0;
+    content: '';
+    height: 60px;
+    width: 2px;
+    z-index: 3;
+  }
+
+  .clock .hour .hr,
+  .clock .min .mn,
+  .clock .sec .sc {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+  }

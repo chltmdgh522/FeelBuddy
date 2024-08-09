@@ -1,0 +1,330 @@
+.music-content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music-wrap {
+    perspective: 1200px;
+    perspective-origin: 50% 100px;
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.music-player {
+    position: relative;
+    width: 300px;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(60deg);
+}
+
+.music-player > div {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.music-player .music-left {
+    height: 120px;
+    border-bottom: 60px solid #666;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-top-left-radius: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotateY(270deg) translateX(-150px);
+    transform-origin: center left;
+}
+
+.music-player .music-left .music-buttons {
+    width: 90%;
+    height: 20%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.music-player .music-left .music-buttons div {
+    width: 30px;
+    height: 15px;
+    background: #333;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 4px 0 0 0 #222;
+    float: right;
+    margin-left: 10px;
+}
+
+.music-player .music-left .music-buttons div.music-buttons-left {
+    float: left;
+}
+
+.music-player .music-front {
+    height: 120px;
+    border-bottom: 60px solid #666;
+    border-right: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateZ(150px);
+}
+
+.music-player .music-top {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ccc;
+    transform: rotateX(-90deg) translateY(-150px);
+    transform-origin: top center;
+}
+
+.music-player .music-bottom {
+    background: #444;
+    transform: rotateX(90deg) translateY(150px) translateZ(239px);
+    transform-origin: bottom center;
+    position: relative;
+}
+
+.music-player .music-bottom:after {
+    content: "";
+    display: block;
+    width: 240px;
+    height: 240px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    box-shadow: -10px 5px 0 0 #111;
+    transform: translate3d(50%, -50%, 0);
+}
+
+.music-player .music-disc {
+    width: 240px;
+    height: 240px;
+    background: #000;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    backface-visibility: hidden;
+    perspective: 10000;
+    margin: 50%;
+    position: absolute;
+    order: 1; /* Ensuring .music-disc appears below .music-handle */
+    overflow: hidden;
+    animation: rotateDisc 20s ease-in-out infinite;
+}
+
+.music-player .music-disc:before,
+.music-player .music-disc:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    border: 1px solid #111;
+}
+
+.music-player .music-disc:before {
+    width: 80%;
+    height: 80%;
+}
+
+.music-player .music-disc:after {
+    width: 60%;
+    height: 60%;
+}
+
+.music-player .music-light {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.music-player .music-light:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15px 100px 15px;
+    border-color: transparent transparent rgba(50, 50, 50, 0.1) transparent;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.music-player .music-light:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 100px 15px 0 15px;
+    border-color: rgba(50, 50, 50, 0.1) transparent transparent transparent;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.music-player .music-label {
+    width: 40%;
+    height: 40%;
+    background: #dcc7a0;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ccc;
+    text-align: center;
+    z-index: 2;
+}
+
+.music-player .music-label:before,
+.music-player .music-label:after {
+    content: " ";
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.music-player .music-label:before {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #8f8566;
+}
+
+.music-player .music-label:after {
+    width: 90%;
+    height: 90%;
+    border: 5px solid #676868;
+    box-shadow: 0 0 0px 5px #f2dc7b inset;
+}
+
+.music-player .music-label .music-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    color: black;
+}
+
+.music-player .music-label .music-text:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    background: #333;
+    width: 4.5px;
+    height: 4.5px;
+}
+
+.music-player .music-label .music-text span {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 10px;
+    display: inline-block;
+    height: 30px;
+    position: absolute;
+    top: 20%;
+    transform-origin: bottom center;
+}
+
+.music-player .music-label .music-text span:nth-child(1) { transform: rotate(0deg); }
+.music-player .music-label .music-text span:nth-child(2) { transform: rotate(18deg); }
+.music-player .music-label .music-text span:nth-child(3) { transform: rotate(36deg); }
+.music-player .music-label .music-text span:nth-child(4) { transform: rotate(54deg); }
+.music-player .music-label .music-text span:nth-child(5) { transform: rotate(72deg); }
+.music-player .music-label .music-text span:nth-child(6) { transform: rotate(90deg); }
+.music-player .music-label .music-text span:nth-child(7) { transform: rotate(108deg); }
+.music-player .music-label .music-text span:nth-child(8) { transform: rotate(126deg); }
+.music-player .music-label .music-text span:nth-child(9) { transform: rotate(144deg); }
+.music-player .music-label .music-text span:nth-child(10) { transform: rotate(162deg); }
+
+.music-player .music-op {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: #333;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    box-shadow: -7px 3px 0 0 #222;
+    order: 1; /* Ensuring .music-op appears before .music-disc */
+}
+
+/* Move handle to be a child of music-op so it rotates around it */
+.music-player .music-op .music-handle {
+    width: 400%; /* Large width to simulate the handle length */
+    height: 50%;
+    background: #333;
+    position: absolute;
+    left: -300%; /* Start position at the left edge of the .music-op */
+    top: 50%;
+    transform-origin: 100% 50%; /* Set transform origin to the end of the handle */
+    transform: translateY(-50%) rotateZ(0deg); /* Adjust initial transform */
+    /* Removed z-index as it is no longer needed */
+    box-shadow: -5px 7px 0 0 #222;
+    animation: handleMove 17s ease-in-out 3s infinite;
+}
+
+.music-player .music-handle:before {
+    width: 10%;
+    height: 130%;
+    content: " ";
+    display: block;
+    background: #111;
+    position: absolute;
+    left: -10%;
+    box-shadow: 0 3px 0 0 #fff;
+}
+
+/* Keyframes to rotate the handle */
+@keyframes handleMove {
+    0% {
+        transform: translateY(-50%) rotateZ(0deg); /* Start at 0 degrees */
+    }
+    20% {
+        transform: translateY(-50%) rotateZ(30deg); /* Rotate 30 degrees */
+    }
+    80% {
+        transform: translateY(-50%) rotateZ(30deg); /* Maintain rotation */
+    }
+    100% {
+        transform: translateY(-50%) rotateZ(0deg); /* Return to 0 degrees */
+    }
+}
+
+
+h1 {
+    display: none;
+}
+/* Keyframes for disc rotation */
+@keyframes rotateDisc {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(1080deg);
+    }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .music-wrap {
+        width: 200px; /* Adjust width for mobile */
+        top: 50%; /* Adjust position for mobile */
+    }
+}

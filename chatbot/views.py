@@ -6,19 +6,14 @@ import pytz
 from character.models import UserCharacter
 from chatbot.models import ChatbotAIContent, ChatbotUserContent, EmotionLog
 from django.utils.dateformat import format
-import matplotlib.pyplot as plt
-import io
-import base64
 from collections import defaultdict
-import matplotlib.font_manager as fm  # 여기에서 fm으로 import 합니다.
-
+from django.utils import timezone
+from django.db.models import Count
+import speech_recognition as sr
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
 
-#matplotlib 폰트 설정(넣어줘야 한글 안깨짐)
-plt.rcParams['font.family'] ='Malgun Gothic'
-plt.rcParams['axes.unicode_minus'] =False
 
 from collections import defaultdict
 from django.utils.dateformat import format
@@ -77,7 +72,7 @@ def chatbot_content_list(request, pk):
         else:
             messagesLast = []  # `grouped_contents`가 비어있거나 마지막 메시지가 없는 경우 빈 리스트
 
-        print(messagesLast)
+
 
         context = {
             'grouped_contents': grouped_contents,
@@ -107,6 +102,31 @@ def ai(system_input, user_input):
         max_tokens=1000
     )
     return response.choices[0].message['content']
+
+def tts(request):
+    if request.method == 'POST':
+        recognizer = sr.Recognizer()
+        with sr.Microphone() as source:
+            print("말씀하세요...")
+            audio = recognizer.listen(source)
+
+        try:
+            print("음성 인식 중...")
+            text = recognizer.recognize_google(audio, language="ko-KR")
+            print("녹음된 내용: " + text)
+
+
+            return JsonResponse({'text': text})
+
+        except sr.UnknownValueError:
+            return JsonResponse({'text': "음성을 인식할 수 없습니다."})
+
+        except sr.RequestError as e:
+            return JsonResponse({'text': f"구글 음성 인식 서비스에 접근할 수 없습니다; {e}"})
+
+    return JsonResponse({'text': "Invalid request"}, status=400)
+
+
 
 
 def character_concept(character):
@@ -288,6 +308,7 @@ def chatbot_user_create(request, pk):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+#감정로그 (누적 대화량)
 @login_required
 def emotion(request):
     user = request.user
@@ -297,26 +318,38 @@ def emotion(request):
     # 유저 캐릭터 대화 내용 가져오기
     user_characters = UserCharacter.objects.filter(user=user)
 
-    #각 캐릭터 대화 횟수 계산
+    #각 캐릭터 누적 대화량
     for character in user_characters:
         emotion = character.adminCharacter.emotion
         if emotion in emotion_counts:
             emotion_counts[emotion] += ChatbotUserContent.objects.filter(user=user, userCharacter=character).count()
             emotion_counts[emotion] += ChatbotAIContent.objects.filter(user=user, userCharacter=character).count()
-    
-    #그래프 생성
-    plt.figure(figsize=(10, 5))
-    plt.bar(emotion_counts.keys(), emotion_counts.values(), color='skyblue')
-    plt.xlabel('감정')
-    plt.ylabel('대화 횟수')
-    plt.title('감정별 대화양')
 
-    # 그래프를 이미지로 변환하여 HTML에 전달
-    buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
-    image_base64 = base64.b64encode(image_png).decode('utf-8')
+    return render(request, 'chatbot/log.html', {
+        'emotion_counts': emotion_counts,
+    })
 
-    return render(request, 'chatbot/emotion.html', {'chart': image_base64})
+
+#감정로그(일주일 간 대화량)
+@login_required
+def weekly_emotion_log(request):
+    user = request.user
+    emotions = ["기쁨", "분노", "슬픔", "불안", "두려움"]
+
+    # 일주일 간의 감정별 대화량 계산
+    one_week_ago = timezone.now() - timezone.timedelta(days=7)
+    weekly_emotion_counts = {emotion: 0 for emotion in emotions}
+
+    user_characters = UserCharacter.objects.filter(user=user)
+
+    for character in user_characters:
+        emotion = character.adminCharacter.emotion
+        if emotion in weekly_emotion_counts:
+            weekly_emotion_counts[emotion] += ChatbotUserContent.objects.filter(
+                user=user, userCharacter=character, time__gte=one_week_ago).count()
+            weekly_emotion_counts[emotion] += ChatbotAIContent.objects.filter(
+                user=user, userCharacter=character, time__gte=one_week_ago).count()
+
+    return render(request, 'chatbot/weekly_log.html', {
+        'weekly_emotion_counts': weekly_emotion_counts
+    })

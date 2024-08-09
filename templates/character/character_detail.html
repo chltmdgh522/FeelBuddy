@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Animation</title>
+    <link rel="stylesheet" href="{% static '/css/character/character_create_detail/textform.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_create_detail/shut.css' %}">
+</head>
+<body>
+<div id="container">
+    <div class="door">
+        <div id="lock"></div>
+        <span id="keylock" class="off">Feelbuddy</span>
+        <span id="movement" class="off">unlock</span>
+        <div class="envelope-button">
+            <form method="post" action="{% url 'character:trash_delete' character.pk %}">
+                {% csrf_token %}
+                <button id="envelope-send-button" type="submit">Delete</button>
+            </form>
+        </div>
+
+        <div class="newcreate-content">
+
+            <div class="flip-card" id="flipCard"></div>
+            <div class="contact-wrapper">
+                <div class="envelope">
+
+                    <div class="envelope-back envelope-paper"></div>
+                    <div class="envelope-content">
+                        <div class="form-wrapper">
+                            <form method="POST"
+                                  action="{% url 'character:character_detail' character.pk %}">
+                                {% csrf_token %}
+                                <div class="top-wrapper">
+                                    <div class="top-wrapper-character">
+                                        <img src="{{ character.adminCharacter.image.url }}"
+                                             alt="{{ character.adminCharacter.emotion }}">
+                                    </div>
+                                </div>
+                                <div class="bottom-wrapper">
+                                    <div class="envelope-input">
+                                        <label>Name</label>
+                                        <input type="text" placeholder="캐릭터의 이름을 생성해주세요" name="name" required
+                                               value="{{ character.name }}"
+                                        />
+                                    </div>
+                                    <div class="envelope-input">
+                                        <label>Message</label>
+                                        <textarea rows="5" placeholder="지금 그 감정에 대해 느끼고 있는 것을 적어보세요" name="introduce"
+                                                  required>{{ character.introduce }}</textarea>
+                                    </div>
+
+
+                                    <div class="envelope-submit">
+                                        <button type="submit" class="submit-card" id="submitCard">
+                                            Edit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="envelope-front envelope-paper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static '/js/character/textform.js' %}"></script>
+
+</body>
+
+</html>
