@@ -20,7 +20,6 @@ def character_list(request):
         user_characters = []  # 빈 리스트로 설정하거나 다른 처리를 할 수 있습니다.
     else:
         first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
-
         user_characters = UserCharacter.objects.filter(user=request.user, trash=False)
         context = {
             'first_item': first_item,
