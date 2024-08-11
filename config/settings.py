@@ -150,6 +150,8 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+# settings.py
+LOGIN_URL = '/login/'  # 로그인 페이지의 URL
 
 LOGIN_REDIRECT_URL = '/character/list'
 #SOCIALACCOUNT_LOGIN_ON_GET = True
