@@ -1,17 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
 :root {
     --wide: 2em;
     --angle1: 0;
     --angle2: -90;
     --scroll: 0; /* 추가: 초기 스크롤 값 설정 */
   }
-
-  html {
+  
+  /* html {
     scrollbar-width: none;
   }
-
+  
   body {
     width: 100vw;
-    /* height: 200vh; */
+    height: 200vh;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
@@ -20,17 +21,17 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
-  body::-webkit-scrollbar {
+   */
+  /* body::-webkit-scrollbar {
     display: none;
   }
-
+   */
   *,
   *:after,
   *:before {
     box-sizing: border-box;
   }
-
+  
   .door {
     background: repeating-linear-gradient(
         calc(var(--angle1) * 1deg),
@@ -59,27 +60,27 @@
     z-index: 10; /* 다른 요소들 위에 표시 */
     box-shadow: 0 -2.5vmin 3vmin 3vmin #333333;
   }
-
+  
   .door span {
     position: absolute;
     bottom: 3.75vh;
     color: #ffffff;
-    font-family: "Hi Melody", Arial, Helvetica, serif;
+    font-family: "Gugi", sans-serif;
     font-size: 2em;
     margin: 0;
     width: calc(50vw - 1.25em);
     text-align: right;
   }
-
+  
   .door span + span {
     right: 0;
     text-align: left;
   }
-
+  
   .door span.off {
     color: #555555;
   }
-
+  
   #lock {
     background: #151515;
     bottom: 3.5vh;
@@ -93,7 +94,7 @@
     transition: all 0.5s ease 0s;
     transform: rotate(0deg);
   }
-
+  
   #lock:before {
     content: "";
     border: 0.175em solid #101010;
@@ -105,7 +106,7 @@
     top: 0.3em;
     background: #848484;
   }
-
+  
   #lock:after {
     content: "\25CF";
     color: #101010;
@@ -125,111 +126,42 @@
     text-indent: -0.2em;
     border-radius: 0.125em;
   }
-
+  
   #lock:hover {
     transition: all 0.5s ease 0s;
   }
-
+  
   #lock.open.active:before {
     background: #8bc34a;
   }
-
+  
   #lock.open.active {
     cursor: pointer;
   }
-
+  
   #lock.closed:before {
     background: #cc281c;
   }
-
+  
   #lock.closed {
     transform: rotate(90deg);
     cursor: pointer;
   }
-
+  
   #lock.closed:hover + #keylock {
     color: #cc281c;
   }
-
+  
   #lock.open:hover + #keylock {
     color: #8bc34a;
   }
   #lock.open:hover + #keylock.off {
     color: #555555;
   }
-
+  
   @keyframes colored {
       0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
   }
-
-
-  #create {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 6px 20px;
-    background-color: #6d5dfc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 11; /* 도어보다 앞에 표시 */
-  }
-
-  #create:hover {
-    background-color: #5b0eeb;
-  }
-
-  #delete {
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    padding: 6px 20px;
-    background-color: #6d5dfc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 11; /* 도어보다 앞에 표시 */
-  }
-
-  #delete:hover {
-    background-color: #5b0eeb;
-  }
-
-  /* 반응형 디자인 추가 */
-  @media screen and (max-width: 768px) {
-    .door {
-        height: 10vh;
-        min-height: 10vh;
-    }
-
-    .door span {
-        font-size: 1.5em;
-    }
-
-    #create, #delete {
-        top: 10px;
-        left: 10px;
-        padding: 5px 10px;
-        font-size: 0.8em;
-    }
-
-    .icon {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0 10px;
-    }
-
-    .icon div {
-        width: 2em;
-        height: 2em;
-    }
-
-    .icon__home, .icon__account, .icon__chat, .icon__log, .icon__delete {
-        font-size: 1.5em;
-    }
-  }
+  
+  

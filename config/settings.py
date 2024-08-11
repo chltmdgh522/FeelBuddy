@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-w&ru*a=8k++v5gtnuacib$5(kfes@u!mpzp4@*jclgnv7bu$e&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -153,13 +153,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 구글 소셜로그인 관련 설정
 SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# settings.py
+LOGIN_URL = '/login/'  # 로그인 페이지의 URL
 
 LOGIN_REDIRECT_URL = '/character/list'
 #SOCIALACCOUNT_LOGIN_ON_GET = True

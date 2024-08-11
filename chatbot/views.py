@@ -10,10 +10,10 @@ from collections import defaultdict
 from django.utils import timezone
 from django.db.models import Count
 import speech_recognition as sr
+
 # OpenAI API 키 설정
 api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
 openai.api_key = api_key
-
 
 from collections import defaultdict
 from django.utils.dateformat import format
@@ -72,14 +72,13 @@ def chatbot_content_list(request, pk):
         else:
             messagesLast = []  # `grouped_contents`가 비어있거나 마지막 메시지가 없는 경우 빈 리스트
 
-
-
         context = {
             'grouped_contents': grouped_contents,
             'character': character,
             'characters': characters,
             'last_time': last_time_formatted,
             'messagesLast': messagesLast,
+            'pk': pk
         }
         return render(request, 'chatbot/chatbotContentList.html', context)
     else:
@@ -103,19 +102,23 @@ def ai(system_input, user_input):
     )
     return response.choices[0].message['content']
 
+
 def tts(request):
     if request.method == 'POST':
         recognizer = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("말씀하세요...")
-            audio = recognizer.listen(source)
+
+        # 음성 인식 시작 전에 클라이언트에게 정보를 보내기 위한 메시지 반환
 
         try:
+            with sr.Microphone() as source:
+                print("말씀하세요1...")
+                if 'start' in request.POST:
+                    return JsonResponse({'message': "5초뒤에 말씀해주세요..."})
+                audio = recognizer.listen(source)
+
             print("음성 인식 중...")
             text = recognizer.recognize_google(audio, language="ko-KR")
             print("녹음된 내용: " + text)
-
-
             return JsonResponse({'text': text})
 
         except sr.UnknownValueError:
@@ -125,8 +128,6 @@ def tts(request):
             return JsonResponse({'text': f"구글 음성 인식 서비스에 접근할 수 없습니다; {e}"})
 
     return JsonResponse({'text': "Invalid request"}, status=400)
-
-
 
 
 def character_concept(character):
@@ -308,17 +309,17 @@ def chatbot_user_create(request, pk):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-#감정로그 (누적 대화량)
+# 감정로그 (누적 대화량)
 @login_required
 def emotion(request):
     user = request.user
     emotions = ["기쁨", "분노", "슬픔", "불안", "두려움"]
-    emotion_counts = {emotion: 0 for emotion in emotions} #각 감정별로 대화 횟수를 저장하기 위한 딕셔너리
+    emotion_counts = {emotion: 0 for emotion in emotions}  # 각 감정별로 대화 횟수를 저장하기 위한 딕셔너리
 
     # 유저 캐릭터 대화 내용 가져오기
     user_characters = UserCharacter.objects.filter(user=user)
 
-    #각 캐릭터 누적 대화량
+    # 각 캐릭터 누적 대화량
     for character in user_characters:
         emotion = character.adminCharacter.emotion
         if emotion in emotion_counts:
@@ -330,7 +331,7 @@ def emotion(request):
     })
 
 
-#감정로그(일주일 간 대화량)
+# 감정로그(일주일 간 대화량)
 @login_required
 def weekly_emotion_log(request):
     user = request.user

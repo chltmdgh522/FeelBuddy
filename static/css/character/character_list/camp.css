@@ -29,7 +29,7 @@
     align-items: center;
     font-family: 'Satisfy', cursive;
     font-size: 24px;
-    background-color: var(--purple-6);
+    /* background-color: var(--purple-6); */
     color: var(--cloud);
   }
 
