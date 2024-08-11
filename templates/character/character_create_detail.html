@@ -26,11 +26,13 @@
                     <div class="envelope-back envelope-paper"></div>
                     <div class="envelope-content">
                         <div class="form-wrapper">
-                            <form id="characterForm" action="{% url 'character:character_create_detail' admin_character.pk %}" method="post">
+                            <form id="characterForm"
+                                  action="{% url 'character:character_create_detail' admin_character.pk %}"
+                                  method="post">
                                 {% csrf_token %}
                                 <div class="top-wrapper">
                                     <div class="top-wrapper-character">
-                                        <img src="/media/fear.png">
+                                        <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}">
                                     </div>
                                 </div>
                                 <div class="bottom-wrapper">
@@ -57,25 +59,25 @@
     </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const flipCard = document.getElementById('flipCard');
-    const submitCard = document.getElementById('submitCard');
-    const envelope = document.querySelector('.envelope');
-    const envelopeSendButton = document.getElementById('envelope-send-button');
-    const characterForm = document.getElementById('characterForm');
+    document.addEventListener('DOMContentLoaded', function () {
+        const flipCard = document.getElementById('flipCard');
+        const submitCard = document.getElementById('submitCard');
+        const envelope = document.querySelector('.envelope');
+        const envelopeSendButton = document.getElementById('envelope-send-button');
+        const characterForm = document.getElementById('characterForm');
 
-    function toggleAnimation() {
-        envelope.classList.toggle('active');
-    }
+        function toggleAnimation() {
+            envelope.classList.toggle('active');
+        }
 
-    // Save 버튼 클릭 시 애니메이션만 처리
-    submitCard.addEventListener('click', toggleAnimation);
+        // Save 버튼 클릭 시 애니메이션만 처리
+        submitCard.addEventListener('click', toggleAnimation);
 
-    // Send 버튼 클릭 시 폼 제출
-    envelopeSendButton.addEventListener('click', function() {
-        characterForm.submit(); // 폼 제출
+        // Send 버튼 클릭 시 폼 제출
+        envelopeSendButton.addEventListener('click', function () {
+            characterForm.submit(); // 폼 제출
+        });
     });
-});
 </script>
 </body>
 </html>
