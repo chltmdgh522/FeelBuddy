@@ -161,6 +161,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = '/login/'  # 로그인 페이지의 URL 경로
 LOGIN_REDIRECT_URL = '/character/list'
 #SOCIALACCOUNT_LOGIN_ON_GET = True
 
