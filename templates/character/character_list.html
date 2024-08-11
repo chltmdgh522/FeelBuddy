@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>캐릭터 리스트 페이지</title>
     <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="{% static '/css/character/character_list/blueback.css' %}">
     <link rel="stylesheet" href="{% static '/css/character/character_list/bulb.css' %}">
@@ -18,6 +17,9 @@
     <link rel="stylesheet" href="{% static '/css/character/character_list/lighthouse1.css' %}">
     <link rel="stylesheet" href="{% static '/css/character/character_list/shut1.css' %}">
     <link rel="stylesheet" href="{% static '/css/character/character_list/window.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/mochatlist.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/nav.css' %}">
+
 
     <style>
         .arrow {
@@ -28,9 +30,15 @@
             cursor: pointer;
             z-index: 10;
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
+            /* background-color: rgba(0, 0, 0, 0.5);  */
             padding: 10px;
             border-radius: 50%;
+        }
+
+        .arrow svg {
+            color: white;
+            width: 2rem;
+            height: auto;
         }
 
         .arrow.left {
@@ -38,7 +46,7 @@
         }
 
         .arrow.right {
-            right: 10vmin;
+            right: -5vmin;
         }
 
         .room {
@@ -48,109 +56,310 @@
         .room.active {
             display: block;
         }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
-<button id="create" onclick="location.href='/character/create'">create</button>
-
 
 <div class="door">
     <div id="lock"></div>
     <span id="keylock" class="off">Feelbuddy</span>
     <span id="movement" class="off">lock</span>
+    <button class="plus-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z"></path>
+        </svg>
+    </button>
+
+
     <div class="icon">
-        <a href="{% url 'users:main' %}">
-            <div class="icon__home">
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-                </svg>
-
-            </div>
-        </a>
-        <a href="{% url 'users:main' %}">
-            <div class="icon__account">
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-                </svg>
-
-            </div>
-        </a>
-        {% if first_item %}
-            <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
-                <div class="icon__chat">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                    </svg>
-                </div>
-            </a>
-        {% endif %}
-        <a href="{% url 'chatbot:emotion' %}">
-            <div class="icon__log">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-                </svg>
-            </div>
-        </a>
-        <a href="{% url 'character:trash' %}">
-            <div class="icon__delete">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
-                </svg>
-            </div>
-        </a>
+        <div class="icon__home">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
+            </svg>
+        </div>
+        <div class="icon__account">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
+            </svg>
+        </div>
+        <div class="icon__chat">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+            </svg>
+        </div>
+        <div class="icon__log">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
+            </svg>
+        </div>
+        <div class="icon__delete">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+            </svg>
+        </div>
     </div>
+
 
 </div>
 <main class="room-building">
-    <div class="arrow left">&larr;</div>
-    <div class="arrow right">&rarr;</div>
 
+    <div class="arrow left">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z"></path>
+        </svg>
+    </div>
+    <div class="arrow right">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z"></path>
+        </svg>
+    </div>
+    <!-- <div class="arrow right">&rarr;</div> -->
 
     <section class="room active" id="room1">
+        <!-- 모바일 반응형에 따른 캐릭터 scene -->
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                <img src="/media/anger.png">
+                <div class="mobile-char-shadow"></div>
+                <img src="/media/joy.png">
+                <img src="/media/fear.png">
+                <img src="/media/sad.png">
+                <img src="/media/anxiety.png">
+            </div>
+        </div>
         <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
+            <div class="character-scene">
+                <div class="table1 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
                         </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-                                 
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-1" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
                                 </div>
-                       
                             </div>
+
                         </div>
-                        <div class="table-back"></div>
                     </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'character:character_detail' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                 alt="{{ character.adminCharacter.emotion }}"
-                                 class="">
-                        </a>
-                    </div>
+                    <div class="table-back"></div>
                 </div>
+                <div class="cheese hidden">
+                    <img src="/joy.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+                <!-- <div class="ground"></div> -->
 
-            {% endfor %}
+                <div class="table2 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-2" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-2" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/fear.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+                <div class="table3 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-3" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-3" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/anger.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+                <div class="table4 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-4" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-4" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/anxiety.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+                <div class="table5 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-5" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-5" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/sad.png" alt="" class="">
+                </div>
+            </div>
 
         </div>
         <div class="room1-walls">
@@ -258,47 +467,216 @@
                 </div>
             </div>
 
+            <!-- 모바일 반응형에 따른 단상 추가 -->
+            <div class='room1-stairs'>
+                <div class='stair stair1'>
+
+                    <div class='face top'></div>
+                    <div class='face front'></div>
+
+                </div>
+            </div>
+
 
         </div>
     </section>
 
     <section class="room" id="room2">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                <img src="/media/anger.png">
+                <div class="mobile-char-shadow"></div>
+                <img src="/media/fear.png">
+                <img src="/media/sad.png">
+                <img src="/media/anxiety.png">
+            </div>
+        </div>
         <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
+            <div class="character-scene">
+                <div class="table1 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
                         </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-                                  
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-1" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
                                 </div>
-                              
-
                             </div>
+
                         </div>
-                        <div class="table-back"></div>
                     </div>
-
-                    <div class="cheese hidden a">
-                        <a href="{% url 'character:character_detail' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                 alt="{{ character.adminCharacter.emotion }}"
-                                 class="">
-                        </a>
-                    </div>
-
+                    <div class="table-back"></div>
                 </div>
+                <div class="cheese hidden">
+                    <img src="/joy.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
 
-            {% endfor %}
+                <div class="table2 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-2" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-2" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/fear.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+                <div class="table3 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-3" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-3" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/anger.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+                <div class="table4 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-4" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-4" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/anxiety.png" alt="" class="">
+                </div>
+            </div>
 
 
         </div>
@@ -341,15 +719,32 @@
             </div>
             <!-- 열기구 창문 끝 -->
 
+            <div class='room2-stairs'>
+                <div class='stair stair2'>
+
+                    <div class='face top'></div>
+                    <div class='face front'></div>
+
+                </div>
+            </div>
+
 
         </div>
 
     </section>
 
-    <section class="room" id="room3">
+
+    <!-- <section class="room" id="room3">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                <img src="/media/anger.png">
+                <div class="mobile-char-shadow"></div>
+                <img src="/media/sad.png">
+                <img src="/media/anxiety.png">
+            </div>
+        </div>
         <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-                <div class="character-scene">
+            <div class="character-scene">
                     <div class="table1 hidden">
                         <div class="table-top">
                             <div class="top-slider">
@@ -361,25 +756,250 @@
                         <div class="table-right"></div>
                         <div class="table-front">
                             <div class="table-button">
-                                <div class="">
-                                 
-
+                                <div class="table-toggle">
+                                    <input type="checkbox" id="table-btn">
+                                    <label for="btn">
+                                        <span class="table-thumb"></span>
+                                    </label>
                                 </div>
-                             
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
                         <div class="table-back"></div>
                     </div>
                     <div class="cheese hidden">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
+                        <img src="/joy.png" alt="" class="">
                     </div>
+            </div>
+            <div class="character-scene">
+
+
+                    <div class="table2 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="table-toggle">
+                                    <input type="checkbox" id="table-btn">
+                                    <label for="btn">
+                                        <span class="table-thumb"></span>
+                                    </label>
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-2" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-2" class="Fav-label"><span class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="/fear.png" alt="" class="">
+                    </div>
+            </div>
+            <div class="character-scene">
+                <div class="table3 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-3" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-3" class="Fav-label"><span class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                    <title>Star Icon</title>
+                                    <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
                 </div>
-            {% endfor %}
+                <div class="cheese hidden">
+                    <img src="/anger.png" alt="" class="">
+                </div>
+            </div>
         </div>
         <div class="room3-walls">
+            <div class='room3-stairs'>
+                <div class='stair stair3'>
+
+                  <div class='face top'></div>
+                  <div class='face front'></div>
+
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="room" id="room4">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                <img src="/media/anger.png">
+                <div class="mobile-char-shadow"></div>
+                <img src="/media/anxiety.png">
+            </div>
+        </div>
+        <div class="character-main" id="characterMain">
+            <div class="character-scene">
+                <div class="table1 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-1" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/joy.png" alt="" class="">
+                </div>
+            </div>
+            <div class="character-scene">
+
+
+                <div class="table2 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-2" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-2" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/fear.png" alt="" class="">
+                </div>
+            </div>
+
+        </div>
+        <div class="room4-walls">
             <div class="desk-wrapper">
                 <div>
                     <div class="window">
@@ -510,176 +1130,71 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-    </section>
+            <div class='room4-stairs'>
+                <div class='stair stair4'>
 
+                    <div class='face top'></div>
+                    <div class='face front'></div>
 
-    <section class="room" id="room4">
-        <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-                                 
-
-                                </div>
-                               
-
-                            </div>
-                        </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </div>
-                </div>
-            {% endfor %}
-
-        </div>
-        <div class="room4-walls">
-            <div class="bg">
-                <div class="sky">
-                    <div class="forest">
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                        <div class="forest__item">
-                            <div class="forest__tree forest__tree--1"></div>
-                            <div class="forest__tree forest__tree--2"></div>
-                            <div class="forest__tree forest__tree--3"></div>
-                            <div class="forest__tree forest__tree--4"></div>
-                        </div>
-                    </div>
-                    <div class="main">
-                        <div class="tent">
-                            <div class="tent__side"></div>
-                            <div class="tent__front">
-                                <div class="tent__door"></div>
-                            </div>
-                        </div>
-                        <div class="tree">
-                            <div class="tree__item tree__item--1"></div>
-                            <div class="tree__item tree__item--2"></div>
-                        </div>
-                        <div class="rock">
-                            <div class="rock__item rock__item--1"></div>
-                            <div class="rock__item rock__item--2"></div>
-                            <div class="rock__item rock__item--3"></div>
-                        </div>
-                        <div class="cloud cloud--1">
-                            <div class="cloud__item"></div>
-                        </div>
-                        <div class="cloud cloud--2">
-                            <div class="cloud__item"></div>
-                        </div>
-                        <div class="cloud cloud--3">
-                            <div class="cloud__item"></div>
-                        </div>
-                        <div class="cloud cloud--4">
-                            <div class="cloud__item"></div>
-                        </div>
-                        <div class="trunk">
-                            <div class="trunk__item trunk__item--1"></div>
-                            <div class="trunk__item trunk__item--2"></div>
-                            <div class="trunk__item trunk__item--3"></div>
-                        </div>
-                        <div class="fire">
-                            <div class="fire__item"></div>
-                            <div class="fire__trunk fire__trunk--1"></div>
-                            <div class="fire__trunk fire__trunk--2"></div>
-                            <div class="fire__light"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-
     <section class="room" id="room5">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                <img src="/media/anger.png">
+                <div class="mobile-char-shadow"></div>
+            </div>
+        </div>
         <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-                                   
 
+            <div class="character-scene">
+                <div class="table2 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-2" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-2" class="Fav-label"><span
+                                            class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
                                 </div>
-       
-
                             </div>
+
                         </div>
-                        <div class="table-back"></div>
                     </div>
-                    <div class="cheese hidden">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </div>
+                    <div class="table-back"></div>
                 </div>
-            {% endfor %}
+                <div class="cheese hidden">
+                    <img src="/fear.png" alt="" class="">
+                </div>
+            </div>
 
         </div>
         <div id="bulb" class="bulb">
@@ -706,16 +1221,58 @@
                     <div id="sc" class="sc"></div>
                 </div>
             </div>
+            <div class='room5-stairs'>
+                <div class='stair stair5'>
+
+                    <div class='face top'></div>
+                    <div class='face front'></div>
+
+                </div>
+            </div>
         </div>
     </section>
 
 </main>
+<nav class="mobile-footer" role="menulist">
+    <a href="#!" role="menuitem" class="active" aria-describedby="nav-current">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
+        </svg>
+        Home
+    </a>
+    <a href="#!" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+        </svg>
+        Chat
+    </a>
+    <a href="#!" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
+        </svg>
+        Log
+    </a>
+    <a href="#!" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+        </svg>
+        Trash
+    </a>
+    <a href="#!" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
+        </svg>
+        Profile
+    </a>
+    <i class="line" id="nav-current">current item</i>
+</nav>
 
 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
 <script src="{% static '/js/character/character_list/blueback.js' %}"></script>
 <script src="{% static '/js/character/character_list/bulb.js' %}"></script>
 <script src="{% static '/js/character/character_list/clock.js' %}"></script>
 <script src="{% static '/js/character/character_list/wall.js' %}"></script>
+<script src="{% static '/js/character/character_list/nav.js' %}"></script>
 <script>
     const rooms = document.querySelectorAll('.room'); // 모든 방 요소를 선택
     const leftArrow = document.querySelector('.arrow.left'); // 왼쪽 화살표 버튼을 선택
@@ -754,20 +1311,5 @@
         });
     });
 </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('trash-icon').addEventListener('click', function () {
-            const form = document.getElementById('trash-form');
-
-            // 필요에 따라 확인 로직 추가 가능
-            // 예: 사용자가 폼 제출을 확인하도록 요구할 때
-            if (confirm('정말로 삭제하시겠습니까?')) {
-                form.submit();
-            }
-        });
-    });
-</script>
-
 </body>
 </html>

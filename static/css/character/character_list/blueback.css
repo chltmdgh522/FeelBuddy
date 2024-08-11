@@ -135,10 +135,17 @@
     position: fixed;
     height: 100vh;
     width: 100%;
-    background-color: #c5cfb7;
-    background-image: radial-gradient(ellipse at center, #c5cfb7 0%, #84ad98 20%, #5f9986 39%, #5f9986 50%, #5f9986 60%, #4a8974 72%, #326565 84%, #082d47 100%);
-  }
-  
+    /* background-color: #c5cfb7; */
+    /* background-color: #4d3f8a; */
+    /* background-image: radial-gradient(ellipse at center, #c5cfb7 0%, #84ad98 20%, #5f9986 39%, #5f9986 50%, #5f9986 60%, #4a8974 72%, #326565 84%, #082d47 100%); */
+    /* background: linear-gradient(to top, #005c97 0%, #363795 100%); */
+    /* background: linear-gradient(to top, #ff9a9e 0%, #fad0c4 100%); */
+    /* background: linear-gradient(to top, #2c3e50 0%, #3498db 100%); */
+    /* background: linear-gradient(to top, #20002c 0%, #cbb4d4 100%); */
+    background: linear-gradient(to top, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+}
+
+
   .blueback-right-attachment {
     position: absolute;
     height: 100px;
@@ -147,7 +154,7 @@
     left: 20px;
     top: -20px;
   }
-  
+
   .blueback-right-roof {
     position: absolute;
     height: 20px;
@@ -157,7 +164,7 @@
     top: -20px;
     transform: skew(50deg);
   }
-  
+
   .blueback-satellite {
     position: absolute;
     height: 60px;
@@ -166,7 +173,7 @@
     left: 90px;
     top: -40px;
   }
-  
+
   .blueback-back-rocks {
     position: absolute;
     width: 480px;
@@ -174,7 +181,7 @@
     left: -130px;
     bottom: -47px;
   }
-  
+
   .blueback-back-rock-1 {
     position: absolute;
     width: 68px;
@@ -184,7 +191,7 @@
     bottom: -30px;
     border-radius: 100%;
   }
-  
+
   .blueback-back-rock-2 {
     position: absolute;
     width: 70px;
@@ -194,7 +201,7 @@
     bottom: -30px;
     border-radius: 100%;
   }
-  
+
   .blueback-back-rock-3 {
     position: absolute;
     width: 55px;
@@ -204,7 +211,7 @@
     bottom: -30px;
     border-radius: 100%;
   }
-  
+
   .blueback-front-rocks {
     position: absolute;
     bottom: -90px;
@@ -212,7 +219,7 @@
     height: 100px;
     width: 350px;
   }
-  
+
   .blueback-front-rock-1 {
     position: absolute;
     left: 50px;
@@ -221,7 +228,7 @@
     background: #141912;
     border-radius: 100%;
   }
-  
+
   .blueback-front-rock-2 {
     position: absolute;
     bottom: 0px;
@@ -231,7 +238,7 @@
     background: #141912;
     border-radius: 100%;
   }
-  
+
   .blueback-front-rock-3 {
     position: absolute;
     bottom: -22px;
@@ -241,13 +248,13 @@
     background: #141912;
     border-radius: 100%;
   }
-  
+
   .blueback-lighthouse {
     position: absolute;
     bottom: 40px;
     left: 46vw;
   }
-  
+
   .blueback-overlay {
     position: absolute;
     height: 40px;
@@ -256,7 +263,7 @@
     top: 54px;
     left: -19px;
   }
-  
+
   .blueback-panel-container {
     width: 100%;
     height: 307px;
@@ -267,7 +274,7 @@
     left: 0px;
     bottom: -12px;
   }
-  
+
   .blueback-left-mid-roof {
     position: absolute;
     height: 35px;
@@ -276,7 +283,7 @@
     bottom: 0%;
     left: -16px;
   }
-  
+
   .blueback-left-mid-roof-2 {
     position: absolute;
     height: 5px;
@@ -286,7 +293,7 @@
     left: -11px;
     border-radius: 10%;
   }
-  
+
   #rotate-x .blueback-panel {
     background-size: 100%;
     background: #141912;
@@ -296,7 +303,7 @@
     margin: auto;
     transform: perspective(329px) rotateX(44deg) translate3d(0px, 0px, 0px);
   }
-  
+
   .blueback-top-triangle {
     padding-top: 7px;
     position: relative;
@@ -313,7 +320,7 @@
     border-bottom-left-radius: 28%;
     opacity: 0.98;
   }
-  
+
   .blueback-top-triangle-circle-middle {
     position: absolute;
     height: 2px;
@@ -322,7 +329,7 @@
     bottom: 0px;
     left: -3px;
   }
-  
+
   .blueback-top-triangle-circle {
     position: relative;
     height: 8px;
@@ -332,7 +339,7 @@
     background: #141912;
     border-radius: 100%;
   }
-  
+
   .blueback-top-triangle-circle-top {
     position: relative;
     height: 8px;
@@ -341,13 +348,13 @@
     left: -1.5px;
     background: #141912;
   }
-  
+
   .blueback-light-house {
     position: absolute;
     bottom: 40px;
     left: 46vw;
   }
-  
+
   .blueback-mid-railings-rail {
     position: absolute;
     height: 10px;
@@ -358,34 +365,34 @@
     border-top-right-radius: 2px;
     border: 1px solid #141912;
   }
-  
+
   .blueback-mid-rail {
     position: absolute;
     width: 1px;
     height: 10px;
     background: #141912;
   }
-  
+
   .blueback-mid-rail-1 {
     left: 2px;
   }
-  
+
   .blueback-mid-rail-2 {
     left: 4px;
   }
-  
+
   .blueback-mid-rail-3 {
     left: 6px;
   }
-  
+
   .blueback-mid-rail-5 {
     left: 49px;
   }
-  
+
   .blueback-mid-rail-6 {
     left: 52px;
   }
-  
+
   .blueback-left-mid-railings {
     position: absolute;
     top: 80px;
@@ -397,7 +404,7 @@
     border-bottom-right-radius: 0%;
     border-bottom-left-radius: 100%;
   }
-  
+
   .blueback-right-mid-railings {
     position: absolute;
     top: 80px;
@@ -409,7 +416,7 @@
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 0%;
   }
-  
+
   .blueback-top-ledge {
     position: absolute;
     height: 8px;
@@ -420,7 +427,7 @@
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 100%;
   }
-  
+
   .blueback-shining-lights-container {
     position: absolute;
     height: 100px;
@@ -429,7 +436,7 @@
     top: -39px;
     animation: left-to-right 6s infinite linear;
   }
-  
+
   @keyframes left-to-right {
     0% {
       transform: rotateY(0deg);
@@ -445,7 +452,7 @@
       opacity: 1;
     }
   }
-  
+
   .blueback-shining-light-left {
     position: absolute;
     height: 46px;
@@ -457,7 +464,7 @@
     left: 10px;
     transform: perspective(529px) rotateX(0deg) rotateY(-120deg) rotate(0deg);
   }
-  
+
   .blueback-shining-light-right {
     position: absolute;
     height: 46px;
@@ -467,7 +474,7 @@
     background: linear-gradient(right, rgba(249, 245, 159, 1) 0%, rgba(249, 245, 159, 0) 100%);
     transform: perspective(529px) rotateX(180deg) rotateY(-120deg) rotate(0deg) skew(1deg);
   }
-  
+
   .blueback-glow-shine-container {
     position: absolute;
     height: 350px;
@@ -478,7 +485,7 @@
     background: radial-gradient(center, ellipse cover, rgba(214, 205, 112, 0.6) 0%, rgba(211, 206, 160, 0) 100%);
     animation: glowing 6s infinite linear;
   }
-  
+
   @keyframes glowing {
     0% {
       transform: scale(1);
@@ -490,11 +497,11 @@
       transform: scale(1);
     }
   }
-  
+
   .blueback-shine-circle {
     border-radius: 100%;
   }
-  
+
   .blueback-glow-shine-1 {
     position: absolute;
     height: 30%;
@@ -504,7 +511,7 @@
     left: 35%;
     opacity: 0.2;
   }
-  
+
   .blueback-glow-shine-2 {
     position: relative;
     height: 10%;
@@ -515,7 +522,7 @@
     opacity: 0.1;
     animation: glowing-shine-1 6s infinite ease-in;
   }
-  
+
   @keyframes blueback-glowing-shine-1 {
     0% {
       box-shadow: 0px 0px 0px #edea89;
@@ -533,7 +540,7 @@
       transform: scale(1);
     }
   }
-  
+
   .blueback-glow-shine-3 {
     position: absolute;
     height: 50%;
@@ -543,7 +550,7 @@
     left: 25%;
     opacity: 0.05;
   }
-  
+
   .blueback-glow-shine-4 {
     position: absolute;
     height: 70%;
@@ -553,7 +560,7 @@
     left: 15%;
     opacity: 0.05;
   }
-  
+
   .blueback-glow-shine-5 {
     position: absolute;
     height: 100%;
@@ -563,7 +570,7 @@
     left: 0%;
     opacity: 0.05;
   }
-  
+
   .blueback-glow-shine-narrow-left {
     position: absolute;
     height: 360px;
@@ -574,7 +581,7 @@
     animation: pulsate 6s infinite linear;
     transform: perspective(529px) rotateX(0deg) rotateY(-120deg) rotate(90deg);
   }
-  
+
   .blueback-mid-ledge {
     position: absolute;
     height: 8px;
@@ -585,7 +592,7 @@
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 100%;
   }
-  
+
   .blueback-lighthouse-lights {
     position: absolute;
     height: 110px;
@@ -593,14 +600,14 @@
     width: 43px;
     right: 0px;
   }
-  
+
   .blueback-light {
     background: #f9f04c;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     box-shadow: rgba(#ffeb3b, 1) 0px 0 22px, rgba(252, 250, 185, 0.44) 0 0 3px 1px inset;
   }
-  
+
   .blueback-light-right-top {
     position: relative;
     height: 26px;
@@ -608,7 +615,7 @@
     width: 10px;
     right: -24px;
   }
-  
+
   .blueback-light-left-middle {
     position: relative;
     height: 26px;
@@ -616,7 +623,7 @@
     width: 10px;
     right: -7px;
   }
-  
+
   .blueback-light-left-bottom {
     position: absolute;
     height: 18px;
@@ -625,7 +632,7 @@
     right: -22px;
     border-radius: 0px;
   }
-  
+
   .blueback-light-right-bottom {
     position: absolute;
     height: 18px;
@@ -634,7 +641,7 @@
     right: -35px;
     border-radius: 0px;
   }
-  
+
   .blueback-glow {
     position: absolute;
     height: 22px;
@@ -647,7 +654,7 @@
     box-shadow: rgba(#ffeb3b, 1) 0px 0 22px, rgba(252, 250, 185, 0.44) 0 0 3px 1px inset;
     animation: glowing-ball 6s infinite linear;
   }
-  
+
   @keyframes blueback-glowing-ball {
     0% {
       opacity: 0.3;
@@ -659,7 +666,7 @@
       opacity: 0.3;
     }
   }
-  
+
   .blueback-topbar {
     position: absolute;
     height: 120px;
@@ -667,35 +674,35 @@
     background: #141912;
     opacity: 0.8;
   }
-  
+
   .blueback-top-bars {
     opacity: 0.8;
   }
-  
+
   .blueback-top-bar-1 {
     left: -14px;
   }
-  
+
   .blueback-top-bar-2 {
     left: -8px;
   }
-  
+
   .blueback-top-bar-3 {
     left: -1px;
   }
-  
+
   .blueback-top-bar-4 {
     left: 5.5px;
   }
-  
+
   .blueback-top-bar-5 {
     left: 12px;
   }
-  
+
   .blueback-top-bar-6 {
     left: 18px;
   }
-  
+
   .blueback-top-railings {
     position: absolute;
     height: 8px;
@@ -706,7 +713,7 @@
     border-radius: 2px;
     opacity: 0.8;
   }
-  
+
   .blueback-railing {
     position: absolute;
     height: 10px;
@@ -714,31 +721,31 @@
     background: #141912;
     top: -1px;
   }
-  
+
   .blueback-top-railing-1 {
     left: 6px;
   }
-  
+
   .blueback-top-railing-2 {
     left: 12px;
   }
-  
+
   .blueback-top-railing-3 {
     left: 19px;
   }
-  
+
   .blueback-top-railing-4 {
     left: 25px;
   }
-  
+
   .blueback-top-railing-5 {
     left: 32px;
   }
-  
+
   .blueback-top-railing-6 {
     left: 35px;
   }
-  
+
   .blueback-bottom {
     position: absolute;
     height: 25vh;
@@ -746,19 +753,20 @@
     left: 0% !important;
     top: 75% !important;
   }
-  
+
   .blueback-top-tier-1 {
     position: absolute;
     width: 100%;
     left: 0%;
     height: 3vh;
     top: 0vh;
-    background-image: radial-gradient(center, ellipse cover, #c6d1bf 0%, #235161 100%);
+    background: linear-gradient(to top, #715b99 0%, #d76d77 50%, #ffaf7b 100%);
+
     background-size: 100%;
     background-attachment: fixed;
     animation: top-tier-1 4s infinite linear;
   }
-  
+
   @keyframes top-tier-1 {
     0% {
       height: 3vh;
@@ -770,19 +778,21 @@
       height: 3vh;
     }
   }
-  
+
   .blueback-top-tier-2 {
     position: absolute;
     top: 3vh;
     width: 100%;
     height: 3vh;
     float: left;
-    background-image: radial-gradient(center, ellipse cover, #93bfa8 0%, #123845 100%);
+    /* background: radial-gradient(center, ellipse cover, #93bfa8 0%, #715b99  100%); */
+    background: linear-gradient(to top, #715b99 0%, #d76d77 50%, #ffaf7b 100%);
+
     background-size: 100%;
     background-attachment: fixed;
     animation: top-tier-2 4s infinite linear;
   }
-  
+
   @keyframes top-tier-2 {
     0% {
       height: 3vh;
@@ -797,18 +807,20 @@
       height: 3vh;
     }
   }
-  
+
   .blueback-top-tier-3 {
     position: absolute;
     width: 100%;
     height: 5vh;
     top: 6vh;
-    background-image: radial-gradient(center, ellipse cover, #368981 0%, #07212e 100%);
+    /* background: radial-gradient(center, ellipse cover, #368981 0%, #07212e 100%); */
+    background: linear-gradient(to top, #715b99 0%, #d76d77 50%, #ffaf7b 100%);
+
     background-size: 100%;
     background-attachment: fixed;
     animation: top-tier-3 4s infinite linear;
   }
-  
+
   @keyframes top-tier-3 {
     0% {
       height: 3vh;
@@ -823,18 +835,20 @@
       height: 3vh;
     }
   }
-  
+
   .blueback-top-tier-4 {
     position: absolute;
     width: 100%;
     height: 7vh;
     top: 11vh;
-    background-image: radial-gradient(center, ellipse cover, #093d4a 0%, #01101b 100%);
+    /* background: radial-gradient(center, ellipse cover, #093d4a 0%, #01101b 100%); */
+    background: linear-gradient(to top, #715b99 0%, #c36cbc 50%, #ffaf7b 100%);
+
     background-size: 100%;
     background-attachment: fixed;
     animation: top-tier-4 4s infinite linear;
   }
-  
+
   @keyframes top-tier-4 {
     0% {
       height: 7vh;
@@ -849,7 +863,7 @@
       height: 7vh;
     }
   }
-  
+
   .blueback-top-tier-5 {
     position: absolute;
     width: 100%;
@@ -860,7 +874,7 @@
     background-attachment: fixed;
     animation: top-tier-5 4s infinite linear;
   }
-  
+
   @keyframes top-tier-5 {
     0% {
       height: 12vh;
@@ -882,15 +896,15 @@
     height: 100%;
     bottom: 0;
     overflow: hidden;
-    background: linear-gradient(to bottom, #091F30, #0A2C45, #0A374E, #0A4B66, #0A5C78);
-  }
-  
+    background: linear-gradient(to top, #715b99 0%, #d76d77 50%, #ffaf7b 100%);
+}
+
   .blueback-ocean-layer {
     position: absolute;
     width: 100%;
     height: 10%;
     bottom: 0;
-    background: linear-gradient(to bottom, #0A5C78, transparent);
+    background: linear-gradient(to bottom, #715b99 , transparent);
     animation: wave 5s infinite linear;
   }
   

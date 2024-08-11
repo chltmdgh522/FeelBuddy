@@ -6,13 +6,13 @@
   box-sizing: border-box;
 }
 
-.room3-walls {
+.room4-walls {
   background-color: #131b33;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding-top: 3rem;
+  padding-top: 0;
 }
 
 .desk-wrapper {

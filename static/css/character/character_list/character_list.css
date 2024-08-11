@@ -20,7 +20,7 @@ html {
 }
 
 .room-building {
-	height: 100%;
+	height: 100vh;
 	overflow-y: scroll;
 	scroll-snap-type: y mandatory;
 	/* margin-top: 20vh; */
@@ -36,7 +36,7 @@ html {
 /* 벽 */
 .room {
 	position: relative;
-	border: 4vh solid hsl(0 0% 10%);
+	border: 4vh solid hsl(0 0 10%);
 	height: 90vh;
 	width: 100vw;
 	margin-top: 14vh;
@@ -65,10 +65,25 @@ html {
 	transform-origin: center top;
 }
 
-#room1::before {
+/* #room1::before {
 	background-color: #c5cfb7;
 	background-image: radial-gradient(ellipse at center, #c5cfb7 0%, #84ad98 20%, #5f9986 39%, #5f9986 50%, #5f9986 60%, #4a8974 72%, #326565 84%, #082d47 100%);
+} */
+#room1::before {
+  background: linear-gradient(to top, #cf757e 0%, #d76d77 50%, #ffaf7b 100%);
+
 }
+
+#room1::after {
+  background: linear-gradient(to top, #cf757e 0%, #d76d77 50%, #ffaf7b 100%);
+
+}
+
+.room1-walls::after, .room1-walls::before {
+  background: linear-gradient(to top, #3a1c71 0%, #d76d77 50%, #d78d94 100%);
+
+}
+
 
 #room2::before, #room2::after {
 	background-color: #dae0ac;
@@ -84,19 +99,23 @@ html {
     #d2a669 95%,  /* 어두운 톤 추가 */
     #a88a47 100%  /* 가장 어두운 모서리 */)
 }
-#room3::before {
+
+
+#room4::before {
 	background: linear-gradient(180deg, #1f2c54, #333c57);
 }
 
-#room3::after {
+#room4::after {
 	/* background: linear-gradient(180deg, var(--sea-1), rgba(8, 8, 8, 0)), radial-gradient(circle at 50% 0%, var(--sea-2) 30%, var(--sea-3) 50%, #fff0 100%), var(--sea-3); */
 	/* background: #195eaa; */
 	/* background: radial-gradient(circle at 50% 60%, var(--sm-2), var(--sm) 100%); */
 	/* background: linear-gradient(180deg, var(--sky-2), var(--sky-1)); */
-	background:#212535;
+	/* background:#212535; */
+  background: linear-gradient(180deg, #1f2c54, #333c57);
+
 }
 
-#room4::before {
+#room3::before {
 	background-color: #A857B6;
     background-image: radial-gradient(circle,
     #C674D2 0%,
@@ -105,7 +124,7 @@ html {
 	);
 
 }
-#room4::after {
+#room3::after {
     background-image: radial-gradient(circle,
     #C674D2 0%,
     #560F63 95%,
@@ -146,9 +165,9 @@ html {
 	transform-style: preserve-3d;
 }
 
-.room3-walls::before,
-.room3-walls::after {
-    background: red;
+.room4-walls::before,
+.room4-walls::after {
+  background:#212535;
 }
 
 .room1-walls::before,
@@ -208,11 +227,11 @@ html {
 	transform-origin: left center;
 	top:0;
 }
-.room1-walls::after, .room1-walls::before {
+/* .room1-walls::after, .room1-walls::before {
 	background-color: #c5cfb7;
     background-image: radial-gradient(ellipse at center, #c5cfb7 0%, #84ad98 20%, #5f9986 39%, #5f9986 50%, #5f9986 60%, #4a8974 72%, #326565 84%, #082d47 100%);
-	/* background-image: linear-gradient(0deg,  black 20%, #5f9986 80%); */
-}
+	background-image: linear-gradient(0deg,  black 20%, #5f9986 80%);
+} */
 .room2-walls, .room2-walls::after, .room2-walls::before {
 	background-color: #dae0ac;
     background-image: radial-gradient(circle,
@@ -228,8 +247,8 @@ html {
 
 
 
-.room4-walls::before,
-.room4-walls::after {
+.room3-walls::before,
+.room3-walls::after {
     /* background-image: linear-gradient(to bottom, var(--purple-1) 32%, var(--purple-2) 32%, var(--purple-2) 44%, var(--purple-3) 44%); */
 	background-image: radial-gradient(circle,
     #C674D2 0%,
@@ -249,133 +268,12 @@ html {
 );
 }
 
-/* .room-content {
-	display: grid;
-	place-content: center;
-	height: 100%;
-	width: 100%;
-	color: white;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
-		Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-size: clamp(1em, 20vmin, 8em);
-	font-weight: 200;
-	text-align: center;
-	text-shadow: 0 5px 10px hsl(0 0% 0% / 20%);
-	transform: translatez(calc(var(--depth) / -2)) rotatey(var(--turn));
-}
-
-.room:nth-child(odd) > .room-content {
-	--turn: var(--turnLeft);
-} */
-
-
-/* 반응형 시작 */
-
-/* .character-main {
-    min-height: 100vh;
-    background-color: transparent;
-    font-size: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 0 12rem;
-    perspective: 110em;
-    perspective-origin: 50% calc(50% - 10em);
-    padding: 25px;
-    padding-top: 20vh;
-}
-
-.character-scene {
-    position: relative;
-    transform-style: preserve-3d;
-    margin: 20px;
-    width: calc(20% - 40px);
-} */
-
-
-/* 반응형 디자인 추가 */
-@media screen and (max-width: 768px) {
-    .character-main {
-        margin: 0 2rem;
-        padding-top: 10vh;
-        flex-wrap: wrap;
-    }
-
-    .character-scene {
-        margin: 10px;
-        width: calc(50% - 20px); /* 모바일에서는 두 개의 캐릭터를 한 줄에 표시 */
-    }
-
-    .table1, .table2, .table3, .table4, .table5 {
-        width: 5rem;
-    }
-
-    .table-top, .table-left, .table-right, .table-front, .table-back, .table-bottom {
-        width: 5rem;
-    }
-
-    .cheese {
-        height: 5em;
-        width: 5em;
-    }
-}
-
-
-/* 반응형 디자인 추가 */
-@media screen and (max-width: 768px) {
-    .room-building {
-        perspective: 1400px;
-        perspective-origin: 50% calc(50% - 5em);
-    }
-
-    .room {
-        height: 80vh;
-        margin-top: 10vh;
-    }
-
-    /* .character-main {
-        margin: 0 2rem;
-    }
-
-    .table1, .table2, .table3, .table4, .table5 {
-        width: 5rem;
-    }
-
-    .table-top, .table-left, .table-right, .table-front, .table-back, .table-bottom {
-        width: 5rem;
-    }
-
-    .character-scene {
-        margin: 10px;
-    } */
-
-    #create, #delete {
-        top: 10px;
-        left: 10px;
-        padding: 5px 10px;
-        font-size: 0.8em;
-    }
-
-    .arrow {
-        font-size: 1.5em;
-        padding: 5px;
-    }
-
-    .arrow.left {
-        left: 5vmin;
-    }
-
-    .arrow.right {
-        right: 5vmin;
-    }
-}
 
 /* room1 디자인 수정 */
-#room1::before, #room1::after {
+/* #room1::before, #room1::after {
     background-color: #c5cfb7;
     background-image: radial-gradient(ellipse at center, #c5cfb7 0%, #84ad98 20%, #5f9986 39%, #5f9986 50%, #5f9986 60%, #4a8974 72%, #326565 84%, #082d47 100%);
-}
+} */
 
 /* favorite content 추가(찜 기능) */
 /* table front 구멍 없애기 */
