@@ -1,0 +1,347 @@
+/* chatlist의 모바일 반응형 구현 템플릿입니다 */
+.stairs, .mobile-character-main {
+    display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /* 룸 반응형 시작 */
+    .room-building {
+        overflow-y: hidden;
+        margin-top: 9vh;
+        /* margin-top: 10%; */
+
+    }
+    .room {
+        height: 75vh;
+        border-bottom: 20vh solid hsl(0 0% 10%);
+
+    }
+    .room1-walls {
+      position: absolute;
+      top:-12vh;
+    }
+
+    .room2-walls, .room3-walls, .room4-walls, .room5-walls {
+        position: absolute;
+        top:-5vh;
+    }
+
+
+    .door {
+        height: 13vh;
+
+    }
+    .door span {
+      bottom: 5vh;
+      margin-left: 2vh;
+    }
+
+    #lock {
+      bottom: 4.2vh;
+      left: calc(50vw - 0.9em);
+
+    }
+
+
+
+    .plus-btn svg {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.64);
+      width: 2rem;
+      height: 2rem;
+      bottom:5vh;
+      margin-left:74%;
+    }
+
+    .plus-btn svg:hover {
+      transform: scale(1.2);
+      color: white;
+    }
+    .door span + span {
+      text-align: right;
+    }
+
+    #keylock {
+      font-size: 1.8em;
+    }
+    #movement{
+      font-size: 1.5em;
+      padding-right: 28%;
+    }
+    .character-main {
+        display: none;
+    }
+
+    .room1-walls {
+        position: relative;
+        padding-bottom: 100px;
+    }
+
+
+    .blueback-bottom {
+        display: none;
+    }
+    .blueback-front-rocks, .blueback-back-rocks {
+        display: none;
+    }
+
+
+    .mobile-character-center {
+      width: 100vmin;
+      height: 100vh;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mobile-character-main {
+        width: 380px;
+        height: 300px;
+        display: inline;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 0;
+        top: 43vh;
+        text-align: center;
+    }
+
+
+
+    .mobile-character-main img {
+        width: 6rem;
+        height: 6rem;
+        margin-top: 1rem;
+        padding: 0;
+        text-align: center;
+        animation: float1 2s 2s infinite;
+        /* animation: rise 4s ease-in-out forwards */
+    }
+    @keyframes float1 {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        50% {
+          transform: translateX(0) translateY(-10px);
+        }
+        100% {
+          transform: translateX(0) translateY(0);
+        }
+      }
+
+
+
+
+    .mobile-char-shadow {
+    width: 4rem;
+    height: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 65%;
+    transform: translateZ(300px);
+    left: 41%;
+    z-index: 9;
+    animation: shrink1 2s 2s infinite;
+
+}
+@keyframes shrink1 {
+    0% {
+      transform: scale(1.0);
+    }
+    50% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1.0);
+    }
+  }
+}
+
+  @media screen and (max-width: 768px) {
+
+  .table1, .table2, .table3, .table4, .table5 {
+    display: none;
+  }
+  .room-building {
+	perspective: 3000px;
+
+   }
+
+
+  .room1-stairs,
+  .room2-stairs,
+  .room3-stairs,
+  .room4-stairs,
+  .room5-stairs {
+    display: flex;
+    text-align:center;
+    width: 100%;
+    margin: 5px auto;
+    /* perspective: 1500px; */
+    perspective: 2700px;
+    backface-visibility: visible;
+    perspective-origin: 50%-30px;
+    position:absolute;
+    transform-style: preserve-3d;
+    z-index: 5;
+    top:73vh;
+    /* 다른 룸들과 7 차이 남 */
+  }
+
+  .room2-stairs,
+  .room3-stairs,
+  .room4-stairs,
+  .room5-stairs {
+    top:67vh;
+  }
+
+  .room1-stairs div,
+  .room2-stairs div,
+  .room3-stairs div,
+  .room4-stairs div,
+  .room5-stairs div {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+
+  .stair1,.stair2,.stair3,.stair4,.stair5 {
+    width: 100%;
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+  /* .stair2 {
+    width: 100%;
+    transform: translate3d(0px, 30px, 30px);
+    transform: translate3d(0px, 30px, 30px);
+  }
+
+  .stair3 {
+    width: 100%;
+    transform: translate3d(0px, 60px, 60px);
+    transform: translate3d(0px, 60px, 60px);
+  } */
+
+  .face {
+    width: 100%;
+  }
+
+  .top {
+    height: 600px;
+    background: rgba(0,13,55,1);
+    box-shadow: inset 20px 0px 25px -25px #3b87ba, inset -20px 0px 25px -25px #3b87ba, inset 0px -50px 80px -30px #3b87ba;
+    transform: rotateX(90deg) translateZ(300px);
+  }
+
+  .stair1 .top,
+  .stair2 .top,
+  .stair3 .top,
+  .stair4 .top,
+  .stair5 .top {
+    /* background: rgb(29,50,117); */
+    /* background: mintcream; */
+    background: linear-gradient(0deg, rgba(29,50,117,1) 0%, rgba(83,220,222,1) 100%);
+    box-shadow: none;
+  }
+
+  .stair1 .front,
+  .stair2 .front,
+  .stair3 .front,
+  .stair4 .front,
+  .stair5 .front {
+    /* height: 120px; */
+    height: 100px;
+    background: rgb(2,20,77);
+    background: linear-gradient(180deg, rgba(2,20,77,1) 44%, rgba(0,13,55,1) 100%);
+    transform: rotateX(0deg) translateZ(300px);
+  }
+
+  .stair1 .top, .stair1 .front {
+    /* background: linear-gradient(0deg, #f1f5d2 0%, #efcd93 50%, #f9d271 100%); */
+    background: linear-gradient(to top, #f187c5 0%, #e9848e 50%, #eaaee3 100%);
+    /* background: linear-gradient(to left, #fb98a2 0%, #e9848e 50%, #f0abe8 100%); */
+    box-shadow: none;
+
+}
+
+
+  .stair2 .top, .stair2 .front {
+      background: linear-gradient(0deg, #f9e5c3 0%, #efcd93 50%, #f9d271 100%);
+      /* background: linear-gradient(to top, #715b99 0%, #c36cbc 50%, #ffaf7b 100%); */
+
+
+ }
+
+ .stair4 .top, .stair4 .front {
+  background: linear-gradient(0deg,  #1b1e29 0%,  #282f44 50%, #1e2542 100%);
+  box-shadow: none;
+ }
+ .stair5 .top, .stair5 .front {
+  background: linear-gradient(0deg, rgb(104, 103, 103) 0%, rgb(47, 46, 46) 50%, rgb(15, 15, 15) 100%);
+  box-shadow: none;
+}
+}
+
+
+@media screen and (max-width: 768px) {
+    .icon{
+        display: none;
+	}
+
+
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+  /* room2 배경 수정 */
+  .balloon-container {
+    width: 160px;
+    height: 180px;
+    border-radius: 30px;
+    margin-left: 0;
+    margin-bottom: 250px;
+  }
+
+  /* room4 배경 수정 */
+  .desk-wrapper {
+    margin-bottom: 50vh;
+    padding: 0;
+  }
+  .laptop, .lamp, .desk-top, .desk-bottom {
+    display: none;
+  }
+  .window {
+    width: 18rem;
+    height: 10rem;
+  }
+
+  /* room5 배경 수정 */
+  .bulb {
+    position: absolute;
+    top:10%;
+  }
+  .bulb::before {
+    height: 10vh;
+  }
+  .toggle {
+    --border-radius: max(5px, 1vw);
+    position: absolute;
+    top: 25vh;
+    right: 20%;
+    min-width: 60px;
+    min-height: 60px;
+  }
+  .clock {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 200px;
+    position: absolute;
+    top: 27vh;
+    left: 5vh;
+  }
+}

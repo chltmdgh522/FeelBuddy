@@ -374,7 +374,7 @@
   }
 
   .table1, .table2, .table3, .table4, .table5 {
-      width: 5rem;
+    display: none;
   }
 
   .table-top, .table-left, .table-right, .table-front, .table-back, .table-bottom {

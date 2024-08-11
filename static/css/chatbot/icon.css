@@ -19,8 +19,9 @@
     top: 2.5rem;
     right: 2.5rem;
     gap: 1.5rem;
-  }
-  
+    z-index: 99999;
+}
+
   .icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list {
     width: 2rem;
     height: 2rem;
@@ -40,12 +41,12 @@
 	width: 16px;
 	height: 16px;
   }
-  
+
   .icon__account:active, .icon__home:active, .icon__chat:active, .icon__log:active, .icon__delete:active, .icon__list:active {
     box-shadow: inset .2rem .2rem .5rem var(--greyLight-2), inset -.2rem -.2rem .5rem var(--white);
     color: var(--primary);
   }
-  
+
   .icon__account:hover, .icon__home:hover, .icon__chat:hover, .icon__log:hover, .icon__delete:hover, .icon__list:hover {
     color: var(--primary);
   }
@@ -78,4 +79,51 @@
     bottom: 12rem;
   }
 
-  
+
+
+
+/* .create-btn {
+    position: absolute;
+    width: 100%;
+    top:40px;
+    left: 40px;
+    z-index: 11;
+    cursor: pointer;
+    background: none;
+    border: none;
+    background-color: none;
+    font-size: 15rem;
+    color: rgb(187, 186, 186);
+  }
+.create-btn svg {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    background: none;
+    background-color: none;
+  } */
+
+  /* .create-btn svg:hover {
+    transform: scale(1.5);
+    color:white;
+} */
+
+.plus-btn {
+    width: 100vmin;
+    background: none;
+    border: none;
+  }
+
+.plus-btn svg {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.64);
+    width: 2rem;
+    height: 2rem;
+    bottom:5vh;
+    left:5vh;
+  }
+
+.plus-btn svg:hover {
+    transform: scale(1.2);
+    color: white;
+}

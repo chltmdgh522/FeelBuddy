@@ -1,0 +1,107 @@
+@media screen and (max-width: 768px) {
+    .door-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .door span {
+        font-size: 1.5em;
+    }
+
+    #keylock {
+        margin-right: 230px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /* Adjust the overall content size */
+    .newcreate-content {
+        width: 100%;
+        max-width: 390px; /* Ensuring it doesn't exceed 390px */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* Adjust the contact form wrapper */
+    .contact-wrapper {
+        width: 100%;
+        position: absolute;
+        top:20%;
+        left: 0;
+        padding: 0;
+        transform: translateY(0); /* Adjusting position for smaller screens */
+    }
+
+    /* Adjust the size of the envelope */
+    .envelope {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        max-width: 360px; /* Ensuring it fits within the screen */
+    }
+
+
+
+    /* Adjust the envelope paper dimensions */
+    .envelope-paper.envelope-back:before {
+        border-width: 40px 180px 120px 180px; /* Adjusted for smaller screens */
+    }
+
+    .envelope-paper.envelope-back:after {
+        width: 360px; /* Adjusted for smaller screens */
+        height: 240px;
+    }
+
+    .envelope-paper.envelope-front:after {
+        width: 360px; /* Adjusted for smaller screens */
+        height: 120px;
+    }
+
+    .envelope-paper.envelope-front:before {
+        border-width: 120px 180px 0 180px; /* Adjusted for smaller screens */
+    }
+
+    .envelope.active .envelope-content {
+        padding: 14em 0 0;
+    }
+
+    .envelope-content {
+        padding: 0;
+        box-sizing: border-box;
+        max-height: calc(100% - 15em); /* Limit the height to fit within the envelope */
+        overflow: hidden;
+        width: 100%; /* Ensure envelope-content takes the full width */
+    }
+
+    .form-wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+
+
+    .envelope.active .bottom-wrapper {
+        height: 75%;
+    }
+
+    form input,
+    form textarea {
+        padding: 0.3rem;
+        font-size: 0.9rem; /* Slightly smaller text for mobile */
+    }
+    .top-wrapper-character {
+        height: auto;
+    }
+    .top-wrapper-character img {
+        height: 8rem; /* Reduce image size */
+    }
+
+    /* Adjust submit button size */
+    .submit-card {
+        padding: 0.4rem;
+        font-size: 1rem; /* Slightly smaller font size */
+    }
+}
