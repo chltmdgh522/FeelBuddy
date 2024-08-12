@@ -577,109 +577,164 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
-        function scrollChatBox() {
-            $('#messages').scrollTop($('#messages')[0].scrollHeight);
+    // 페이지 로드 후 사용 가능한 음성 목록을 콘솔에 출력
+    function listAvailableVoices() {
+        // 음성 목록을 가져오는 작업
+        const voices = window.speechSynthesis.getVoices();
+
+        // 음성 목록이 비어 있으면 음성이 로드되기까지 대기
+        if (voices.length === 0) {
+            // 음성이 로드될 때까지 대기
+            window.speechSynthesis.onvoiceschanged = function () {
+                listAvailableVoices();
+            };
+        } else {
+            // 음성 목록을 콘솔에 출력
+            voices.forEach((voice, index) => {
+                console.log(`Voice ${index}:`);
+                console.log(`Name: ${voice.name}`);
+                console.log(`Lang: ${voice.lang}`);
+                console.log(`Default: ${voice.default}`);
+                console.log('---');
+            });
         }
+    }
 
-        // 페이지 로드 시 스크롤을 맨 아래로 이동
-        scrollChatBox();
+    // 음성 목록을 출력
+    listAvailableVoices();
+});
 
-        // 메시지 전송 로직을 함수로 분리
-        function sendMessage() {
-            let userContent = $('#user-content2').val();
-
-            if (userContent.trim() !== "") {
-                // 사용자 메시지를 바로 추가하기
-                $('#messages').append(
-                    `<div class="message parker">
-                        ${userContent}
-                    </div>`
-                );
-                $('#user-content2').val('');
-                scrollChatBox();
-
-                // Typing 애니메이션을 추가하기
-                $('#messages').append(
-                    `<div class="message stark typing">
-                        <div class="typing typing-1"></div>
-                        <div class="typing typing-2"></div>
-                        <div class="typing typing-3"></div>
-                    </div>`
-                );
-                scrollChatBox();
-
-                // 사용자 메시지를 서버에 전송
-                $.ajax({
-                    type: 'POST',
-                    url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
-                    data: {
-                        'user_content': userContent,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function () {
-                        // AI 응답을 서버에 요청
-                        $.ajax({
-                            type: 'POST',
-                            url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
-                            data: {
-                                'user_input': userContent,
-                                'csrfmiddlewaretoken': '{{ csrf_token }}'
-                            },
-                            success: function (response) {
-                                // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가
-                                setTimeout(function () {
-                                    // Typing 애니메이션을 제거합니다.
-                                    $('.typing').remove();
-
-                                    // AI 메시지를 추가합니다.
-                                    $('#messages').append(
-                                        `<div class="message stark">
-                                            ${response.ai_content}
-                                        </div>`
-                                    );
-
-                                    let aiContent = response.ai_content;
-                                    let truncatedContent = aiContent.length > 10 ? aiContent.slice(0, 10) + '...' : aiContent;
-
-                                    let time = response.time1;
-                                    // 메시지 업데이트
-                                    $('#latest-message-' + response.id2).text(truncatedContent);
-                                    // 시간 업데이트
-                                    $('#latest-time-' + response.id2).text('Last at ' + time);
-
-                                    scrollChatBox();
-                                }, 2000); // 2초 딜레이
-                            }
-                        });
-                    }
-                });
-            }
-        }
-
-        // Enter 키를 눌렀을 때 메시지 전송
-        $('#user-content2').on('keypress', function (event) {
-            if (event.which === 13) { // Enter 키를 감지
-                event.preventDefault(); // 기본 Enter 동작을 막기
-                sendMessage();
-            }
-        });
-
-        // a 버튼을 클릭했을 때 메시지 전송
-        $('.send').on('click', function (event) {
-            event.preventDefault(); // a 태그의 기본 동작을 막기
-            sendMessage();
-        });
-
-        // Resizable 설정
-        $("#chat").resizable({
-            minWidth: 400,
-            minHeight: 400
-        });
-    });
 </script>
+ <script>
+        $(document).ready(function () {
+            let apiKey = 'YOUR_GOOGLE_CLOUD_API_KEY'; // Google Cloud API 키를 여기에 입력하세요
+
+            function scrollChatBox() {
+                $('#messages').scrollTop($('#messages')[0].scrollHeight);
+            }
+
+            function sendMessage() {
+                let userContent = $('#user-content2').val();
+
+                if (userContent.trim() !== "") {
+                    $('#messages').append(
+                        `<div class="message parker">
+                            ${userContent}
+                        </div>`
+                    );
+                    $('#user-content2').val('');
+                    scrollChatBox();
+
+                    $('#messages').append(
+                        `<div class="message stark typing">
+                            <div class="typing typing-1"></div>
+                            <div class="typing typing-2"></div>
+                            <div class="typing typing-3"></div>
+                        </div>`
+                    );
+                    scrollChatBox();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
+                        data: {
+                            'user_content': userContent,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                        },
+                        success: function () {
+                            $.ajax({
+                                type: 'POST',
+                                url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
+                                data: {
+                                    'user_input': userContent,
+                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                                },
+                                success: function (response) {
+                                    setTimeout(function () {
+                                        $('.typing').remove();
+
+                                        $('#messages').append(
+                                            `<div class="message stark">
+                                                ${response.ai_content}
+                                            </div>`
+                                        );
+
+                                        // Text-to-Speech API 호출
+                                        const textToSpeech = async (text) => {
+                                            const url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
+                                            const requestPayload = {
+                                                input: {
+                                                    ssml: `<speak>
+                                                            <voice name="ko-KR-Wavenet-A">
+                                                                <prosody rate="slow" pitch="high">
+                                                                    ${text}
+                                                                </prosody>
+                                                            </voice>
+                                                        </speak>`
+                                                },
+                                                voice: {
+                                                    languageCode: 'ko-KR',
+                                                    name: 'ko-KR-Wavenet-A' // 다른 음성 이름으로 변경 가능
+                                                },
+                                                audioConfig: {
+                                                    audioEncoding: 'MP3'
+                                                }
+                                            };
+
+                                            try {
+                                                const response = await fetch(url, {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                    },
+                                                    body: JSON.stringify(requestPayload)
+                                                });
+                                                const data = await response.json();
+                                                const audioContent = data.audioContent;
+                                                const audio = new Audio('data:audio/mp3;base64,' + audioContent);
+                                                audio.play();
+                                            } catch (error) {
+                                                console.error('Error:', error);
+                                            }
+                                        };
+
+                                        textToSpeech(response.ai_content);
+
+                                        scrollChatBox();
+                                    }, 2000);
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            $('#user-content2').on('keypress', function (event) {
+                if (event.which === 13) {
+                    event.preventDefault(); 
+                    sendMessage();
+                }
+            });
+
+            $('.send').on('click', function (event) {
+                event.preventDefault(); 
+                sendMessage();
+            });
+
+            $("#chat").resizable({
+                minWidth: 400,
+                minHeight: 400
+            });
+
+            $(window).on('beforeunload', function () {
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                }
+            });
+        });
+    </script>
 
 
 <!-- <script>

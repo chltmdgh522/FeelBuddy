@@ -22,7 +22,8 @@ from django.contrib.auth.hashers import make_password
 def main(request):
     return render(request, 'user/main.html')
 
-
+def test(request):
+    return render(request, 'user/test.html')
 def signup(request):
     if request.user.is_authenticated:
         return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
