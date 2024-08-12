@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
+:root {
+    --wide: 2em;
+    --angle1: 0;
+    --angle2: -90;
+    --scroll: 0; /* 추가: 초기 스크롤 값 설정 */
+  }
+  
+  /* html {
+    scrollbar-width: none;
+  }
+  
+  body {
+    width: 100vw;
+    height: 200vh;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+   */
+  /* body::-webkit-scrollbar {
+    display: none;
+  }
+   */
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+  
+  .door {
+    background: repeating-linear-gradient(
+        calc(var(--angle1) * 1deg),
+        #ffffff00 0,
+        #ffffff00 var(--wide),
+        #ffffff1a calc(var(--wide) + 1px),
+        #0000004d calc(var(--wide) + 2px),
+        #ffffff00 calc(var(--wide) + 5px)
+      ),
+      repeating-linear-gradient(
+        calc(calc(var(--angle2) + 90) * 1deg),
+        #ffffff00 0,
+        #ffffff00 var(--wide),
+        #ffffff1a calc(var(--wide) + 1px),
+        #0000004d calc(var(--wide) + 2px),
+        #ffffff00 calc(var(--wide) + 5px)
+      );
+    background-color: #222;
+    width: 100vw;
+    height: 14vh;
+    min-height: 14vh;
+    max-height: 100vh;
+    position: fixed;
+    top: 0; /* 추가: 도어를 상단에 고정 */
+    left: 0;
+    z-index: 10; /* 다른 요소들 위에 표시 */
+    box-shadow: 0 -2.5vmin 3vmin 3vmin #333333;
+  }
+  
+  .door span {
+    position: absolute;
+    bottom: 3.75vh;
+    color: #ffffff;
+    font-family: "Gugi", sans-serif;
+    font-size: 2em;
+    margin: 0;
+    width: calc(50vw - 1.25em);
+    text-align: right;
+  }
+  
+  .door span + span {
+    right: 0;
+    text-align: left;
+  }
+  
+  .door span.off {
+    color: #555555;
+  }
+  
+  #lock {
+    background: #151515;
+    bottom: 3.5vh;
+    left: calc(50vw - 1.5em);
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    border-radius: 100%;
+    box-shadow: 0 0 0.05em 0.05em #0e0e0e;
+    z-index: 2;
+    transition: all 0.5s ease 0s;
+    transform: rotate(0deg);
+  }
+  
+  #lock:before {
+    content: "";
+    border: 0.175em solid #101010;
+    width: 2.4em;
+    height: 2.4em;
+    position: absolute;
+    border-radius: 100%;
+    left: 0.3em;
+    top: 0.3em;
+    background: #848484;
+  }
+  
+  #lock:after {
+    content: "\25CF";
+    color: #101010;
+    width: 0.5em;
+    height: 0.9em;
+    position: absolute;
+    left: 0.75em;
+    top: 0.5em;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 0.45em;
+    border: 0.15em solid transparent;
+    margin: 0;
+    display: block;
+    border-bottom: 0.5em solid #101010;
+    border-top-width: 0;
+    text-indent: -0.2em;
+    border-radius: 0.125em;
+  }
+  
+  #lock:hover {
+    transition: all 0.5s ease 0s;
+  }
+  
+  #lock.open.active:before {
+    background: #8bc34a;
+  }
+  
+  #lock.open.active {
+    cursor: pointer;
+  }
+  
+  #lock.closed:before {
+    background: #cc281c;
+  }
+  
+  #lock.closed {
+    transform: rotate(90deg);
+    cursor: pointer;
+  }
+  
+  #lock.closed:hover + #keylock {
+    color: #cc281c;
+  }
+  
+  #lock.open:hover + #keylock {
+    color: #8bc34a;
+  }
+  #lock.open:hover + #keylock.off {
+    color: #555555;
+  }
+  
+  @keyframes colored {
+      0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+  
+  

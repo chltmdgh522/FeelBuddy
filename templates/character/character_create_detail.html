@@ -1,25 +1,88 @@
-<!-- character/character_create_detail.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create User Character</title>
+    <title>Contact Form Animation</title>
+    <link rel="stylesheet" href="{% static '/css/character/character_create_detail/motext.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_create_detail/textform.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_create_detail/shut.css' %}">
 </head>
 <body>
-    <h1>Create Character for {{ admin_character.emotion }}</h1>
-    <form method="POST" action="{% url 'character:character_create_detail' admin_character.pk %}">
-        {% csrf_token %}
-        <p>
-            <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
-        </p>
-        <label for="name">Character Name:</label>
-        <input type="text" name="name" required>
-        <br>
-        <label for="introduce">Introduce:</label>
-        <textarea name="introduce" required></textarea>
-        <br>
-        <button type="submit">Create Character</button>
-    </form>
+<div id="container">
+    <div class="door">
+        <div id="lock"></div>
+        <span id="keylock" class="off">Feelbuddy</span>
+        <span id="movement" class="off">unlock</span>
+        <div class="envelope-button">
+            <button id="envelope-send-button" href="#">Send</button>
+        </div>
+
+        <div class="newcreate-content">
+            <div class="flip-card" id="flipCard"></div>
+            <div class="contact-wrapper">
+                <div class="envelope">
+                    <div class="envelope-back envelope-paper"></div>
+                    <div class="envelope-content">
+                        <div class="form-wrapper">
+                            <form id="characterForm"
+                                  action="{% url 'character:character_create_detail' admin_character.pk %}"
+                                  method="post">
+                                {% csrf_token %}
+                                <div class="top-wrapper">
+                                    <div class="top-wrapper-character">
+                                        <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}">
+                                    </div>
+                                </div>
+                                <div class="bottom-wrapper">
+                                    <div class="envelope-input">
+                                        <label>Name</label>
+                                        <input type="text" placeholder="캐릭터의 이름을 생성해주세요" name="name" required/>
+                                    </div>
+                                    <div class="envelope-input">
+                                        <label>Message</label>
+                                        <textarea rows="5" placeholder="지금 그 감정에 대해 느끼고 있는 것을 적어보세요"
+                                                  name="introduce" required></textarea>
+                                    </div>
+                                    <div class="envelope-submit">
+                                        <div class="submit-card" id="submitCard">Save</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="envelope-front envelope-paper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const flipCard = document.getElementById('flipCard');
+        const submitCard = document.getElementById('submitCard');
+        const envelope = document.querySelector('.envelope');
+        const envelopeSendButton = document.getElementById('envelope-send-button');
+        const characterForm = document.getElementById('characterForm');
+
+        function toggleAnimation() {
+            envelope.classList.toggle('active');
+        }
+
+        // Save 버튼 클릭 시 애니메이션만 처리
+        submitCard.addEventListener('click', toggleAnimation);
+
+        // Send 버튼 클릭 시 폼 제출
+        envelopeSendButton.addEventListener('click', function () {
+            if (!characterForm.name.value || !characterForm.introduce.value) {
+                alert('공백은 불가능합니다.');
+                return;
+            }
+
+            characterForm.submit(); // 폼 제출
+        });
+    });
+</script>
 </body>
 </html>

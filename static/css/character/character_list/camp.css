@@ -1,0 +1,409 @@
+/* Variables */
+:root {
+    --purple-1: #C674D2;
+    --purple-2: #A857B6;
+    --purple-3: #953EA4;
+    --purple-4: #7D288E;
+    --purple-5: #560F63;
+    --purple-6: #390445;
+    --pink-1: #E52D73;
+    --pink-2: #CF0F5D;
+    --cloud: #FFFFFF;
+    --fire: #F75F96;
+  }
+
+  /* Reset */
+  *, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  /* Generic */
+  .room4-walls {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Satisfy', cursive;
+    font-size: 24px;
+    /* background-color: var(--purple-6); */
+    color: var(--cloud);
+  }
+
+  .bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px; /* 전체 너비를 차지하도록 수정 */
+    height: 100vh; /* 전체 높이를 차지하도록 수정 */
+    overflow: hidden; /* 테두리에서 내용이 넘치지 않도록 수정 */
+  }
+
+
+
+  .sky {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    height: 720px;
+    background-image: linear-gradient(to bottom, var(--purple-1) 35%, var(--purple-2) 35%, var(--purple-2) 49%, var(--purple-3) 49%);
+    overflow: hidden;
+    transition: 2s linear;
+  }
+
+  .sky:hover {
+    cursor: pointer;
+    border-radius: none;
+    transition: 2s linear;
+  }
+
+  /* .sky:hover .main {
+    filter: blur(7px);
+    transform: scale(1.025);
+  } */
+
+
+
+  .forest {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    transition: 2s linear;
+  }
+
+  .forest__item {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .forest__tree {
+    position: absolute;
+    width: 60px;
+    border-bottom: 120px solid var(--purple-4);
+    border-top: 0 solid transparent;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+  }
+
+  .forest__tree--1 {
+    top: 12px;
+    left: -25px;
+  }
+
+  .forest__tree--2 {
+    left: -5px;
+  }
+
+  .forest__tree--3 {
+    top: 25px;
+    left: 20px;
+  }
+
+  .forest__tree--4 {
+    top: 40px;
+    left: 45px;
+  }
+
+  /* 추가된 forest__tree 요소들 */
+.forest__item:nth-child(n+7) .forest__tree--1 { top: 10px; left: -20px; }
+.forest__item:nth-child(n+7) .forest__tree--2 { left: 0; }
+.forest__item:nth-child(n+7) .forest__tree--3 { top: 20px; left: 15px; }
+.forest__item:nth-child(n+7) .forest__tree--4 { top: 35px; left: 40px; }
+
+  .main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: 2s linear;
+    overflow: hidden;
+  }
+
+.tent {
+    position: absolute;
+    bottom: 0;
+    left: 90px;
+    width: 450px; /* 텐트 크기 증가 */
+    height: 255px; /* 텐트 크기 증가 */
+    z-index: 100;
+}
+
+.tent__side {
+    position: absolute;
+    right: 0;
+    transform: skewX(30deg);
+    width: 225px; /* 텐트 크기 증가 */
+    height: 100%;
+    background-color: var(--pink-1);
+}
+
+.tent__front {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 90px; /* 텐트 크기 증가 */
+    border-bottom: 255px solid var(--pink-2); /* 텐트 크기 증가 */
+    border-top: 0 solid transparent;
+    border-left: 151.5px solid transparent; /* 텐트 크기 증가 */
+    border-right: 151.5px solid transparent; /* 텐트 크기 증가 */
+}
+  .tent__door {
+    position: absolute;
+    top: 105px; /* 텐트 크기 증가 */
+    left: -52.5px; /* 텐트 크기 증가 */
+    width: 90px; /* 텐트 크기 증가 */
+    border-bottom: 165px solid var(--purple-6); /* 텐트 크기 증가 */
+    border-top: 0 solid transparent;
+    border-left: 52.5px solid transparent; /* 텐트 크기 증가 */
+    border-right: 52.5px solid transparent; /* 텐트 크기 증가 */
+}
+
+  .tree__item {
+    position: absolute;
+  }
+
+  .tree__item--1 {
+    bottom: -200px;
+    width: 200px;
+    height: 200px;
+    transform: rotateZ(49deg) skewX(35deg) skewY(35deg);
+    z-index: 150;
+    background-image: linear-gradient(45deg, var(--purple-6) 50%, var(--purple-5) 50%);
+  }
+
+  .tree__item--2 {
+    z-index: 50;
+    right: 40px;
+    bottom: 0;
+    width: 60px;
+    border-bottom: 260px solid var(--purple-6);
+    border-top: 0 solid transparent;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+  }
+
+  .rock__item {
+    position: absolute;
+    left: 110px;
+    bottom: -15px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    z-index: 200;
+    background-color: var(--purple-6);
+  }
+
+  .rock__item::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    bottom: 2px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: var(--purple-6);
+  }
+
+  .rock__item--2 {
+    left: 10px;
+    transform: rotateY(180deg);
+  }
+
+  .rock__item--3 {
+    left: calc(100% - 40px);
+  }
+
+  .cloud {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    overflow: hidden;
+    animation: cloud 3s infinite alternate;
+  }
+
+  .cloud--1 {
+    top: 100px;
+    left: 60px;
+    animation-delay: 0.5s;
+  }
+
+  .cloud--2 {
+    top: 120px;
+    left: calc(100% - 120px);
+    transform: rotateY(180deg);
+  }
+
+  /* 추가된 cloud 요소들 */
+.cloud--3 {
+    top: 80px;
+    left: 340px;
+    animation-delay: 1s;
+  }
+
+  .cloud--4 {
+    top: 90px;
+    left: calc(100% - 300px);
+    transform: rotateY(180deg);
+    animation-delay: 1.5s;
+  }
+
+  .cloud__item {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: var(--cloud);
+  }
+
+  .cloud__item::before {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 35px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--cloud);
+  }
+
+  .trunk {
+    position: absolute;
+    bottom: 0;
+    left: 600px;
+    width: 110px;
+    height: 100px;
+    z-index: 200;
+  }
+
+  .trunk__item {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 20px;
+    border-radius: 30px;
+    background-image: linear-gradient(to bottom, var(--purple-5) 5%, var(--purple-4), var(--purple-6) 30%);
+  }
+
+  .trunk__item::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, var(--purple-2) 0%, var(--purple-2) 30%, var(--purple-3) 30%, var(--purple-3) 50%, var(--purple-4) 50%, var(--purple-4) 100%);
+  }
+
+  .trunk__item--1 {
+    left: 0;
+  }
+
+  .trunk__item--2 {
+    left: 20px;
+  }
+
+  .trunk__item--3 {
+    bottom: 20px;
+    left: 10px;
+  }
+
+  .fire {
+    height: 300px; /* 불 크기 증가 */
+    width: 300px; /* 불 크기 증가 */
+    position: absolute;
+    bottom: -10px;
+    right: 80px;
+    z-index: 200;
+  }
+
+  .fire__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: opty 1s infinite alternate;
+  }
+
+  .fire__item::before,
+  .fire__item::after {
+    content: '';
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    animation: opty 1s infinite alternate 0.1s;
+  }
+
+  .fire__item::after {
+    width: 50%;
+    height: 50%;
+    animation-delay: 0.2s;
+  }
+
+  .fire__trunk {
+    position: absolute;
+    bottom: 20px;
+    width: 70px;
+    height: 12px;
+    border-radius: 2px;
+    background-image: linear-gradient(to bottom, var(--purple-4), var(--purple-6) 40%);
+  }
+
+  .fire__trunk--1 {
+    left: 120px;
+    transform: rotateZ(-10deg);
+  }
+
+  .fire__trunk--2 {
+    left: 120px;
+    transform: rotateZ(15deg);
+  }
+
+  .fire__light {
+    height: 60px; /* 불 크기 증가 */
+    width: 30px; /* 불 크기 증가 */
+    background: var(--fire);
+    position: absolute;
+    bottom: 25px;
+    left: calc(50% - 10px);
+    border-radius: 50%;
+    z-index: -1;
+    animation: light 0.05s infinite alternate;
+  }
+
+  /* Animations */
+  @keyframes opty {
+    0% {
+      background-color: rgba(var(--cloud), 0.1);
+    }
+    100% {
+      background-color: rgba(var(--cloud), 0.2);
+    }
+  }
+
+  @keyframes light {
+    0% {
+      left: calc(50% - 9px);
+      bottom: 25px;
+    }
+    100% {
+      left: calc(50% - 11px);
+      bottom: 24px;
+    }
+  }
+
+  @keyframes cloud {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(20px);
+    }
+  }

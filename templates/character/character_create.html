@@ -1,26 +1,112 @@
-<!-- character/character_create.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Character</title>
+    <title>새 캐릭터 만들기</title>
+    <link rel="stylesheet" href="{% static '/css/character/create1/character_create.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/create1/character_shut.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/create1/monewcreate.css' %}">
+
+
 </head>
+
 <body>
-<h1>Select a Character</h1>
-<ul>
-    {% for admin_character in admin_characters %}
-        <!-- 무한생성 막아야됨 그래서 if문 넣음 !-->
-        
-        {% if admin_character.id not in user_character_ids %}
-            <li>
-                <a href="{% url 'character:character_create_detail' admin_character.pk %}">
-                    <img src="{{ admin_character.image.url }}" alt="{{ admin_character.emotion }}" style="width: 100px; height: 100px;">
-                    <p>{{ admin_character.emotion }}</p>
-                </a>
-            </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+<button id="create">create</button>
+<div class="door">
+    <div class="door-content">
+        <div id="lock"></div>
+        <span id="keylock" class="off">Feelbuddy</span>
+        <span id="movement" class="off">unlock</span>
+    </div>
+
+    <div class="newcreate-content">
+        <script type="text/javascript">
+            // 서버에서 user_character_ids 리스트를 전달받음
+            var user_character_ids = {{ user_character_ids|safe }};
+        </script>
+        <button onclick="animateThis()" class="character-animation-btn">Character List</button>
+
+        <div class="newcreate-scence">
+            <a href="{% url 'character:character_create_detail' 5 %}" class="character-link" data-character-id="5">
+
+                <div class="newcreate-img-wrapper1">
+                    <img src="/media/fear.png" alt="fear" class="box-char" id="box-char1">
+                    <div class="newcreate-overlay1">
+                        <h3>Fear</h3>
+                        <p>두려움에 대한 대화를 나누고 싶다면 선택하세요!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'character:character_create_detail' 2 %}" class="character-link" data-character-id="2">
+
+                <div class="newcreate-img-wrapper2">
+                    <img src="/media/anger.png" alt="anger" class="box-char" id="box-char2">
+                    <div class="newcreate-overlay2">
+                        <h3>Anger</h3>
+                        <p>화나는 순간에 대한 대화를 나누고 싶다면 선택하세요!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'character:character_create_detail' 1 %}" class="character-link" data-character-id="1">
+
+                <div class="newcreate-img-wrapper3">
+                    <img src="/media/joy.png" alt="Joy" class="box-char" id="box-char3">
+                    <div class="newcreate-overlay3">
+                        <h3>Joy</h3>
+                        <p>기쁜 순간에 대한 대화를 나누고 싶다면 선택하세요!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'character:character_create_detail' 4 %}" class="character-link" data-character-id="4">
+
+                <div class="newcreate-img-wrapper4">
+                    <img src="/media/sad.png" alt="anger" class="box-char" id="box-char4">
+                    <div class="newcreate-overlay4">
+                        <h3>Sadness</h3>
+                        <p>슬픈 순간에 대한 대화를 나누고 싶다면 선택하세요!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'character:character_create_detail' 3 %}" class="character-link" data-character-id="3">
+
+                <div class="newcreate-img-wrapper5">
+                    <img src="/media/anxiety.png" alt="anger" class="box-char" id="box-char5">
+                    <div class="newcreate-overlay5">
+                        <h3>Anxiety</h3>
+                        <p>불안한 순간에 대한 대화를 나누고 싶다면 선택하세요!</p>
+                    </div>
+                </div>
+            </a>
+            <div class="newcreate-box">
+                <div class="top" id="top"><p></p></div>
+                <div class="bottom" id="bottom"></div>
+                <div class="left" id="left"><p></p></div>
+                <div class="right" id="right"><p></p></div>
+                <div class="back" id="back"><p></p></div>
+                <div class="front" id="front"><p></p></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static '/js/character/character_create.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.character-link').click(function (event) {
+            var characterId = $(this).data('character-id');
+            if (user_character_ids.includes(characterId)) {
+                event.preventDefault();
+                alert('이미 생성된 캐릭터입니다.');
+            }
+        });
+    });
+</script>
 </body>
+
 </html>

@@ -1,94 +1,194 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Profile</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프로필 페이지</title>
+    <link rel="stylesheet" href="{% static '/css/user/profile.css' %}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <style>
-        input[readonly] {
-            border: none;
-            background-color: transparent;
-        }
-        input.editable {
-            border: 1px solid #000;
-            background-color: #fff;
-        }
+      input[readonly] {
+        border: none;
+        background-color: transparent;
+      }
+      input.editable {
+        border: 1px solid #000;
+        background-color: #fff;
+      }
     </style>
-</head>
-<body>
-    <h2>Edit Profile</h2>
-    <p>Edit profile image and nickname.</p>
+  </head>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Photo</td>
-                <td>
-                    <img id="profile-picture-preview" src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/images/default_image.png{% endif %}" alt="Profile Picture" width="100">
-                    <br>
-                    <button type="button" onclick="editProfilePicture()">Edit</button>
-                    <button type="button" onclick="deleteProfilePicture()">Delete</button>
-                    <input type="file" id="profile_picture" name="profile_picture" style="display:none;" onchange="previewImage(event)">
-                    <input type="hidden" id="delete_picture" name="delete_picture" value="false">
-                </td>
-            </tr>
-            <tr>
-                <td>Nickname</td>
-                <td>
-                    <input type="text" id="nickname" name="nickname" value="{{ profile.nickname }}" readonly>
-                    <button type="button" onclick="toggleEditNickname()">Edit</button>
-                    <button type="button" onclick="deleteNickname()">Delete</button>
-                </td>
-            </tr>
-        </table>
-        <br>
-        <button type="submit">Confirm</button>
-        <button type="button" onclick="window.location.href='{{ request.path }}'">Cancel</button>
-    </form>
+  <body>
+    <button class="profile-card" id="profile-btn">
+      <div class="profile-left">
+        <div class="profile-left-content">
+          <!-- 프로필 사진 표시 -->
+          <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="user-image-container">
+              <img
+                id="profile-picture-preview"
+                src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
+                class="user-image"
+              />
+              <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
+              <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
+            </div>
+          </form
+          <p class="user-name">
+            <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
+            <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
+            <i class="ri-pencil-line" id="edit-nickname-icon"></i>
+          </p>
+        </div>
+      </div>
 
-    <script>
-        function toggleEditNickname() {
-            var element = document.getElementById('nickname');
-            if (element.readOnly) {
-                element.readOnly = false;
-                element.classList.add('editable');
-            } else {
-                element.readOnly = true;
-                element.classList.remove('editable');
-            }
-        }
+      <div class="profile-right">
+        <div class="profile-email">
+          <div class="profile-contact">
+            <div class="profile-envelope">
+              <div class="email-top">
+                <div class="email-outer">
+                  <div class="email-inner"></div>
+                </div>
+              </div>
+              <div class="email-bottom"></div>
+              <div class="email-left"></div>
+              <div class="email-right"></div>
+              <div class="email-cover"></div>
+              <div class="email-paper">
+                <a class="mail" href="#">
+                  <div class="i"></div>
+                  {{ user.email }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-right-list">
+          <ul>
+            <li><span class=""></span>찜</li>
+            <li><span class=""></span>log</li>
+            <li><span class=""></span>댓글</li>
+            <li><span class=""></span>즐찾</li>
+          </ul>
+        </div>
+      </div>
+    </button>
+  </body>
 
-        function editProfilePicture() {
-            var element = document.getElementById('profile_picture');
-            element.style.display = 'inline';  // 파일 선택 필드를 보이도록 설정
-        }
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // 프로필 카드 상태를 관리하는 변수
+  var isCardStraight = localStorage.getItem('isCardStraight') === 'true';
 
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function(){
-                var output = document.getElementById('profile-picture-preview');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-            document.getElementById('delete_picture').value = 'false';
-        }
+  // 페이지 로드 시 카드 상태 설정
+  window.addEventListener('load', function() {
+    var profileBtn = document.getElementById('profile-btn');
+    if (isCardStraight) {
+      // 카드를 바로 서 있게 함
+      profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
+      profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
+    } else {
+      // 처음 로드 시 누워있게 함
+      profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
+      profileBtn.style.boxShadow = '0';
+    }
+  });
 
-        function deleteProfilePicture() {
-            var defaultImagePath = '/media/images/default_image.png';  // 기본 이미지 경로 설정
-            document.getElementById('profile-picture-preview').src = defaultImagePath;
-            document.getElementById('profile_picture').value = '';
-            document.getElementById('delete_picture').value = 'true';
-            alert("Profile picture will be deleted upon confirmation.");
-        }
+  // 프로필 카드를 클릭했을 때 똑바로 세우는 기능
+  document.getElementById('profile-btn').addEventListener('click', function(event) {
+    var profileBtn = this;
+    if (!isCardStraight) {
+      profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
+      profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
+      isCardStraight = true;
+      localStorage.setItem('isCardStraight', 'true');
+    }
+  });
 
-        function deleteNickname() {
-            document.getElementById('nickname').value = '';
-            alert("Nickname deleted. Enter a new one or confirm changes.");
-        }
-    </script>
-</body>
+  // 프로필 사진 수정 기능
+  document.getElementById('edit-profile-pic-icon').addEventListener('click', function(event) {
+    event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+    document.getElementById('profile-pic-input').click();
+  });
+
+  document.getElementById('profile-pic-input').addEventListener('change', function(event) {
+    var formData = new FormData();
+    formData.append('profile_picture', event.target.files[0]);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+    
+    // 닉네임도 함께 전송
+    var nicknameInput = document.getElementById('nickname-input');
+    formData.append('nickname', nicknameInput.value);
+
+    $.ajax({
+      url: "{% url 'users:profile' %}",
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // 프로필 사진 미리보기 업데이트
+        document.getElementById('profile-picture-preview').src = response.profile_picture_url;
+        // 닉네임도 업데이트 (닉네임이 사라지지 않도록)
+        document.getElementById('nickname-display').innerText = response.nickname;
+      },
+      error: function() {
+        alert('프로필 사진을 업데이트하는 중 오류가 발생했습니다.');
+      }
+    });
+  });
+
+  // 닉네임 수정 기능
+  document.getElementById('edit-nickname-icon').addEventListener('click', function(event) {
+    event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+    var nicknameDisplay = document.getElementById('nickname-display');
+    var nicknameInput = document.getElementById('nickname-input');
+    
+    nicknameDisplay.style.display = 'none';
+    nicknameInput.style.display = 'inline';
+    nicknameInput.focus();
+  });
+
+  document.getElementById('nickname-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // 기본 엔터 동작(폼 제출)을 막음
+      saveNickname();
+    }
+  });
+
+  document.getElementById('nickname-input').addEventListener('blur', function() {
+    saveNickname();
+  });
+
+  function saveNickname() {
+    var nicknameDisplay = document.getElementById('nickname-display');
+    var nicknameInput = document.getElementById('nickname-input');
+    
+    var formData = new FormData();
+    formData.append('nickname', nicknameInput.value);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    $.ajax({
+      url: "{% url 'users:profile' %}",
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        nicknameDisplay.innerText = response.nickname;
+        nicknameDisplay.style.display = 'inline';
+        nicknameInput.style.display = 'none';
+      },
+      error: function() {
+        alert('닉네임을 업데이트하는 중 오류가 발생했습니다.');
+      }
+    });
+  }
+</script>
 </html>
-
-
-
-

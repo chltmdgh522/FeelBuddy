@@ -1,353 +1,363 @@
 body {
-    margin: 0;
-    perspective: 750px;
-    height: 100vh;
-    width: 100vw;
+  margin: 0;
+  perspective: 750px;
+  height: 100vh;
+  width: 100vw;
 }
 
 article {
-    --color: #fff;
-    --border: #0008;
-    --angle: 0deg;
-    background:
-        linear-gradient(#fff 64.75%, #0000 0),
+  --color: #fff;
+  --border: #0008;
+  --angle: 0deg;
+  background: linear-gradient(#fff 64.75%, #0000 0),
+    url("/media/joy.png") 50% 65% / 200% 200%;
+  border-radius: 0.75vmin;
+  box-shadow: 0 8vmin 5vmin -5vmin #0005;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  height: 70vmin;
+  left: calc(50% - 25vmin);
+  position: absolute;
+  top: calc(50% - 35vmin);
+  transform: rotate3d(1, 0, 0, var(--angle));
+  transform-origin: 50% 70%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s, box-shadow 0.5s;
+  width: 50vmin;
 
-        url('/media/joy.png') 50% 65% / 200% 200%;
+  *:focus {
+    outline: 1px dashed;
+    outline-offset: 2px;
+  }
+
+  & > div {
+    background: url("/media/joy.png") 50% 65% / 200% 200%;
     border-radius: 0.75vmin;
-    box-shadow: 0 8vmin 5vmin -5vmin #0005;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    height: 70vmin;
-    left: calc(50% - 25vmin);
+    box-sizing: border-box;
+    clip-path: polygon(0 0, 100% 0%, 100% 65%, 0% 65%);
+    height: 100%;
+    left: 0;
+    padding: 3vmin;
     position: absolute;
-    top: calc(50% - 35vmin);
-    transform: rotate3d(1, 0, 0, var(--angle));
-    transform-origin: 50% 70%;
-    transform-style: preserve-3d;
-    transition: transform 0.5s, box-shadow 0.5s;
-    width: 50vmin;
+    top: 0;
+    transform-origin: 50% 65%;
+    transform: rotate3d(1, 0, 0, 0deg);
+    transition: transform 0.5s;
+    width: 100%;
 
-    *:focus {
-        outline: 1px dashed;
-        outline-offset: 2px;
+    h1,
+    p {
+      color: var(--color);
+      font-size: 1.75vmin;
+      letter-spacing: 0.5px;
+      margin: 0;
+      text-align: center;
+      text-shadow: 1px 0 var(--border), 1px 1px var(--border),
+        0 1px var(--border), -1px 1px var(--border), -1px 0 var(--border),
+        -1px -1px var(--border), 0 -1px var(--border), 1px -1px var(--border);
+      text-transform: uppercase;
     }
 
-    &>div {
-        background: url('/media/joy.png') 50% 65% / 200% 200%;
-        border-radius: 0.75vmin;
-        box-sizing: border-box;
-        clip-path: polygon(0 0, 100% 0%, 100% 65%, 0% 65%);
-        height: 100%;
-        left: 0;
-        padding: 3vmin;
+    p {
+      margin-top: 1vmin;
+      font-size: 2.75vmin;
+    }
+  }
+
+  & > ul {
+    display: flex;
+    height: 4vmin;
+    justify-content: space-between;
+    left: 50%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: calc(92.5% - 4vmin);
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
+    width: 85%;
+
+    &::after {
+      background: linear-gradient(#8082, #0002);
+      border-top: 1px dashed #f0f;
+      bottom: 50%;
+      content: "10,000 Steps";
+      font-size: 1.25vmin;
+      height: 0;
+      left: -5%;
+      opacity: 0;
+      position: absolute;
+      text-indent: -8vmin;
+      transform: rotate3d(1, 0, 0, -90deg);
+      transform-origin: bottom center;
+      width: 110%;
+    }
+
+    li {
+      --height: 0;
+      --colorDeg: min(calc(90deg * var(--steps) / 10000), 90deg);
+      background: hsl(var(--colorDeg), 48%, 50%);
+      box-shadow: inset 0 0 0 2px #0005;
+      color: var(--color);
+      display: flex;
+      font: bold 2.5vmin/4vmin Helvetica, Arial, sans-serif;
+      height: 4vmin;
+      justify-content: center;
+      text-transform: uppercase;
+      transform: translate3d(0, 0, var(--height));
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      width: 4vmin;
+
+      &:focus,
+      &:hover {
+        &::after {
+          background: #ffd;
+          bottom: calc(4vmin + 4px);
+          clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 80%,
+            60% 80%,
+            50% 95%,
+            40% 80%,
+            0 80%
+          );
+          color: black;
+          content: counter(numSteps);
+          counter-reset: numSteps var(--steps);
+          display: block;
+          font-size: 2vmin;
+          height: 5vmin;
+          line-height: 4vmin;
+          padding: 0 1vmin;
+          position: absolute;
+        }
+      }
+
+      /* 감정에 따라 동적으로 내용 설정 */
+      &[data-emotion="분노"] b::after {
+        content: "분노";
+      }
+
+      &[data-emotion="기쁨"] b::after {
+        content: "기쁨";
+      }
+
+      &[data-emotion="슬픔"] b::after {
+        content: "슬픔";
+      }
+
+      &[data-emotion="두려움"] b::after {
+        content: "두려움";
+      }
+
+      &[data-emotion="불안"] b::after {
+        content: "불안";
+      }
+
+      b {
+        font-size: 0;
+        transform-style: preserve-3d;
         position: absolute;
-        top: 0;
-        transform-origin: 50% 65%;
-        transform: rotate3d(1, 0, 0, 0deg);
+        left: 0;
+        text-align: center;
+
+        &:after {
+          display: block;
+          font-size: 1.5vmin;
+          height: 100%;
+          left: 0;
+          line-height: 4vmin;
+          position: absolute;
+          text-shadow: 1px 0 var(--border), 1px 1px var(--border),
+            0 1px var(--border), -1px 1px var(--border), -1px 0 var(--border),
+            -1px -1px var(--border), 0 -1px var(--border),
+            1px -1px var(--border);
+          top: 0;
+          transform-origin: center bottom;
+          transition: transform 0.5s;
+          width: 4vmin;
+        }
+
+        &::before {
+          background: #0004;
+          bottom: 4vmin;
+          content: "";
+          display: block;
+          filter: blur(0.5vmin);
+          height: var(--height);
+          left: 0;
+          position: absolute;
+          transform: translate3d(0, 0, calc(-1 * var(--height)));
+          width: 4vmin;
+        }
+      }
+
+      div {
+        background: linear-gradient(
+          hsl(var(--colorDeg), 48%, 40%),
+          hsl(var(--colorDeg), 48%, 30%)
+        );
+        box-shadow: inset 0 0 0 1px #0002;
+        color: hsl(var(--colorDeg), 48%, 30%);
+        font-size: 0;
+        height: var(--height);
+        left: 0;
+        position: absolute;
+        top: 100%;
+        transform: rotate3d(1, 0, 0, -90deg) rotate3d(0, 1, 0, -90deg);
+        transform-origin: top right;
+        transform-style: preserve-3d;
         transition: transform 0.5s;
         width: 100%;
 
-        h1,
-        p {
-            color: var(--color);
-            font-size: 1.75vmin;
-            letter-spacing: 0.5px;
-            margin: 0;
-            text-align: center;
-            text-shadow:
-                1px 0 var(--border), 1px 1px var(--border),
-                0 1px var(--border), -1px 1px var(--border),
-                -1px 0 var(--border), -1px -1px var(--border),
-                0 -1px var(--border), 1px -1px var(--border);
-            text-transform: uppercase;
+        &::before,
+        &::after {
+          align-items: center;
+          background: linear-gradient(
+            hsl(var(--colorDeg), 48%, 65%),
+            hsl(var(--colorDeg), 48%, 50%)
+          );
+          box-shadow: inset 0 0 0 1px #0002;
+          box-sizing: border-box;
+          color: hsl(var(--color), 48%, 20%);
+          content: counter(steps);
+          counter-reset: steps var(--steps);
+          display: flex;
+          font-size: 1.5vmin;
+          height: 100%;
+          justify-content: flex-start;
+          line-height: 4vmin;
+          overflow: hidden;
+          padding-top: 1vmin;
+          position: absolute;
+          top: 0;
+          transform: translate(100%, 0) rotate3d(0, -1, 0, 270deg)
+            translate(-100%, 0);
+          transform-origin: top left;
+          width: 100%;
+          writing-mode: vertical-rl;
         }
 
-        p {
-            margin-top: 1vmin;
-            font-size: 2.75vmin;
+        &::before {
+          background: linear-gradient(
+            hsl(var(--colorDeg), 48%, 40%),
+            hsl(var(--colorDeg), 48%, 30%)
+          );
+          content: "";
+          transform: translate3d(0, 0, 4vmin);
+          transform-origin: top right;
         }
+      }
+    }
+  }
+
+  & > button {
+    background: #0004;
+    border: 1px solid white;
+    box-shadow: 0 0 0 2px #0004;
+    color: #fff;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 2vmin;
+    left: 50%;
+    outline-offset: 5px;
+    padding: 1vmin 2vmin;
+    position: absolute;
+    text-transform: uppercase;
+    top: 76%;
+    transform: translate(-50%, 0);
+
+    &:last-child {
+      box-shadow: 0 0 0 2px #0004, 0 10vmin 5vmin #0002;
+      opacity: 0;
+      top: 105%;
+      transform: translate3d(-50%, 3vmin, 2vmin) scale3d(0.7, 0.5, 0.8)
+        rotate3d(1, 0, 0, -90deg);
+
+      &:focus {
+        outline-color: black;
+      }
+    }
+  }
+
+  &.active {
+    --angle: 75deg;
+    box-shadow: 0 25vmin 5vmin -10vmin #0003;
+
+    & > button {
+      &:first-of-type {
+        display: none;
+      }
+
+      &:last-of-type {
+        opacity: 1;
+        transition: opacity 1s;
+        transition-delay: 3.5s;
+      }
     }
 
-    &>ul {
-        display: flex;
-        height: 4vmin;
-        justify-content: space-between;
-        left: 50%;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: calc(92.5% - 4vmin);
-        transform: translateX(-50%);
-        transform-style: preserve-3d;
-        width: 85%;
+    & > div {
+      transform: rotate3d(1, 0, 0, -90deg);
+      transition-delay: 0.75s;
+    }
+
+    & > ul {
+      --transition-delay: 2s;
+      --transition-duration: 1s;
+
+      &::after {
+        height: 20vmin;
+        opacity: 1;
+        transition: height 1s, opacity 1s;
+        transition-delay: 3.25s;
+      }
+
+      li {
+        --height: calc(20vmin * var(--steps) / 10000);
+        transition: transform var(--transition-duration);
+        transition-delay: var(--transition-delay);
+
+        &:hover {
+          --colorDeg: 190deg;
+        }
+
+        &:focus {
+          --colorDeg: 190deg;
+          outline: none;
+
+          div {
+            &::after {
+              outline: 1px dashed white;
+              outline-offset: -3px;
+            }
+          }
+        }
 
         &::after {
-            background: linear-gradient(#8082, #0002);
-            border-top: 1px dashed #f0f;
-            bottom: 50%;
-            content: "10,000 Steps";
-            font-size: 1.25vmin;
-            height: 0;
-            left: -5%;
-            opacity: 0;
-            position: absolute;
-            text-indent: -8vmin;
+          display: none;
+        }
+
+        b {
+          &::before {
+            transition: background var(--transition-duration),
+              transform var(--transition-duration),
+              height var(--transition-duration);
+            transition-delay: var(--transition-delay);
+          }
+
+          &::after {
             transform: rotate3d(1, 0, 0, -90deg);
-            transform-origin: bottom center;
-            width: 110%;
+            transition-delay: 1.25s;
+          }
         }
 
-        li {
-            --height: 0;
-            --colorDeg: min(calc(90deg * var(--steps) / 10000), 90deg);
-            background: hsl(var(--colorDeg), 48%, 50%);
-            box-shadow: inset 0 0 0 2px #0005;
-            color: var(--color);
-            display: flex;
-            font: bold 2.5vmin/4vmin Helvetica, Arial, sans-serif;
-            height: 4vmin;
-            justify-content: center;
-            text-transform: uppercase;
-            transform: translate3d(0, 0, var(--height));
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-            width: 4vmin;
-
-            &:focus,
-            &:hover {
-                &::after {
-                    background: #ffd;
-                    bottom: calc(4vmin + 4px);
-                    clip-path: polygon(0 0, 100% 0, 100% 80%, 60% 80%, 50% 95%, 40% 80%, 0 80%);
-                    color: black;
-                    content: counter(numSteps);
-                    counter-reset: numSteps var(--steps);
-                    display: block;
-                    font-size: 2vmin;
-                    height: 5vmin;
-                    line-height: 4vmin;
-                    padding: 0 1vmin;
-                    position: absolute;
-                }
-            }
-
-            /* 감정에 따라 동적으로 내용 설정 */
-            &[data-emotion="분노"] b::after {
-                content: "분노";
-            }
-
-            &[data-emotion="기쁨"] b::after {
-                content: "기쁨";
-            }
-
-            &[data-emotion="슬픔"] b::after {
-                content: "슬픔";
-            }
-
-            &[data-emotion="두려움"] b::after {
-                content: "두려움";
-            }
-
-            &[data-emotion="불안"] b::after {
-                content: "불안";
-            }
-
-
-            b {
-                font-size: 0;
-                transform-style: preserve-3d;
-                position: absolute;
-                left: 0;
-                text-align: center;
-
-                &:after {
-                    display: block;
-                    font-size: 1.5vmin;
-                    height: 100%;
-                    left: 0;
-                    line-height: 4vmin;
-                    position: absolute;
-                    text-shadow:
-                        1px 0 var(--border), 1px 1px var(--border),
-                        0 1px var(--border), -1px 1px var(--border),
-                        -1px 0 var(--border), -1px -1px var(--border),
-                        0 -1px var(--border), 1px -1px var(--border);
-                    top: 0;
-                    transform-origin: center bottom;
-                    transition: transform 0.5s;
-                    width: 4vmin;
-
-                }
-
-                &::before {
-                    background: #0004;
-                    bottom: 4vmin;
-                    content: "";
-                    display: block;
-                    filter: blur(0.5vmin);
-                    height: var(--height);
-                    left: 0;
-                    position: absolute;
-                    transform: translate3d(0, 0, calc(-1 * var(--height)));
-                    width: 4vmin;
-                }
-            }
-
-            div {
-                background: linear-gradient(hsl(var(--colorDeg), 48%, 40%), hsl(var(--colorDeg), 48%, 30%));
-                box-shadow: inset 0 0 0 1px #0002;
-                color: hsl(var(--colorDeg), 48%, 30%);
-                font-size: 0;
-                height: var(--height);
-                left: 0;
-                position: absolute;
-                top: 100%;
-                transform: rotate3d(1, 0, 0, -90deg) rotate3d(0, 1, 0, -90deg);
-                transform-origin: top right;
-                transform-style: preserve-3d;
-                transition: transform 0.5s;
-                width: 100%;
-
-                &::before,
-                &::after {
-                    align-items: center;
-                    background: linear-gradient(hsl(var(--colorDeg), 48%, 65%), hsl(var(--colorDeg), 48%, 50%));
-                    box-shadow: inset 0 0 0 1px #0002;
-                    box-sizing: border-box;
-                    color: hsl(var(--color), 48%, 20%);
-                    content: counter(steps);
-                    counter-reset: steps var(--steps);
-                    display: flex;
-                    font-size: 1.5vmin;
-                    height: 100%;
-                    justify-content: flex-start;
-                    line-height: 4vmin;
-                    overflow: hidden;
-                    padding-top: 1vmin;
-                    position: absolute;
-                    top: 0;
-                    transform: translate(100%, 0) rotate3d(0, -1, 0, 270deg) translate(-100%, 0);
-                    transform-origin: top left;
-                    width: 100%;
-                    writing-mode: vertical-rl;
-                }
-
-                &::before {
-                    background: linear-gradient(hsl(var(--colorDeg), 48%, 40%), hsl(var(--colorDeg), 48%, 30%));
-                    content: "";
-                    transform: translate3d(0, 0, 4vmin);
-                    transform-origin: top right;
-                }
-            }
+        div {
+          transition: transform var(--transition-duration),
+            height var(--transition-duration);
+          transition-delay: var(--transition-delay);
         }
+      }
     }
-
-    &>button {
-        background: #0004;
-        border: 1px solid white;
-        box-shadow: 0 0 0 2px #0004;
-        color: #fff;
-        font-family: Roboto, Arial, sans-serif;
-        font-size: 2vmin;
-        left: 50%;
-        outline-offset: 5px;
-        padding: 1vmin 2vmin;
-        position: absolute;
-        text-transform: uppercase;
-        top: 76%;
-        transform: translate(-50%, 0);
-
-        &:last-child {
-            box-shadow: 0 0 0 2px #0004, 0 10vmin 5vmin #0002;
-            opacity: 0;
-            top: 105%;
-            transform: translate3d(-50%, 3vmin, 2vmin) scale3d(0.7, 0.5, 0.8) rotate3d(1, 0, 0, -90deg);
-
-            &:focus {
-                outline-color: black;
-            }
-        }
-    }
-
-    &.active {
-        --angle: 75deg;
-        box-shadow: 0 25vmin 5vmin -10vmin #0003;
-
-        &>button {
-            &:first-of-type {
-                display: none;
-            }
-
-            &:last-of-type {
-                opacity: 1;
-                transition: opacity 1s;
-                transition-delay: 3.5s;
-            }
-        }
-
-        &>div {
-            transform: rotate3d(1, 0, 0, -90deg);
-            transition-delay: 0.75s;
-        }
-
-        &>ul {
-            --transition-delay: 2s;
-            --transition-duration: 1s;
-
-            &::after {
-                height: 20vmin;
-                opacity: 1;
-                transition: height 1s, opacity 1s;
-                transition-delay: 3.25s;
-            }
-
-            li {
-                --height: calc(20vmin * var(--steps) / 10000);
-                transition: transform var(--transition-duration);
-                transition-delay: var(--transition-delay);
-
-                &:hover {
-                    --colorDeg: 190deg;
-                }
-
-                &:focus {
-                    --colorDeg: 190deg;
-                    outline: none;
-
-                    div {
-                        &::after {
-                            outline: 1px dashed white;
-                            outline-offset: -3px;
-                        }
-                    }
-                }
-
-                &::after {
-                    display: none;
-                }
-
-                b {
-                    &::before {
-                        transition:
-                            background var(--transition-duration),
-                            transform var(--transition-duration),
-                            height var(--transition-duration);
-                        transition-delay: var(--transition-delay);
-                    }
-
-                    &::after {
-                        transform: rotate3d(1, 0, 0, -90deg);
-                        transition-delay: 1.25s;
-                    }
-                }
-
-                div {
-                    transition:
-                        transform var(--transition-duration),
-                        height var(--transition-duration);
-                    transition-delay: var(--transition-delay);
-                }
-            }
-        }
-    }
+  }
 }

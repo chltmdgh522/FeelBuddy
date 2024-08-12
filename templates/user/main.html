@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main 페이지(닌텐도)</title>
+    <link rel="stylesheet" href="{% static '/css/user/main.css' %}">
+    <link rel="stylesheet" href="/static/mobile/momain.css">
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="poster-center">
+    <article id="furiosa_poster">
+        <header id="furiosa_poster__header">
+            <h1 id="furiosa_poster__header__title" data-title="Feelbuddy">Feelbuddy</h1>
+        </header>
+    </article>
+</div>
+<div id="game-and-watch" class="nintendo">
+    <div id="game-and-watch-screen-sheen">
+        <!-- 화면 -->
+        <div id="game-and-watch-screen-sheen-in"></div>
+    </div>
+
+    <div id="game-and-watch-case">
+
+        <div id="game-and-watch-case-in">
+            <div id="mini-classic-logo" class="temp-hack">Joy</div>
+
+
+            <!-- #왼쪽 파트 -->
+            <div id="game-and-watch-left">
+                <div id="game-and-watch-badge"><img src="/media/logo.png" alt="" class="" width="80px" height="80px">
+                </div>
+                <div id="game-and-watch-character">
+                    <!-- <img src="/logo1.jpeg" alt="" class="" width="80px" height="80px"> -->
+
+                </div>
+                <div id="game-and-watch-leftbutton">
+                    <div id="game-and-watch-leftbutton-horizontal"></div>
+                    <div id="game-and-watch-leftbutton-vertical">
+                        <div id="game-and-watch-leftbutton-top">
+                            <a href="#"></a>
+                        </div>
+                        <div id="game-and-watch-leftbutton-cover">
+                        </div>
+                        <div id="game-and-watch-leftbutton-bottom">
+                            <a href="#"></a>
+                        </div>
+                        <div id="game-and-watch-leftbutton-left">
+                            <a href="#" id="left-button"></a>
+                        </div>
+                        <div id="game-and-watch-leftbutton-right">
+                            <!-- <a href="#rightbut"></a> -->
+                            <a href="#" id="right-button"></a>
+                        </div>
+                    </div>
+                    <span>&larr; &uarr; &darr; &rarr;</span> Control
+                </div>
+            </div>
+            <!-- 스크린 위의 입체 -->
+            <div id="game-and-watch-screen">
+
+
+                <div id="game-and-watch-screen-top"></div>
+                <div id="game-and-watch-screen-in">
+
+                    <div id="game-and-watch-game-title">당신의 감정을 친구로 만들어주는 마음 관리 플랫폼<span></span></div>
+                    <div id="game-and-watch-game">
+                        <img src="/media/joy.png" id="main-image" alt="" class="joy" width="200px" height="auto">
+
+                        <div id="game-and-watch-level-two">
+
+                        </div>
+                        <div id="game-and-watch-level-one">
+
+                        </div>
+                    </div>
+                    <div id="game-and-watch-nintendo-logo">joy</div>
+                </div>
+                <div id="game-and-watch-screen-bottom"></div>
+            </div>
+            <div id="game-and-watch-gameboy-title"><span>Nintendo</span> Game Boy &trade;</div>
+            <div id="game-and-watch-right">
+                <div id="game-and-watch-game-start">
+                    {% if user.is_authenticated %}
+                        <div id="game-and-watch-start-one">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:logout' %}"><p>Logout</p></a></div>
+                        </div>
+                    {% else %}
+                        <div id="game-and-watch-start-one">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:login' %}"><p>Login</p></a></div>
+                        </div>
+                        <div id="game-and-watch-gamea-text"></div>
+                        <div id="game-and-watch-start-two">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"><p>SignUp</p></a></div>
+                        </div>
+                    {% endif %}
+                    <div id="game-and-watch-gameb-text"></div>
+                    <div id="game-and-watch-start-three">
+                        <div class="game-and-watch-start-inner">
+                            <a href="{% url 'feedback:feedback_list' %}"><p>Review</p></a>
+                        </div>
+
+                    </div>
+                    <div id="game-and-watch-time-text"></div>
+                    <div id="gameboy-settings-text">
+                        <div id="gameboy-start-text"></div>
+                    </div>
+
+                </div>
+                <div id="game-and-watch-game-settings">
+                       {% if user.is_authenticated %}
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:logout' %}">Logout</a></div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a></div>
+
+                             {% else %}
+                    <!-- 미니 핀홀 버튼 -->
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}">Login</a></div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}">SignUp</a></div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a></div>
+                
+                              {% endif %}
+                </div>
+                <div id="game-and-watch-rightbutton">
+                    <div id="mini-classic-rightbutton-text"></div>
+                    <!-- 중간 review 버튼 -->
+                    <div id="game-and-watch-rightbutton-in"><a href="{% url 'character:character_list' %}"><p>Start</p></a></div>
+                    <!-- 웹 start 버튼 -->
+                    <div id="game-and-watch-rightbutton-text">Start</div>
+                </div>
+
+                <!-- 모바일 start 버튼 -->
+                <div id="gameboy-rightbutton-in"><a href="{% url 'feedback:feedback_list' %}"><p>Review</p></a></div>
+
+            </div>
+            <!-- <div id="gameboy-button-text-a">A</div>
+            <div id="gameboy-button-text-b">B</div>
+            <div id="game-and-watch-gameboy-speaker">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div id="game-and-watch-left-gloss"></div>
+            <div id="game-and-watch-right-gloss"></div> -->
+        </div>
+    </div>
+
+    <div id="game-and-watch-bottom-edge"></div>
+    <div id="game-and-watch-bottom-edgetwo"></div>
+    <div id="game-and-watch-bottom-edgeshadow"></div>
+
+
+    <div class="land">
+        <div class="warp warp-one">
+            <div class="warp-top"></div>
+            <div class="warp-body"></div>
+        </div>
+
+        <div class="warp warp-two">
+            <div class="warp-top"></div>
+            <div class="warp-body"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="mud">
+            <div class="mud-strip"></div>
+            <div class="mud-strip"></div>
+        </div>
+
+    </div>
+</div>
+<div class="gradients-container">
+    <div class="g1"></div>
+    <div class="g2"></div>
+    <div class="g3"></div>
+    <div class="g4"></div>
+    <div class="g5"></div>
+    <div class="interactive"></div>
+</div>
+
+<script src="{% static '/js/user/main.js' %}"></script>
+</body>
+
+</html>

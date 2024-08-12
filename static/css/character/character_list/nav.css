@@ -1,0 +1,145 @@
+/* 하단의 footer nav바에 대한 템플릿입니다. */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html { font-size: 14.5px; }
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #cecece;
+    overflow: hidden;
+} */
+
+.mobile-footer {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+nav {
+    box-shadow: 0 6.7px 5.3px rgba(0, 0, 0, 0.12), 0 22.3px 17.9px rgba(0, 0, 0, 0.08), 0 100px 80px rgba(0, 0, 0, 0.04);
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 0;
+}
+
+.mobile-footer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    width: 100%;
+    height: 5rem;
+    color: #FFF;
+    font-size: 1rem;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    padding: 0;
+    background: rgb(0,0,0);
+    overflow: hidden;
+}
+.mobile-footer a {
+    position: relative;
+    overflow: hidden;
+    width: calc(100% / 5);
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding: 0;
+    color: currentColor;
+    line-height: 12;
+    font-size: 0.725em;
+    text-align: center;
+    text-decoration: none;
+    text-indent: -9999rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    will-change: background, line-height;
+    transition: background .15s ease-in-out, line-height .2s ease .2s;
+}
+.mobile-footer a:hover,
+.mobile-footer a:focus {
+    background-color: rgba(128, 128, 128, 0.3);
+}
+.mobile-footer a:hover svg,
+.mobile-footer a:focus svg {
+    transform: scale(1.25);
+    opacity: 0.6;
+}
+.mobile-footer a:focus,
+.mobile-footer a:active {
+    outline: none;
+}
+.mobile-footer a:active svg {
+    opacity: 1;
+}
+.mobile-footer a svg {
+    position: absolute;
+    fill: currentColor;
+    top: calc(30% + 2.5px);
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    transform: scale(1);
+    transform-origin: center;
+    will-change: opacity, transform, top;
+    transition: opacity .2s ease, transform .2s ease, top .2s ease;
+    opacity: 0.4;
+    pointer-events: none;
+}
+.mobile-footer a.active {
+    background-color: rgba(128, 128, 128, 0.15);
+    text-indent: 0;
+    line-height: 10;
+    transition-delay: 0s, 0s, 0s;
+}
+.mobile-footer a.active svg {
+    top: calc(17.5% + 2.5px);
+    transform-origin: center bottom;
+    opacity: 1;
+}
+.mobile-footer a.active:hover svg,
+.mobile-footer a.active:focus svg,
+.mobile-footer a.active:active svg {
+    transform: scale(1);
+}
+.mobile-footer a.traversing svg {
+    transition-delay: 0s, 0s, 0s;
+    animation: .15s traversing ease-out both;
+}
+.mobile-footer .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: 5px;
+    text-indent: -9999rem;
+    transform: translateX(-50%);
+    border-radius: 2.5px;
+    background: currentColor;
+    transition: left .5s ease-out;
+    z-index: 10;
+}
+@keyframes traversing {
+    0% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+.mobile-footer.light {
+    background-color: rgb(210, 210, 210);
+    color: gray;
+}
+.mobile-footer.light svg {
+    fill: gray;
+}
+.mobile-footer.primary {
+    background: magenta;
+    color: #FFF;
+}
+.mobile-footer.primary svg {
+    fill: #FFF;
+}
+
+}
