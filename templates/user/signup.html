@@ -65,6 +65,19 @@
                     <p>{{ user.name }}님이 로그인 중</p>
                 {% endif %}
             </div>
+
+            <form action="{% provider_login_url 'google' %}" method="post">
+                {% csrf_token %}
+                <button>login with Google</button>
+            </form>
+            <form action="{% provider_login_url 'naver' %}" method="post">
+                {% csrf_token %}
+                <button>login with Naver</button>
+            </form>
+            <form action="{% provider_login_url 'kakao' %}" method="post">
+                {% csrf_token %}
+                <button>login with Kakao</button>
+            </form>
             <!-- 소셜 로그인 추가 끝 -->
             
             <button class="switch__button button switch-btn" type="submit">Log IN</button>
