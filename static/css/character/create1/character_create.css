@@ -1,3 +1,17 @@
+.create-left {
+    position: absolute;
+    top:0;
+    left: 0;
+    display: flex;
+}
+
+.create-left svg {
+    width:16px;
+    height:auto;
+    color: aqua;
+    z-index: 999999;
+}
+
 .newcreate-content{
     background-color: transparent;
     display: flex;

@@ -1,3 +1,5 @@
+
+
 :root {
   --wide: 2em;
   --angle1: 0;
@@ -8,6 +10,7 @@
 body {
   scrollbar-width: none;
 }
+
 
 .room-building{
   width: 100vw;
