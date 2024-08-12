@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
 
 
 :root {
@@ -66,7 +67,7 @@ body {
   bottom: 3.75vh;
   color: #ffffff;
   font-family: "Gugi", sans-serif;
-
+  font-weight: 400;
   font-size: 2em;
   margin: 0;
   width: calc(50vw - 1.25em);

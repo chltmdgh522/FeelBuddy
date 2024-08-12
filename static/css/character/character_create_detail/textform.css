@@ -1,8 +1,8 @@
 
 .create-left {
   position: absolute;
-  top:50px;
-  left: 30px;
+  top:47px;
+  left: 40px;
   display: flex;
   background: none;
 
@@ -17,7 +17,7 @@
   background: none;
 }
 .create-left button a svg {
-  width: 20px;
+  width: 30px;
   height: auto;
   color:white;
 }

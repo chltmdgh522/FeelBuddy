@@ -37,6 +37,8 @@ body:before {
 	width: 100%;
 	height: 100%;
 }
+
+
 .chat-content-body-1,
 .chat-content-body-2,
 .chat-content-body-3,
@@ -60,9 +62,7 @@ body:before {
   background:rgb(13, 12, 12);
 }
 
-.chat-content-body-4 {
-  background-color:rgb(242, 205, 242);
-}
+
 
 .chat-content-body-1:before {
   background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%);

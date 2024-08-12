@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
+
+
 @media screen and (max-width: 768px) {
     .door-content {
         width: 100%;
@@ -9,6 +12,7 @@
 
     .door span {
         font-size: 1.5em;
+        font-family: "Gugi", sans-serif;
     }
 
     #keylock {
