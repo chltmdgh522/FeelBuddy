@@ -30,6 +30,10 @@ def feedback_delete(request, pk):
     review.delete()
     return redirect('feedback:feedback_list')
 
+@login_required
+def feedback_detail(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    return render(request, 'feedback/feedback_detail.html', {'review': review})
 # def feedback_list(request):
 #     feedbacks = Community.objects.all()
 #     return render(request, 'feedback/feedback1.html', {'feedbacks': feedbacks})

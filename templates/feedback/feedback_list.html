@@ -83,13 +83,14 @@
       <section class="testimonial-area">
         <div class="container">
           <div class="sec-title white-title">
-            <h2>Feedback</h2>
+            <h2>Review</h2>
             <p>Thank you for your feedback.</p>
           </div>
           <div class="testimonial-content owl-carousel">
             {% for review in feedbacks %}
 
-            <div class="single-testimonial">
+            <div
+              class="single-testimonial">
               <!-- 별점 표시 부분 -->
               <div class="supaview__stars">
                 {% for i in "12345" %}
@@ -100,7 +101,12 @@
               </div>
 
               <!-- 리뷰 메시지 표시 -->
-              <p>{{ review.message }}</p>
+              <div class="review-message-container" onclick="location.href='{% url 'feedback:feedback_detail' review.pk %}'">
+                <p class="review-message" data-review-id="{{ review.pk }}">
+                  {{ review.message }}
+                </p>
+              </div>
+
               <div class="client-info">
                 <div class="client-video">
                   <a href="#">
@@ -132,11 +138,6 @@
         </div>
       </section>
     </div>
-
-    <script
-      type="module"
-      src="{% static 'js/feedback/feedback1.js' %}"
-    ></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -172,6 +173,23 @@
           });
         }
       }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var reviewMessages = document.querySelectorAll(".review-message");
+    
+        reviewMessages.forEach(function (message) {
+          var fullText = message.textContent.trim();
+          var maxLength = 100; // 최대 글자 수 설정
+          var truncatedText = fullText.slice(0, maxLength);
+    
+          if (fullText.length > maxLength) {
+            message.textContent = truncatedText + "...";
+          } else {
+            message.textContent = fullText;
+          }
+        });
+      });
     </script>
   </body>
 </html>
