@@ -1,0 +1,472 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+* {
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #16181a;
+  overflow-x: hidden;
+  background-image: radial-gradient(rgba(110, 203, 144, 0.2) 15%, #16181a 60%);
+}
+
+.supaviews,
+.supaview,
+.supaerror {
+  border-radius: 10px;
+}
+
+.supaviews {
+  position: relative;
+  max-width: 500px; /* 너비는 그대로 유지 */
+  margin: 125px auto 50px auto;
+  color: #ffffff;
+  background-color: #1c1e20;
+  padding: 40px; /* 기존 패딩에서 40px으로 조정하여 섹션을 키움 */
+  min-height: 600px; /* 최소 높이를 설정하여 섹션이 더 커지도록 함 */
+}
+
+.first-container {
+  width: 100%;
+  padding: 0 20px; /* 양쪽 여백 추가 */
+}
+
+/* supaviews의 너비 제한을 없애고 상위 요소에 따라 확장되도록 설정 */
+@media (min-width: 768px) {
+  .supaviews {
+    width: 50%; /* 더 큰 화면에서는 반응형으로 조정 */
+  }
+}
+
+.supaviews__logo {
+  position: absolute;
+  width: 200px;
+  right: -70px;
+  top: -100px;
+  transition: 0.2s ease-in-out;
+}
+
+.supaviews__logo:hover {
+  transform: scale(1.1);
+}
+
+.supaviews__gradient {
+  position: absolute;
+  right: 50px;
+  top: 0;
+  z-index: -1;
+  display: block;
+  height: 1100px;
+  width: 1100px;
+  transform: translate(50%, -50%);
+  /* background-image: radial-gradient(rgba(110, 203, 144, 0.2) 15%, #16181a 60%); */
+}
+
+.supaview,
+.supaerror {
+  margin: 20px;
+  padding: 25px;
+}
+
+.supaview {
+  background-color: #24262b;
+}
+
+.supaview__stars {
+  margin-bottom: 15px;
+  font-size: 25px;
+  color: #1c1e20;
+}
+
+.checked {
+  color: #6ecb90;
+  text-shadow: 0 0 6px #4da76ebd;
+}
+
+.supaview__name {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.supaview__date {
+  margin-top: 15px;
+  color: #7d7f81;
+}
+
+.supaview__rating {
+  display: block;
+  float: left;
+  padding: 0;
+  margin-bottom: 15px;
+  border: none;
+}
+
+.supaview__rating input {
+  display: none;
+}
+
+.supaview__rating label:before {
+  display: inline-block;
+  margin-right: 5px;
+  font-family: "Font Awesome 5 Free";
+  font-size: 25px;
+  font-weight: 900;
+  content: "\f005";
+}
+
+.supaview__rating label {
+  float: right;
+  color: #1c1e20;
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+}
+
+.supaview__rating input:checked ~ label,
+.supaview__rating:not(:checked) > label:hover,
+.supaview__rating:not(:checked) > label:hover ~ label {
+  color: #6ecb90;
+  text-shadow: 0 0 6px #4da76ebd;
+}
+
+.supaview__rating input:checked + label:hover,
+.supaview__rating input:checked ~ label:hover,
+.supaview__rating label:hover ~ input:checked ~ label,
+.supaview__rating input:checked ~ label:hover ~ label {
+  color: #4da76ebd;
+}
+
+.supaview__title {
+  margin-top: 0;
+}
+
+.supaview__copy input,
+.supaview__copy textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #16181a;
+  color: #ffffff;
+  background-color: transparent;
+  outline: none;
+}
+
+.supaview__copy input:focus,
+.supaview__copy textarea:focus {
+  border: 1px solid #ffffff;
+}
+
+.supaview__submit {
+  padding: 10px 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #64b883;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+
+.supaview__submit:hover {
+  background-color: #6ecb90;
+}
+
+.supaerror {
+  background-color: #e56460;
+}
+
+#wrap {
+  width: 100%;
+  min-height: 100%;
+  height: auto !important;
+  position: relative;
+  padding: 55px 0;
+  background-color: #f8f8f8; /* 필요한 경우 배경 색상 조정 */
+}
+
+.review-title {
+  margin-bottom: 30px;
+}
+
+.review-card {
+  &--option-1 {
+    border: 1px solid #d8d8d8;
+    padding: 25px;
+  }
+}
+
+.review-card-img {
+  border: 1px solid #eee;
+  width: 100px;
+  height: 70px;
+  background-image: url("https://unsplash.it/200");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Reset 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 기본 설정 */
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+:root {
+  --mon: "Montserrat", sans-serif;
+  --blue: #8a6bff;
+  --darkblue: #0a0a36;
+}
+
+.container {
+  max-width: 1140px;
+  width: 100%;
+  margin: auto;
+  padding: 0 15px;
+}
+
+/* 섹션 제목 스타일 */
+.sec-title {
+  margin-bottom: 50px;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.sec-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100px;
+  height: 3px;
+  background: #fff;
+}
+
+.sec-title h2 {
+  font-size: 60px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.sec-title p {
+  font-size: 18px;
+  line-height: 28px;
+  color: #fff;
+}
+
+/* Testimonial 섹션 스타일 */
+.testimonial-area {
+  /* background: #16181a; */
+  position: relative;
+  z-index: 2;
+  padding: 20px 0; /* 패딩을 줄여 높이를 줄임 */
+  /* background-image: radial-gradient(rgba(110, 203, 144, 0.2) 15%, #16181a 60%); */
+}
+
+.testimonial-area .owl-carousel {
+  overflow: hidden;
+  padding: 0 20px;
+  margin: 0px -40px;
+  padding-right: 40px;
+}
+
+.testimonial-area .owl-stage-outer {
+  padding: 30px 50px;
+  margin-left: -34px;
+  width: calc(100% + 100px);
+}
+
+.single-testimonial {
+  /* padding-top: 10px; */
+  border: 7px solid #fff;
+  text-align: center;
+  border-radius: 45px;
+  position: relative;
+  z-index: 2;
+}
+
+.single-testimonial p {
+  color: #fff;
+  font-size: 15px;
+  line-height: 24px;
+  padding: 50px;
+  padding-bottom: 30px;
+  position: relative;
+  z-index: 3;
+}
+
+.single-testimonial::before {
+  content: "";
+  position: absolute;
+  left: -35px;
+  top: -35px;
+  /* background: url(https://i.ibb.co/nb8Hjms/quote.png) no-repeat #16181a; */
+  background-size: 60%;
+  width: 126px;
+  height: 100px;
+  transform: rotate(180deg);
+  background-position: 34px 15px;
+}
+
+.single-testimonial::after {
+  content: "";
+  position: absolute;
+  right: -35px;
+  bottom: -34px;
+  /* background: url(https://i.ibb.co/nb8Hjms/quote.png) no-repeat #16181a; */
+  background-size: 60%;
+  width: 126px;
+  height: 100px;
+  background-position: 34px 19px;
+}
+
+.round {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.round-1::before {
+  content: "";
+  position: absolute;
+  left: 88px;
+  top: -7px;
+  width: 50px;
+  height: 7px;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.round-1::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 62px;
+  width: 7px;
+  height: 50px;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.round-2::before {
+  content: "";
+  position: absolute;
+  right: 87px;
+  bottom: -7px;
+  width: 50px;
+  height: 7px;
+  background: #fff;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.round-2::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: 62px;
+  width: 7px;
+  height: 50px;
+  background: #fff;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+/* Client Info 스타일 */
+.client-video {
+  padding-right: 15px;
+}
+
+.client-info {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding-bottom: 50px;
+}
+
+.client-info a {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
+  font-size: 22px;
+}
+
+.client-info h6 {
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+
+.client-info span {
+  display: inline-block;
+  color: #fff;
+  font-size: 12px;
+}
+
+/* White Title 스타일 */
+.sec-title.white-title h2 {
+  color: #fff;
+}
+
+/* Owl Dots 스타일 */
+.owl-dots button {
+  background: #fff !important;
+  width: 10px;
+  height: 10px;
+  border-radius: 26px;
+  margin: 0 5px;
+  transition: 0.3s;
+}
+
+.owl-dots {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.owl-dots button.active {
+  width: 30px;
+}
+
+/* 밑에 슬라이더 영역 별 아이콘 */
+/* 별 아이콘 간격 추가 */
+.supaview__stars {
+  margin-top: 30px; /* 별 아이콘과 텍스트 사이 간격 추가 */
+  text-align: center; /* 별 아이콘을 중앙 정렬 */
+}
+
+.supaview__stars i {
+  font-size: 20px;
+  margin: 0 2px; /* 별 아이콘 간의 간격 조정 */
+}
+
+.supaview__stars .empty {
+  color: #444; /* 비활성화된 별은 어두운 회색으로 설정 */
+}
+
+.supaview__stars .filled {
+  color: #6ecb90; /* 초록색으로 색칠된 별 */
+}
+
+.delete-icon {
+  color: #fff;
+  display: inline-block; /* 필요한 경우 추가 */
+  vertical-align: middle; /* 텍스트와 수평 정렬 */
+  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+}

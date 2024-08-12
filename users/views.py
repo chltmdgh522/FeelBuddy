@@ -16,7 +16,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
-
+from django.http import JsonResponse
 # Create your views here.
 
 def main(request):
