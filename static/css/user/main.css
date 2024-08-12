@@ -650,7 +650,15 @@ background: linear-gradient(to bottom, rgba(160,82,96,1) 0%,rgba(120,48,72,1) 50
         display: none;
     }
 
-    #game-and-watch-rightbutton-in a:active, #gameboy-rightbutton-in a:active {
+    #game-and-watch-rightbutton-in a:active {
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9);
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9);
+        position:relative;
+        z-index:9999;
+    }
+
+    #gameboy-rightbutton-in a:active {
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9);
     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, .9);
@@ -997,6 +1005,14 @@ background: linear-gradient(to bottom, rgba(160,82,96,1) 0%,rgba(120,48,72,1) 50
             overflow: hidden;
     }
 
+    #game-and-watch-rightbutton-in a {
+        pointer-events: auto; /* Ensure it can be clicked */
+        z-index: 1000;
+        position: relative;
+        touch-action: manipulation;
+       
+    }
+
     #furiosa_poster__header__title {
         position: absolute;
         top:100px;
@@ -1337,6 +1353,9 @@ background: linear-gradient(to bottom, rgba(160,82,96,1) 0%,rgba(120,48,72,1) 50
     border:none;
     height:40px;
     width:40px;
+    position: relative;
+    z-index: 1;
+
     }
 
 
@@ -1693,9 +1712,14 @@ background: linear-gradient(to bottom, rgba(160,82,96,1) 0%,rgba(120,48,72,1) 50
     align-items: center;
     justify-content: center;
     color: white;
+
+    z-index: 1000; /* Adjust as needed */
+    position: relative; /* Ensure it has a positioning context */
+
     }
 
     #game-and-watch-rightbutton-in a p {
+        position: relative;
         display: flex;
     }
 
@@ -1711,7 +1735,7 @@ background: linear-gradient(to bottom, rgba(160,82,96,1) 0%,rgba(120,48,72,1) 50
     display:block;
     border-top:3px solid #de4491;
     position:relative;
-    z-index:99;
+    z-index:999999999;
     background:#860a48;
     background: -moz-linear-gradient(top, rgba(134,10,72,1) 0%, rgba(132,31,80,1) 44%, rgba(134,10,72,1) 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(134,10,72,1)), color-stop(44%,rgba(132,31,80,1)), color-stop(100%,rgba(134,10,72,1)));
