@@ -79,22 +79,27 @@ def profile(request):
     profile, created = Profile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
-        nickname = request.POST.get('nickname', '')
+        nickname = request.POST.get('nickname', profile.nickname)  # 기존 닉네임 유지
         profile_picture = request.FILES.get('profile_picture')
-        delete_picture = request.POST.get('delete_picture') == 'true'
 
-        if nickname == '':
-            profile.nickname = ''  # 닉네임 삭제 처리
-        else:
-            profile.nickname = nickname
-
-        if delete_picture:
-            profile.profile_picture = None  # 프로필 사진 삭제 처리
-        elif profile_picture:
-            profile.profile_picture = profile_picture  # 새 프로필 사진 업로드
+        profile.nickname = nickname  # 닉네임 업데이트
+        if profile_picture:
+            profile.profile_picture = profile_picture  # 프로필 사진 업데이트
 
         profile.save()
-        return redirect('users:profile')
+
+        response_data = {
+            'nickname': profile.nickname,
+            'profile_picture_url': profile.profile_picture.url if profile.profile_picture else ''
+        }
+        return JsonResponse(response_data)
+
+    context = {
+        'user': user,
+        'profile': profile,
+    }
+
+    return render(request, 'user/profile.html', context)
 
     context = {
         'user': user,
