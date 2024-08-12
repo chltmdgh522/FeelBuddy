@@ -1,4 +1,6 @@
 {% load static %}
+{% load socialaccount %}
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
@@ -36,7 +38,7 @@
     <div class="container b-container" id="b-container">
         <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
             {% csrf_token %}
-            <h2 class="form_title title">Sign in to Website</h2>
+            <h2 class="form_title title">Login in to Website</h2>
             <div class="form__icons">
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
@@ -50,6 +52,21 @@
             <input class="form__input" type="text" placeholder="ID" name="username">
             <input class="form__input" type="password" placeholder="Password" name="password">
             <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
+
+            <!-- 소셜 로그인 추가 -->
+            <div>
+                <a href="{% url 'google_login' %}"><p>login with Google</p></a>
+                <a href="{% provider_login_url 'naver' %}"><p>login with Naver</p></a>
+                <a href="{% provider_login_url 'kakao' %}"><p>login with Kakao</p></a>
+            </div>
+            <div>
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                    <p>{{ user.name }}님이 로그인 중</p>
+                {% endif %}
+            </div>
+            <!-- 소셜 로그인 추가 끝 -->
+            
             <button class="switch__button button switch-btn" type="submit">Log IN</button>
         </form>
     </div>
