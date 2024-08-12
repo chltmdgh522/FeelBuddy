@@ -50,11 +50,11 @@
         }
 
         .arrow.left {
-            left: 10vmin;
+            left: 0;
         }
 
         .arrow.right {
-            right: -5vmin;
+            right: 0;
         }
 
         .room {
@@ -137,108 +137,6 @@
         </svg>
     </div>
     <!-- <div class="arrow right">&rarr;</div> -->
-
-
-    <section class="room" id="room2">
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
-                  {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'character:character_detail' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                 alt="{{ character.adminCharacter.emotion }}"
-                                 class="">
-                        </a>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-
-        </div>
-        <div class="room2-walls">
-            <!-- 열기구 창문 시작 -->
-            <div class="balloon-container">
-                <div class="sun sun-1"></div>
-                <div class="sun sun-2"></div>
-                <div class="sun sun-3"></div>
-                <div class="sun sun-4"></div>
-                <div class="landscape landscape-1"></div>
-                <div class="landscape landscape-2"></div>
-                <div class="landscape landscape-3"></div>
-                <div class="landscape landscape-4"></div>
-                <div class="landscape landscape-5"></div>
-                <div class="tree tree-1"></div>
-                <div class="tree tree-2"></div>
-                <div class="tree tree-3"></div>
-                <div class="tree tree-4"></div>
-                <div class="tree tree-5"></div>
-                <div class="tree tree-6"></div>
-                <div class="tree tree-7"></div>
-                <div class="moon-1"></div>
-                <div class="moon-2"></div>
-                <div class="baloon">
-                    <div class="baloon-1">
-                        <div class="strip-1">
-                            <div class="strip-2"></div>
-                        </div>
-                        <div class="bottom-strip"></div>
-                    </div>
-                    <div class="line line-1"></div>
-                    <div class="line line-2"></div>
-                    <div class="line line-3"></div>
-                    <div class="line line-4"></div>
-                    <div class="basket">
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-            <!-- 열기구 창문 끝 -->
-
-            <div class='room2-stairs'>
-                <div class='stair stair2'>
-
-                    <div class='face top'></div>
-                    <div class='face front'></div>
-
-                </div>
-            </div>
-
-
-        </div>
-
-    </section>
 
     <section class="room active" id="room1">
         <!-- 모바일 반응형에 따른 캐릭터 scene -->
@@ -408,6 +306,109 @@
 
         </div>
     </section>
+    
+    <section class="room" id="room2">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                  {% for character in user_characters %}
+                    <a href="{% url 'character:character_detail' character.pk %}">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+        </div>
+        <div class="room2-walls">
+            <!-- 열기구 창문 시작 -->
+            <div class="balloon-container">
+                <div class="sun sun-1"></div>
+                <div class="sun sun-2"></div>
+                <div class="sun sun-3"></div>
+                <div class="sun sun-4"></div>
+                <div class="landscape landscape-1"></div>
+                <div class="landscape landscape-2"></div>
+                <div class="landscape landscape-3"></div>
+                <div class="landscape landscape-4"></div>
+                <div class="landscape landscape-5"></div>
+                <div class="tree tree-1"></div>
+                <div class="tree tree-2"></div>
+                <div class="tree tree-3"></div>
+                <div class="tree tree-4"></div>
+                <div class="tree tree-5"></div>
+                <div class="tree tree-6"></div>
+                <div class="tree tree-7"></div>
+                <div class="moon-1"></div>
+                <div class="moon-2"></div>
+                <div class="baloon">
+                    <div class="baloon-1">
+                        <div class="strip-1">
+                            <div class="strip-2"></div>
+                        </div>
+                        <div class="bottom-strip"></div>
+                    </div>
+                    <div class="line line-1"></div>
+                    <div class="line line-2"></div>
+                    <div class="line line-3"></div>
+                    <div class="line line-4"></div>
+                    <div class="basket">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 열기구 창문 끝 -->
+
+            <div class='room2-stairs'>
+                <div class='stair stair2'>
+
+                    <div class='face top'></div>
+                    <div class='face front'></div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    
 
     <!-- <section class="room" id="room3">
         <div class="mobile-character-center">

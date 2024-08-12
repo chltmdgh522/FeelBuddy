@@ -117,9 +117,13 @@
 <!-- 모바일 반응형 header 시작 -->
 <header class="chat-header" id="header">
     <div class="header-left">
-        <a>
-            <i class="fas fa-chevron-left"></i>
-        </a>
+        <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다. -->
+        <button>
+            <a href="{% url 'character:character_list' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
+            </a>
+        </button>
+        <i class="fas fa-chevron-left"></i>
     </div>
     <span><p>Feel Buddy</p></span>
     <div class="header-right">
@@ -146,6 +150,7 @@
     </div>
 
 </header>
+
 <!-- 모바일 반응형 header 끝-->
 
 <div class="chat-arrow left">&larr;</div>
@@ -319,28 +324,62 @@
                 {% endfor %}
             </div>
             <div class="chat" id="chat">
-                <!-- <span id="drag">Drag me!</span> -->
+                
+                <header class="chat-header" id="header">
+                    <div class="header-left">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <!-- <div class="header-left">
+                        <a>
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </div> -->
+                    <span><p>Feel Buddy</p></span>
+                    <div class="header-right">
+                        <div class="nav bounceInDown animated">
+                            <a href="#profile" class="nav-item nav-count-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                                </svg>
+                                <span class="invisible"></span></a>
+                            <a href="#compose" class="nav-item nav-count-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
+                                </svg>
+                                </i><span class="invisible"></span></a>
+                            <a href="#Play" class="nav-item nav-count-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
+                                </svg>
+                                <span class="invisible"></span></a>
+                            <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
+                                    class="invisible"></span></a>
+                            <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
+                        </div>
+                    </div>
+                
+                </header>
 
                 <div class="contact bar">
                     {% if character.adminCharacter.emotion == '기쁨' %}
                         <div class="chat-pic joy"></div>
-                        <div class="name">{{ character.name }}</div>
+                        <div class="chat-name">{{ character.name }}</div>
                         <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
                     {% elif character.adminCharacter.emotion == '분노' %}
                         <div class="chat-pic anger"></div>
-                        <div class="name">{{ character.name }}</div>
+                        <div class="chat-name">{{ character.name }}</div>
                         <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }} </div>
                     {% elif character.adminCharacter.emotion == '불안' %}
                         <div class="chat-pic anxiety"></div>
-                        <div class="name">{{ character.name }}</div>
+                        <div class="chat-name">{{ character.name }}</div>
                         <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
                     {% elif character.adminCharacter.emotion == '슬픔' %}
                         <div class="chat-pic sad"></div>
-                        <div class="name">{{ character.name }}</div>
+                        <div class="chat-name">{{ character.name }}</div>
                         <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
                     {% elif character.adminCharacter.emotion == '두려움' %}
                         <div class="chat-pic fear"></div>
-                        <div class="name">{{ character.name }}</div>
+                        <div class="chat-name">{{ character.name }}</div>
                         <div class="seen" id="latest-time-{{ character.id }}">Last at 12:56</div>
                     {% endif %}
                 </div>
@@ -375,6 +414,40 @@
 
 
 <div class="chat-content">
+    <header class="chat-header" id="header">
+        <div class="header-left">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <!-- <div class="header-left">
+            <a>
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        </div> -->
+        <span><p>Feel Buddy</p></span>
+        <div class="header-right">
+            <div class="nav bounceInDown animated">
+                <a href="#profile" class="nav-item nav-count-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                    </svg>
+                    <span class="invisible"></span></a>
+                <a href="#compose" class="nav-item nav-count-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
+                    </svg>
+                    </i><span class="invisible"></span></a>
+                <a href="#Play" class="nav-item nav-count-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
+                    </svg>
+                    <span class="invisible"></span></a>
+                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
+                        class="invisible"></span></a>
+                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
+            </div>
+        </div>
+    
+    </header>
     <div class="chat-content-body-2">
         <div class="chat-buildings">
             <div class="chat-window"></div>
@@ -510,6 +583,40 @@
 
 
 <div class="chat-content">
+    <header class="chat-header" id="header">
+        <div class="header-left">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <!-- <div class="header-left">
+            <a>
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        </div> -->
+        <span><p>Feel Buddy</p></span>
+        <div class="header-right">
+            <div class="nav bounceInDown animated">
+                <a href="#profile" class="nav-item nav-count-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                    </svg>
+                    <span class="invisible"></span></a>
+                <a href="#compose" class="nav-item nav-count-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
+                    </svg>
+                    </i><span class="invisible"></span></a>
+                <a href="#Play" class="nav-item nav-count-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
+                    </svg>
+                    <span class="invisible"></span></a>
+                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
+                        class="invisible"></span></a>
+                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
+            </div>
+        </div>
+    
+    </header>
     <div class="chat-content-body-3">
         <input type="checkbox" name="light" id="light">
         <input type="checkbox" name="night" id="night">
@@ -538,8 +645,66 @@
 
 
 <div class="chat-content">
+    <header class="chat-header" id="header">
+        <div class="header-left">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <!-- <div class="header-left">
+            <a>
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        </div> -->
+        <span><p>Feel Buddy</p></span>
+        <div class="header-right">
+            <div class="nav bounceInDown animated">
+                <a href="#profile" class="nav-item nav-count-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                    </svg>
+                    <span class="invisible"></span></a>
+                <a href="#compose" class="nav-item nav-count-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
+                    </svg>
+                    </i><span class="invisible"></span></a>
+                <a href="#Play" class="nav-item nav-count-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
+                    </svg>
+                    <span class="invisible"></span></a>
+                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
+                        class="invisible"></span></a>
+                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
+            </div>
+        </div>
+    
+    </header>
     <div class="chat-content-body-4">
+        <div class="night">
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+            <div class="shooting_star"></div>
+          </div>
+        
         <div class="music-wrap">
+            
             <div class="music-player">
                 <div class="music-left">
                     <div class="music-buttons" id="playPauseButton">
@@ -578,6 +743,79 @@
     </div>
 </div>
 
+
+<script src="{% static '/js/chatbot/menu.js' %}"></script>
+<script src="{% static '/js/chatbot/nav.js' %}"></script>
+
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소 선택
+        const navItems = document.querySelectorAll('.nav-item'); // 모든 nav-item 요소 선택
+        const nav = document.querySelector('.nav'); // .nav 요소 선택
+        const contacts = document.querySelector('.contacts'); // contacts 요소 선택
+        const contactDivs = document.querySelectorAll('.contact'); // 개별 contact div들 선택
+        const headerLeft = document.querySelector('.header-left i'); // .header-left i 요소 선택
+        const backLeft = document.querySelector('.header-left button svg'); 
+    
+        function showChat(index) {
+            chats.forEach((chat, i) => {
+                chat.classList.toggle('active', i === index); // 해당 인덱스의 chat-content만 표시
+            });
+        }
+    
+        // 모바일 환경일 때 적용
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            nav.style.display = 'none'; // 초기에는 .nav 숨김
+            headerLeft.style.display = 'none'; //초기에 왼쪽 화살표 숨김
+            backLeft.style.display = 'block'; 
+            
+    
+            navItems.forEach((navItem, index) => {
+                navItem.addEventListener('click', () => {
+                    showChat(index); // nav-item 클릭 시 해당 인덱스의 chat-content 표시
+                    backLeft.style.display = 'none'; 
+                    
+                });
+            });
+    
+            contactDivs.forEach((contact) => {
+                contact.addEventListener('click', () => {
+                    showChat(0); // 첫 번째 chat-content를 보여줌
+                    headerLeft.style.display = 'block'; 
+                    nav.style.display = 'block'; // chat으로 이동하면 .nav 표시
+                    backLeft.style.display = 'none'; 
+                    contacts.style.display = 'none'; // contacts 화면 숨김
+                });
+            });
+    
+            headerLeft.addEventListener('click', () => {
+                contacts.style.display = 'block'; // contacts 화면 표시
+                showChat(0);
+                nav.style.display = 'none'; // .nav 숨김
+                headerLeft.style.display = 'none'; 
+                backLeft.style.display = 'block'; 
+            });
+        } else {
+            // 웹 환경에서는 화살표 클릭 방식 적용
+            const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
+            const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
+            let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
+    
+            leftArrow.addEventListener('click', () => {
+                currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
+                showChat(currentChat); // 새로운 현재 채팅을 표시
+            });
+    
+            rightArrow.addEventListener('click', () => {
+                currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
+                showChat(currentChat); // 새로운 현재 채팅을 표시
+            });
+    
+            showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
+        }
+    });
+</script> -->
 <script>
     $(document).ready(function () {
         function scrollChatBox() {
@@ -682,75 +920,78 @@
 </script>
 
 
-<!-- <script>
-    const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소를 선택
-    const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
-    const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
-    let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
+<!-- 두 번째 스크립트 코드 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const chats = document.querySelectorAll('.chat-content'); 
+    const navItems = document.querySelectorAll('.nav-item'); 
+    const nav = document.querySelector('.nav'); 
+    const contacts = document.querySelector('.contacts'); 
+    const contactDivs = document.querySelectorAll('.contact'); 
+    const headerLeftIcon = document.querySelector('.header-left i'); 
+    const backLeftSvg = document.querySelector('.header-left button a'); 
 
     function showChat(index) {
         chats.forEach((chat, i) => {
-            chat.classList.toggle('active', i === index); // 인덱스가 일치하는 채팅에 active 클래스를 추가
+            chat.classList.toggle('active', i === index); 
         });
     }
 
-    leftArrow.addEventListener('click', () => {
-        currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
-        showChat(currentChat); // 새로운 현재 채팅을 표시
-    });
-
-    rightArrow.addEventListener('click', () => {
-        currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
-        showChat(currentChat); // 새로운 현재 채팅을 표시
-    });
-
-    showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
-</script> -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소를 선택
-        const navItems = document.querySelectorAll('.nav-item'); // 모든 nav-item 요소를 선택
-
-        function showChat(index) {
-            chats.forEach((chat, i) => {
-                chat.classList.toggle('active', i === index); // 해당 인덱스의 chat-content만 표시
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        nav.style.display = 'none'; 
+        headerLeftIcon.style.display = 'none'; 
+        backLeftSvg.style.display = 'block'; 
+        
+        contactDivs.forEach((contact, index) => {
+            contact.addEventListener('click', () => {
+                showChat(index); 
+                headerLeftIcon.style.display = 'block'; 
+                nav.style.display = 'block'; 
+                backLeftSvg.style.display = 'none'; 
+                contacts.style.display = 'none'; 
             });
-        }
+        });
 
-        // 모바일 환경일 때 적용
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            navItems.forEach((navItem, index) => {
-                navItem.addEventListener('click', () => {
-                    showChat(index); // nav-item 클릭 시 해당 인덱스의 chat-content 표시
-                });
+        navItems.forEach((navItem, index) => {
+            navItem.addEventListener('click', () => {
+                showChat(index); 
+                backLeftSvg.style.display = 'none'; 
+                headerLeftIcon.style.display = 'block'; 
+                nav.style.display = 'block'; 
+                contacts.style.display = 'none'; 
             });
-        } else {
-            // 웹 환경에서는 화살표 클릭 방식 적용
-            const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
-            const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
-            let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
+        });
 
-            leftArrow.addEventListener('click', () => {
-                currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
-                showChat(currentChat); // 새로운 현재 채팅을 표시
-            });
+        headerLeftIcon.addEventListener('click', () => {
+            contacts.style.display = 'block'; 
+            nav.style.display = 'none'; 
+            headerLeftIcon.style.display = 'none'; 
+            backLeftSvg.style.display = 'block'; 
+            showChat(0); 
+        });
+    } else {
+        const leftArrow = document.querySelector('.chat-arrow.left'); 
+        const rightArrow = document.querySelector('.chat-arrow.right'); 
+        let currentChat = 0; 
 
-            rightArrow.addEventListener('click', () => {
-                currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
-                showChat(currentChat); // 새로운 현재 채팅을 표시
-            });
+        leftArrow.addEventListener('click', () => {
+            currentChat = (currentChat - 1 + chats.length) % chats.length; 
+            showChat(currentChat); 
+        });
 
-            showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
-        }
-    });
+        rightArrow.addEventListener('click', () => {
+            currentChat = (currentChat + 1) % chats.length; 
+            showChat(currentChat); 
+        });
+
+        showChat(currentChat); 
+    }
+});
 </script>
 
 
-<script src="{% static '/js/chatbot/chatbot.js' %}"></script>
-<script src="{% static '/js/chatbot/menu.js' %}"></script>
-<script src="{% static '/js/chatbot/nav.js' %}"></script>
-
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소 선택
         const navItems = document.querySelectorAll('.nav-item'); // 모든 nav-item 요소 선택
@@ -758,65 +999,67 @@
         const contacts = document.querySelector('.contacts'); // contacts 요소 선택
         const contactDivs = document.querySelectorAll('.contact'); // 개별 contact div들 선택
         const headerLeft = document.querySelector('.header-left i'); // .header-left i 요소 선택
-        const backLeft = document.querySelector('.header-left button svg');
-
+        const backLeft = document.querySelector('.header-left button a svg'); 
+    
         function showChat(index) {
             chats.forEach((chat, i) => {
                 chat.classList.toggle('active', i === index); // 해당 인덱스의 chat-content만 표시
             });
         }
-
+    
         // 모바일 환경일 때 적용
         if (window.matchMedia("(max-width: 768px)").matches) {
             nav.style.display = 'none'; // 초기에는 .nav 숨김
             headerLeft.style.display = 'none'; //초기에 왼쪽 화살표 숨김
-            backLeft.style.display = 'block';
-
-
+            backLeft.style.display = 'block'; 
+            
+    
             navItems.forEach((navItem, index) => {
                 navItem.addEventListener('click', () => {
                     showChat(index); // nav-item 클릭 시 해당 인덱스의 chat-content 표시
-                    backLeft.style.display = 'none';
-
+                    backLeft.style.display = 'none'; 
+                    
                 });
             });
-
+    
             contactDivs.forEach((contact) => {
                 contact.addEventListener('click', () => {
                     showChat(0); // 첫 번째 chat-content를 보여줌
-                    headerLeft.style.display = 'block';
+                    headerLeft.style.display = 'block'; 
                     nav.style.display = 'block'; // chat으로 이동하면 .nav 표시
-                    backLeft.style.display = 'none';
+                    backLeft.style.display = 'none'; 
                     contacts.style.display = 'none'; // contacts 화면 숨김
                 });
             });
-
+    
             headerLeft.addEventListener('click', () => {
                 contacts.style.display = 'block'; // contacts 화면 표시
                 showChat(0);
                 nav.style.display = 'none'; // .nav 숨김
-                headerLeft.style.display = 'none';
+                headerLeft.style.display = 'none'; 
+                backLeft.style.display = 'block'; 
             });
         } else {
             // 웹 환경에서는 화살표 클릭 방식 적용
             const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
             const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
             let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
-
+    
             leftArrow.addEventListener('click', () => {
                 currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
                 showChat(currentChat); // 새로운 현재 채팅을 표시
             });
-
+    
             rightArrow.addEventListener('click', () => {
                 currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
                 showChat(currentChat); // 새로운 현재 채팅을 표시
             });
-
+    
             showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
         }
     });
-</script>
+</script> -->
+
 
 <script>
     $(document).ready(function () {
@@ -883,6 +1126,9 @@
     });
 </script>
 
+<script src="{% static '/js/chatbot/chatbot.js' %}"></script>
+<audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
+<script src="{% static '/js/chatbot/music.js' %}"></script>
 
 </body>
 
