@@ -115,9 +115,9 @@
 
 <body>
 <!-- 모바일 반응형 header 시작 -->
-<!-- <header class="chat-header" id="header">
+<header class="chat-header" id="header">
     <div class="header-left">
-        header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다. 
+        <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다.  -->
         <button>
             <a href="{% url 'character:character_list' %}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
@@ -149,7 +149,7 @@
         </div>
     </div>
 
-</header> -->
+</header>
 
 <!-- 모바일 반응형 header 끝-->
 
@@ -350,28 +350,7 @@
                         <i class="fas fa-chevron-left"></i>
                     </div>
                     <span><p>Feel Buddy</p></span>
-                    <div class="header-right">
-                        <div class="nav bounceInDown animated">
-                            <a href="#profile" class="nav-item nav-count-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                                </svg>
-                                <span class="invisible"></span></a>
-                            <a href="#compose" class="nav-item nav-count-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                                </svg>
-                                </i><span class="invisible"></span></a>
-                            <a href="#Play" class="nav-item nav-count-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                                </svg>
-                                <span class="invisible"></span></a>
-                            <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                                    class="invisible"></span></a>
-                            <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-                        </div>
-                    </div>
+                    
                 
                 </header>
 
@@ -429,35 +408,7 @@
 
 
 <div class="chat-content" id="chat-content-2">
-    <header class="chat-header" id="header">
-        <div class="header-left">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        <span><p>Feel Buddy</p></span>
-        <div class="header-right">
-            <div class="nav bounceInDown animated">
-                <a href="#profile" class="nav-item nav-count-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#compose" class="nav-item nav-count-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                    </svg>
-                    </i><span class="invisible"></span></a>
-                <a href="#Play" class="nav-item nav-count-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                        class="invisible"></span></a>
-                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-            </div>
-        </div>
-    
-    </header>
+   
     <div class="chat-content-body-2">
         <div class="chat-buildings">
             <div class="chat-window"></div>
@@ -602,35 +553,7 @@
 
 
 <div class="chat-content" id="chat-content-3">
-    <header class="chat-header" id="header">
-        <div class="header-left">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        <span><p>Feel Buddy</p></span>
-        <div class="header-right">
-            <div class="nav bounceInDown animated">
-                <a href="#profile" class="nav-item nav-count-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#compose" class="nav-item nav-count-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                    </svg>
-                    </i><span class="invisible"></span></a>
-                <a href="#Play" class="nav-item nav-count-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                        class="invisible"></span></a>
-                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-            </div>
-        </div>
     
-    </header>
     <div class="chat-content-body-3">
 
         <!-- checkbox 안 보이게 수정(아래 두 줄) -->
@@ -661,35 +584,7 @@
 
 
 <div class="chat-content" id="chat-content-4">
-    <header class="chat-header" id="header">
-        <div class="header-left">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        <span><p>Feel Buddy</p></span>
-        <div class="header-right">
-            <div class="nav bounceInDown animated">
-                <a href="#profile" class="nav-item nav-count-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#compose" class="nav-item nav-count-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                    </svg>
-                    </i><span class="invisible"></span></a>
-                <a href="#Play" class="nav-item nav-count-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                        class="invisible"></span></a>
-                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-            </div>
-        </div>
     
-    </header>
     <div class="chat-content-body-4">
         <div class="night">
             <div class="shooting_star"></div>
