@@ -167,7 +167,7 @@
 .table-right,
 .table-front,
 .table-back {
-  height: 4rem; /* 변경된 부분 */
+  height: 3rem; /* 변경된 부분 */
   /* box-shadow: 0 0 0 1em #8e6608 inset; */
   /* box-shadow: 0 0 0 1em #1e262b inset; */
   box-shadow: 0 0 0 1em #656561 inset;
@@ -216,7 +216,7 @@
   transform: translateZ(-4rem) translateY(4rem); /* 변경된 부분 */
 }
 .table-bottom {
-  transform: rotateX(90deg) translateZ(-4rem); /* 변경된 부분 */
+  transform: rotateX(90deg) translateZ(-3rem); /* 변경된 부분 */
 }
 .table-front {
   display: flex;

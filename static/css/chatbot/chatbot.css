@@ -158,23 +158,35 @@ body:before {
 	position: absolute;
 	top: 15vh;
 	/* margin-left: -4vmin; 추후 min으로 수정 필요*/
-  margin-left: 150vmin;
-	max-width: 80px;
-	min-width: 80px;
+  margin-left: 55%;
+
 }
 
 
+.chat-character-lamp {
+   width: 80px;
+    height: 72vh;
+    position: absolute;
+    top: 15vh;
+    margin-left: 55%;
+}
 /* 캐릭터 사진 설정 */
 .chat-character {
-    width: 300px;
+    /* width: 300px;
 	  height: auto;
 	  position: absolute;
-	  top: 57vh;
-	  right: 22vmin;
+	  top: calc(87vh - 250px);
+    right: 0;
+	  margin-right: 20vmin;
 	  min-width: 80px;
     z-index: 9999999;
     filter: brightness(0.7);
-    transition: filter 0.2s ease;
+    transition: filter 0.2s ease; */
+    position: absolute;
+    width: 300px;
+    height: auto;
+    bottom: -50px;
+    right: -125px;
 }
 
 /* 램프가 켜졌을 때 캐릭터에 빛 효과 적용 */

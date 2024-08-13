@@ -256,17 +256,21 @@
         <div class="chat-lamp-header">
             <p>Feelbuddy</p>
         </div>
-        {% if character.adminCharacter.emotion == '기쁨' %}
-            <img src="/media/joy.png" alt="" class="chat-character">
-        {% elif character.adminCharacter.emotion == '분노' %}
-            <img src="/media/anger.png" alt="" class="chat-character">
-        {% elif character.adminCharacter.emotion == '슬픔' %}
-            <img src="/media/sad.png" alt="" class="chat-character">
-        {% elif character.adminCharacter.emotion == '불안' %}
-            <img src="/media/anxiety.png" alt="" class="chat-character">
-        {% elif character.adminCharacter.emotion == '두려움' %}
-            <img src="/media/fear.png" alt="" class="chat-character">
-        {% endif %}
+
+        <!-- css 수정하면서 html도 같이 수정함 -->
+        <div class="chat-character-lamp">
+            {% if character.adminCharacter.emotion == '기쁨' %}
+                <img src="/media/joy.png" alt="" class="chat-character">
+            {% elif character.adminCharacter.emotion == '분노' %}
+                <img src="/media/anger.png" alt="" class="chat-character">
+            {% elif character.adminCharacter.emotion == '슬픔' %}
+                <img src="/media/sad.png" alt="" class="chat-character">
+            {% elif character.adminCharacter.emotion == '불안' %}
+                <img src="/media/anxiety.png" alt="" class="chat-character">
+            {% elif character.adminCharacter.emotion == '두려움' %}
+                <img src="/media/fear.png" alt="" class="chat-character">
+            {% endif %}
+        </div>
         <div class="chat-center" id="chat-center">
             <div class="contacts">
                 <!-- <i class="fas fa-bars fa-2x"></i> -->

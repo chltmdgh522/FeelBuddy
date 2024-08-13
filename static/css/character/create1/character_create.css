@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
 
 .create-left {
     position: absolute;
@@ -45,6 +46,8 @@
     background: none;
     background-color: none;
     color: white;
+
+    font-family: "Gugi", sans-serif;
 }
 
 .character-animation-btn:hover {
