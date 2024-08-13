@@ -52,24 +52,17 @@
 
                 <input class="form__input" type="text" placeholder="ID" name="username">
                 <input class="form__input" type="password" placeholder="Password" name="password">
+
+                <!-- 소셜 로그인 -->
+                <a href="{% url 'google_login' %}"><p>login with Google</p></a>
+                <a href="{% provider_login_url 'naver' %}"><p>login with Naver</p></a>
+                <a href="{% provider_login_url 'kakao' %}"><p>login with Kakao</p></a>
+                <!-- 소셜 로그인 부분 끝 -->
+
                 <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
                 <button class="switch__button button switch-btn" type="submit">Log IN</button>
             </form>
 
-            <!-- 소셜 로그인 버튼들을 별도로 구성 -->
-            <form action="{% provider_login_url 'google' %}" method="post">
-                {% csrf_token %}
-                <button>login with Google</button>
-            </form>
-            <form action="{% provider_login_url 'naver' %}" method="post">
-                {% csrf_token %}
-                <button>login with Naver</button>
-            </form>
-            <form action="{% provider_login_url 'kakao' %}" method="post">
-                {% csrf_token %}
-                <button>login with Kakao</button>
-            </form>
-            <!-- 소셜 로그인 부분 끝 -->
              
         </div>
     <div class="switch" id="switch-cnt">
