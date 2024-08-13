@@ -115,9 +115,9 @@
 
 <body>
 <!-- 모바일 반응형 header 시작 -->
-<header class="chat-header" id="header">
+<!-- <header class="chat-header" id="header">
     <div class="header-left">
-        <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다. -->
+        header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다. 
         <button>
             <a href="{% url 'character:character_list' %}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
@@ -149,9 +149,13 @@
         </div>
     </div>
 
-</header>
+</header> -->
 
 <!-- 모바일 반응형 header 끝-->
+
+
+
+
 
 <div class="chat-arrow left">&larr;</div>
 <div class="chat-arrow right">&rarr;</div>
@@ -222,12 +226,24 @@
     </a>
 </div>
 
+<!-- 네온사인 표지판 추가 -->
+<div id="pole">
+    <div id="right">
+        <div class="logo"><b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b></div>
+      <!-- <a class="sign-link" href="#"><h1 contenteditable spellcheck="false">feelbuddy</h1></a>
+      <div id="right-arrow"></div> -->
+    </div>
+</div>
+<!-- 네온사인 표지판 추가 끝 -->
+
+
 <!-- 램프 효과 -->
 <input type="checkbox" name="btn" id="btn" checked>
 
-<div class="chat-content active">
+<div class="chat-content active" id="chat-content-1">
 
     <div class="chat-content-body-1">
+        
         <div class="chat-buildings">
             <div class="chat-window"></div>
             <div class="chat-window"></div>
@@ -253,9 +269,9 @@
             <div class="chat-light"></div>
             <div class="chat-ground-light"></div>
         </div>
-        <div class="chat-lamp-header">
+        <!-- <div class="chat-lamp-header">
             <p>Feelbuddy</p>
-        </div>
+        </div> -->
 
         <!-- css 수정하면서 html도 같이 수정함 -->
         <div class="chat-character-lamp">
@@ -333,11 +349,6 @@
                     <div class="header-left">
                         <i class="fas fa-chevron-left"></i>
                     </div>
-                    <!-- <div class="header-left">
-                        <a>
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                    </div> -->
                     <span><p>Feel Buddy</p></span>
                     <div class="header-right">
                         <div class="nav bounceInDown animated">
@@ -417,16 +428,11 @@
 </div>
 
 
-<div class="chat-content">
+<div class="chat-content" id="chat-content-2">
     <header class="chat-header" id="header">
         <div class="header-left">
             <i class="fas fa-chevron-left"></i>
         </div>
-        <!-- <div class="header-left">
-            <a>
-                <i class="fas fa-chevron-left"></i>
-            </a>
-        </div> -->
         <span><p>Feel Buddy</p></span>
         <div class="header-right">
             <div class="nav bounceInDown animated">
@@ -595,16 +601,11 @@
 </div>
 
 
-<div class="chat-content">
+<div class="chat-content" id="chat-content-3">
     <header class="chat-header" id="header">
         <div class="header-left">
             <i class="fas fa-chevron-left"></i>
         </div>
-        <!-- <div class="header-left">
-            <a>
-                <i class="fas fa-chevron-left"></i>
-            </a>
-        </div> -->
         <span><p>Feel Buddy</p></span>
         <div class="header-right">
             <div class="nav bounceInDown animated">
@@ -659,16 +660,11 @@
 </div>
 
 
-<div class="chat-content">
+<div class="chat-content" id="chat-content-4">
     <header class="chat-header" id="header">
         <div class="header-left">
             <i class="fas fa-chevron-left"></i>
         </div>
-        <!-- <div class="header-left">
-            <a>
-                <i class="fas fa-chevron-left"></i>
-            </a>
-        </div> -->
         <span><p>Feel Buddy</p></span>
         <div class="header-right">
             <div class="nav bounceInDown animated">
@@ -762,6 +758,65 @@
 <script src="{% static '/js/chatbot/menu.js' %}"></script>
 <script src="{% static '/js/chatbot/nav.js' %}"></script>
 
+<!-- 왼쪽 화살표 눌렀을 때 contacts만 보이게 하기 -->
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const chatContentIds = ['chat-content-1', 'chat-content-2', 'chat-content-3', 'chat-content-4'];
+
+    // 초기 로딩 시 첫 번째 chat-content를 활성화
+    function initializeChat() {
+        chatContentIds.forEach(function(id, index) {
+            const content = document.getElementById(id);
+            if (index === 0) {
+                content.classList.add('active');
+                content.style.display = 'block';
+            } else {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            }
+        });
+    }
+
+    initializeChat();
+
+    navItems.forEach(function(navItem, index) {
+        navItem.addEventListener('click', function() {
+            // 모든 chat-content를 숨김
+            chatContentIds.forEach(function(id) {
+                const content = document.getElementById(id);
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+
+            // 선택된 chat-content만 보이게 설정
+            const selectedContent = document.getElementById(chatContentIds[index]);
+            selectedContent.classList.add('active');
+            selectedContent.style.display = 'block';
+
+            // nav-count-1을 클릭한 경우 contacts만 보이도록 설정
+            if (index === 0) {
+                const contacts = selectedContent.querySelector('.contacts');
+                selectedContent.querySelector('.chat-content-body-1').style.display = 'none';
+                contacts.style.display = 'block';
+            }
+        });
+    });
+
+    // max-width 768px 이하일 때만 실행
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        const headerIcon = document.querySelector('.chat-header .header-left i');
+        const chatContent1 = document.getElementById('chat-content-1');
+        const contacts = chatContent1.querySelector('.contacts');
+
+        headerIcon.addEventListener('click', function() {
+            // chat-content-1의 contacts만 보이게 함
+            chatContent1.style.display = 'none';
+            contacts.style.display = 'block';
+        });
+    }
+});
+</script> -->
 
 <!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
