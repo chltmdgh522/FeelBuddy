@@ -36,35 +36,45 @@
         </form>
     </div>
 
-     <div class="container b-container" id="b-container">
-            <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
+    <div class="container b-container" id="b-container">
+        <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
+            {% csrf_token %}
+            <h2 class="form_title title">Login in to Website</h2>
+            <div class="form__icons">
+                <img class="form__icon" src="#" alt="">
+                <img class="form__icon" src="#" alt="">
+                <img class="form__icon" src="#" alt="">
+            </div>
+            <span class="form__span">or use your email account</span>
+            {% if error %}
+                <div class="form__error" style="color: red;">{{ error }}</div>
+            {% endif %}
+    
+            <input class="form__input" type="text" placeholder="ID" name="username">
+            <input class="form__input" type="password" placeholder="Password" name="password">
+    
+            <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
+            <button class="switch__button button switch-btn" type="submit">Log IN</button>
+        </form>
+    
+        <!-- 소셜 로그인 부분을 다른 form과 분리 -->
+        <div>
+            <form action="{% provider_login_url 'google' %}" method="post">
                 {% csrf_token %}
-                <h2 class="form_title title">Login in to Website</h2>
-                <div class="form__icons">
-                    <img class="form__icon" src="#" alt="">
-                    <img class="form__icon" src="#" alt="">
-                    <img class="form__icon" src="#" alt="">
-                </div>
-                <span class="form__span">or use your email account</span>
-                {% if error %}
-                    <div class="form__error" style="color: red;">{{ error }}</div>
-                {% endif %}
-
-                <input class="form__input" type="text" placeholder="ID" name="username">
-                <input class="form__input" type="password" placeholder="Password" name="password">
-
-                <!-- 소셜 로그인 -->
-                <a href="{% url 'google_login' %}"><p>login with Google</p></a>
-                <a href="{% provider_login_url 'naver' %}"><p>login with Naver</p></a>
-                <a href="{% provider_login_url 'kakao' %}"><p>login with Kakao</p></a>
-                <!-- 소셜 로그인 부분 끝 -->
-
-                <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
-                <button class="switch__button button switch-btn" type="submit">Log IN</button>
+                <button type="submit">login with Google</button>
             </form>
-
-             
+            <form action="{% provider_login_url 'naver' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">login with Naver</button>
+            </form>
+            <form action="{% provider_login_url 'kakao' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">login with Kakao</button>
+            </form>
         </div>
+    </div>
+
+    
     <div class="switch" id="switch-cnt">
         <div class="switch__circle"></div>
         <div class="switch__circle switch__circle--t"></div>
