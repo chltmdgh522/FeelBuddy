@@ -577,164 +577,109 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
-    // 페이지 로드 후 사용 가능한 음성 목록을 콘솔에 출력
-    function listAvailableVoices() {
-        // 음성 목록을 가져오는 작업
-        const voices = window.speechSynthesis.getVoices();
-
-        // 음성 목록이 비어 있으면 음성이 로드되기까지 대기
-        if (voices.length === 0) {
-            // 음성이 로드될 때까지 대기
-            window.speechSynthesis.onvoiceschanged = function () {
-                listAvailableVoices();
-            };
-        } else {
-            // 음성 목록을 콘솔에 출력
-            voices.forEach((voice, index) => {
-                console.log(`Voice ${index}:`);
-                console.log(`Name: ${voice.name}`);
-                console.log(`Lang: ${voice.lang}`);
-                console.log(`Default: ${voice.default}`);
-                console.log('---');
-            });
+        function scrollChatBox() {
+            $('#messages').scrollTop($('#messages')[0].scrollHeight);
         }
-    }
 
-    // 음성 목록을 출력
-    listAvailableVoices();
-});
+        // 페이지 로드 시 스크롤을 맨 아래로 이동
+        scrollChatBox();
 
-</script>
- <script>
-        $(document).ready(function () {
-            let apiKey = 'YOUR_GOOGLE_CLOUD_API_KEY'; // Google Cloud API 키를 여기에 입력하세요
+        // 메시지 전송 로직을 함수로 분리
+        function sendMessage() {
+            let userContent = $('#user-content2').val();
 
-            function scrollChatBox() {
-                $('#messages').scrollTop($('#messages')[0].scrollHeight);
+            if (userContent.trim() !== "") {
+                // 사용자 메시지를 바로 추가하기
+                $('#messages').append(
+                    `<div class="message parker">
+                        ${userContent}
+                    </div>`
+                );
+                $('#user-content2').val('');
+                scrollChatBox();
+
+                // Typing 애니메이션을 추가하기
+                $('#messages').append(
+                    `<div class="message stark typing">
+                        <div class="typing typing-1"></div>
+                        <div class="typing typing-2"></div>
+                        <div class="typing typing-3"></div>
+                    </div>`
+                );
+                scrollChatBox();
+
+                // 사용자 메시지를 서버에 전송
+                $.ajax({
+                    type: 'POST',
+                    url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
+                    data: {
+                        'user_content': userContent,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function () {
+                        // AI 응답을 서버에 요청
+                        $.ajax({
+                            type: 'POST',
+                            url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
+                            data: {
+                                'user_input': userContent,
+                                'csrfmiddlewaretoken': '{{ csrf_token }}'
+                            },
+                            success: function (response) {
+                                // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가
+                                setTimeout(function () {
+                                    // Typing 애니메이션을 제거합니다.
+                                    $('.typing').remove();
+
+                                    // AI 메시지를 추가합니다.
+                                    $('#messages').append(
+                                        `<div class="message stark">
+                                            ${response.ai_content}
+                                        </div>`
+                                    );
+
+                                    let aiContent = response.ai_content;
+                                    let truncatedContent = aiContent.length > 10 ? aiContent.slice(0, 10) + '...' : aiContent;
+
+                                    let time = response.time1;
+                                    // 메시지 업데이트
+                                    $('#latest-message-' + response.id2).text(truncatedContent);
+                                    // 시간 업데이트
+                                    $('#latest-time-' + response.id2).text('Last at ' + time);
+
+                                    scrollChatBox();
+                                }, 2000); // 2초 딜레이
+                            }
+                        });
+                    }
+                });
             }
+        }
 
-            function sendMessage() {
-                let userContent = $('#user-content2').val();
-
-                if (userContent.trim() !== "") {
-                    $('#messages').append(
-                        `<div class="message parker">
-                            ${userContent}
-                        </div>`
-                    );
-                    $('#user-content2').val('');
-                    scrollChatBox();
-
-                    $('#messages').append(
-                        `<div class="message stark typing">
-                            <div class="typing typing-1"></div>
-                            <div class="typing typing-2"></div>
-                            <div class="typing typing-3"></div>
-                        </div>`
-                    );
-                    scrollChatBox();
-
-                    $.ajax({
-                        type: 'POST',
-                        url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
-                        data: {
-                            'user_content': userContent,
-                            'csrfmiddlewaretoken': '{{ csrf_token }}'
-                        },
-                        success: function () {
-                            $.ajax({
-                                type: 'POST',
-                                url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
-                                data: {
-                                    'user_input': userContent,
-                                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                                },
-                                success: function (response) {
-                                    setTimeout(function () {
-                                        $('.typing').remove();
-
-                                        $('#messages').append(
-                                            `<div class="message stark">
-                                                ${response.ai_content}
-                                            </div>`
-                                        );
-
-                                        // Text-to-Speech API 호출
-                                        const textToSpeech = async (text) => {
-                                            const url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
-                                            const requestPayload = {
-                                                input: {
-                                                    ssml: `<speak>
-                                                            <voice name="ko-KR-Wavenet-A">
-                                                                <prosody rate="slow" pitch="high">
-                                                                    ${text}
-                                                                </prosody>
-                                                            </voice>
-                                                        </speak>`
-                                                },
-                                                voice: {
-                                                    languageCode: 'ko-KR',
-                                                    name: 'ko-KR-Wavenet-A' // 다른 음성 이름으로 변경 가능
-                                                },
-                                                audioConfig: {
-                                                    audioEncoding: 'MP3'
-                                                }
-                                            };
-
-                                            try {
-                                                const response = await fetch(url, {
-                                                    method: 'POST',
-                                                    headers: {
-                                                        'Content-Type': 'application/json'
-                                                    },
-                                                    body: JSON.stringify(requestPayload)
-                                                });
-                                                const data = await response.json();
-                                                const audioContent = data.audioContent;
-                                                const audio = new Audio('data:audio/mp3;base64,' + audioContent);
-                                                audio.play();
-                                            } catch (error) {
-                                                console.error('Error:', error);
-                                            }
-                                        };
-
-                                        textToSpeech(response.ai_content);
-
-                                        scrollChatBox();
-                                    }, 2000);
-                                }
-                            });
-                        }
-                    });
-                }
-            }
-
-            $('#user-content2').on('keypress', function (event) {
-                if (event.which === 13) {
-                    event.preventDefault(); 
-                    sendMessage();
-                }
-            });
-
-            $('.send').on('click', function (event) {
-                event.preventDefault(); 
+        // Enter 키를 눌렀을 때 메시지 전송
+        $('#user-content2').on('keypress', function (event) {
+            if (event.which === 13) { // Enter 키를 감지
+                event.preventDefault(); // 기본 Enter 동작을 막기
                 sendMessage();
-            });
-
-            $("#chat").resizable({
-                minWidth: 400,
-                minHeight: 400
-            });
-
-            $(window).on('beforeunload', function () {
-                if (window.speechSynthesis.speaking) {
-                    window.speechSynthesis.cancel();
-                }
-            });
+            }
         });
-    </script>
+
+        // a 버튼을 클릭했을 때 메시지 전송
+        $('.send').on('click', function (event) {
+            event.preventDefault(); // a 태그의 기본 동작을 막기
+            sendMessage();
+        });
+
+        // Resizable 설정
+        $("#chat").resizable({
+            minWidth: 400,
+            minHeight: 400
+        });
+    });
+</script>
 
 
 <!-- <script>
@@ -873,36 +818,71 @@
     });
 </script>
 
+<script>
+    $(document).ready(function () {
+        $('#record-btn').click(function () {
+            // 첫 번째 알림창 표시
+            alert("녹음을 준비중입니다! 잠시만 기다려주세요!");
 
-    <script>
-        document.getElementById('record-btn').addEventListener('click', function () {
-            const inputElement = document.getElementById('user-content2');
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            // 10초 후에 두 번째 알림창 표시
+            setTimeout(function () {
+                // 서버에 요청 전송
+                $.ajax({
+                    url: '{% url "chatbot:tts" %}',
+                    method: 'POST',
+                    headers: {'X-CSRFToken': getCookie('csrftoken')},
+                    data: {'start': 'true'}, // 서버에 음성 인식을 시작하라는 메시지 전송
+                    success: function (response) {
+                        if (response.message) {
+                            alert(response.message); // 서버로부터 받은 메시지를 알림창으로 표시
+                        }
 
-            recognition.lang = 'ko-KR'; // 한국어로 설정
-            recognition.interimResults = false; // 중간 결과는 표시하지 않음
-            recognition.maxAlternatives = 1; // 하나의 대안만 제공
-
-            // 녹음 시작 전에 알림창 표시
-            alert("녹음을 시작합니다! 준비하세요.");
-
-            recognition.start(); // 음성 인식 시작
-
-            recognition.onresult = function (event) {
-                const transcript = event.results[0][0].transcript;
-                inputElement.value = transcript; // 인식된 내용을 input 요소에 표시
-                console.log('Confidence:', event.results[0][0].confidence); // 신뢰도 출력
-            };
-
-            recognition.onerror = function (event) {
-                alert(`오류 발생: ${event.error}`);
-            };
-
-            recognition.onspeechend = function () {
-                recognition.stop(); // 음성 인식 종료
-            };
+                        // 5초 후에 실제 음성 인식을 시작하기 위한 요청 전송
+                        setTimeout(function () {
+                            $.ajax({
+                                url: '{% url "chatbot:tts" %}',
+                                method: 'POST',
+                                headers: {'X-CSRFToken': getCookie('csrftoken')},
+                                success: function (response) {
+                                    if (response.text) {
+                                        console.log(response.text);
+                                        $('#user-content2').val(response.text);
+                                        // 서버로부터 받은 응답을 알림창으로 표시
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("오류 발생:", error);
+                                    alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
+                                }
+                            });
+                        }, 5000); // 5초(5000ms) 후 실행
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("오류 발생:", error);
+                        alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
+                    }
+                });
+            }, 10000); // 10초(10000ms) 후 실행
         });
-    </script>
+
+        // CSRF 토큰 가져오는 함수
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                let cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+</script>
+
 
 </body>
 

@@ -16,12 +16,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const speech = new SpeechSynthesisUtterance('가나다라마바사아자차카타파하! 세종대왕님이 만든 한글');
     speech.lang = 'ko-KR'; // 한국어
-    speech.pitch = 1;
-    speech.rate = 1;
+    speech.pitch = 0;
+    speech.rate = 1.5;
 
     function setVoice() {
         const voices = window.speechSynthesis.getVoices();
-        const selectedVoice = voices.find(voice => voice.name.includes('Google русский')); // 원하는 음성 이름으로 변경
+        const selectedVoice = voices.find(voice => voice.name.includes('Google 한글의')); // 원하는 음성 이름으로 변경
 
         if (selectedVoice) {
             speech.voice = selectedVoice;
