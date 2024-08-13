@@ -9,7 +9,6 @@ urlpatterns = [
 
     # 메인
     path('', main, name='main'),
-path('test', test, name='test'),
 
     # 회원
     path('signup/', signup, name='signup'),

@@ -31,6 +31,10 @@ body * {
 	transform-style: preserve-3d;
 }
 
+.light-checkbox, .night-checkbox {
+	display: none;
+}
+
 .lighthouse-sky {
 	position: absolute;
 	width: 100%;

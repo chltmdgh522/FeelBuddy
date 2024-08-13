@@ -21,3 +21,9 @@ class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
     create_like = models.DateField(auto_now_add=True)
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()
+    rate = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)

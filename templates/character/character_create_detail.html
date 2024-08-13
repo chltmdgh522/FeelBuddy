@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form Animation</title>
+    <title>새로운 캐릭터 생성 시 작성해야 하는 폼 페이지</title>
     <link rel="stylesheet" href="{% static '/css/character/character_create_detail/motext.css' %}">
     <link rel="stylesheet" href="{% static '/css/character/character_create_detail/textform.css' %}">
     <link rel="stylesheet" href="{% static '/css/character/character_create_detail/shut.css' %}">
@@ -15,6 +15,13 @@
         <div id="lock"></div>
         <span id="keylock" class="off">Feelbuddy</span>
         <span id="movement" class="off">unlock</span>
+
+        <!-- 뒤로 가기 버튼 추가 -->
+        <div class="create-left">
+            <button><a href="{% url 'character:character_list' %}" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg></a></button>     
+        </div>
+
+
         <div class="envelope-button">
             <button id="envelope-send-button" href="#">Send</button>
         </div>
@@ -38,12 +45,12 @@
                                 <div class="bottom-wrapper">
                                     <div class="envelope-input">
                                         <label>Name</label>
-                                        <input type="text" placeholder="캐릭터의 이름을 생성해주세요" name="name"/>
+                                        <input type="text" placeholder="캐릭터의 이름을 생성해주세요" name="name" required/>
                                     </div>
                                     <div class="envelope-input">
                                         <label>Message</label>
                                         <textarea rows="5" placeholder="지금 그 감정에 대해 느끼고 있는 것을 적어보세요"
-                                                  name="introduce"></textarea>
+                                                  name="introduce" required></textarea>
                                     </div>
                                     <div class="envelope-submit">
                                         <div class="submit-card" id="submitCard">Save</div>
@@ -75,6 +82,11 @@
 
         // Send 버튼 클릭 시 폼 제출
         envelopeSendButton.addEventListener('click', function () {
+            if (!characterForm.name.value || !characterForm.introduce.value) {
+                alert('공백은 불가능합니다.');
+                return;
+            }
+
             characterForm.submit(); // 폼 제출
         });
     });

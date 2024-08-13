@@ -16,14 +16,30 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
-
+from django.http import JsonResponse
+#닉네임 랜덤 생성
+from django.core.exceptions import ObjectDoesNotExist
+import random
 # Create your views here.
 
 def main(request):
-    return render(request, 'user/main.html')
+    user = request.user
+    if user.is_anonymous:  # 로그인하지 않은 사용자인 경우 ######
+        display_name = "Anonymous User"
+    else:
+        try:
+            profile = Profile.objects.get(user=user)
+            display_name = profile.nickname  # 2차 수정
+        except ObjectDoesNotExist:
+            random_names = ['화사한 유채꽃', '푸른 바다', '밝은 햇살', '고요한 달빛']
+            display_name = random.choice(random_names)
 
-def test(request):
-    return render(request, 'user/test.html')
+    context = {
+        'display_name': display_name
+    }
+
+    return render(request, 'user/main.html', context)
+
 def signup(request):
     if request.user.is_authenticated:
         return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
@@ -47,9 +63,17 @@ def signup(request):
             )
             user.set_password(password)  # 비밀번호 해시화
             user.save()
+
+            ################### 프로필 객체 생성 및 닉네임 할당 (2차 수정)
+            # 이미 존재하는지 확인
+            if not Profile.objects.filter(user=user).exists():
+                profile = Profile.objects.create(user=user)
+                profile.nickname = profile.get_random_nickname()
+                profile.save()
+
             return redirect('users:login')
         except Exception as e:
-            return render(request, 'user/signup.html', {'error': '회원가입에 실패했습니다.'})
+            return render(request, 'user/signup.html', {'error': f'회원가입에 실패했습니다: {str(e)}'})
 
     return render(request, 'user/signup.html')
 
@@ -80,22 +104,27 @@ def profile(request):
     profile, created = Profile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
-        nickname = request.POST.get('nickname', '')
+        nickname = request.POST.get('nickname', profile.nickname)  # 기존 닉네임 유지
         profile_picture = request.FILES.get('profile_picture')
-        delete_picture = request.POST.get('delete_picture') == 'true'
 
-        if nickname == '':
-            profile.nickname = ''  # 닉네임 삭제 처리
-        else:
-            profile.nickname = nickname
-
-        if delete_picture:
-            profile.profile_picture = None  # 프로필 사진 삭제 처리
-        elif profile_picture:
-            profile.profile_picture = profile_picture  # 새 프로필 사진 업로드
+        profile.nickname = nickname  # 닉네임 업데이트
+        if profile_picture:
+            profile.profile_picture = profile_picture  # 프로필 사진 업데이트
 
         profile.save()
-        return redirect('users:profile')
+
+        response_data = {
+            'nickname': profile.nickname,
+            'profile_picture_url': profile.profile_picture.url if profile.profile_picture else ''
+        }
+        return JsonResponse(response_data)
+
+    context = {
+        'user': user,
+        'profile': profile,
+    }
+
+    return render(request, 'user/profile.html', context)
 
     context = {
         'user': user,

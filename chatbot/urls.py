@@ -19,7 +19,7 @@ urlpatterns = [
     path('tts/', tts, name='tts'), # 녹음 음성 인식 변화ㅏㄴ
     # 감정 기록 페이지
     path('emotion/', emotion, name='emotion'),
-    path('weekly_emotion_log/', weekly_emotion_log, name='weekly_emotion_log'),
+    # path('weekly_emotion_log/', weekly_emotion_log, name='weekly_emotion_log'),
 
 ]
 if settings.DEBUG:

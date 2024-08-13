@@ -154,7 +154,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_URL = '/login/'  # 로그인 페이지의 URL
 
 LOGIN_REDIRECT_URL = '/character/list'
-#SOCIALACCOUNT_LOGIN_ON_GET = True
+# SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # 소셜 계정 프로바이더 설정
 SOCIALACCOUNT_PROVIDERS = {
