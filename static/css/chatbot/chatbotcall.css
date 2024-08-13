@@ -15,14 +15,52 @@
   --dark-green:#1C5E43;
 }
 
+:root {
+  --black: #151515;
+  --gray100: #ddd;
+  --blue: #92D6E4;
+  --chat-tail-size: 21px;
+}
+
 body{
   font-family:var(--font-family);
   background: #f3f2ec;
 
 }
 
+/* 말풍선 시작 */
 
 
+.speech-bubble {
+  background: #fff;
+  padding: 30px 35px;
+  position: absolute;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  color:#777;
+	width:50%;
+	margin:0 auto;
+	top:50px;
+  left: 40px;
+  font: 14px Helvetica, Arial, sans-serif; 
+  line-height:24px; 
+  background-color:#fff;
+  z-index: 999;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 4px ;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  bottom: -10px;
+  right: 50px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #fff;
+}
+/* 말풍선 추가 끝 */
 .main-container{
   max-width:1000px;
   max-height:700px;
@@ -49,10 +87,13 @@ body{
   padding-top:20px;
   padding-bottom:20px;
 }
+.header-logo {
+  font-size: 30px;
+}
 .header-left{
   display:flex;
   align-items:center;
-  margin-left:60px;
+  margin-left:20px;
 }
 .fa-chevron-left{
   cursor:pointer;
@@ -63,7 +104,7 @@ body{
 .service{
   margin-left:20px;
   margin-right:20px;
-  font-size:24px;
+  font-size:18px;
 }
 .group-button{
   background-color:#2983FB;
@@ -351,6 +392,20 @@ body{
     border-radius:15px 15px 15px 0;
   }
 
+  .chat-message-me{
+    background-color:var(--main-bg-color);
+    margin-left:250px;
+    margin-right:10px;
+    margin-top: 20px;
+    padding:15px 30px;
+    max-width: 250px;
+    overflow-x: scroll;
+    font-size:14px;
+    color:var(--icon-color);
+    border:1px solid gray;
+    border-radius:15px 15px 0 15px;
+  }
+
   
   
   .profile-picture{
@@ -404,6 +459,13 @@ body{
       color:var(--icon-color);
       font-family:var(--font-family);
       outline:none;
+    }
+
+    #record-btn-2 {
+      color: white;
+      margin-right: 20px;
+      width: 32px;
+      height: auto;
     }
     .send{
       cursor:pointer;
