@@ -307,40 +307,37 @@ def chatbot_user_create(request, pk):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-# 감정로그 (누적 대화량)
+#감정 로그 
 @login_required
 def emotion(request):
     user = request.user
     emotions = ["기쁨", "분노", "슬픔", "불안", "두려움"]
-    emotion_counts = {emotion: 0 for emotion in emotions}  # 각 감정별로 대화 횟수를 저장하기 위한 딕셔너리
 
-    # 유저 캐릭터 대화 내용 가져오기
+    emotion_counts = calculate_emotion_counts(user, emotions) # 감정별 전체 대화량
+    weekly_emotion_counts = calculate_weekly_emotion_counts(user, emotions) # 감정별 주간 대화량
+
+    return render(request, 'chatbot/log.html', {
+        'emotion_counts': emotion_counts,
+        'weekly_emotion_counts': weekly_emotion_counts,
+    })
+
+def calculate_emotion_counts(user, emotions): #전체 대화량 계산하는 함수
+    emotion_counts = {emotion: 0 for emotion in emotions}
     user_characters = UserCharacter.objects.filter(user=user)
-
-    # 각 캐릭터 누적 대화량
+    
     for character in user_characters:
         emotion = character.adminCharacter.emotion
         if emotion in emotion_counts:
             emotion_counts[emotion] += ChatbotUserContent.objects.filter(user=user, userCharacter=character).count()
             emotion_counts[emotion] += ChatbotAIContent.objects.filter(user=user, userCharacter=character).count()
+    
+    return emotion_counts
 
-    return render(request, 'chatbot/log.html', {
-        'emotion_counts': emotion_counts,
-    })
-
-
-# 감정로그(일주일 간 대화량)
-@login_required
-def weekly_emotion_log(request):
-    user = request.user
-    emotions = ["기쁨", "분노", "슬픔", "불안", "두려움"]
-
-    # 일주일 간의 감정별 대화량 계산
-    one_week_ago = timezone.now() - timezone.timedelta(days=7)
+def calculate_weekly_emotion_counts(user, emotions): #주간 대화량 계산하는 함수
+    one_week_ago = timezone.now() - timezone.timedelta(days=7) #한시간 단위로 테스트시 hours=1로 수정
     weekly_emotion_counts = {emotion: 0 for emotion in emotions}
-
     user_characters = UserCharacter.objects.filter(user=user)
-
+    
     for character in user_characters:
         emotion = character.adminCharacter.emotion
         if emotion in weekly_emotion_counts:
@@ -348,7 +345,5 @@ def weekly_emotion_log(request):
                 user=user, userCharacter=character, time__gte=one_week_ago).count()
             weekly_emotion_counts[emotion] += ChatbotAIContent.objects.filter(
                 user=user, userCharacter=character, time__gte=one_week_ago).count()
-
-    return render(request, 'chatbot/weekly_log.html', {
-        'weekly_emotion_counts': weekly_emotion_counts
-    })
+    
+    return weekly_emotion_counts
