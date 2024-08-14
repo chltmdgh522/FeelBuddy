@@ -1,31 +1,220 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>감정 로그 페이지</title>
-    {% load static %}
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static '/css/chatbot/log.css' %}" type="text/css">   
-</head>
-<body>
-    <article>
-        <div>
-            <h1>Emotion Tracker</h1>
-            <p>각 캐릭터와의 누적 대화량을 보여줍니다.</p>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/css/emotion/log.css' %}"
+      type="text/css"
+    />
+
+  </head>
+  <body>
+    <!-- 특정 변수 디버깅
+    <h2>emotion_counts 디버그</h2>
+    <pre>{{ emotion_counts|pprint }}</pre>
+
+    <h2>weekly_emotion_counts 디버그</h2>
+    <pre>{{ weekly_emotion_counts|pprint }}</pre> -->
+
+
+    <div class="canvas-center">
+      <div class="toggle">
+        <input type="checkbox" id="btn">
+        <label for="btn">
+          <span class="thumb"></span>
+        </label>
+      </div>
+
+      <div class="canvas">
+        <div class="stars">
+          <div class="star star-1 opacity-quarter"></div>
+          <div class="star star-2 opacity-quarter"></div>
+          <div class="star star-3 opacity-half"></div>
+          <div class="star star-4 opacity-half"></div>
+          <div class="star star-5 opacity-half"></div>
+          <div class="star star-6 opacity-half"></div>
+          <div class="star star-7"></div>
+          <div class="star star-8 opacity-quarter"></div>
+          <div class="star star-9 opacity-quarter"></div>
+          <div class="star star-10"></div>
+          <div class="star star-11"></div>
+          <div class="star star-12 opacity-half"></div>
+          <div class="star star-13 opacity-quarter"></div>
+          <div class="star star-14 opacity-quarter"></div>
+          <div class="star star-15"></div>
+          <div class="star star-16 opacity-half"></div>
+          <div class="star star-17"></div>
+          <div class="star star-18 opacity-half"></div>
+          <div class="star star-19"></div>
+          <div class="star star-20"></div>
+          <div class="star star-21"></div>
+          <div class="star star-22 opacity-half"></div>
+          <div class="star star-23 opacity-quarter"></div>
+          <div class="star star-24 opacity-quarter"></div>
+          <div class="star star-25 opacity-half"></div>
+          <div class="star star-26"></div>
+          <div class="star star-27 opacity-half"></div>
+          <div class="star star-28 opacity-quarter"></div>
+          <div class="star star-29"></div>
+          <div class="star star-30 opacity-half"></div>
+
         </div>
-        <button hidden>Show details</button>
-        
-        <ul>
-            {% for emotion, count in emotion_counts.items %}
-            <li style="--steps: {{ count }}" tabindex="0" aria-label="{{ emotion }}: {{ count }} steps" data-emotion="{{ emotion }}">
-                <b>{{ emotion }}</b>
-                <div>{{ count }}</div>
-            </li>
-            {% endfor %}
-        </ul>
-        <button hidden tabindex="-1">Hide details</button>
-        <script src="{% static 'js/chatbot/log.js' %}"></script>
-    </article>
-</body>
+         <div class="shooting-star"></div>
+         <div class="sun"></div>
+        <div class="forest">
+          <div class="tree tree1"></div>
+          <div class="tree tree2"></div>
+          <div class="tree tree3"></div>
+          <div class="tree tree4"></div>
+          <div class="tree tree5"></div>
+          <div class="tree tree6"></div>
+          <div class="tree tree7"></div>
+          <div class="tree tree8"></div>
+          <div class="tree tree9"></div>
+          <div class="tree tree10"></div>
+          <div class="tree tree11"></div>
+          <div class="tree tree12"></div>
+          <div class="tree tree13"></div>
+          <div class="tree tree14"></div>
+        </div>
+        <div class="house">
+           <div class="windmill">
+        <div class="mill-fan">
+          <div class="fan-wing fan-1">
+            <div class="fan-comb">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+
+              </div>
+          </div>
+           <div class="fan-wing fan-2">
+            <div class="fan-comb">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+
+              </div>
+          </div>
+           <div class="fan-wing fan-3">
+            <div class="fan-comb">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+
+              </div>
+          </div>
+           <div class="fan-wing fan-4">
+            <div class="fan-comb">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+
+              </div>
+          </div>
+        </div>
+      </div>
+          <div class="roof"></div>
+          <div class="floors">
+            <div class="light"></div>
+            <div class="door"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <article>
+      <div>
+          <h1>Emotion Tracker</h1>
+          <p id="description">각 캐릭터와의 누적 대화량을 보여줍니다.</p>
+      </div>
+      <button id="detailsButton">Show details</button>
+
+      <ul id="dataList">
+          {% for emotion, count in emotion_counts.items %}
+          <li style="--steps: {{ count }}" tabindex="0" aria-label="{{ emotion }}: {{ count }} steps" data-emotion="{{ emotion }}">
+              <b>{{ emotion }}</b>
+              <div>{{ count }}</div>
+          </li>
+          {% endfor %}
+      </ul>
+  </article>
+
+
+  <script src="{% static 'js/chatbot/log.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButton = document.getElementById('btn');
+        const description = document.getElementById('description');
+        const dataList = document.getElementById('dataList');
+
+        const cumulativeData = {{ emotion_counts|safe }};
+        const weeklyData = {{ weekly_emotion_counts|safe }};
+
+        function updateContent() {
+            if (toggleButton.checked) {
+                description.textContent = '각 캐릭터와의 일주일 간의 대화량을 보여줍니다.';
+                updateList(weeklyData);
+            } else {
+                description.textContent = '각 캐릭터와의 누적 대화량을 보여줍니다.';
+                updateList(cumulativeData);
+            }
+        }
+
+        function updateList(data) {
+            dataList.innerHTML = '';
+            for (const [emotion, count] of Object.entries(data)) {
+                const li = document.createElement('li');
+                li.style.setProperty('--steps', count);
+                li.setAttribute('tabindex', '0');
+                li.setAttribute('aria-label', `${emotion}: ${count} steps`);
+                li.setAttribute('data-emotion', emotion);
+                li.innerHTML = `<b>${emotion}</b><div>${count}</div>`;
+                dataList.appendChild(li);
+            }
+        }
+
+        // Initial update
+        updateContent();
+
+        // Update when the toggle is clicked
+        toggleButton.addEventListener('change', updateContent);
+    });
+</script>
+
+  </body>
 </html>

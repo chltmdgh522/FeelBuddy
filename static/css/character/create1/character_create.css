@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
+
+.create-left {
+    position: absolute;
+    top:47px;
+    left: 40px;
+    display: flex;
+    background: none;
+
+  }
+
+  .create-left button {
+    width:16px;
+    height:auto;
+    color: aqua;
+    z-index: 999999;
+    display: flex;
+    background: none;
+  }
+  .create-left button a svg {
+    width: 30px;
+    height: auto;
+    color:white;
+  }
+
 .newcreate-content{
     background-color: transparent;
     display: flex;
@@ -21,6 +46,8 @@
     background: none;
     background-color: none;
     color: white;
+
+    font-family: "Gugi", sans-serif;
 }
 
 .character-animation-btn:hover {
