@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>프로필 페이지</title>
-    <link rel="stylesheet" href="{% static '/css/character/character_list/icon.css' %}">
+    <!-- <link rel="stylesheet" href="{% static '/css/character/character_list/icon.css' %}"> -->
     <link rel="stylesheet" href="{% static '/css/user/profile.css' %}" />
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
@@ -25,6 +25,8 @@
 
   
   <body>
+    
+
     <div id="pole">
       <div id="right">
           <div class="logo"><b>P<span>ro</span>f<span>i</span>le</b></div>
@@ -41,15 +43,14 @@
 
             </div>
         </a>
-        <a href="{% url 'users:profile' %}">
-            <div class="icon__account">
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-                </svg>
-
-            </div>
+        <a href="{% url 'character:character_list' %}" role="menuitem">
+          <div class="icon__list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
+              </svg>
+          </div>
         </a>
+        
         {% if first_item %}
             <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
                 <div class="icon__chat">
@@ -75,83 +76,556 @@
         </a>
     </div>
 
-    <!-- 프로필 카드 -->
-    <button class="profile-card" id="profile-btn">
-      <div class="profile-left">
-        <div class="profile-left-content">
-          <!-- 프로필 사진 표시 -->
-          <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="user-image-container">
-              <img
-                id="profile-picture-preview"
-                src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
-                class="user-image"
-              />
-              <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
-              <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
-            </div>
-          </form
-          <p class="user-name">
-            <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
-            <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
-            <i class="ri-pencil-line" id="edit-nickname-icon"></i>
-          </p>
-        </div>
+    
+      <div class="mountains">
+        <div class="mountain-1"></div>
+        <div class="mountain-2"></div>
+        <div class="land-1"></div>
+        <div class="land-2"></div>
+        <div class="land-3"></div>
       </div>
+      <div class="mountains-base"></div>
+      <div class="light-base"></div>
+    
 
-      <div class="profile-right">
-        <div class="profile-email">
-          <div class="profile-contact">
-            <div class="profile-envelope">
-              <div class="email-top">
-                <div class="email-outer">
-                  <div class="email-inner"></div>
-                </div>
+    
+    
+      
+      <button class="profile-card" id="profile-btn">
+        <div class="profile-left">
+          <div class="profile-left-content">
+            <!-- 프로필 사진 표시 -->
+            <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="user-image-container">
+                <img
+                  id="profile-picture-preview"
+                  src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
+                  class="user-image"
+                />
+                <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
+                <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
               </div>
-              <div class="email-bottom"></div>
-              <div class="email-left"></div>
-              <div class="email-right"></div>
-              <div class="email-cover"></div>
-              <div class="email-paper">
-                <a class="mail" href="#">
-                  <div class="i"></div>
-                  {{ user.email }}
-                </a>
+            </form
+            <p class="user-name">
+              <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
+              <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
+              <i class="ri-pencil-line" id="edit-nickname-icon"></i>
+            </p>
+          </div>
+        </div>
+  
+        <div class="profile-right">
+          <div class="profile-email">
+            <div class="profile-contact">
+              <div class="profile-envelope">
+                <div class="email-top">
+                  <div class="email-outer">
+                    <div class="email-inner"></div>
+                  </div>
+                </div>
+                <div class="email-bottom"></div>
+                <div class="email-left"></div>
+                <div class="email-right"></div>
+                <div class="email-cover"></div>
+                <div class="email-paper">
+                  <a class="mail" href="#">
+                    <div class="i"></div>
+                    {{ user.email }}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+          <div class="profile-right-list">
+            <ul>
+              <li><span class=""></span>찜</li>
+              <li><span class=""></span>log</li>
+              <li><span class=""></span>댓글</li>
+              <li><span class=""></span>즐찾</li>
+            </ul>
+          </div>
         </div>
-        <div class="profile-right-list">
-          <ul>
-            <li><span class=""></span>찜</li>
-            <li><span class=""></span>log</li>
-            <li><span class=""></span>댓글</li>
-            <li><span class=""></span>즐찾</li>
-          </ul>
-        </div>
-      </div>
-    </button>
+      </button>
+    
+    <!-- 프로필 카드 -->
+    
  
-
+ 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  // 프로필 카드 상태를 관리하는 변수
-  var isCardStraight = localStorage.getItem('isCardStraight') === 'true';
 
-  // 페이지 로드 시 카드 상태 설정
-  window.addEventListener('load', function() {
+  
+  <script>
+    function Star(id, x, y){
+    this.id = id;
+    this.x = x;
+    this.y = y;
+    this.r = Math.floor(Math.random()*2)+1;
+    var alpha = (Math.floor(Math.random()*10)+1)/10/2;
+    this.color = "rgba(255,255,255,"+alpha+")";
+  }
+  
+  Star.prototype.draw = function() {
+    ctx.fillStyle = this.color;
+    ctx.shadowBlur = this.r * 2;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+    ctx.closePath();
+    ctx.fill();
+  }
+  
+  Star.prototype.move = function() {
+    this.y -= .15 + params.backgroundSpeed/100;
+    if (this.y <= -10) this.y = HEIGHT + 10;
+    this.draw();
+  }
+  
+  
+  function Dot(id, x, y, r) {
+    this.id = id;
+    this.x = x;
+    this.y = y;
+    this.r = Math.floor(Math.random()*5)+1;
+    this.maxLinks = 2;
+    this.speed = .5;
+    this.a = .5;
+    this.aReduction = .005;
+    this.color = "rgba(255,255,255,"+this.a+")";
+    this.linkColor = "rgba(255,255,255,"+this.a/4+")";
+  
+    this.dir = Math.floor(Math.random()*140)+200;
+  }
+  
+  Dot.prototype.draw = function() {
+    ctx.fillStyle = this.color;
+    ctx.shadowBlur = this.r * 2;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+    ctx.closePath();
+    ctx.fill();
+  }
+  
+  Dot.prototype.link = function() {
+    if (this.id == 0) return;
+    var previousDot1 = getPreviousDot(this.id, 1);
+    var previousDot2 = getPreviousDot(this.id, 2);
+    var previousDot3 = getPreviousDot(this.id, 3);
+    if (!previousDot1) return;
+    ctx.strokeStyle = this.linkColor;
+    ctx.moveTo(previousDot1.x, previousDot1.y);
+    ctx.beginPath();
+    ctx.lineTo(this.x, this.y);
+    if (previousDot2 != false) ctx.lineTo(previousDot2.x, previousDot2.y);
+    if (previousDot3 != false) ctx.lineTo(previousDot3.x, previousDot3.y);
+    ctx.stroke();
+    ctx.closePath();
+  }
+  
+  function getPreviousDot(id, stepback) {
+    if (id == 0 || id - stepback < 0) return false;
+    if (typeof dots[id - stepback] != "undefined") return dots[id - stepback];
+    else return false;//getPreviousDot(id - stepback);
+  }
+  
+  Dot.prototype.move = function() {
+    this.a -= this.aReduction;
+    if (this.a <= 0) {
+      this.die();
+      return
+    }
+    this.color = "rgba(255,255,255,"+this.a+")";
+    this.linkColor = "rgba(255,255,255,"+this.a/4+")";
+    this.x = this.x + Math.cos(degToRad(this.dir))*(this.speed+params.dotsSpeed/100),
+    this.y = this.y + Math.sin(degToRad(this.dir))*(this.speed+params.dotsSpeed/100);
+  
+    this.draw();
+    this.link();
+  }
+  
+  Dot.prototype.die = function() {
+      dots[this.id] = null;
+      delete dots[this.id];
+  }
+  
+  
+  var canvas  = document.getElementById('canvas'),
+    ctx = canvas.getContext('2d'),
+    WIDTH,
+    HEIGHT,
+    mouseMoving = false,
+    mouseMoveChecker,
+    mouseX,
+    mouseY,
+    stars = [],
+    initStarsPopulation = 80,
+    dots = [],
+    dotsMinDist = 2,
+    params = {
+      maxDistFromCursor: 50,
+      dotsSpeed: 0,
+      backgroundSpeed: 0
+    };
+  
+  var gui;
+  gui = new dat.GUI();
+  gui.add(params, 'maxDistFromCursor').min(0).max(100).step(10).name('Size');
+  gui.add(params, 'dotsSpeed').min(0).max(100).step(.5).name('Speed');
+  gui.add(params, 'backgroundSpeed').min(0).max(150).step(1).name('Sky speed');
+  gui.open();
+  
+  setCanvasSize();
+  init();
+  
+  function setCanvasSize() {
+    WIDTH = document.documentElement.clientWidth,
+      HEIGHT = document.documentElement.clientHeight;                      
+  
+    canvas.setAttribute("width", WIDTH);
+    canvas.setAttribute("height", HEIGHT);
+  }
+  
+  function init() {
+    ctx.strokeStyle = "white";
+    ctx.shadowColor = "white";
+    for (var i = 0; i < initStarsPopulation; i++) {
+      stars[i] = new Star(i, Math.floor(Math.random()*WIDTH), Math.floor(Math.random()*HEIGHT));
+      //stars[i].draw();
+    }
+    ctx.shadowBlur = 0;
+    animate();
+  }
+  
+  function animate() {
+      ctx.clearRect(0, 0, WIDTH, HEIGHT);
+  
+      for (var i in stars) {
+        stars[i].move();
+      }
+      for (var i in dots) {
+        dots[i].move();
+      }
+      drawIfMouseMoving();
+      requestAnimationFrame(animate);
+  }
+  
+  window.onmousemove = function(e){
+    mouseMoving = true;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    clearInterval(mouseMoveChecker);
+    mouseMoveChecker = setTimeout(function() {
+      mouseMoving = false;
+    }, 100);
+  }
+  
+  
+  function drawIfMouseMoving(){
+    if (!mouseMoving) return;
+  
+    if (dots.length == 0) {
+      dots[0] = new Dot(0, mouseX, mouseY);
+      dots[0].draw();
+      return;
+    }
+  
+    var previousDot = getPreviousDot(dots.length, 1);
+    var prevX = previousDot.x; 
+    var prevY = previousDot.y; 
+  
+    var diffX = Math.abs(prevX - mouseX);
+    var diffY = Math.abs(prevY - mouseY);
+  
+    if (diffX < dotsMinDist || diffY < dotsMinDist) return;
+  
+    var xVariation = Math.random() > .5 ? -1 : 1;
+    xVariation = xVariation*Math.floor(Math.random()*params.maxDistFromCursor)+1;
+    var yVariation = Math.random() > .5 ? -1 : 1;
+    yVariation = yVariation*Math.floor(Math.random()*params.maxDistFromCursor)+1;
+    dots[dots.length] = new Dot(dots.length, mouseX+xVariation, mouseY+yVariation);
+    dots[dots.length-1].draw();
+    dots[dots.length-1].link();
+  }
+  //setInterval(drawIfMouseMoving, 17);
+  
+  function degToRad(deg) {
+    return deg * (Math.PI / 180);
+  }
+  
+  
+  </script>
+  <script>
+    // 프로필 카드 상태를 관리하는 변수
+    var isCardStraight = false;
+    var isEditing = false;  // 편집 중인지 여부를 나타내는 변수
+  
+    // 프로필 카드 상태를 설정하는 함수
+    function setCardState(straight) {
+      var profileBtn = document.getElementById('profile-btn');
+      if (straight) {
+        profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
+        profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
+      } else {
+        profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
+        profileBtn.style.boxShadow = '0';
+      }
+    }
+  
+    // 페이지 로드 시 카드를 누워있는 상태로 설정
+    window.addEventListener('load', function() {
+      setCardState(false);
+    });
+  
+    // 프로필 카드를 클릭했을 때 똑바로 세우는 기능
+    document.getElementById('profile-btn').addEventListener('click', function(event) {
+      if (!isCardStraight) {
+        setCardState(true);
+        isCardStraight = true;
+      }
+    });
+  
+    // 페이지의 다른 부분을 클릭했을 때 카드를 원래 상태로 돌리는 기능
+    document.addEventListener('click', function(event) {
+      var profileBtn = document.getElementById('profile-btn');
+      if (isCardStraight && !profileBtn.contains(event.target) && !isEditing) {
+        setCardState(false);
+        isCardStraight = false;
+      }
+    });
+  
+    // 프로필 사진 수정 기능
+    document.getElementById('edit-profile-pic-icon').addEventListener('click', function(event) {
+      event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+      document.getElementById('profile-pic-input').click();
+      isEditing = true;  // 편집 중 상태로 설정
+    });
+  
+    document.getElementById('profile-pic-input').addEventListener('change', function(event) {
+      var formData = new FormData();
+      formData.append('profile_picture', event.target.files[0]);
+      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+      
+      // 닉네임도 함께 전송
+      var nicknameInput = document.getElementById('nickname-input');
+      formData.append('nickname', nicknameInput.value);
+  
+      $.ajax({
+        url: "{% url 'users:profile' %}",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          // 프로필 사진 미리보기 업데이트
+          document.getElementById('profile-picture-preview').src = response.profile_picture_url;
+          // 닉네임도 업데이트 (닉네임이 사라지지 않도록)
+          document.getElementById('nickname-display').innerText = response.nickname;
+          
+          // 저장이 완료되면 카드를 원래 상태로 돌림
+          setCardState(false);
+          isCardStraight = false;
+          isEditing = false;  // 편집 상태 종료
+        },
+        error: function() {
+          alert('프로필 사진을 업데이트하는 중 오류가 발생했습니다.');
+        }
+      });
+    });
+  
+    // 닉네임 수정 기능
+    document.getElementById('edit-nickname-icon').addEventListener('click', function(event) {
+      event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+      var nicknameDisplay = document.getElementById('nickname-display');
+      var nicknameInput = document.getElementById('nickname-input');
+      
+      nicknameDisplay.style.display = 'none';
+      nicknameInput.style.display = 'inline';
+      nicknameInput.focus();
+      
+      // 닉네임 수정 중에는 카드가 똑바로 서 있도록 함
+      setCardState(true);
+      isCardStraight = true;
+      isEditing = true;  // 편집 중 상태로 설정
+    });
+  
+    document.getElementById('nickname-input').addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // 기본 엔터 동작(폼 제출)을 막음
+        saveNickname();
+      }
+    });
+  
+    document.getElementById('nickname-input').addEventListener('blur', function() {
+      saveNickname();
+    });
+  
+    function saveNickname() {
+      var nicknameDisplay = document.getElementById('nickname-display');
+      var nicknameInput = document.getElementById('nickname-input');
+      
+      var formData = new FormData();
+      formData.append('nickname', nicknameInput.value);
+      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  
+      $.ajax({
+        url: "{% url 'users:profile' %}",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          nicknameDisplay.innerText = response.nickname;
+          nicknameDisplay.style.display = 'inline';
+          nicknameInput.style.display = 'none';
+          
+          // 저장이 완료되면 카드를 원래 상태로 돌림
+          setCardState(false);
+          isCardStraight = false;
+          isEditing = false;  // 편집 상태 종료
+        },
+        error: function() {
+          alert('닉네임을 업데이트하는 중 오류가 발생했습니다.');
+        }
+      });
+    }
+  </script>
+<!-- <script>
+  // 프로필 카드 상태를 관리하는 변수
+  var isCardStraight = false;
+
+  // 프로필 카드 상태를 설정하는 함수
+  function setCardState(straight) {
     var profileBtn = document.getElementById('profile-btn');
-    if (isCardStraight) {
-      // 카드를 바로 서 있게 함
+    if (straight) {
       profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
       profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
     } else {
-      // 처음 로드 시 누워있게 함
       profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
       profileBtn.style.boxShadow = '0';
     }
+  }
+
+  // 페이지 로드 시 카드를 누워있는 상태로 설정
+  window.addEventListener('load', function() {
+    setCardState(false);
   });
+
+  // 프로필 카드를 클릭했을 때 똑바로 세우는 기능
+  document.getElementById('profile-btn').addEventListener('click', function(event) {
+    if (!isCardStraight) {
+      setCardState(true);
+      isCardStraight = true;
+    }
+  });
+
+  // 프로필 사진 수정 기능
+  document.getElementById('edit-profile-pic-icon').addEventListener('click', function(event) {
+    event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+    document.getElementById('profile-pic-input').click();
+  });
+
+  document.getElementById('profile-pic-input').addEventListener('change', function(event) {
+    var formData = new FormData();
+    formData.append('profile_picture', event.target.files[0]);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+    
+    // 닉네임도 함께 전송
+    var nicknameInput = document.getElementById('nickname-input');
+    formData.append('nickname', nicknameInput.value);
+
+    $.ajax({
+      url: "{% url 'users:profile' %}",
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // 프로필 사진 미리보기 업데이트
+        document.getElementById('profile-picture-preview').src = response.profile_picture_url;
+        // 닉네임도 업데이트 (닉네임이 사라지지 않도록)
+        document.getElementById('nickname-display').innerText = response.nickname;
+        
+        // 저장이 완료되면 카드를 원래 상태로 돌림
+        setCardState(false);
+        isCardStraight = false;
+      },
+      error: function() {
+        alert('프로필 사진을 업데이트하는 중 오류가 발생했습니다.');
+      }
+    });
+  });
+
+  // 닉네임 수정 기능
+  document.getElementById('edit-nickname-icon').addEventListener('click', function(event) {
+    event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+    var nicknameDisplay = document.getElementById('nickname-display');
+    var nicknameInput = document.getElementById('nickname-input');
+    
+    nicknameDisplay.style.display = 'none';
+    nicknameInput.style.display = 'inline';
+    nicknameInput.focus();
+    
+    // 닉네임 수정 중에는 카드가 똑바로 서 있도록 함
+    setCardState(true);
+    isCardStraight = true;
+  });
+
+  document.getElementById('nickname-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // 기본 엔터 동작(폼 제출)을 막음
+      saveNickname();
+    }
+  });
+
+  document.getElementById('nickname-input').addEventListener('blur', function() {
+    saveNickname();
+  });
+
+  function saveNickname() {
+    var nicknameDisplay = document.getElementById('nickname-display');
+    var nicknameInput = document.getElementById('nickname-input');
+    
+    var formData = new FormData();
+    formData.append('nickname', nicknameInput.value);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    $.ajax({
+      url: "{% url 'users:profile' %}",
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        nicknameDisplay.innerText = response.nickname;
+        nicknameDisplay.style.display = 'inline';
+        nicknameInput.style.display = 'none';
+        
+        // 저장이 완료되면 카드를 원래 상태로 돌림
+        setCardState(false);
+        isCardStraight = false;
+      },
+      error: function() {
+        alert('닉네임을 업데이트하는 중 오류가 발생했습니다.');
+      }
+    });
+  }
+</script> -->
+<!-- <script>
+  // 프로필 카드 상태를 관리하는 변수
+  var isCardStraight = localStorage.getItem('isCardStraight') === 'true';
+
+  // // 페이지 로드 시 카드 상태 설정
+  // window.addEventListener('load', function() {
+  //   var profileBtn = document.getElementById('profile-btn');
+  //   if (isCardStraight) {
+  //     // 카드를 바로 서 있게 함
+  //     profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
+  //     profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
+  //   } else {
+  //     // 처음 로드 시 누워있게 함
+  //     profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
+  //     profileBtn.style.boxShadow = '0';
+  //   }
+  // });
 
   // 프로필 카드를 클릭했을 때 똑바로 세우는 기능
   document.getElementById('profile-btn').addEventListener('click', function(event) {
@@ -196,6 +670,7 @@
       }
     });
   });
+
 
   // 닉네임 수정 기능
   document.getElementById('edit-nickname-icon').addEventListener('click', function(event) {
@@ -243,7 +718,8 @@
       }
     });
   }
-</script>
+</script> -->
+
 
 </body>
 </html>

@@ -233,24 +233,7 @@
   center;
 }
 
-.table-button {
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  justify-content: center;
-  align-items: center;
-  padding-right: 5px;
-}
 
-.table-button svg:nth-child(1),
-.table-button svg:nth-child(2),
-.table-button svg:nth-child(3) {
-  width: 25px;
-  height: auto;
-  margin-left: 5px;
-}
 
 
 
@@ -406,4 +389,122 @@
       height: 5em;
       width: 5em;
   }
+}
+
+/* 버튼 추가 */
+.table-button {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+.table-button a svg {
+  width: 30%;
+  height: auto;
+  margin-left: 5px;
+  opacity: 0;
+}
+.table-button svg:nth-child(1),
+.table-button svg:nth-child(2) {
+  width: 30%;
+  height: auto;
+  margin-left: 5px;
+  opacity: 0;
+}
+
+.table-button svg:nth-child(1):hover,
+.table-button svg:nth-child(2):hover,
+.table-button svg:nth-child(3):hover {
+  opacity: 1;
+}
+
+/* Default variables converted to CSS values */
+.defaultDuration {
+  --default-duration: .3s;
+}
+
+.primaryColour {
+  --primary-colour: #ececec;
+}
+
+.secondaryColour {
+  --secondary-colour: #666;
+}
+
+.shadowColour {
+  --shadow-colour: rgba(0, 0, 0, .6);
+}
+
+/* Default styles for the demo buttons */
+.button {
+  /* margin: .4em; */
+  margin: 0;
+  padding: 1em;
+  cursor: pointer;
+  background: var(--primary-colour);
+  text-decoration: none;
+  color: var(--secondary-colour);
+  z-index: 10;
+
+}
+
+.glow {
+  display: inline-block;
+  transition-duration: var(--default-duration);
+  transition-property: box-shadow;
+  width: 40%;
+
+  /* Mixin: hideTapHighlightColor */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  /* Mixin: hardwareAccel */
+  transform: translateZ(0);
+
+  /* Mixin: improveAntiAlias */
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.glow:hover {
+  box-shadow: 0 0 8px var(--shadow-colour);
+}
+
+.outline-outward {
+  display: inline-block;
+  position: relative;
+  --outer-border-width: 4px;
+  --inner-border-width: 4px;
+  width: 40%;
+
+  /* Mixin: hideTapHighlightColor */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  /* Mixin: hardwareAccel */
+  transform: translateZ(0);
+
+  /* Mixin: improveAntiAlias */
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.outline-outward:before {
+  content: '';
+  position: absolute;
+  border: var(--primary-colour) solid var(--outer-border-width);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition-duration: var(--default-duration);
+  transition-property: top, right, bottom, left;
+}
+
+.outline-outward:hover:before {
+  top: calc(-1 * (var(--outer-border-width) + var(--inner-border-width)));
+  right: calc(-1 * (var(--outer-border-width) + var(--inner-border-width)));
+  bottom: calc(-1 * (var(--outer-border-width) + var(--inner-border-width)));
+  left: calc(-1 * (var(--outer-border-width) + var(--inner-border-width)));
 }
