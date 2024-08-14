@@ -127,7 +127,7 @@ article {
             background: linear-gradient(#8082, #0002);
             border-top: 1px dashed #f0f;
             bottom: 50%;
-            content: "10,000 Steps";
+            content: "max-steps";
             font-size: 1.25vmin;
             height: 0;
             left: -5%;
@@ -137,6 +137,32 @@ article {
             transform: rotate3d(1, 0, 0, -90deg);
             transform-origin: bottom center;
             width: 110%;
+        }
+
+        /* 감정별 색상 지정 */
+        li[data-emotion="분노"] {
+          background-color: #f2756f; /* 빨강 */
+          --emotion-color: #f2756f;
+        }
+
+        li[data-emotion="두려움"] {
+          background-color: #ddccf4; /* 보라 */
+          --emotion-color:#ddccf4;
+        }
+
+        li[data-emotion="불안"] {
+          background-color: #fcd671; /* 노랑 */
+          --emotion-color:#fcd671;
+        }
+
+        li[data-emotion="기쁨"] {
+          background-color: #a7e9b1; /* 초록 */
+          --emotion-color: #a7e9b1; /* 초록 */
+        }
+
+        li[data-emotion="슬픔"] {
+          background-color: #8fdee3; /* 파랑 */
+          --emotion-color: #8fdee3; /* 파랑 */
         }
 
         li {
@@ -188,6 +214,7 @@ article {
 
             &[data-emotion="두려움"] b::after {
                 content: "두려움";
+                
             }
 
             &[data-emotion="불안"] b::after {
@@ -236,7 +263,7 @@ article {
             }
 
             div {
-                background: linear-gradient(hsl(var(--colorDeg), 48%, 40%), hsl(var(--colorDeg), 48%, 30%));
+              background: var(--emotion-color);
                 box-shadow: inset 0 0 0 1px #0002;
                 color: hsl(var(--colorDeg), 48%, 30%);
                 font-size: 0;
@@ -253,7 +280,7 @@ article {
                 &::before,
                 &::after {
                     align-items: center;
-                    background: linear-gradient(hsl(var(--colorDeg), 48%, 65%), hsl(var(--colorDeg), 48%, 50%));
+                    background: var(--emotion-color);
                     box-shadow: inset 0 0 0 1px #0002;
                     box-sizing: border-box;
                     color: hsl(var(--color), 48%, 20%);
@@ -275,7 +302,7 @@ article {
                 }
 
                 &::before {
-                    background: linear-gradient(hsl(var(--colorDeg), 48%, 40%), hsl(var(--colorDeg), 48%, 30%));
+                  background: var(--emotion-color);
                     content: "";
                     transform: translate3d(0, 0, 4vmin);
                     transform-origin: top right;
@@ -344,7 +371,7 @@ article {
             }
 
             li {
-                --height: calc(20vmin * var(--steps) / 10000);
+                --height: calc(20vmin * var(--steps) / var(--max-steps)); 
                 transition: transform var(--transition-duration);
                 transition-delay: var(--transition-delay);
 
@@ -393,6 +420,7 @@ article {
         }
     }
 }
+
 
 
 /* 두 번째 article css 시작 */
@@ -477,7 +505,7 @@ article {
     background: linear-gradient(#8082, #0002);
     border-top: 1px dashed #f0f;
     bottom: 50%;
-    content: "10,000 Steps";
+    content: "max steps";
     font-size: 1.25vmin;
     height: 0;
     left: -5%;
@@ -1185,16 +1213,16 @@ label[for=btn] {
 label[for=btn]:before, 
 label[for=btn]:after {
 	--clr: var(--on);
-	content: "ON";
+	content: "주간";
 	color: #fff;
-	font-family: 'Varela Round', serif;
+	font-family: Roboto;
 	width: 50%;
 	float: left;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	height: 100%;
-	font-size: calc(var(--sz)* 0.75);
+	font-size: calc(var(--sz)* 0.65);
 	padding: 0 0 0 calc(var(--sz)* 0.2);
 	box-sizing: border-box;
 	transform-origin: 100% 50%;
@@ -1206,7 +1234,8 @@ label[for=btn]:after {
 }
 
 label[for=btn]:after {
-	content: "OFF";
+	content: "누적";
+  font-family: Roboto
 	padding: 0 calc(var(--sz) * 0.325) 0 0;
 	transform-origin: 0% 50%;
 	--clr: var(--off);
@@ -1264,3 +1293,5 @@ span.thumb:after {
 	--clr: var(--on);
 	--shn: #fff;
 }
+
+

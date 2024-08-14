@@ -39,7 +39,7 @@
     <div class="container b-container" id="b-container">
         <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
             {% csrf_token %}
-            <h2 class="form_title title">Login in to Website</h2>
+            <h2 class="form_title title">Login in to FeelBuddy</h2>
             <div class="form__icons">
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
@@ -58,20 +58,29 @@
         </form>
     
         <!-- 소셜 로그인 부분을 다른 form과 분리 -->
-        <div>
+        <div class="social-container">
+        {% load socialaccount %}
             <form action="{% provider_login_url 'google' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">login with Google</button>
+                <button class="p-0" type="submit" style="border: 0; background: transparent">
+                    <img src="/media/social-btn/google_btn.png" height=38px width=155px alt="Log In With google"/>
+                </button>
             </form>
             <form action="{% provider_login_url 'naver' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">login with Naver</button>
+                <button class="p-0" type="submit" style="border: 0; background: transparent">
+                    <img src="/media/social-btn/btnG_official.png" height=38px width=155px alt="Log In With naver"/>
+                </button>
             </form>
             <form action="{% provider_login_url 'kakao' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">login with Kakao</button>
+                <button class="p-0" type="submit" style="border: 0; background: transparent">
+                    <img src="/media/social-btn/kakao_login_medium_narrow.png" height=38px alt="Log In With Kakao"/>
+                </button>
             </form>
         </div>
+        <!-- 소셜 로그인 끝 -->
+
     </div>
 
     
