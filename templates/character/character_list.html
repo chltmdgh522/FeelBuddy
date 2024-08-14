@@ -50,11 +50,11 @@
         }
 
         .arrow.left {
-            left: 10vmin;
+            left: 0;
         }
 
         .arrow.right {
-            right: -5vmin;
+            right: 0;
         }
 
         .room {
@@ -138,108 +138,6 @@
     </div>
     <!-- <div class="arrow right">&rarr;</div> -->
 
-
-    <section class="room" id="room2">
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
-                  {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
-
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'character:character_detail' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                 alt="{{ character.adminCharacter.emotion }}"
-                                 class="">
-                        </a>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-
-        </div>
-        <div class="room2-walls">
-            <!-- 열기구 창문 시작 -->
-            <div class="balloon-container">
-                <div class="sun sun-1"></div>
-                <div class="sun sun-2"></div>
-                <div class="sun sun-3"></div>
-                <div class="sun sun-4"></div>
-                <div class="landscape landscape-1"></div>
-                <div class="landscape landscape-2"></div>
-                <div class="landscape landscape-3"></div>
-                <div class="landscape landscape-4"></div>
-                <div class="landscape landscape-5"></div>
-                <div class="tree tree-1"></div>
-                <div class="tree tree-2"></div>
-                <div class="tree tree-3"></div>
-                <div class="tree tree-4"></div>
-                <div class="tree tree-5"></div>
-                <div class="tree tree-6"></div>
-                <div class="tree tree-7"></div>
-                <div class="moon-1"></div>
-                <div class="moon-2"></div>
-                <div class="baloon">
-                    <div class="baloon-1">
-                        <div class="strip-1">
-                            <div class="strip-2"></div>
-                        </div>
-                        <div class="bottom-strip"></div>
-                    </div>
-                    <div class="line line-1"></div>
-                    <div class="line line-2"></div>
-                    <div class="line line-3"></div>
-                    <div class="line line-4"></div>
-                    <div class="basket">
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-            <!-- 열기구 창문 끝 -->
-
-            <div class='room2-stairs'>
-                <div class='stair stair2'>
-
-                    <div class='face top'></div>
-                    <div class='face front'></div>
-
-                </div>
-            </div>
-
-
-        </div>
-
-    </section>
-
     <section class="room active" id="room1">
         <!-- 모바일 반응형에 따른 캐릭터 scene -->
         <div class="mobile-character-center">
@@ -269,9 +167,31 @@
                         <div class="table-right"></div>
                         <div class="table-front">
                             <div class="table-button">
-                                <div class="">
+                                <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
 
-                                </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                    </svg>
+                                </a>
+
+                                <a href="{% url 'character:character_detail' character.pk %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path>
+                                    </svg>
+                                </a>
+
+                                <form method="post"
+                                      action="{% url 'character:trash_delete' character.pk %}" onsubmit="return confirmDelete();" >
+                                    {% csrf_token %}
+                                    <button style="
+                                    cursor: pointer;
+                                    background-color: transparent; 
+                                    border: none; padding: 0;" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+                                        </svg>
+                                    </button>
+                                </form>
 
                             </div>
                         </div>
@@ -408,6 +328,108 @@
 
         </div>
     </section>
+
+    <section class="room" id="room2">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                {% for character in user_characters %}
+                    <a href="{% url 'character:character_detail' character.pk %}">
+                        <img src="{{ character.adminCharacter.image.url }}"
+                             alt="{{ character.adminCharacter.emotion }}"
+                             class="">
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="character-main" id="characterMain">
+            {% for character in user_characters %}
+
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+        </div>
+        <div class="room2-walls">
+            <!-- 열기구 창문 시작 -->
+            <div class="balloon-container">
+                <div class="sun sun-1"></div>
+                <div class="sun sun-2"></div>
+                <div class="sun sun-3"></div>
+                <div class="sun sun-4"></div>
+                <div class="landscape landscape-1"></div>
+                <div class="landscape landscape-2"></div>
+                <div class="landscape landscape-3"></div>
+                <div class="landscape landscape-4"></div>
+                <div class="landscape landscape-5"></div>
+                <div class="tree tree-1"></div>
+                <div class="tree tree-2"></div>
+                <div class="tree tree-3"></div>
+                <div class="tree tree-4"></div>
+                <div class="tree tree-5"></div>
+                <div class="tree tree-6"></div>
+                <div class="tree tree-7"></div>
+                <div class="moon-1"></div>
+                <div class="moon-2"></div>
+                <div class="baloon">
+                    <div class="baloon-1">
+                        <div class="strip-1">
+                            <div class="strip-2"></div>
+                        </div>
+                        <div class="bottom-strip"></div>
+                    </div>
+                    <div class="line line-1"></div>
+                    <div class="line line-2"></div>
+                    <div class="line line-3"></div>
+                    <div class="line line-4"></div>
+                    <div class="basket">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 열기구 창문 끝 -->
+
+            <div class='room2-stairs'>
+                <div class='stair stair2'>
+
+                    <div class='face top'></div>
+                    <div class='face front'></div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
 
     <!-- <section class="room" id="room3">
         <div class="mobile-character-center">
@@ -572,7 +594,7 @@
     <section class="room" id="room4">
         <div class="mobile-character-center">
             <div class="mobile-character-main">
-                    {% for character in user_characters %}
+                {% for character in user_characters %}
                     <a href="{% url 'character:character_detail' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
@@ -886,6 +908,12 @@
 <script src="{% static '/js/character/character_list/clock.js' %}"></script>
 <script src="{% static '/js/character/character_list/wall.js' %}"></script>
 <script src="{% static '/js/character/character_list/nav.js' %}"></script>
+<script>
+    function confirmDelete() {
+        return confirm("휴지통에 버리시겠습니까?");
+    }
+</script>
+
 <script>
     const rooms = document.querySelectorAll('.room'); // 모든 방 요소를 선택
     const leftArrow = document.querySelector('.arrow.left'); // 왼쪽 화살표 버튼을 선택

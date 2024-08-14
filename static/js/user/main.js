@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainImage = document.getElementById("main-image");
     const nintendoLogo = document.getElementById("game-and-watch-nintendo-logo");
     const miniNintendoLogo = document.getElementById("mini-classic-logo");
+    
 
     const imageFiles = ["media/fear.png", "media/sad.png", "media/anger.png", "media/anxiety.png", "media/joy.png"];
     const logoTexts = ["fear", "sad", "anger", "anxiety", "joy"];
@@ -43,4 +44,6 @@ document.addEventListener("DOMContentLoaded", function() {
         currentTopPosition += 10;
         mainImage.style.transform = `translateY(${currentTopPosition}px)`;
     });
+
+    
 });

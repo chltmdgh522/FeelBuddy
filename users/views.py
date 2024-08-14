@@ -6,6 +6,18 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile, User
+from django.contrib.auth.tokens import default_token_generator
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.core.mail import EmailMessage
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.http import HttpResponse
+from django.conf import settings
+from django.core.mail import send_mail
+from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
+#닉네임 랜덤 생성
 from django.core.exceptions import ObjectDoesNotExist
 import random
 # Create your views here.
@@ -23,13 +35,14 @@ def main(request):
               '눈부신 별빛', '상쾌한 아침', '고요한 숲속', '푸른 초원', '싱그러운 숲', 
               '달콤한 향기', '따스한 햇살', '부드러운 파도', '맑은 시냇물', '청명한 하늘', 
               '촉촉한 이슬', '평화로운 들판', '차가운 바람', '잔잔한 파도', '푸른 나무']
+
             display_name = random.choice(random_names)
 
     context = {
         'display_name': display_name
     }
 
-    return render(request, 'user/test.html', context)
+    return render(request, 'user/main.html', context)
 
 def signup(request):
     if request.user.is_authenticated:
@@ -56,13 +69,15 @@ def signup(request):
             user.save()
 
             ################### 프로필 객체 생성 및 닉네임 할당 (2차 수정)
-            profile = Profile.objects.create(user=user)
-            profile.nickname = profile.get_random_nickname()  # 랜덤 닉네임 할당
-            profile.save()
+            # 이미 존재하는지 확인
+            if not Profile.objects.filter(user=user).exists():
+                profile = Profile.objects.create(user=user)
+                profile.nickname = profile.get_random_nickname()
+                profile.save()
 
             return redirect('users:login')
         except Exception as e:
-            return render(request, 'user/signup.html', {'error': '회원가입에 실패했습니다.'})
+            return render(request, 'user/signup.html', {'error': f'회원가입에 실패했습니다: {str(e)}'})
 
     return render(request, 'user/signup.html')
 

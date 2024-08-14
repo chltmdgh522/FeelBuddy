@@ -1,40 +1,48 @@
-{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Synthesis Example</title>
 </head>
 <body>
-    <div>
-        <a href="{% url 'users:signup' %}">회원가입</a>
-        <a href="{% url 'users:login' %}">로그인</a>
-        <a href="{% url 'users:logout' %}">로그아웃</a>
-        <form action="{% provider_login_url 'google' %}" method="post">
-            {% csrf_token %}
-            <button>login with Google</button>
-        </form>
-        <form action="{% provider_login_url 'naver' %}" method="post">
-            {% csrf_token %}
-            <button>login with Naver</button>
-        </form>
-        <form action="{% provider_login_url 'kakao' %}" method="post">
-            {% csrf_token %}
-            <button>login with Kakao</button>
-        </form>
+<h1>Speech Synthesis Example</h1>
+<p>Click the button to hear "Hello, world!" in Korean.</p>
 
-        <a href="{% url 'feedback:feedback_list' %}">피드백페이지로 이동</a>
-    </div>
-    <div>
-        {% csrf_token %}
-        {% if user.is_authenticated %}
-            <p>
-                <a href="{% url 'users:profile' %}">
-                    {{ display_name }}
-                </a>님이 로그인 중
-            </p>
-        {% endif %}
-    </div>
 
+<!-- 버튼 추가 -->
+<button id="speakButton">Speak</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const speech = new SpeechSynthesisUtterance('가나다라마바사아자차카타파하! 세종대왕님이 만든 한글');
+    speech.lang = 'ko-KR'; // 한국어
+    speech.pitch = 0;
+    speech.rate = 1.5;
+
+    function setVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        const selectedVoice = voices.find(voice => voice.name.includes('Google 한글의')); // 원하는 음성 이름으로 변경
+
+        if (selectedVoice) {
+            speech.voice = selectedVoice;
+        } else {
+            console.log('Selected voice not found.');
+        }
+    }
+
+    // 음성 목록 로딩 후 음성 설정 
+    if (window.speechSynthesis.getVoices().length) {
+        setVoice();
+    } else {
+        window.speechSynthesis.onvoiceschanged = setVoice;
+    }
+
+    // 버튼 클릭 시 음성을 재생합니다.
+    document.getElementById('speakButton').addEventListener('click', () => {
+        window.speechSynthesis.speak(speech);
+    });
+});
+</script>
 </body>
 </html>
