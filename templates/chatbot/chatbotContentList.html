@@ -120,7 +120,9 @@
         <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다.  -->
         <button>
             <a href="{% url 'character:character_list' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path>
+                </svg>
             </a>
         </button>
         <i class="fas fa-chevron-left"></i>
@@ -152,9 +154,6 @@
 </header>
 
 <!-- 모바일 반응형 header 끝-->
-
-
-
 
 
 <div class="chat-arrow left">&larr;</div>
@@ -230,8 +229,8 @@
 <div id="pole">
     <div id="right">
         <div class="logo"><b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b></div>
-      <!-- <a class="sign-link" href="#"><h1 contenteditable spellcheck="false">feelbuddy</h1></a>
-      <div id="right-arrow"></div> -->
+        <!-- <a class="sign-link" href="#"><h1 contenteditable spellcheck="false">feelbuddy</h1></a>
+        <div id="right-arrow"></div> -->
     </div>
 </div>
 <!-- 네온사인 표지판 추가 끝 -->
@@ -243,7 +242,7 @@
 <div class="chat-content active" id="chat-content-1">
 
     <div class="chat-content-body-1">
-        
+
         <div class="chat-buildings">
             <div class="chat-window"></div>
             <div class="chat-window"></div>
@@ -344,14 +343,14 @@
                 {% endfor %}
             </div>
             <div class="chat" id="chat">
-                
+
                 <header class="chat-header" id="header">
                     <div class="header-left">
                         <i class="fas fa-chevron-left"></i>
                     </div>
                     <span><p>Feel Buddy</p></span>
-                    
-                
+
+
                 </header>
 
                 <div class="contact bar">
@@ -586,10 +585,8 @@
 </div>
 
 
-
-
 <div class="chat-content" id="chat-content-3">
-    
+
     <div class="chat-content-body-3">
 
         <!-- checkbox 안 보이게 수정(아래 두 줄) -->
@@ -620,7 +617,7 @@
 
 
 <div class="chat-content" id="chat-content-4">
-    
+
     <div class="chat-content-body-4">
         <div class="night">
             <div class="shooting_star"></div>
@@ -643,10 +640,10 @@
             <div class="shooting_star"></div>
             <div class="shooting_star"></div>
             <div class="shooting_star"></div>
-          </div>
-        
+        </div>
+
         <div class="music-wrap">
-            
+
             <div class="music-player">
                 <div class="music-left">
                     <div class="music-buttons" id="playPauseButton">
@@ -721,7 +718,7 @@
     }
 
     $(window).on('load', function () {
-      
+
         function sendMessage2() {
             let userContent = $('#user-content22').val();
             let username = $('#chatphone').data('username');
@@ -737,8 +734,6 @@
                 );
                 $('#user-content22').val('');
 
-
-     
 
                 $.ajax({
                     type: 'POST',
@@ -773,7 +768,7 @@
                                     $('.speech-bubble').text(`${response.ai_content}`);
                                     // 텍스트 음성 변환
                                     speakText(response.ai_content);
-                  
+
                                 }, 2000);
                             }
                         });
