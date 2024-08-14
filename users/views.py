@@ -22,9 +22,6 @@ from django.core.exceptions import ObjectDoesNotExist
 import random
 # Create your views here.
 
-# def main(request):
-#     return render(request, 'user/main.html')
-
 def main(request):
     user = request.user
     if user.is_anonymous:  # 로그인하지 않은 사용자인 경우 ######
@@ -73,7 +70,7 @@ def signup(request):
                 profile = Profile.objects.create(user=user)
                 profile.nickname = profile.get_random_nickname()
                 profile.save()
-        
+
             return redirect('users:login')
         except Exception as e:
             return render(request, 'user/signup.html', {'error': f'회원가입에 실패했습니다: {str(e)}'})
