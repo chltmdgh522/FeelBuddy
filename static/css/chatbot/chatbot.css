@@ -1199,12 +1199,12 @@ outline: none;
 }
 
 
-#chat, #chat-content-1, #chat-content-2, #chat-content-3 {
+/* #chat, #chat-content-1, #chat-content-2, #chat-content-3 {
   width: 100%;
   height: 100%;
-  display: none; /* 기본적으로 숨김 상태 */
+  display: none; 
 }
 
 #chat.active, #chat-content-1.active, #chat-content-2.active, #chat-content-3.active {
-  display: block; /* active 클래스가 있는 요소만 보이도록 설정 */
-}
+  display: block; 
+} */
