@@ -1,17 +1,195 @@
-{% block content %}
-  <h1>Feedback List</h1>
-  <a href="{% url 'feedback:feedback_create' %}">Create Feedback</a>
-  <ul>
-    {% for feedback in feedbacks %}
-      <li>
-        <a href="{% url 'feedback:feedback_detail' feedback.pk %}">{{ feedback.title }}</a> by 
-        {% if feedback.user.profile.nickname %}
-          {{ feedback.user.profile.nickname }}
-        {% else %}
-          {{ feedback.user.username }}  <!-- 닉네임이 없는 경우 username표시됨 (임시) -->
-        {% endif %}
-        ({{ feedback.like_set.count }} likes)
-      </li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>피드백 페이지</title>
+    <link
+      rel="stylesheet"
+      href="{% static '/css/feedback/feedback_list.css' %}"
+    />
+    <!-- Font Awesome CDN for star icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="first-container">
+      <div class="supaviews">
+        <img class="supaviews__logo" src="/media/joy.png" />
+        <div class="supaviews__gradient"></div>
+        <div class="supaviews__add">
+          <div class="supaview">
+            <h1 class="supaview__title">Add a new review</h1>
+            <form
+              id="review"
+              method="POST"
+              action="{% url 'feedback:feedback_create' %}"
+            >
+              {% csrf_token %}
+              <fieldset class="supaview__rating">
+                <input type="radio" id="star5" name="rate" value="5" /><label
+                  for="star5"
+                ></label>
+                <input type="radio" id="star4" name="rate" value="4" /><label
+                  for="star4"
+                ></label>
+                <input type="radio" id="star3" name="rate" value="3" /><label
+                  for="star3"
+                ></label>
+                <input type="radio" id="star2" name="rate" value="2" /><label
+                  for="star2"
+                ></label>
+                <input type="radio" id="star1" name="rate" value="1" /><label
+                  for="star1"
+                ></label>
+              </fieldset>
+              <div class="supaview__copy">
+                <!-- <p>{{ user.profile.nickname }}</p> -->
+                <!-- 사용자 이름 표시 -->
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  rows="15"
+                ></textarea>
+              </div>
+              <button type="submit" class="supaview__submit">
+                Submit review
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="supaviews__list">
+          <div class="supaview">Looks empty around here..</div>
+        </div>
+      </div>
+
+      <section class="testimonial-area">
+        <div class="container">
+          <div class="sec-title white-title">
+            <h2>Review</h2>
+            <p>Thank you for your feedback.</p>
+          </div>
+          <div class="testimonial-content owl-carousel">
+            {% for review in feedbacks %}
+
+            <div
+              class="single-testimonial">
+              <!-- 별점 표시 부분 -->
+              <div class="supaview__stars">
+                {% for i in "12345" %}
+                <i
+                  class="fas fa-star {% if forloop.counter <= review.rate %}filled{% else %}empty{% endif %}"
+                ></i>
+                {% endfor %}
+              </div>
+
+              <!-- 리뷰 메시지 표시 -->
+              <div class="review-message-container" onclick="location.href='{% url 'feedback:feedback_detail' review.pk %}'">
+                <p class="review-message" data-review-id="{{ review.pk }}">
+                  {{ review.message }}
+                </p>
+              </div>
+
+              <div class="client-info">
+                <div class="client-video">
+                  <a href="#">
+                    {% if review.user.profile.profile_picture %}
+                    <img
+                      src="{{ review.user.profile.profile_picture.url }}"
+                      alt=""
+                    />
+                    {% else %}
+                    <img src="/media/joy.png" alt="Default Profile Picture" />
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="client-details">
+                  <h6>{{ review.user.profile.nickname }}</h6>
+                  <span>{{ review.created_at|date:"Y-m-d H:i" }}</span>
+                  <!-- 사용자가 작성한 리뷰에만 삭제 아이콘 표시 -->
+                  {% if review.user == request.user %}
+                  <i
+                    class="ri-delete-bin-line delete-icon"
+                    onclick="deleteReview({{ review.pk }})"
+                  ></i>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".testimonial-content").owlCarousel({
+          loop: true,
+          items: 2,
+          margin: 50,
+          dots: true,
+          nav: false,
+          mouseDrag: true,
+          autoplay: false,
+          autoplayTimeout: 4000,
+          smartSpeed: 800,
+        });
+      });
+    </script>
+    <script>
+      function deleteReview(reviewId) {
+        if (confirm("이 리뷰를 삭제하시겠습니까?")) {
+          fetch(`/community/delete/${reviewId}/`, {
+            method: "POST",
+            headers: {
+              "X-CSRFToken": "{{ csrf_token }}",
+            },
+          }).then((response) => {
+            if (response.ok) {
+              window.location.reload(); // 페이지를 리로드하여 변경 사항을 반영
+            } else {
+              alert("Failed to delete the review.");
+            }
+          });
+        }
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var reviewMessages = document.querySelectorAll(".review-message");
+    
+        reviewMessages.forEach(function (message) {
+          var fullText = message.textContent.trim();
+          var maxLength = 100; // 최대 글자 수 설정
+          var truncatedText = fullText.slice(0, maxLength);
+    
+          if (fullText.length > maxLength) {
+            message.textContent = truncatedText + "...";
+          } else {
+            message.textContent = fullText;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

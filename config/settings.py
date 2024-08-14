@@ -163,9 +163,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # settings.py
 LOGIN_URL = '/login/'  # 로그인 페이지의 URL
 
-LOGIN_URL = '/login/'  # 로그인 페이지의 URL 경로
 LOGIN_REDIRECT_URL = '/character/list'
-#SOCIALACCOUNT_LOGIN_ON_GET = True
+# SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # 소셜 계정 프로바이더 설정
 SOCIALACCOUNT_PROVIDERS = {
@@ -191,6 +190,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+SOCIALACCOUNT_AUTO_SIGNUP = True
 #비밀번호 재설정 위한 이메일 설정
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

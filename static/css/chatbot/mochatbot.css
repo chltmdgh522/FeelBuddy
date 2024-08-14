@@ -250,8 +250,13 @@
     .chat-streetlamp,
     .chat-lamp-header,
     .chat-character,
-    .chat{
+    .chat,
+    .badge{
         display: none;
+    }
+
+    #pole {
+      display: none;
     }
 
 }
