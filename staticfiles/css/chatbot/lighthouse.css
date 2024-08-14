@@ -234,9 +234,9 @@ body * {
 }
 
 
-/* input {
+.lighthouse-input {
 	display:none;
-} */
+}
 
 label[for=light] {
 	width: 11vmin;
@@ -629,5 +629,3 @@ label[for=night]:before {
 		radial-gradient(circle at 50% 50%, #fff 0 9px, #fff0 10px 100%);
 	cursor: pointer;
 }
-
-

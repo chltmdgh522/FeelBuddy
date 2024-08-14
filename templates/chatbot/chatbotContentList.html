@@ -818,71 +818,36 @@
     });
 </script>
 
-<script>
-    $(document).ready(function () {
-        $('#record-btn').click(function () {
-            // 첫 번째 알림창 표시
-            alert("녹음을 준비중입니다! 잠시만 기다려주세요!");
 
-            // 10초 후에 두 번째 알림창 표시
-            setTimeout(function () {
-                // 서버에 요청 전송
-                $.ajax({
-                    url: '{% url "chatbot:tts" %}',
-                    method: 'POST',
-                    headers: {'X-CSRFToken': getCookie('csrftoken')},
-                    data: {'start': 'true'}, // 서버에 음성 인식을 시작하라는 메시지 전송
-                    success: function (response) {
-                        if (response.message) {
-                            alert(response.message); // 서버로부터 받은 메시지를 알림창으로 표시
-                        }
+    <script>
+        document.getElementById('record-btn').addEventListener('click', function () {
+            const inputElement = document.getElementById('user-content2');
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
-                        // 5초 후에 실제 음성 인식을 시작하기 위한 요청 전송
-                        setTimeout(function () {
-                            $.ajax({
-                                url: '{% url "chatbot:tts" %}',
-                                method: 'POST',
-                                headers: {'X-CSRFToken': getCookie('csrftoken')},
-                                success: function (response) {
-                                    if (response.text) {
-                                        console.log(response.text);
-                                        $('#user-content2').val(response.text);
-                                        // 서버로부터 받은 응답을 알림창으로 표시
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    console.error("오류 발생:", error);
-                                    alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
-                                }
-                            });
-                        }, 5000); // 5초(5000ms) 후 실행
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("오류 발생:", error);
-                        alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
-                    }
-                });
-            }, 10000); // 10초(10000ms) 후 실행
+            recognition.lang = 'ko-KR'; // 한국어로 설정
+            recognition.interimResults = false; // 중간 결과는 표시하지 않음
+            recognition.maxAlternatives = 1; // 하나의 대안만 제공
+
+            // 녹음 시작 전에 알림창 표시
+            alert("녹음을 시작합니다! 준비하세요.");
+
+            recognition.start(); // 음성 인식 시작
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                inputElement.value = transcript; // 인식된 내용을 input 요소에 표시
+                console.log('Confidence:', event.results[0][0].confidence); // 신뢰도 출력
+            };
+
+            recognition.onerror = function (event) {
+                alert(`오류 발생: ${event.error}`);
+            };
+
+            recognition.onspeechend = function () {
+                recognition.stop(); // 음성 인식 종료
+            };
         });
-
-        // CSRF 토큰 가져오는 함수
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                let cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    let cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-    });
-</script>
-
+    </script>
 
 </body>
 
