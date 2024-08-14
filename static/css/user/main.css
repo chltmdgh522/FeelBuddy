@@ -609,12 +609,21 @@ background: linear-gradient(to bottom, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68
     background: linear-gradient(to bottom, #ff3019 0%,#cf0404 100%); */
 
     /* background:#b04a7d;
-    background: -moz-linear-gradient(top, rgba(134,10,72,1) 0%, rgba(132,31,80,1) 44%, rgba(134,10,72,1) 100%); 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(134,10,72,1)), color-stop(44%,rgb(135, 88, 111)), color-stop(100%,rgba(134,10,72,1))); 
-    background: -webkit-linear-gradient(top, rgb(93, 67, 80) 0%,rgb(237, 183, 209) 44%,rgb(233, 117, 175) 100%); 
-    background: -o-linear-gradient(top, rgba(134,10,72,1) 0%,rgb(211, 190, 200) 44%,rgb(218, 123, 171) 100%); 
-    background: -ms-linear-gradient(top, rgb(210, 167, 188) 0%,rgba(132,31,80,1) 44%,rgba(134,10,72,1) 100%); 
+    background: -moz-linear-gradient(top, rgba(134,10,72,1) 0%, rgba(132,31,80,1) 44%, rgba(134,10,72,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(134,10,72,1)), color-stop(44%,rgb(135, 88, 111)), color-stop(100%,rgba(134,10,72,1)));
+    background: -webkit-linear-gradient(top, rgb(93, 67, 80) 0%,rgb(237, 183, 209) 44%,rgb(233, 117, 175) 100%);
+    background: -o-linear-gradient(top, rgba(134,10,72,1) 0%,rgb(211, 190, 200) 44%,rgb(218, 123, 171) 100%);
+    background: -ms-linear-gradient(top, rgb(210, 167, 188) 0%,rgba(132,31,80,1) 44%,rgba(134,10,72,1) 100%);
     background: linear-gradient(to bottom, rgba(134,10,72,1) 0%,rgba(132,31,80,1) 44%,rgba(134,10,72,1) 100%); W3C */
+
+
+    background: rgb(160, 48, 68);
+    background: -moz-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(184, 58, 78, 1)), color-stop(100%, rgba(160, 48, 68, 1)));
+    background: -webkit-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: -o-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: linear-gradient(to bottom, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
 
 
     background: rgb(160, 48, 68);
@@ -651,12 +660,20 @@ background: linear-gradient(to bottom, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68
     background: linear-gradient(to bottom, #ff3019 0%,#cf0404 100%); */
 
     /* background:#b04a7d;
-    background: -moz-linear-gradient(top, rgba(134,10,72,1) 0%, rgba(132,31,80,1) 44%, rgba(134,10,72,1) 100%); 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(134,10,72,1)), color-stop(44%,rgb(135, 88, 111)), color-stop(100%,rgba(134,10,72,1))); 
-    background: -webkit-linear-gradient(top, rgb(93, 67, 80) 0%,rgb(237, 183, 209) 44%,rgb(233, 117, 175) 100%); 
-    background: -o-linear-gradient(top, rgba(134,10,72,1) 0%,rgb(211, 190, 200) 44%,rgb(218, 123, 171) 100%); 
-    background: -ms-linear-gradient(top, rgb(210, 167, 188) 0%,rgba(132,31,80,1) 44%,rgba(134,10,72,1) 100%); 
+    background: -moz-linear-gradient(top, rgba(134,10,72,1) 0%, rgba(132,31,80,1) 44%, rgba(134,10,72,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(134,10,72,1)), color-stop(44%,rgb(135, 88, 111)), color-stop(100%,rgba(134,10,72,1)));
+    background: -webkit-linear-gradient(top, rgb(93, 67, 80) 0%,rgb(237, 183, 209) 44%,rgb(233, 117, 175) 100%);
+    background: -o-linear-gradient(top, rgba(134,10,72,1) 0%,rgb(211, 190, 200) 44%,rgb(218, 123, 171) 100%);
+    background: -ms-linear-gradient(top, rgb(210, 167, 188) 0%,rgba(132,31,80,1) 44%,rgba(134,10,72,1) 100%);
     background: linear-gradient(to bottom, rgba(134,10,72,1) 0%,rgba(132,31,80,1) 44%,rgba(134,10,72,1) 100%); W3C */
+
+    background: rgb(160, 48, 68);
+    background: -moz-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(184, 58, 78, 1)), color-stop(100%, rgba(160, 48, 68, 1)));
+    background: -webkit-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: -o-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
+    background: linear-gradient(to bottom, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
 
     background: rgb(160, 48, 68);
     background: -moz-linear-gradient(top, rgba(184, 58, 78, 1) 0%, rgba(160, 48, 68, 1) 100%);
