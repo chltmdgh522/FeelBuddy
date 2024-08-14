@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>감정 로그 페이지(주간)</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static '/css/emotion/log.css' %}">   
+    <link rel="stylesheet" href="{% static '/css/emotion/log.css' %}">
 </head>
 <body>
     <article>
@@ -15,7 +15,7 @@
             <p>각 캐릭터와의 일주일 간의 대화량을 보여줍니다.</p>
         </div>
         <button hidden>Show details</button>
-        
+
         <ul>
             {% for emotion, count in weekly_emotion_counts.items %}
             <li style="--steps: {{ count }}" tabindex="0" aria-label="{{ emotion }}: {{ count }} steps" data-emotion="{{ emotion }}">

@@ -38,41 +38,6 @@
     <!-- header 아이콘 추가 시작 -->
     <style>
 
-
-        .chat-content {
-            max-height: 100%; /* chat-box의 높이를 초과하지 않도록 설정 */
-        }
-
-        .chat-box-title {
-            font-weight: bold;
-        }
-
-        .time {
-            font-size: 0.9em;
-            color: gray;
-        }
-
-        .chat-message {
-            margin: 5px 0;
-        }
-
-        .chat-message-me {
-            margin: 5px 0;
-            text-align: right; /* 내 메시지를 오른쪽 정렬 */
-        }
-
-        .profile-picture {
-            width: 40px; /* 필요에 따라 조정하세요 */
-            height: 40px; /* 필요에 따라 조정하세요 */
-            margin: 5px 0;
-        }
-
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-
         a {
             text-decoration: none;
         }
@@ -136,15 +101,23 @@
             /* 오른쪽 화살표의 위치 */
         }
 
+        .chat-content {
+            display: none;
+            /* 기본적으로 모든 방을 보이지 않게 설정 */
+        }
 
+        .chat-content.active {
+            display: block;
+            /* active 클래스가 있는 방만 보이도록 설정 */
+        }
     </style>
 </head>
 
 <body>
 <!-- 모바일 반응형 header 시작 -->
-<!-- <header class="chat-header" id="header">
+<header class="chat-header" id="header">
     <div class="header-left">
-        header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다.
+        <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다.  -->
         <button>
             <a href="{% url 'character:character_list' %}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
@@ -176,9 +149,13 @@
         </div>
     </div>
 
-</header> -->
+</header>
 
 <!-- 모바일 반응형 header 끝-->
+
+
+
+
 
 <div class="chat-arrow left">&larr;</div>
 <div class="chat-arrow right">&rarr;</div>
@@ -247,8 +224,18 @@
             </svg>
         </div>
     </a>
-
 </div>
+
+<!-- 네온사인 표지판 추가 -->
+<div id="pole">
+    <div id="right">
+        <div class="logo"><b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b></div>
+      <!-- <a class="sign-link" href="#"><h1 contenteditable spellcheck="false">feelbuddy</h1></a>
+      <div id="right-arrow"></div> -->
+    </div>
+</div>
+<!-- 네온사인 표지판 추가 끝 -->
+
 
 <!-- 램프 효과 -->
 <input type="checkbox" name="btn" id="btn" checked>
@@ -256,6 +243,7 @@
 <div class="chat-content active" id="chat-content-1">
 
     <div class="chat-content-body-1">
+        
         <div class="chat-buildings">
             <div class="chat-window"></div>
             <div class="chat-window"></div>
@@ -281,9 +269,9 @@
             <div class="chat-light"></div>
             <div class="chat-ground-light"></div>
         </div>
-        <div class="chat-lamp-header">
+        <!-- <div class="chat-lamp-header">
             <p>Feelbuddy</p>
-        </div>
+        </div> -->
 
         <!-- css 수정하면서 html도 같이 수정함 -->
         <div class="chat-character-lamp">
@@ -356,35 +344,14 @@
                 {% endfor %}
             </div>
             <div class="chat" id="chat">
-
+                
                 <header class="chat-header" id="header">
                     <div class="header-left">
                         <i class="fas fa-chevron-left"></i>
                     </div>
                     <span><p>Feel Buddy</p></span>
-                    <div class="header-right">
-                        <div class="nav bounceInDown animated">
-                            <a href="#profile" class="nav-item nav-count-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                                </svg>
-                                <span class="invisible"></span></a>
-                            <a href="#compose" class="nav-item nav-count-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                                </svg>
-                                </i><span class="invisible"></span></a>
-                            <a href="#Play" class="nav-item nav-count-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                                </svg>
-                                <span class="invisible"></span></a>
-                            <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                                    class="invisible"></span></a>
-                            <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-                        </div>
-                    </div>
-
+                    
+                
                 </header>
 
                 <div class="contact bar">
@@ -427,7 +394,7 @@
                     <div class="type-message-bottom">
                         <i class="fas fa-microphone" id="record-btn"></i>
                         <input type="text" id="user-content2" placeholder="Type a message...">
-                        <a class="send" id="send11">
+                        <a class="send">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M1.94619 9.31543C1.42365 9.14125 1.41953 8.86022 1.95694 8.68108L21.0431 2.31901C21.5716 2.14285 21.8747 2.43866 21.7266 2.95694L16.2734 22.0432C16.1224 22.5716 15.8178 22.59 15.5945 22.0876L12 14L18 6.00005L10 12L1.94619 9.31543Z"></path>
                             </svg>
@@ -438,7 +405,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="chat-content" id="chat-content-2">
     <header class="chat-header" id="header">
@@ -600,7 +566,7 @@
                                         <a class="charactername22">{{ character.name }}</a>
                                     </div>
                                     <p class="chat-message">{{ content.content }}</p>
-                             
+
                                 {% endif %}
 
                             {% endfor %}
@@ -620,36 +586,10 @@
 </div>
 
 
-<div class="chat-content" id="chat-content-3">
-    <header class="chat-header" id="header">
-        <div class="header-left">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        <span><p>Feel Buddy</p></span>
-        <div class="header-right">
-            <div class="nav bounceInDown animated">
-                <a href="#profile" class="nav-item nav-count-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#compose" class="nav-item nav-count-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                    </svg>
-                    </i><span class="invisible"></span></a>
-                <a href="#Play" class="nav-item nav-count-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                        class="invisible"></span></a>
-                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-            </div>
-        </div>
 
-    </header>
+
+<div class="chat-content" id="chat-content-3">
+    
     <div class="chat-content-body-3">
 
         <!-- checkbox 안 보이게 수정(아래 두 줄) -->
@@ -680,35 +620,7 @@
 
 
 <div class="chat-content" id="chat-content-4">
-    <header class="chat-header" id="header">
-        <div class="header-left">
-            <i class="fas fa-chevron-left"></i>
-        </div>
-        <span><p>Feel Buddy</p></span>
-        <div class="header-right">
-            <div class="nav bounceInDown animated">
-                <a href="#profile" class="nav-item nav-count-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#compose" class="nav-item nav-count-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                    </svg>
-                    </i><span class="invisible"></span></a>
-                <a href="#Play" class="nav-item nav-count-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                    </svg>
-                    <span class="invisible"></span></a>
-                <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                        class="invisible"></span></a>
-                <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-            </div>
-        </div>
-
-    </header>
+    
     <div class="chat-content-body-4">
         <div class="night">
             <div class="shooting_star"></div>
@@ -731,10 +643,10 @@
             <div class="shooting_star"></div>
             <div class="shooting_star"></div>
             <div class="shooting_star"></div>
-        </div>
-
+          </div>
+        
         <div class="music-wrap">
-
+            
             <div class="music-player">
                 <div class="music-left">
                     <div class="music-buttons" id="playPauseButton">
@@ -809,13 +721,7 @@
     }
 
     $(window).on('load', function () {
-        function scrollChatBox2() {
-            $('#chatphone').scrollTop($('#chatphone')[0].scrollHeight);
-        }
-
-        // 페이지와 모든 자원 로드 후 스크롤을 맨 아래로 이동
-        scrollChatBox2();
-
+      
         function sendMessage2() {
             let userContent = $('#user-content22').val();
             let username = $('#chatphone').data('username');
@@ -830,16 +736,9 @@
                         <p class="chat-message-me">${userContent}</p>`
                 );
                 $('#user-content22').val('');
-                scrollChatBox2();
 
-                $('#chatphone').append(
-                    `<div class="chat-box-title typing">
-                            <div class="typing typing-1"></div>
-                            <div class="typing typing-2"></div>
-                            <div class="typing typing-3"></div>
-                        </div>`
-                );
-                scrollChatBox2();
+
+     
 
                 $.ajax({
                     type: 'POST',
@@ -874,7 +773,7 @@
                                     $('.speech-bubble').text(`${response.ai_content}`);
                                     // 텍스트 음성 변환
                                     speakText(response.ai_content);
-                                    scrollChatBox2();
+                  
                                 }, 2000);
                             }
                         });
@@ -921,140 +820,6 @@
         }
     });
 </script>
-
-
-<!-- 왼쪽 화살표 눌렀을 때 contacts만 보이게 하기 -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // max-width 768px 이하일 때만 실행
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            const headerIcon = document.querySelector('.chat-header .header-left i');
-            const chatContent1 = document.getElementById('chat-content-1');
-            const contacts = chatContent1.querySelector('.contacts');
-
-            headerIcon.addEventListener('click', function () {
-                // chat-content-1의 contacts만 보이게 함
-                chatContent1.style.display = 'none';
-                contacts.style.display = 'block';
-            });
-        }
-    });
-</script>
-
-<!-- nav-item 눌렀을 때 이동 -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navItems = document.querySelectorAll('.nav-item');
-
-        // 각 chat-content의 아이디를 배열로 정의합니다.
-        const chatContentIds = ['chat-content-1', 'chat-content-2', 'chat-content-3', 'chat-content-4'];
-
-        navItems.forEach(function (navItem, index) {
-            navItem.addEventListener('click', function () {
-                // 모든 chat-content를 숨김
-                chatContentIds.forEach(function (id) {
-                    const content = document.getElementById(id);
-                    content.classList.remove('active');
-                    content.style.display = 'none';
-                });
-
-                // 선택된 chat-content만 보이게 설정
-                const selectedContent = document.getElementById(chatContentIds[index]);
-                selectedContent.classList.add('active');
-                selectedContent.style.display = 'block';
-
-                // 추가: nav-count-1을 클릭한 경우 contacts만 보이도록
-                if (index === 0) {
-                    const contacts = selectedContent.querySelector('.contacts');
-                    selectedContent.querySelector('.chat-content-body-1').style.display = 'none';
-                    contacts.style.display = 'block';
-                }
-            });
-        });
-    });
-</script>
-
-
-<!-- 두 번째 스크립트 코드 -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chats = document.querySelectorAll('.chat-content');
-        const navItems = document.querySelectorAll('.nav-item');
-        const nav = document.querySelector('.nav');
-        const contacts = document.querySelector('.contacts');
-        const contactDivs = document.querySelectorAll('.contact');
-        const headerLeftIcon = document.querySelector('.header-left i');
-        const backLeftSvg = document.querySelector('.header-left button a');
-        
-        // Function to show the chat content based on index
-        function showChat(index) {
-            chats.forEach((chat, i) => {
-                chat.classList.toggle('active', i === index);
-            });
-            localStorage.setItem('currentChat', index); // Save current chat index
-        }
-
-        // Retrieve the saved chat index from localStorage or default to 0
-        let currentChat = localStorage.getItem('currentChat');
-        if (currentChat === null) {
-            currentChat = 0;
-        } else {
-            currentChat = parseInt(currentChat, 10);
-        }
-
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            nav.style.display = 'none';
-            headerLeftIcon.style.display = 'none';
-            backLeftSvg.style.display = 'block';
-
-            contactDivs.forEach((contact, index) => {
-                contact.addEventListener('click', () => {
-                    showChat(index);
-                    headerLeftIcon.style.display = 'block';
-                    nav.style.display = 'block';
-                    backLeftSvg.style.display = 'none';
-                    contacts.style.display = 'none';
-                });
-            });
-
-            navItems.forEach((navItem, index) => {
-                navItem.addEventListener('click', () => {
-                    showChat(index);
-                    backLeftSvg.style.display = 'none';
-                    headerLeftIcon.style.display = 'block';
-                    nav.style.display = 'block';
-                    contacts.style.display = 'none';
-                });
-            });
-
-            headerLeftIcon.addEventListener('click', () => {
-                contacts.style.display = 'block';
-                nav.style.display = 'none';
-                headerLeftIcon.style.display = 'none';
-                backLeftSvg.style.display = 'block';
-                showChat(0);
-            });
-        } else {
-            const leftArrow = document.querySelector('.chat-arrow.left');
-            const rightArrow = document.querySelector('.chat-arrow.right');
-
-            leftArrow.addEventListener('click', () => {
-                currentChat = (currentChat - 1 + chats.length) % chats.length;
-                showChat(currentChat);
-            });
-
-            rightArrow.addEventListener('click', () => {
-                currentChat = (currentChat + 1) % chats.length;
-                showChat(currentChat);
-            });
-
-            showChat(currentChat); // Show the chat based on the stored index
-        }
-    });
-</script>
-
-
-
 <script>
     $(document).ready(function () {
         function scrollChatBox() {
@@ -1145,7 +910,7 @@
         });
 
         // a 버튼을 클릭했을 때 메시지 전송
-        $('#send11').on('click', function (event) {
+        $('.send').on('click', function (event) {
             event.preventDefault(); // a 태그의 기본 동작을 막기
             sendMessage();
         });
@@ -1159,31 +924,218 @@
 </script>
 
 
+<!-- 두 번째 스크립트 코드 -->
+
 <script>
-    document.getElementById('record-btn').addEventListener('click', function () {
-        const inputElement = document.getElementById('user-content2');
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'ko-KR'; // 한국어로 설정
-        recognition.interimResults = false; // 중간 결과는 표시하지 않음
-        recognition.maxAlternatives = 1; // 하나의 대안만 제공
+    document.addEventListener('DOMContentLoaded', function () {
+        const chats = document.querySelectorAll('.chat-content');
+        const navItems = document.querySelectorAll('.nav-item');
+        const nav = document.querySelector('.nav');
+        const contacts = document.querySelector('.contacts');
+        const contactDivs = document.querySelectorAll('.contact');
+        const headerLeftIcon = document.querySelector('.header-left i');
+        const backLeftSvg = document.querySelector('.header-left button a');
 
-        // 녹음 시작 전에 알림창 표시
-        alert("녹음을 시작합니다! 준비하세요.");
-        recognition.start(); // 음성 인식 시작
+        // Function to show the chat content based on index
+        function showChat(index) {
+            chats.forEach((chat, i) => {
+                chat.classList.toggle('active', i === index);
+            });
+            localStorage.setItem('currentChat', index); // Save current chat index
+        }
 
-        recognition.onresult = function (event) {
-            const transcript = event.results[0][0].transcript;
-            inputElement.value = transcript; // 인식된 내용을 input 요소에 표시
-            console.log('Confidence:', event.results[0][0].confidence); // 신뢰도 출력
-        };
+        // Retrieve the saved chat index from localStorage or default to 0
+        let currentChat = localStorage.getItem('currentChat');
+        if (currentChat === null) {
+            currentChat = 0;
+        } else {
+            currentChat = parseInt(currentChat, 10);
+        }
 
-        recognition.onerror = function (event) {
-            alert(`오류 발생: ${event.error}`);
-        };
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            nav.style.display = 'none';
+            headerLeftIcon.style.display = 'none';
+            backLeftSvg.style.display = 'block';
 
-        recognition.onspeechend = function () {
-            recognition.stop(); // 음성 인식 종료
-        };
+            contactDivs.forEach((contact, index) => {
+                contact.addEventListener('click', () => {
+                    showChat(index);
+                    headerLeftIcon.style.display = 'block';
+                    nav.style.display = 'block';
+                    backLeftSvg.style.display = 'none';
+                    contacts.style.display = 'none';
+                });
+            });
+
+            navItems.forEach((navItem, index) => {
+                navItem.addEventListener('click', () => {
+                    showChat(index);
+                    backLeftSvg.style.display = 'none';
+                    headerLeftIcon.style.display = 'block';
+                    nav.style.display = 'block';
+                    contacts.style.display = 'none';
+                });
+            });
+
+            headerLeftIcon.addEventListener('click', () => {
+                contacts.style.display = 'block';
+                nav.style.display = 'none';
+                headerLeftIcon.style.display = 'none';
+                backLeftSvg.style.display = 'block';
+                showChat(0);
+            });
+        } else {
+            const leftArrow = document.querySelector('.chat-arrow.left');
+            const rightArrow = document.querySelector('.chat-arrow.right');
+
+            leftArrow.addEventListener('click', () => {
+                currentChat = (currentChat - 1 + chats.length) % chats.length;
+                showChat(currentChat);
+            });
+
+            rightArrow.addEventListener('click', () => {
+                currentChat = (currentChat + 1) % chats.length;
+                showChat(currentChat);
+            });
+
+            showChat(currentChat); // Show the chat based on the stored index
+        }
+    });
+</script>
+
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소 선택
+        const navItems = document.querySelectorAll('.nav-item'); // 모든 nav-item 요소 선택
+        const nav = document.querySelector('.nav'); // .nav 요소 선택
+        const contacts = document.querySelector('.contacts'); // contacts 요소 선택
+        const contactDivs = document.querySelectorAll('.contact'); // 개별 contact div들 선택
+        const headerLeft = document.querySelector('.header-left i'); // .header-left i 요소 선택
+        const backLeft = document.querySelector('.header-left button a svg'); 
+    
+        function showChat(index) {
+            chats.forEach((chat, i) => {
+                chat.classList.toggle('active', i === index); // 해당 인덱스의 chat-content만 표시
+            });
+        }
+    
+        // 모바일 환경일 때 적용
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            nav.style.display = 'none'; // 초기에는 .nav 숨김
+            headerLeft.style.display = 'none'; //초기에 왼쪽 화살표 숨김
+            backLeft.style.display = 'block'; 
+            
+    
+            navItems.forEach((navItem, index) => {
+                navItem.addEventListener('click', () => {
+                    showChat(index); // nav-item 클릭 시 해당 인덱스의 chat-content 표시
+                    backLeft.style.display = 'none'; 
+                    
+                });
+            });
+    
+            contactDivs.forEach((contact) => {
+                contact.addEventListener('click', () => {
+                    showChat(0); // 첫 번째 chat-content를 보여줌
+                    headerLeft.style.display = 'block'; 
+                    nav.style.display = 'block'; // chat으로 이동하면 .nav 표시
+                    backLeft.style.display = 'none'; 
+                    contacts.style.display = 'none'; // contacts 화면 숨김
+                });
+            });
+    
+            headerLeft.addEventListener('click', () => {
+                contacts.style.display = 'block'; // contacts 화면 표시
+                showChat(0);
+                nav.style.display = 'none'; // .nav 숨김
+                headerLeft.style.display = 'none'; 
+                backLeft.style.display = 'block'; 
+            });
+        } else {
+            // 웹 환경에서는 화살표 클릭 방식 적용
+            const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
+            const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
+            let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
+    
+            leftArrow.addEventListener('click', () => {
+                currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
+                showChat(currentChat); // 새로운 현재 채팅을 표시
+            });
+    
+            rightArrow.addEventListener('click', () => {
+                currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
+                showChat(currentChat); // 새로운 현재 채팅을 표시
+            });
+    
+            showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
+        }
+    });
+</script> -->
+
+
+<script>
+    $(document).ready(function () {
+        $('#record-btn').click(function () {
+            // 첫 번째 알림창 표시
+            alert("녹음을 준비중입니다! 잠시만 기다려주세요!");
+
+            // 10초 후에 두 번째 알림창 표시
+            setTimeout(function () {
+                // 서버에 요청 전송
+                $.ajax({
+                    url: '{% url "chatbot:tts" %}',
+                    method: 'POST',
+                    headers: {'X-CSRFToken': getCookie('csrftoken')},
+                    data: {'start': 'true'}, // 서버에 음성 인식을 시작하라는 메시지 전송
+                    success: function (response) {
+                        if (response.message) {
+                            alert(response.message); // 서버로부터 받은 메시지를 알림창으로 표시
+                        }
+
+                        // 5초 후에 실제 음성 인식을 시작하기 위한 요청 전송
+                        setTimeout(function () {
+                            $.ajax({
+                                url: '{% url "chatbot:tts" %}',
+                                method: 'POST',
+                                headers: {'X-CSRFToken': getCookie('csrftoken')},
+                                success: function (response) {
+                                    if (response.text) {
+                                        console.log(response.text);
+                                        $('#user-content2').val(response.text);
+                                        // 서버로부터 받은 응답을 알림창으로 표시
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error("오류 발생:", error);
+                                    alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
+                                }
+                            });
+                        }, 5000); // 5초(5000ms) 후 실행
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("오류 발생:", error);
+                        alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
+                    }
+                });
+            }, 10000); // 10초(10000ms) 후 실행
+        });
+
+        // CSRF 토큰 가져오는 함수
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                let cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
     });
 </script>
 <script>
@@ -1217,142 +1169,6 @@
 <audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
 <script src="{% static '/js/chatbot/music.js' %}"></script>
 
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소 선택
-        const navItems = document.querySelectorAll('.nav-item'); // 모든 nav-item 요소 선택
-        const nav = document.querySelector('.nav'); // .nav 요소 선택
-        const contacts = document.querySelector('.contacts'); // contacts 요소 선택
-        const contactDivs = document.querySelectorAll('.contact'); // 개별 contact div들 선택
-        const headerLeft = document.querySelector('.header-left i'); // .header-left i 요소 선택
-        const backLeft = document.querySelector('.header-left button svg');
-
-        function showChat(index) {
-            chats.forEach((chat, i) => {
-                chat.classList.toggle('active', i === index); // 해당 인덱스의 chat-content만 표시
-            });
-        }
-
-        // 모바일 환경일 때 적용
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            nav.style.display = 'none'; // 초기에는 .nav 숨김
-            headerLeft.style.display = 'none'; //초기에 왼쪽 화살표 숨김
-            backLeft.style.display = 'block';
-
-
-            navItems.forEach((navItem, index) => {
-                navItem.addEventListener('click', () => {
-                    showChat(index); // nav-item 클릭 시 해당 인덱스의 chat-content 표시
-                    backLeft.style.display = 'none';
-
-                });
-            });
-
-            contactDivs.forEach((contact) => {
-                contact.addEventListener('click', () => {
-                    showChat(0); // 첫 번째 chat-content를 보여줌
-                    headerLeft.style.display = 'block';
-                    nav.style.display = 'block'; // chat으로 이동하면 .nav 표시
-                    backLeft.style.display = 'none';
-                    contacts.style.display = 'none'; // contacts 화면 숨김
-                });
-            });
-
-            headerLeft.addEventListener('click', () => {
-                contacts.style.display = 'block'; // contacts 화면 표시
-                showChat(0);
-                nav.style.display = 'none'; // .nav 숨김
-                headerLeft.style.display = 'none';
-                backLeft.style.display = 'block';
-            });
-        } else {
-            // 웹 환경에서는 화살표 클릭 방식 적용
-            const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
-            const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
-            let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
-
-            leftArrow.addEventListener('click', () => {
-                currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
-                showChat(currentChat); // 새로운 현재 채팅을 표시
-            });
-
-            rightArrow.addEventListener('click', () => {
-                currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
-                showChat(currentChat); // 새로운 현재 채팅을 표시
-            });
-
-            showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
-        }
-    });
-</script> -->
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chats = document.querySelectorAll('.chat-content'); // 모든 채팅 요소 선택
-        const navItems = document.querySelectorAll('.nav-item'); // 모든 nav-item 요소 선택
-        const nav = document.querySelector('.nav'); // .nav 요소 선택
-        const contacts = document.querySelector('.contacts'); // contacts 요소 선택
-        const contactDivs = document.querySelectorAll('.contact'); // 개별 contact div들 선택
-        const headerLeft = document.querySelector('.header-left i'); // .header-left i 요소 선택
-        const backLeft = document.querySelector('.header-left button a svg');
-
-        function showChat(index) {
-            chats.forEach((chat, i) => {
-                chat.classList.toggle('active', i === index); // 해당 인덱스의 chat-content만 표시
-            });
-        }
-
-        // 모바일 환경일 때 적용
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            nav.style.display = 'none'; // 초기에는 .nav 숨김
-            headerLeft.style.display = 'none'; //초기에 왼쪽 화살표 숨김
-            backLeft.style.display = 'block';
-
-
-            navItems.forEach((navItem, index) => {
-                navItem.addEventListener('click', () => {
-                    showChat(index); // nav-item 클릭 시 해당 인덱스의 chat-content 표시
-                    backLeft.style.display = 'none';
-
-                });
-            });
-
-            contactDivs.forEach((contact) => {
-                contact.addEventListener('click', () => {
-                    showChat(0); // 첫 번째 chat-content를 보여줌
-                    headerLeft.style.display = 'block';
-                    nav.style.display = 'block'; // chat으로 이동하면 .nav 표시
-                    backLeft.style.display = 'none';
-                    contacts.style.display = 'none'; // contacts 화면 숨김
-                });
-            });
-
-            headerLeft.addEventListener('click', () => {
-                contacts.style.display = 'block'; // contacts 화면 표시
-                showChat(0);
-                nav.style.display = 'none'; // .nav 숨김
-                headerLeft.style.display = 'none';
-                backLeft.style.display = 'block';
-            });
-        } else {
-            // 웹 환경에서는 화살표 클릭 방식 적용
-            const leftArrow = document.querySelector('.chat-arrow.left'); // 왼쪽 화살표 버튼을 선택
-            const rightArrow = document.querySelector('.chat-arrow.right'); // 오른쪽 화살표 버튼을 선택
-            let currentChat = 0; // 현재 보이는 채팅의 인덱스를 추적
-
-            leftArrow.addEventListener('click', () => {
-                currentChat = (currentChat - 1 + chats.length) % chats.length; // 왼쪽 화살표 클릭 시 이전 채팅으로 이동
-                showChat(currentChat); // 새로운 현재 채팅을 표시
-            });
-
-            rightArrow.addEventListener('click', () => {
-                currentChat = (currentChat + 1) % chats.length; // 오른쪽 화살표 클릭 시 다음 채팅으로 이동
-                showChat(currentChat); // 새로운 현재 채팅을 표시
-            });
-
-            showChat(currentChat); // 페이지 로드 시 첫 번째 채팅을 표시
-        }
-    });
-</script> -->
 </body>
 
 </html>
