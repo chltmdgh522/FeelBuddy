@@ -286,3 +286,20 @@ body {
     width: 500px;
   }
 }
+
+.b-container{
+  flex-direction: column;
+}
+
+.social-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.p-0{
+  margin: 10px;
+}
+
+.p-0 img{
+  border-radius: 15px;
+}

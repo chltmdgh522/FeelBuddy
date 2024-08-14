@@ -185,21 +185,43 @@
         const cumulativeData = {{ emotion_counts|safe }};
         const weeklyData = {{ weekly_emotion_counts|safe }};
 
-        function updateContent() {
-            if (toggleButton.checked) {
-                description.textContent = '각 캐릭터와의 일주일 간의 대화량을 보여줍니다.';
-                updateList(weeklyData);
-            } else {
-                description.textContent = '각 캐릭터와의 누적 대화량을 보여줍니다.';
-                updateList(cumulativeData);
-            }
+        // 각 캐릭터와의 대화량 중 최댓값 가져오기 
+        // (그래프의 최대 높이로 설정하기 위함)
+        function getMaxValue(data) {
+            return Math.max(...Object.values(data));
         }
 
-        function updateList(data) {
+        // function updateContent() {
+        //     if (toggleButton.checked) {
+        //         description.textContent = '각 캐릭터와의 일주일 간의 대화량을 보여줍니다.';
+        //         updateList(weeklyData);
+        //     } else {
+        //         description.textContent = '각 캐릭터와의 누적 대화량을 보여줍니다.';
+        //         updateList(cumulativeData);
+        //     }
+        // }
+
+        function updateContent() {
+            const data = toggleButton.checked ? weeklyData : cumulativeData;
+            const maxValue = getMaxValue(data);
+
+            // CSS 변수로 설정
+            document.documentElement.style.setProperty('--max-steps', maxValue);
+
+            if (toggleButton.checked) {
+                description.textContent = '각 캐릭터와의 일주일 간의 대화량을 보여줍니다.';
+            } else {
+                description.textContent = '각 캐릭터와의 누적 대화량을 보여줍니다.';
+            }
+            updateList(data, maxValue);  // maxValue를 updateList로 전달
+        }
+
+        function updateList(data, maxValue) {
             dataList.innerHTML = '';
             for (const [emotion, count] of Object.entries(data)) {
                 const li = document.createElement('li');
                 li.style.setProperty('--steps', count);
+                li.style.setProperty('--max-steps', maxValue); // max-steps 설정
                 li.setAttribute('tabindex', '0');
                 li.setAttribute('aria-label', `${emotion}: ${count} steps`);
                 li.setAttribute('data-emotion', emotion);
@@ -208,10 +230,10 @@
             }
         }
 
-        // Initial update
+        // 초기화 시 최댓값 계산 및 설정
         updateContent();
 
-        // Update when the toggle is clicked
+        // 토글 변경 시 업데이트
         toggleButton.addEventListener('change', updateContent);
     });
 </script>
