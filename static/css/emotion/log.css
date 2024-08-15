@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Concert+One&family=Gugi&family=Jua&display=swap');
+
 :root {
 	/* --sz: 10vmin; */
-    --sz: 4vmin;
+    --sz: 3vmin;
 	--on: #FF9800;
 	--off: #243747;
 	--bg: linear-gradient(135deg, #17212f, #11151e);
@@ -56,7 +64,9 @@ article {
     background: transparent;
     border-radius: 0.75vmin;
     box-shadow: 0 8vmin 5vmin -5vmin #0005;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Concert One", sans-serif;
+
+    /* font-family: Roboto, Helvetica, Arial, sans-serif; */
     height: 70vmin;
     left: calc(50% - 25vmin);
     position: absolute;
@@ -91,7 +101,7 @@ article {
         h1,
         p {
             color: var(--color);
-            font-size: 1.75vmin;
+            font-size: 3vmin;
             letter-spacing: 0.5px;
             margin: 0;
             text-align: center;
@@ -105,7 +115,9 @@ article {
 
         p {
             margin-top: 1vmin;
-            font-size: 2.75vmin;
+            font-size: 1.75vmin;
+            font-family: "Jua", sans-serif;
+            color: rgb(95, 97, 109);
         }
     }
 
@@ -127,7 +139,7 @@ article {
             background: linear-gradient(#8082, #0002);
             border-top: 1px dashed #f0f;
             bottom: 50%;
-            content: "max-steps";
+            content: "Max";
             font-size: 1.25vmin;
             height: 0;
             left: -5%;
@@ -221,9 +233,12 @@ article {
                 content: "불안";
             }
 
+            /* 차트 글씨체 */
+
 
             b {
                 font-size: 0;
+                font-family: "Jua", sans-serif;
                 transform-style: preserve-3d;
                 position: absolute;
                 left: 0;
@@ -316,7 +331,6 @@ article {
         border: 1px solid white;
         box-shadow: 0 0 0 2px #0004;
         color: #fff;
-        font-family: Roboto, Arial, sans-serif;
         font-size: 2vmin;
         left: 50%;
         outline-offset: 5px;
@@ -325,6 +339,7 @@ article {
         text-transform: uppercase;
         top: 76%;
         transform: translate(-50%, 0);
+        font-family: "Concert One", sans-serif;
 
         &:last-child {
             box-shadow: 0 0 0 2px #0004, 0 10vmin 5vmin #0002;
@@ -341,6 +356,7 @@ article {
     &.active {
         --angle: 75deg;
         box-shadow: 0 25vmin 5vmin -10vmin #0003;
+        font-family: "Jua", sans-serif;
 
         &>button {
             &:first-of-type {
@@ -368,12 +384,14 @@ article {
                 opacity: 1;
                 transition: height 1s, opacity 1s;
                 transition-delay: 3.25s;
+                font-family: "Jua", sans-serif;
             }
 
             li {
                 --height: calc(20vmin * var(--steps) / var(--max-steps)); 
                 transition: transform var(--transition-duration);
                 transition-delay: var(--transition-delay);
+                font-family: "Jua", sans-serif;
 
                 &:hover {
                     --colorDeg: 190deg;
@@ -479,6 +497,7 @@ article {
         -1px 0 var(--border), -1px -1px var(--border),
         0 -1px var(--border), 1px -1px var(--border);
     text-transform: uppercase;
+    font-family: "Jua", sans-serif;
 }
 
 .emotion-tracker-description-second {
@@ -505,7 +524,7 @@ article {
     background: linear-gradient(#8082, #0002);
     border-top: 1px dashed #f0f;
     bottom: 50%;
-    content: "max steps";
+    content: "Max";
     font-size: 1.25vmin;
     height: 0;
     left: -5%;
@@ -1124,7 +1143,7 @@ article {
 
 .toggle  {
 	position: absolute;
-    top:-5vh;
+    top:-1vh;
 	width: calc(var(--sz) * 4);
 	height: calc(var(--sz) * 2);
 	display: flex;
@@ -1137,6 +1156,7 @@ input {
 }
 
 label[for=btn] {
+  font-family: "Jua", sans-serif;
 	position: absolute;
 	width: calc(var(--sz) * 4);
 	height: calc(var(--sz) * 2);
@@ -1167,6 +1187,7 @@ label[for=btn] {
 	animation: go-left 1s ease 0s;
 	width: calc(var(--sz)* 1.875); 
 	right: calc(var(--sz)* 2.05); 
+  font-family: "Jua", sans-serif;
 }
 
 #btn:checked + label .thumb {
@@ -1175,6 +1196,7 @@ label[for=btn] {
 	width: calc(var(--sz)* 1.875); 
 	right: calc(var(--sz)* 0.075); 
 	justify-content: flex-end;
+  font-family: "Jua", sans-serif;
 }
 
 
@@ -1215,7 +1237,7 @@ label[for=btn]:after {
 	--clr: var(--on);
 	content: "주간";
 	color: #fff;
-	font-family: Roboto;
+	font-family: "Jua", sans-serif;
 	width: 50%;
 	float: left;
 	text-align: center;
@@ -1231,11 +1253,11 @@ label[for=btn]:after {
 	text-shadow: 0 0 calc(var(--sz) * 0.1) var(--clr), 0 0 calc(var(--sz) * 0.3) #000, 0 0 calc(var(--sz) * 0.5) var(--clr), 0 calc(var(--sz) * 0.0125) calc(var(--sz) * 0.05) #233443, 0 calc(var(--sz) * -0.0125) calc(var(--sz) * 0.05) #000;
 	align-items: center;
 	line-height: calc(var(--sz) * 0.55);
+
 }
 
 label[for=btn]:after {
 	content: "누적";
-  font-family: Roboto
 	padding: 0 calc(var(--sz) * 0.325) 0 0;
 	transform-origin: 0% 50%;
 	--clr: var(--off);
@@ -1295,3 +1317,161 @@ span.thumb:after {
 }
 
 
+
+/* header 네온사인 추가 */
+
+
+
+
+
+#pole{
+  border-radius: 1vw 1vw 0 0;    
+  position: absolute;
+  z-index: 999;
+  top:-160px;
+  left: 10vmin;
+  height: 5vh; 
+  width: 6vw;
+  transform: translateY(160px);
+  min-width: 45px;
+  background-color: #272726;
+  font-size: 1.5em;    
+  display: flex;
+}
+
+#right{  
+  height: 10vh;    
+  transform: translate(-40px, 50px);    
+  width: 20vw; 
+  min-width: 350px; 
+  background-color: rgb(14, 13, 13); 
+  display: flex;
+  align-items: center;
+  justify-content: center;   
+  color: white;    
+  border-radius: 10px 50px 50px 10px;
+  border: 3px outset white;
+  font-family: 'Exo 2', sans-serif;
+  display: flex;
+
+}
+
+
+/*네온사인 추가*/
+
+
+
+#right {
+  /* background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat; */
+  background-size:cover;
+  margin:0
+}
+.logo {
+
+  text-align: center;
+  width: 50px;
+  height: 100px;
+  margin: auto;
+  position: relative;
+  /* top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+   user-select: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.logo b{
+  position: relative;
+  /* font: 400 5vh "Vibur"; */
+
+  /* font-family: "Bungee Tint", sans-serif;
+  font-weight: 400;
+  font-style: normal; */
+  /* font-family: "New Amsterdam", sans-serif;
+  font-weight: 400;
+  font-style: normal; */
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5vh;
+  margin-bottom: 15px;
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #7f5da1, 0 0 0.5em #453d47, 0 0 0.1em #d62f2f, 0 10px 3px #000;
+  /* text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #e9d16d, 0 0 0.5em #d5c99c, 0 0 0.1em #ff4444, 0 10px 3px #000; */
+  /* text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000; */
+}
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  :root {
+    /* --sz: 10vmin; */
+      --sz: 5vmin;
+  }
+
+  .toggle {
+    position: absolute;
+    top:-3vh;
+  }
+  #pole {
+    display: none;
+  }
+  article {
+  height: 100vmin;
+  left: calc(50% - 30vmin);
+  position: absolute;
+  top: 27vh;
+  width: 60vmin;
+
+  & > button {
+    font-size: 3vmin;
+  }
+  }
+  .canvas-center {
+    top:20vh;
+  }
+  
+}

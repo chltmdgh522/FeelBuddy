@@ -6,11 +6,13 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
-
+    <title>FeelBuddy</title>
+    <link rel="icon" href="/media/joy.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
+    <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
 </head>
 <body>
+
 <div class="main">
     <div class="container a-container" id="a-container">
         <form id="a-form" class="form" method="post" action="{% url 'users:signup' %}">
@@ -45,21 +47,20 @@
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
             </div>
-            <span class="form__span">or use your email account</span>
-            {% if error %}
+             {% if error %}
                 <div class="form__error" style="color: red;">{{ error }}</div>
             {% endif %}
-    
+
             <input class="form__input" type="text" placeholder="ID" name="username">
             <input class="form__input" type="password" placeholder="Password" name="password">
-    
+
             <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
             <button class="switch__button button switch-btn" type="submit">Log IN</button>
         </form>
-    
+
         <!-- 소셜 로그인 부분을 다른 form과 분리 -->
         <div class="social-container">
-        {% load socialaccount %}
+            {% load socialaccount %}
             <form action="{% provider_login_url 'google' %}" method="post">
                 {% csrf_token %}
                 <button class="p-0" type="submit" style="border: 0; background: transparent">
@@ -83,7 +84,7 @@
 
     </div>
 
-    
+
     <div class="switch" id="switch-cnt">
         <div class="switch__circle"></div>
         <div class="switch__circle switch__circle--t"></div>
@@ -92,13 +93,13 @@
             <img src="/media/joy.png">
             <!-- <p class="switch__description description">To keep connected with us please login with your personal
                 info</p> -->
-            
+
             <button class="switch__button button-2 switch-btn">SIGN IN</button>
         </div>
         <div class="switch__container is-hidden" id="switch-c2">
             <h2 class="switch__title title">Hello Friend !</h2>
             <img src="/media/joy.png">
-            
+
             <!-- <p class="switch__description description">Enter your personal details and start journey with us</p> -->
             <button class="switch__button button-2 switch-btn">SIGN UP</button>
         </div>
