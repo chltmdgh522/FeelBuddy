@@ -131,10 +131,48 @@ def tts(request):
     return JsonResponse({'text': "Invalid request"}, status=400)
 
 
-def character_concept(character):
+def perioy(character, user):
+    ai_contents = ChatbotAIContent.objects.filter(user=user, userCharacter=character).order_by('time')
+    user_contents = ChatbotUserContent.objects.filter(user=user, userCharacter=character).order_by('time')
+
+    all_content1 = []
+    for content in user_contents:
+        all_content1.append({
+            'type': 'user',
+            'content': content.user_content,
+            'time': content.time
+        })
+    for content in ai_contents:
+        all_content1.append({
+            'type': 'ai',
+            'content': content.ai_content,
+            'time': content.time
+        })
+
+    return sorted(all_content1, key=lambda x: x['time'])
+
+
+def format_all_content(all_content):
+    formatted_content = []
+    for entry in all_content:
+        if entry['type'] == 'user':
+            formatted_content.append(f"User: {entry['content']}")
+        elif entry['type'] == 'ai':
+            formatted_content.append(f"AI: {entry['content']}")
+    return "\n".join(formatted_content)
+
+
+def character_concept(character, user):
+    all_content = perioy(character, user)
+    all_content.pop()
+    formatted_content = format_all_content(all_content)
     system_input = """ """
     if character.adminCharacter.emotion == "분노":
-        system_input = """
+        system_input = f"""
+        이전 대화는 
+     [ {formatted_content}  ]
+       이거야 즉 user가 사용자이고 ai가 너가 답한거야 이거를 생각하면서 답해줘야돼!!!  
+
         너는 분노 캐릭터야 그래서 아래와 같이 적용하면서 2~3줄로 말해줘  
         
         1. 말투
@@ -161,7 +199,11 @@ def character_concept(character):
 하나의 질문에 2~3줄로 짧고 간결한 답변
         """
     elif character.adminCharacter.emotion == "슬픔":
-        system_input = """
+        system_input = f"""
+                이전 대화는 
+     [ {formatted_content}  ]
+       이거야 즉 user가 사용자이고 ai가 너가 답한거야 이거를 생각하면서 답해줘야돼!!!  
+
           너는 슬픔 캐릭터야 그래서 아래와 같이 적용하면서 2~3줄로 말해줘 그리고 안녕이라는 말 금지  
       1. 말투
 슬프고 처지는 말투 사용
@@ -187,7 +229,11 @@ def character_concept(character):
 하나의 질문에 2~3줄로 짧고 간결한 답변
         """
     elif character.adminCharacter.emotion == "두려움":
-        system_input = """
+        system_input = f"""
+                  이전 대화는 
+     [ {formatted_content}  ]
+       이거야 즉 user가 사용자이고 ai가 너가 답한거야 이거를 생각하면서 답해줘야돼!!!  
+
         너는 두려운 캐릭터야 그래서 아래와 같이 적용하면서 2~3줄로 말해줘  
   1. 말투
 두려워하고 떨리는 말투 사용
@@ -213,7 +259,11 @@ def character_concept(character):
 하나의 질문에 2~3줄로 짧고 간결한 답변
         """
     elif character.adminCharacter.emotion == "불안":
-        system_input = """
+        system_input = f"""
+                  이전 대화는 
+     [ {formatted_content}  ]
+       이거야 즉 user가 사용자이고 ai가 너가 답한거야 이거를 생각하면서 답해줘야돼!!!  
+
     너는 불안 캐릭터야 그래서 아래와 같이 적용하면서 2~3줄로 말해줘  
         1. 말투
 불안하고 초조한 말투 사용
@@ -240,7 +290,11 @@ def character_concept(character):
 
         """
     elif character.adminCharacter.emotion == "기쁨":
-        system_input = """
+        system_input = f"""
+                  이전 대화는 
+     [ {formatted_content}  ]
+       이거야 즉 user가 사용자이고 ai가 너가 답한거야 이거를 생각하면서 답해줘야돼!!!  
+
                 너는 기쁨 캐릭터야 그래서 아래와 같이 적용하면서 2~3줄로 말해줘  
  1. 말투
 항상 밝고 긍정적인 톤 유지
@@ -265,6 +319,7 @@ def character_concept(character):
 첫 대화는 가장 위쪽 첫 대화만 출력
 하나의 질문에 2~3줄로 짧고 간결한 답변
         """
+    print(system_input)
     return system_input
 
 
@@ -277,7 +332,8 @@ def chatbot_ai_create(request, pk):
             user=user,
             userCharacter=character
         ).order_by('-time').first()
-        system_input = character_concept(character)
+        print(user.id)
+        system_input = character_concept(character, user)
         ai_content = ai(system_input, user_input.user_content)
         create = ChatbotAIContent.objects.create(user=user, userCharacter=character, ai_content=ai_content, )
         formatted_time = format(create.time, 'Y년 n월 j일 g:i a')
