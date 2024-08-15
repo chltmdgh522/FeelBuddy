@@ -22,7 +22,7 @@
     z-index: 99999;
 }
 
-  .icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list {
+  .icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list, .icon__logout {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -37,17 +37,17 @@
     z-index: 999999;
   }
 
-  .icon__account svg, .icon__home svg, .icon__chat svg, .icon__log svg, .icon__delete svg, .icon__list svg {
+  .icon__account svg, .icon__home svg, .icon__chat svg, .icon__log svg, .icon__delete svg, .icon__list svg, .icon__logout svg {
 	width: 16px;
 	height: 16px;
   }
 
-  .icon__account:active, .icon__home:active, .icon__chat:active, .icon__log:active, .icon__delete:active, .icon__list:active {
+  .icon__account:active, .icon__home:active, .icon__chat:active, .icon__log:active, .icon__delete:active, .icon__list:active, .icon__logout:active {
     box-shadow: inset .2rem .2rem .5rem var(--greyLight-2), inset -.2rem -.2rem .5rem var(--white);
     color: var(--primary);
   }
 
-  .icon__account:hover, .icon__home:hover, .icon__chat:hover, .icon__log:hover, .icon__delete:hover, .icon__list:hover {
+  .icon__account:hover, .icon__home:hover, .icon__chat:hover, .icon__log:hover, .icon__delete:hover, .icon__list:hover, .icon__logout:hover {
     color: var(--primary);
   }
 
