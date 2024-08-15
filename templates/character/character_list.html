@@ -149,7 +149,7 @@
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
+                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
                              class="">
@@ -350,7 +350,7 @@
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
+                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
                              class="">
@@ -612,7 +612,7 @@
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
+                                   <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
                              class="">
@@ -801,7 +801,7 @@
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
+                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
                              class="">
