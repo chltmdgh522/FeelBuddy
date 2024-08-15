@@ -33,11 +33,11 @@ nav {
     bottom: 0;
     z-index: 99;
     width: 100%;
-    /* height: 5rem; */
-    height: 80px;
+    height: 5rem;
+    /* height: 80px; */
     color: #FFF;
-    /* font-size: 1rem; */
-    font-size: 20px;
+    font-size: 1rem;
+    /* font-size: 20px; */
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
     padding: 0;
     background: rgb(0,0,0);
@@ -53,8 +53,8 @@ nav {
     padding: 0;
     color: currentColor;
     line-height: 12;
-    /* font-size: 0.725em; */
-    font-size: 12px;
+    font-size: 0.725em;
+    /* font-size: 12px; */
     text-align: center;
     text-decoration: none;
     text-indent: -9999rem;

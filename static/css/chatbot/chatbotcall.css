@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
+
 
 
 :root {
@@ -83,7 +85,8 @@ body {
 /* 말풍선 추가 끝 */
 .main-container {
     max-width: 1000px;
-    max-height: 700px;
+    max-height: 600px;
+    /* max-height: 500px; */
     background-color: var(--theme-bg-color);
     margin-top: 60px;
     margin-bottom: 50px;
@@ -94,8 +97,8 @@ body {
     padding-bottom: 50px;
     border-radius: 20px;
     position: absolute;
-    top: 3vh;
-    left: 20vmin;
+    top: 8vh;
+    left: 22vmin;
     z-index: 99999;
 }
 
@@ -111,6 +114,7 @@ body {
 
 .header-logo {
     font-size: 30px;
+    font-family: "Gugi", sans-serif;
 }
 
 .header-left {
@@ -329,7 +333,8 @@ body {
 
 .middle {
     width: 50%;
-    height: 550px;
+    /* height: 550px; */
+    height: 500px;
     background-color: var(--color-dark);
     border-radius: 30px;
     padding-left: 20px;
@@ -469,7 +474,7 @@ body {
     .type-message {
         display: flex;
         flex-direction: column;
-        margin-top: 50px;
+        margin-top: 20px;
         padding-left: 20px;
     }
 
@@ -539,7 +544,8 @@ body {
 /* 1:1 화상채팅 디자인 시작 */
 .middle-img {
     width: 100%;
-    height: 510px;
+    /* height: 510px; */
+    height: 490px;
     padding: 0;
     margin: 0;
     overflow: hidden;
