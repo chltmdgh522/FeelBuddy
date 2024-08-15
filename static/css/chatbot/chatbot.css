@@ -46,9 +46,7 @@ body:before {
 	height: 100%;
 }
 
-#chat-content-5 {
-  display: none;
-}
+
 
 /* 아이콘 적용 안 되어서 다시 추가 */
 :root {
@@ -171,7 +169,7 @@ height: 16px;
   width: 6vw;
   transform: translateY(160px);
   min-width: 45px;
-  background-color: #30343f;
+  background-color: #272726;
   font-size: 1.5em;    
   display: flex;
 }
@@ -180,7 +178,7 @@ height: 16px;
   height: 10vh;    
   transform: translate(-40px, 50px);    
   width: 20vw; 
-  min-width: 300px; 
+  min-width: 350px; 
   background-color: rgb(14, 13, 13); 
   display: flex;
   align-items: center;
@@ -238,7 +236,8 @@ height: 16px;
   font-size: 5vh;
   margin-bottom: 10px;
   color: #fee;
-  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #e9d16d, 0 0 0.5em #d5c99c, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  /* text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000; */
 }
 .logo b span{
   animation: blink linear infinite 2s;
@@ -500,6 +499,7 @@ height: 16px;
     position: absolute;
     top: 15vh;
     margin-left: 55%;
+    z-index: 1;
 }
 /* 캐릭터 사진 설정 */
 .chat-character {
@@ -586,8 +586,10 @@ height: 16px;
 	width: 100%;
 	height: 100px;
 	bottom: 83%;
-	z-index: 1;
+	z-index: 3;
 }
+
+
 
 .chat-head .chat-top {
 	background: conic-gradient(from 131deg at 55% 0, var(--pole-light) 0 12%, var(--pole-dark) 13% 29.5%, #fff0 0 100%);
@@ -679,6 +681,7 @@ height: 16px;
 
 #btn {
 	display: none;
+  
 }
 
 label[for=btn] {
@@ -762,7 +765,7 @@ label[for=btn] {
 
 
 .chat-center {
-	height: 72vh;
+	min-height: 72vh;
 	position:absolute;
   /* 바뀜 */
 	top: 57vh;

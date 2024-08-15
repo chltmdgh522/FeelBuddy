@@ -11,6 +11,8 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{% static '/css/character/character_list/nav.css' %}">
+
     <style>
       input[readonly] {
         border: none;
@@ -26,7 +28,41 @@
   
   <body>
     
-
+    <!-- 모바일 반응형-footer 시작 -->
+<nav class="mobile-footer" role="menulist">
+  <a href="{% url 'users:main' %}" role="menuitem" aria-describedby="nav-current">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
+      </svg>
+      Home
+  </a>
+  <a href="#" role="menuitem">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+      </svg>
+      Chat
+  </a>
+  <a href="#" role="menuitem" >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
+      </svg>
+      Log
+  </a>
+  <a href="{% url 'character:character_list' %}" role="menuitem">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
+      </svg>
+      List
+  </a>
+  <a href="{% url 'users:profile' %}" role="menuitem" class="active">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
+      </svg>
+      Profile
+  </a>
+  <i class="line" id="nav-current">current item</i>
+</nav>
+<!-- 모바일 반응형 - footer 끝 -->
     <div id="pole">
       <div id="right">
           <div class="logo"><b>P<span>ro</span>f<span>i</span>le</b></div>
@@ -75,6 +111,8 @@
             </div>
         </a>
     </div>
+
+    
 
     
       <div class="mountains">
