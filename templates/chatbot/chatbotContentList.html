@@ -121,10 +121,12 @@
         <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다.  -->
         <button>
             <a href="{% url 'character:character_list' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path>
+                </svg>
             </a>
         </button>
-        <i class="fas fa-chevron-left"></i>
+
     </div>
     <span><p>Feel Buddy</p></span>
     <div class="header-right">
@@ -155,18 +157,15 @@
 <!-- 모바일 반응형 header 끝-->
 
 
-
-
-
 <div class="chat-arrow left">&larr;</div>
 <div class="chat-arrow right">&rarr;</div>
 <!-- 모바일 반응형-footer 시작 -->
 <nav class="mobile-footer" role="menulist">
-    <a href="{% url 'users:main' %}" role="menuitem" aria-describedby="nav-current">
+    <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
         </svg>
-        Home
+        List
     </a>
     <a href="{% url 'chatbot:chatbot_content_list' pk %}" role="menuitem" class="active">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -180,12 +179,14 @@
         </svg>
         Log
     </a>
-    <a href="{% url 'character:character_list' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
-        </svg>
-        List
-    </a>
+        <a href="{% url 'character:trash' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                </path>
+            </svg>
+            Trash
+        </a>
     <a href="{% url 'users:profile' %}" role="menuitem">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
@@ -197,48 +198,79 @@
 <!-- 모바일 반응형 - footer 끝 -->
 
 <div class="icon">
-    <a href="{% url 'users:main' %}" role="menuitem">
-        <div class="icon__home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-            </svg>
+            <a href="{% url 'character:character_list' %}">
+                <div class="icon__home">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                        </path>
+                    </svg>
+
+                </div>
+            </a>
+            <a href="{% url 'users:profile' %}">
+                <div class="icon__account">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                        </path>
+                    </svg>
+
+                </div>
+            </a>
+            {% if first_item %}
+                <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+                    <div class="icon__chat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                            </path>
+                        </svg>
+                    </div>
+                </a>
+            {% endif %}
+            <a href="{% url 'chatbot:emotion' %}">
+                <div class="icon__log">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                        </path>
+                    </svg>
+                </div>
+            </a>
+            <a href="{% url 'character:trash' %}">
+                <div class="icon__delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                        </path>
+                    </svg>
+                </div>
+            </a>
+            <!-- 여기 로그아웃 링크 클래스명 달아주세요! -->
+            <a class="logout-btn" style="cursor: pointer;">
+                <div class="icon__logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
+                    </svg>
+
+                </div>
+            </a>
+
         </div>
-    </a>
-    <a href="{% url 'users:profile' %}" role="menuitem">
-        <div class="icon__account">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-            </svg>
-        </div>
-    </a>
-    <a href="{% url 'character:character_list' %}" role="menuitem">
-        <div class="icon__list">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
-            </svg>
-        </div>
-    </a>
-    <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <div class="icon__log">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-            </svg>
-        </div>
-    </a>
-</div>
 
 
+<!-- 램프 효과 -->
+<input type="checkbox" name="btn" id="btn" checked>
 
 
- <!-- 램프 효과 -->
- <input type="checkbox" name="btn" id="btn" checked>
-       
+<div class="chat-content active" id="chat-content-0">
 
-<div class="chat-content active" id="mobile-chat-contact">
 
-      
     <div class="chat-content-body-1">
-          
+
         <!-- 네온사인 표지판 추가 -->
         <div id="pole">
             <div id="right">
@@ -267,14 +299,14 @@
             <div class="chat-poletop"></div>
             <div class="chat-head">
                 <label for="btn"></label>
-                
+
                 <div class="chat-top"></div>
                 <div class="chat-glass"></div>
                 <div class="chat-bot"></div>
-                
+
             </div>
 
-         
+
             <div class="chat-light"></div>
             <div class="chat-ground-light"></div>
         </div>
@@ -297,17 +329,17 @@
             {% endif %}
         </div>
         <div class="chat-center" id="chat-center">
-            
+
 
             <div class="contacts" id="mobile-contacts">
-                
+
                 <!-- <i class="fas fa-bars fa-2x"></i> -->
                 <h2>Contacts</h2>
 
 
                 {% for character in characters %}
                     <div class="contact">
-                        
+
 
                         {% if character.adminCharacter.emotion == '기쁨' %}
 
@@ -356,11 +388,9 @@
                     </div>
                 {% endfor %}
             </div>
-            
-            <div class="chat"  id="chat">
-                
-                
-               
+
+            <div class="chat" id="chat">
+
 
                 <div class="contact bar">
                     {% if character.adminCharacter.emotion == '기쁨' %}
@@ -417,7 +447,7 @@
 
 <div class="chat-content" id="chat-content-1">
 
-   
+
     <div class="chat-content-body-2">
         <div class="chat-buildings">
             <div class="chat-window"></div>
@@ -493,8 +523,8 @@
                                     <!-- 말풍선 추가 시작 -->
                                     <div class="speech-bubble-content">
                                         <p class="speech-bubble">
-                                        
-                                         안녕 나는 {{ character.name }}야안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏㅏ
+
+                                            안녕 나는 {{ character.name }}야안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏㅏ
                                         </p>
                                     </div>
                                     <!-- 말풍선 추가 끝 -->
@@ -584,7 +614,8 @@
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
         <div class="lighthouse-sea">
-                        <div id="emotional-phrase" class="emotional-phrase-container"></div>  <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
+            <div id="emotional-phrase" class="emotional-phrase-container"></div>
+            <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
             <span></span></div>
         <div class="lighthouse-content">
             <div class="lighthouse">
@@ -607,7 +638,7 @@
 
 
 <div class="chat-content" id="chat-content-3">
-   
+
     <div class="chat-content-body-4">
         <div class="night">
             <div class="shooting_star"></div>
@@ -630,10 +661,10 @@
             <div class="shooting_star"></div>
             <div class="shooting_star"></div>
             <div class="shooting_star"></div>
-          </div>
-        
+        </div>
+
         <div class="music-wrap">
-            
+
             <div class="music-player">
                 <div class="music-left">
                     <div class="music-buttons" id="playPauseButton">
@@ -786,128 +817,51 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (window.matchMedia("(max-width: 768px)").matches) {
-            const mobileContacts = document.getElementById('mobile-contacts');
-            const mobileChatContacts = document.getElementById('mobile-chat-contact');
-            const mobileChat = document.getElementById('chat');
-            const chatContent1 = document.getElementById('chat-content-1');
-            const chatContent2 = document.getElementById('chat-content-2');
-            const chatContent3 = document.getElementById('chat-content-3');
-            const headerLeftIcon = document.querySelector('.header-left i');
-            const backLeftSvg = document.querySelector('.header-left button a');
-            const headerRight = document.querySelector('.header-right');
-            const navItems = document.querySelectorAll('.nav-item');
+            const navItem1 = document.querySelector('.nav-item.nav-count-1');
+            const navItem2 = document.querySelector('.nav-item.nav-count-2');
+            const navItem3 = document.querySelector('.nav-item.nav-count-3');
+            const navItem4 = document.querySelector('.nav-item.nav-count-4');
+            const chats = document.querySelectorAll('.chat-content');
 
-            let currentChatContent = ''; // 현재 표시된 채팅 콘텐츠를 저장하는 변수
-
-            function hideAll() {
-                mobileChat.style.display = 'none';
-                chatContent1.style.display = 'none';
-                chatContent2.style.display = 'none';
-                chatContent3.style.display = 'none';
+            function showChat(index) {
+                chats.forEach((chat, i) => {
+                    chat.classList.toggle('active', i === index);
+                });
             }
 
-            // 초기 상태
-            mobileContacts.style.display = 'block';
-            hideAll();
-            headerLeftIcon.style.display = 'none';
-            headerRight.style.display = 'none';
-            backLeftSvg.style.display = 'block';
-
-            // contact 클릭 시 chat 화면으로 전환
-            document.querySelectorAll('.contact a').forEach(link => {
-                link.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    const chatUrl = this.getAttribute('href');
-                    $.ajax({
-                        url: chatUrl,
-                        success: function (data) {
-                            mobileContacts.style.display = 'none';
-                            hideAll();
-                            mobileChat.style.display = 'block';
-                            headerLeftIcon.style.display = 'block';
-                            headerRight.style.display = 'block';
-                            backLeftSvg.style.display = 'none';
-                            currentChatContent = $(data).find('#chat').html(); // 현재 표시된 chat 내용을 저장
-                            $('#chat').html($(data).find('#chat').html());
-                        },
-                        error: function () {
-                            console.error("Chat 내용을 불러오는 데 실패했습니다.");
-                        }
-                    });
-                });
+            navItem1.addEventListener('click', () => {
+                showChat(0);
             });
-
-            // nav-item 클릭 시 해당 chat-content로 전환
-            navItems.forEach((navItem, index) => {
-                navItem.addEventListener('click', function () {
-                    hideAll();
-                    switch (index) {
-                        case 0:
-                            mobileChatContacts.style.display = 'block'; 
-                            mobileContacts.style.display = 'none';
-                            hideAll();
-                            mobileChat.style.display = 'block';
-                            if (currentChatContent) {
-                                $('#chat').html(currentChatContent); // 저장된 chat 내용을 다시 표시
-                            }
-                            break;
-
-                        case 1:
-                            chatContent1.style.display = 'block';
-                            mobileChatContacts.style.display = 'none'; // 듀얼 화면 해결
-
-                            headerLeftIcon.addEventListener('click', function () {
-                                mobileChatContacts.style.display = 'block';
-                                mobileContacts.style.display = 'block';
-                                hideAll();
-                                headerLeftIcon.style.display = 'none';
-                                headerRight.style.display = 'none';
-                                backLeftSvg.style.display = 'block';
-                            });
-                            break;
-                        case 2:
-                            chatContent2.style.display = 'block';
-                            mobileChatContacts.style.display = 'none'; // 듀얼 화면 해결
-
-                            headerLeftIcon.addEventListener('click', function () {
-                                mobileChatContacts.style.display = 'block';
-                                mobileContacts.style.display = 'block';
-                                hideAll();
-                                headerLeftIcon.style.display = 'none';
-                                headerRight.style.display = 'none';
-                                backLeftSvg.style.display = 'block';
-                            });
-                            break;
-                        case 3:
-                            chatContent3.style.display = 'block';
-                            mobileChatContacts.style.display = 'none'; // 듀얼 화면 해결
-
-                            headerLeftIcon.addEventListener('click', function () {
-                                mobileChatContacts.style.display = 'block';
-                                mobileContacts.style.display = 'block';
-                                hideAll();
-                                headerLeftIcon.style.display = 'none';
-                                headerRight.style.display = 'none';
-                                backLeftSvg.style.display = 'block';
-                            });
-                            break;
-                    }
-                });
+            navItem2.addEventListener('click', () => {
+                showChat(1);
             });
-
-            // header-left i 클릭 시 contacts로 전환
-            headerLeftIcon.addEventListener('click', function () {
-                mobileContacts.style.display = 'block';
-                hideAll();
-                headerLeftIcon.style.display = 'none';
-                headerRight.style.display = 'none';
-                backLeftSvg.style.display = 'block';
+            navItem3.addEventListener('click', () => {
+                showChat(2);
+            });
+            navItem4.addEventListener('click', () => {
+                showChat(3);
             });
         }
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 클래스가 "nav-item nav-count-2"인 요소를 선택
+        const navItem = document.querySelector('.nav-item.nav-count-2');
 
+        // 해당 요소가 존재하는지 확인
+        if (navItem) {
+            // 요소에 클릭 이벤트 리스너 추가
+            navItem.addEventListener('click', function (event) {
+                console.log('nav-item nav-count-2 링크가 클릭되었습니다!');
+            });
+        } else {
+            console.log('nav-item nav-count-2 클래스가 있는 요소를 찾을 수 없습니다.');
+        }
+    });
+
+</script>
 
 <!-- 웹 환경일 때 -->
 <script>
@@ -951,7 +905,6 @@
         showChat(currentChat); // Show the chat based on the stored index
     });
 </script>
-
 
 
 <script>
@@ -1143,33 +1096,33 @@
 <audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
 <script src="{% static '/js/chatbot/music.js' %}"></script>
 <script>
-document.querySelectorAll('.logout-btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();  // 기본 동작 막기
-        
-        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
-        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+    document.querySelectorAll('.logout-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();  // 기본 동작 막기
 
-        fetch(logoutUrl, {
-            method: 'POST',  // POST 방식으로 요청
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
-            },
-            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
-            } else {
-                console.error('로그아웃 실패');
-            }
-        })
-        .catch(error => console.error('에러 발생:', error));
+            const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+            const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+
+            fetch(logoutUrl, {
+                method: 'POST',  // POST 방식으로 요청
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+                },
+                body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+                    } else {
+                        console.error('로그아웃 실패');
+                    }
+                })
+                .catch(error => console.error('에러 발생:', error));
+        });
     });
-});
 </script>
-<script>  
+<script>
     ///////////////////////////////////////////// 추가된 부분 
     // 감성적인 문구 목록 
     const emotionalPhrases = [
@@ -1212,13 +1165,13 @@ document.querySelectorAll('.logout-btn').forEach(button => {
         "가장 큰 용기는 자신을 믿는 것이다.",
         "너의 따뜻한 마음이 세상을 더 아름답게 만든다."
     ];
-  
+
     // 랜덤으로 문구 선택하는 함수
     function getRandomPhrase() {
         const randomIndex = Math.floor(Math.random() * emotionalPhrases.length);
         return emotionalPhrases[randomIndex];
     }
-  
+
     // 문구를 페이지에 표시하는 함수
     function displayRandomPhrase() {
         const phraseElement = document.getElementById('emotional-phrase');
@@ -1226,14 +1179,14 @@ document.querySelectorAll('.logout-btn').forEach(button => {
             phraseElement.textContent = getRandomPhrase();
         }
     }
-  
+
     // 페이지 로드 시 문구 표시
     document.addEventListener('DOMContentLoaded', () => {
         displayRandomPhrase();
         // 5초마다 문구 변경
         setInterval(displayRandomPhrase, 10000);
     });
-</script>  
+</script>
 <!-- ------------------------여기까지 추가된 부분-------------------------- -->
 </body>
 

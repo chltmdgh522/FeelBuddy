@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
 </head>
 <body>
+
 <div class="main">
     <div class="container a-container" id="a-container">
         <form id="a-form" class="form" method="post" action="{% url 'users:signup' %}">
@@ -46,8 +47,7 @@
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
             </div>
-            <span class="form__span">or use your email account</span>
-            {% if error %}
+             {% if error %}
                 <div class="form__error" style="color: red;">{{ error }}</div>
             {% endif %}
 
