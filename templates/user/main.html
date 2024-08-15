@@ -101,7 +101,7 @@
                         </div>
                         <div id="game-and-watch-gamea-text"></div>
                         <div id="game-and-watch-start-two">
-                            <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"><p>SignUp</p></a></div>
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:signup.html' %}"><p>SignUp</p></a></div>
                         </div>
                     {% endif %}
                     <div id="game-and-watch-gameb-text"></div>
@@ -126,7 +126,7 @@
                              {% else %}
                     <!-- 미니 핀홀 버튼 -->
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}">Login</a></div>
-                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}">SignUp</a></div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup.html' %}">SignUp</a></div>
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a></div>
                 
                               {% endif %}
