@@ -569,7 +569,8 @@
         <div class="lighthouse-sky">
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
-        <div class="lighthouse-sea"><span></span></div>
+        <div class="lighthouse-sea"><span></span>
+             <div id="emotional-phrase" class="emotional-phrase-container"></div>  <!--------------------- 추가된 부분 : 글귀를 표시할 요소 -------------------------></div>
         <div class="lighthouse-content">
             <div class="lighthouse">
                 <div class="lighthouse-base"></div>
@@ -1153,6 +1154,47 @@ document.querySelectorAll('.logout-btn').forEach(button => {
     });
 });
 </script>
+
+<script>    ///////////////////////////////////////////// 추가된 부분 
+    // 감성적인 문구 목록 
+    const emotionalPhrases = [
+  "모든 순간이 다 찬란한 것은 아니지만, 그렇기에 더 아름답다.",
+  "구름 뒤엔 언제나 태양이 있다.",
+  "오늘도 너에게 다정한 하루가 되기를.",
+  "작은 것들이 쌓여 큰 행복이 된다.",
+  "하루의 끝, 너는 참 잘해냈다.",
+  "따뜻한 마음이 세상을 바꿀 수 있다.",
+  "지금 이 순간이 너의 이야기가 된다.",
+  "희망은 어둠 속에서 빛나는 별과 같다.",
+  "너의 꿈은 너를 향한 길을 찾을 것이다.",
+  "한 걸음 한 걸음이 모두의 마음에 닿는다.",
+  "언젠가 이 모든 것이 네게 의미 있는 추억이 될 거야.",
+  "가장 깊은 어둠 뒤에 가장 밝은 빛이 있다.",
+  "오늘의 너는 어제보다 더 나은 너일 것이다.",
+  "너의 미소는 모든 것을 밝힐 수 있다.",
+  "때론 멈추어 서는 것도 하나의 용기이다.",
+  "이 순간을 사랑하라, 이것이 너의 이야기이다.",
+  "힘들면 잠시 쉬어가도 괜찮아.",
+  "너는 너의 길을 찾아갈 것이다.",
+    ];
+  
+    // 랜덤으로 문구 선택하는 함수
+    function getRandomPhrase() {
+      const randomIndex = Math.floor(Math.random() * emotionalPhrases.length);
+      return emotionalPhrases[randomIndex];
+    }
+  
+    // 문구를 페이지에 표시하는 함수
+    function displayRandomPhrase() {
+      const phraseElement = document.getElementById('emotional-phrase');
+      if (phraseElement) {
+        phraseElement.textContent = getRandomPhrase();
+      }
+    }
+  
+    // 페이지 로드 시 문구 표시
+    document.addEventListener('DOMContentLoaded', displayRandomPhrase);
+  </script>  <!-- ------------------------여기까지 추가된 부분-------------------------- -->
 </body>
 
 </html>
