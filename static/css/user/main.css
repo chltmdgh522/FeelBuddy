@@ -227,7 +227,11 @@ ul, li {
 
     /* background:#deb1fb; */
     /* background: #d8bbc8;; */
-    background: #e1dedf;
+    /* background: #e1dedf; */
+    /* background: #f9dae4; */
+    background: #e4d7db;
+
+    
     padding:1px 5px 5px 5px;
     position:relative;
     z-index:999;
@@ -241,7 +245,9 @@ ul, li {
 
     #game-and-watch-screen-top {
     /* border-top:10px solid #777; */
-    border-top:10px solid  #c9b9c1;
+    /* border-top:10px solid  #c9b9c1; */
+    border-top:10px solid  #e3c9d6;
+    
 
     border-left:7px solid transparent;
     border-right:7px solid transparent;
@@ -975,7 +981,8 @@ background: linear-gradient(to bottom, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59
     /* background: #d4b4de; */
     /* background: #eca0b1; */
     /* background: #efe7d2; */
-    background: #f1dfe7;
+    /* background: #f1dfe7; */
+    background: #fbc1d2;
     margin-bottom:5px;
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
@@ -1063,7 +1070,8 @@ background: linear-gradient(to bottom, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59
     border-right:1px solid  #d9ccd6;
     /* background: #ded3db; */
     /* background: #eeeeee; */
-    background: #FFF2E9;
+    /* background: #FFF2E9; */
+    background: #fff2fb;
 
 
 
