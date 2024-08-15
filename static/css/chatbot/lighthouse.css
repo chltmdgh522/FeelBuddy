@@ -31,6 +31,10 @@ body * {
 	transform-style: preserve-3d;
 }
 
+.light-checkbox, .night-checkbox {
+	display: none;
+}
+
 .lighthouse-sky {
 	position: absolute;
 	width: 100%;
@@ -628,4 +632,23 @@ label[for=night]:before {
 		radial-gradient(circle at 30px 25px, var(--star)),
 		radial-gradient(circle at 50% 50%, #fff 0 9px, #fff0 10px 100%);
 	cursor: pointer;
+}
+
+
+/* 감성글귀 작성을 위한 css */  /*추가된 부분 *************************************************/
+.emotional-phrase-container {
+    font-size: 2em; /* 글자 크기 조절 */
+    color: #fff; /* 글자 색상 */
+    text-align: center; /* 중앙 정렬 */
+    position: absolute;
+    top: 50%; /* 위에서부터 50% 아래에 위치 */
+    left: 50%; /* 왼쪽에서부터 50% 오른쪽에 위치 */
+    transform: translate(-50%, -50%); /* 중앙 정렬을 위한 변환 */
+    z-index: 2; /* after 위에 글귀가 보이도록 조정 */
+    pointer-events: none; /* 마우스 이벤트가 이 요소에 영향을 주지 않도록 설정 */
+}
+
+/* 기존 버튼 숨기기 */
+.light-checkbox, .night-checkbox {
+    display: none;
 }

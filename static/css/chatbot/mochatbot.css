@@ -250,8 +250,13 @@
     .chat-streetlamp,
     .chat-lamp-header,
     .chat-character,
-    .chat{
+    .chat, 
+    .badge{
         display: none;
+    }
+
+    #pole {
+      display: none;
     }
 
 }
@@ -518,10 +523,17 @@
 @media screen and (max-width: 768px) {
   .main-container {
     width: 100vmin;
-    height: 100vh;
+    height: calc(100vh - 138px);
+    margin: 0;
+    padding: 0;
     position: absolute;
-    top: 0;
+    top: 58px;
     left: 0;
+    border-radius: 0;
+    max-width: none;
+    max-height: none;
+    right: 0;
+    bottom: 80px;
   }
   .main-header {
     display: none;
@@ -532,15 +544,114 @@
   }
   .left-side {
     width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin-top: 30px;
+    margin-bottom: 0;
   }
   .left-side-menu {
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap:20px;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 0;
+  }
+
+  .icon-active {
+    color: var(--color-green);
+    border-right: none;
+    border-bottom: 2px solid var(--color-green);
+    cursor: pointer;
+    padding-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+
+  .icon-color {
+    cursor: pointer;
+    color: var(--icon-color);
+    padding-right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 18px;
+
+
+    &:hover {
+        color: var(--color-green);
+        border-right: none;
+        border-bottom: 2px solid var(--color-green);
+    }
   }
   .middle {
     width: 100%;
+    min-height: 90%;
+    padding: 0;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  .middle-img {
+    width: 95%;
+    height: 95%;
+    padding: 0;
+    margin: 20px;
+    overflow: hidden;
+    border-radius: 20px;
+    font-size: 16px;
+  }
+
+  .right-side {
+    max-width: 100vmin;
+    height: 50px;
+    padding: 10px 0;
+    margin-top: 30px;
+    position: absolute;
+    bottom: -100px;
+  }
+
+  .right-side .chat-box {
+    display: none;
+  }
+
+  .right-side .type-message {
+    display: flex;
+    width: 95%;
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+    margin-left: 13px;
+    margin-right: 10px;
+  }
+  .right-side .type-message-bottom {
+    margin: 0;
+  }
+
+  .type-message-bottom input {
+    max-width: 60%;
+  }
+
+  #record-btn-2 {
+    margin-right: -10px;
+    font-size: 20px;
+    width: 20px;
+  }
+
+  .speech-bubble-content {
+    position: absolute;
+    animation: float1 2s 2s infinite;
+    top: 60px;
+    left: 70px;
+    width: 50%;
+    z-index: 999;
+  
+  }
 }

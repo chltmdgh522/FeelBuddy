@@ -23,15 +23,16 @@ html {
 	height: 100vh;
 	overflow-y: scroll;
 	scroll-snap-type: y mandatory;
-	/* margin-top: 20vh; */
+	margin-top: 8vh;
 	background: hsl(0, 0%, 2%);
 	perspective: 1000px;
 	perspective-origin: 50% 35%;
+	transform-style: preserve-3d;
+	
 }
 
-.room-building {
-	transform-style: preserve-3d;
-}
+
+
 
 /* 벽 */
 .room {
@@ -39,6 +40,7 @@ html {
 	border: 4vh solid hsl(0 0 10%);
 	height: 90vh;
 	width: 100vw;
+	/* margin-top: 14vh; */
 	margin-top: 14vh;
 	scroll-snap-align: center;
 	transform-style: preserve-3d;
@@ -82,6 +84,15 @@ html {
 .room1-walls::after, .room1-walls::before {
   background: linear-gradient(to top, #3a1c71 0%, #d76d77 50%, #d78d94 100%);
 
+}
+
+.room1-walls {
+	pointer-events: none;
+	z-index: 1;
+}
+
+.mobile-character-main, .character-scene {
+	z-index: 999999;
 }
 
 
@@ -277,11 +288,7 @@ html {
 
 /* favorite content 추가(찜 기능) */
 /* table front 구멍 없애기 */
-.table-button {
-	background: #605d5d;
-	width: 100%;
-	height: 100%;
-  }
+
 
   .Fav {
 	position: relative;
@@ -468,3 +475,5 @@ html {
   .Caption {
 	color: #ffac33;
   }
+
+

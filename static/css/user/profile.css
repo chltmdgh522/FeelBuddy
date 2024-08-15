@@ -1,400 +1,1276 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    text-transform: uppercase;
-    box-sizing: inherit;
-    font-size: 10.5px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 2px rgba(0, 0, 0, .5),
-        -1px -1px 1px rgba(179, 179, 179, .5),
-        1px 1px 0 rgba(255, 255, 255, 0.55),
-        0 1px 3px white;
-    overflow: hidden;
-    color: #191919;
-    /* background-color: azure; */
-    background-color: azure;
+  text-transform: uppercase;
+  box-sizing: inherit;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5),
+    -1px -1px 1px rgba(179, 179, 179, 0.5), 1px 1px 0 rgba(255, 255, 255, 0.55),
+    0 1px 3px white;
+  overflow: hidden;
+  color: #191919;
+  background-color: azure;
+  /* background-color: #806278; */
 }
 
+/* background 추가 */
+body {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #060010;
+  background: -moz-linear-gradient(
+    top,
+    #060010 0%,
+    #060010 6%,
+    #090016 11%,
+    #070016 20%,
+    #0a0121 48%,
+    #0a0127 55%,
+    #0a0129 57%,
+    #0c012b 62%,
+    #0e0131 68%,
+    #0d012f 69%,
+    #18023c 78%,
+    #19023e 79%,
+    #19023e 79%,
+    #1c0242 81%,
+    #22034b 85%,
+    #2e045a 92%,
+    #2f045e 96%,
+    #340464 98%,
+    #370569 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    #060010 0%,
+    #060010 6%,
+    #090016 11%,
+    #070016 20%,
+    #0a0121 48%,
+    #0a0127 55%,
+    #0a0129 57%,
+    #0c012b 62%,
+    #0e0131 68%,
+    #0d012f 69%,
+    #18023c 78%,
+    #19023e 79%,
+    #19023e 79%,
+    #1c0242 81%,
+    #22034b 85%,
+    #2e045a 92%,
+    #2f045e 96%,
+    #340464 98%,
+    #370569 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    #060010 0%,
+    #060010 6%,
+    #090016 11%,
+    #070016 20%,
+    #0a0121 48%,
+    #0a0127 55%,
+    #0a0129 57%,
+    #0c012b 62%,
+    #0e0131 68%,
+    #0d012f 69%,
+    #18023c 78%,
+    #19023e 79%,
+    #19023e 79%,
+    #1c0242 81%,
+    #22034b 85%,
+    #2e045a 92%,
+    #2f045e 96%,
+    #340464 98%,
+    #370569 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#060010",
+      endColorstr="#370569",
+      GradientType=0
+    );
+  transform: scale(1);
+}
+
+
+.mountains {
+  position: absolute;
+  height: 80px;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+}
+
+.light-base {
+  position: absolute;
+  bottom: -80px;
+  left: 10vw;
+  width: 80vw;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: -0px -10px 30px 10px #ffc1a0, -0px -20px 40px 20px #fe9c7f,
+    -0px -30px 60px 30px #be6590, -0px -50px 150px 75px #632b6c;
+  background-color: #ffc1a0;
+  z-index: 1;
+}
+
+.mountains-base {
+  content: "";
+  background: -moz-linear-gradient(
+    top,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#00370569",
+      endColorstr="#090016",
+      GradientType=0
+    );
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: -10px;
+  z-index: 3;
+}
+
+.mountains-base:after {
+  content: "";
+  background: -moz-linear-gradient(
+    top,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#00370569",
+      endColorstr="#090016",
+      GradientType=0
+    );
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 3;
+}
+
+.mountains-base:before {
+  content: "";
+  background: -moz-linear-gradient(
+    top,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(55, 5, 105, 0) 0%,
+    rgba(9, 0, 22, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr="#00370569",
+      endColorstr="#090016",
+      GradientType=0
+    );
+  width: 100%;
+  height: 15px;
+  position: absolute;
+  bottom: 10px;
+  z-index: 2;
+}
+
+.mountains > [class^="mountain"],
+.mountains > [class^="mountain"]:after,
+.mountains > [class^="mountain"]:before,
+.mountains > [class^="land"],
+.mountains > [class^="land"]:after,
+.mountains > [class^="land"]:before {
+  background: #110124;
+  box-shadow: 0px 0px 50px 5px rgba(255, 255, 255, 0.2);
+  position: absolute;
+  bottom: 0px;
+}
+
+.mountain-2 {
+  width: 60px;
+  height: 60px;
+  bottom: -20px !important;
+  left: -10px;
+  transform: rotate(45deg);
+  border-top-left-radius: 10px;
+}
+
+.mountain-1 {
+  width: 100px;
+  height: 100px;
+  bottom: -40px !important;
+  left: 10px;
+  transform: rotate(45deg);
+  border-top-left-radius: 10px;
+}
+
+.land-1 {
+  width: 30%;
+  height: 20px;
+  border-top-right-radius: 100%;
+}
+
+.land-2 {
+  width: 60%;
+  height: 15px;
+  left: 30%;
+  border-top-left-radius: 200%;
+  border-top-right-radius: 200%;
+}
+
+.land-3 {
+  width: 20%;
+  height: 20px;
+  left: 80%;
+  border-top-left-radius: 100%;
+}
+
+.stars {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  transition: all 10s linear;
+  z-index: 10000000000000;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.8;
+}
+
+.blink {
+  animation: blink ease-in-out infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.star-0 {
+  height: 0.5px;
+  width: 0.5px;
+}
+
+.star-1 {
+  height: 1px;
+  width: 1px;
+}
+
+.star-2 {
+  height: 1.5px;
+  width: 1.5px;
+}
+
+.star-3 {
+  height: 2px;
+  width: 2px;
+}
+
+.star-4 {
+  height: 2.5px;
+  width: 2.5px;
+  box-shadow: 0px 0px 6px 1px rgba(255, 255, 255, 0.5);
+}
+
+.star-5 {
+  height: 2.5px;
+  width: 2.5px;
+  box-shadow: 0px 0px 6px 1px rgba(255, 255, 255, 0.7);
+}
+
+.stars-cross {
+  position: absolute;
+  top: 10vh;
+  left: 0px;
+  width: 120vw;
+  height: 20vh;
+  transform: rotate(20deg);
+  transform-origin: top left;
+  z-index: 99999999999;
+}
+
+.stars-cross-aux {
+  position: absolute;
+  top: 0vh;
+  left: 10vw;
+  width: 120vw;
+  height: 10vh;
+  transform: rotate(20deg);
+  transform-origin: top left;
+  z-index: 99999999999;
+}
+
+.stars-cross > .blur,
+.stars-cross-aux > .blur {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 1;
+  filter: blur(15px);
+  width: 5px;
+  height: 10px;
+}
+
+/* profile-card 스타일 4/3 크기로 조정 */
 #profile-btn {
-    display: block;
-    position: relative;
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    text-transform: inherit;
-    letter-spacing: inherit;
-    text-shadow: inherit;
-    cursor: pointer;
-    outline: inherit;
-    z-index: 10;
+  display: block;
+  position: relative;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+  outline: inherit;
+  z-index: 1000;
+  background-color: #191919;
+  margin-top: 220px;
 }
 
 .profile-card {
-    /* background-color: #f4f1eb;
-  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"); */
-    height: 280px;
-    /* 2/3 크기 조정 */
-    width: 490px;
-    /* 2/3 크기 조정 */
-    margin: 20vh auto 0 auto;
-    padding: 13.33px 6.67px 6.67px 6.67px;
-    /* 2/3 크기 조정 */
-    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
-    box-shadow: 0;
-    transition: transform .4s ease, box-shadow .4s ease;
-    display: flex;
-    flex-direction: row;
+  position: absolute;
+  z-index: 1000;
+  height: 373.33px; /* 4/3 크기 조정 */
+  width: 653.33px;  /* 4/3 크기 조정 */
+  margin: 13.33vh auto 0 auto; /* 4/3 크기 조정 */
+  padding: 17.78px 8.89px 8.89px 8.89px; /* 4/3 크기 조정 */
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+  box-shadow: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-card:hover {
-    cursor: pointer;
-    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg) translateZ(10px);
-    box-shadow: 20px 20px 20px rgba(0, 0, 0, .4);
+  cursor: pointer;
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg) translateZ(13.33px); /* 4/3 크기 조정 */
+  box-shadow: 26.67px 26.67px 26.67px rgba(0, 0, 0, 0.4); /* 4/3 크기 조정 */
 }
 
 .profile-card:focus {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(13.33px); /* 4/3 크기 조정 */
+  box-shadow: 13.33px 13.33px 13.33px rgba(0, 0, 0, 0.4); /* 4/3 크기 조정 */
 }
 
 .profile-card:focus::before {
-    transform: skewX(0deg) translateX(0px) translateY(0px);
-    height: 0px;
+  transform: skewX(0deg) translateX(0px) translateY(0px);
+  height: 0px;
 }
 
 .profile-card:focus::after {
-    transform: skewY(0deg) translateX(0px) translateY(0px);
-    width: 0px;
+  transform: skewY(0deg) translateX(0px) translateY(0px);
+  width: 0px;
 }
 
 .profile-card::before,
 .profile-card::after {
-    content: "";
-    position: absolute;
-    display: block;
-    /* background-color: grey; */
-    transition: transform .4s ease, height .4s ease, width .4s ease;
+  content: "";
+  position: absolute;
+  display: block;
+  transition: transform 0.4s ease, height 0.4s ease, width 0.4s ease;
 }
 
 .profile-card::before {
-    width: 100%;
-    height: 4px;
-    /* 2/3 크기 조정 */
-    bottom: 0;
-    left: 0;
-    transform: skewX(45deg) translateX(-2px) translateY(4px);
-    /* 2/3 크기 조정 */
+  width: 100%;
+  height: 5.33px; /* 4/3 크기 조정 */
+  bottom: 0;
+  left: 0;
+  transform: skewX(45deg) translateX(-2.67px) translateY(5.33px); /* 4/3 크기 조정 */
 }
 
 .profile-card::after {
-    height: 100%;
-    width: 4px;
-    /* 2/3 크기 조정 */
-    top: 0;
-    right: 0;
-    transform: skewY(45deg) translateX(4px) translateY(-2px);
-    /* 2/3 크기 조정 */
+  height: 100%;
+  width: 5.33px; /* 4/3 크기 조정 */
+  top: 0;
+  right: 0;
+  transform: skewY(45deg) translateX(5.33px) translateY(-2.67px); /* 4/3 크기 조정 */
+}
+
+.profile-left, .profile-right {
+  position: relative;
+  z-index: 1001;
+}
+
+.profile-left-content, .profile-right-content {
+  position: relative;
+  z-index: 1002;
 }
 
 .profile-left {
-    position: relative;
-    width: 40%;
-    height: 100%;
-    /* background-color: azure; */
-    /* background:  rgba(206, 13, 13, 0.1); */
-    background: rgb(248, 236, 249);
-    /* background-color: #1A1C40; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  z-index: 1001;
+  width: 40%;
+  height: 100%;
+  background: rgb(248, 236, 249);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(/media/logo.png);
+        background-size: cover;
+  
 }
 
+
+
 .profile-right-list {
-    width: 100%;
-    height: 15%;
-    position: relative;
-    background: #d2c9f5;
+  width: 100%;
+  height: 20%; /* 4/3 크기 조정 */
+  position: relative;
+  background: #d2c9f5;
+}
+
+.profile-right-list img {
+  display: flex;
+  width: 50px;
+  height: auto;
+}
+
+.user-image-container {
+  position: relative;
+  display: inline-block;
+  width: 160px; /* 4/3 크기 조정 */
+  height: 160px; /* 4/3 크기 조정 */
+  margin-bottom: 33.33px; /* 4/3 크기 조정 */
 }
 
 .user-image {
-    margin: auto;
-    margin-top: 20px;
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-    border: 3px solid #1A1C40;
-    background-color: white;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #1a1c40; /* 4/3 크기 조정 */
+  background-color: white;
 }
 
+#edit-profile-pic-icon {
+  position: absolute;
+  bottom: 6.67px; /* 4/3 크기 조정 */
+  right: 6.67px; /* 4/3 크기 조정 */
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 2.67px; /* 4/3 크기 조정 */
+  font-size: 21.33px; /* 4/3 크기 조정 */
+  cursor: pointer;
+  box-shadow: 0px 1.33px 4px rgba(0, 0, 0, 0.1); /* 4/3 크기 조정 */
+}
+
+#edit-profile-pic-icon:hover {
+  background: #f0f0f0;
+}
 
 .user-name {
-    margin: 0;
-    margin-top: 20px;
-    text-align: center;
-    color: #1A1C40;
+  display: flex;
+  align-items: center;
+  gap: 13.33px; /* 4/3 크기 조정 */
+  justify-content: center;
 }
 
+#nickname-input {
+  width: 80%;
+  padding: 6.67px; /* 4/3 크기 조정 */
+  font-size: 18.67px; /* 4/3 크기 조정 */
+  border: 1px solid #ccc;
+  border-radius: 6.67px; /* 4/3 크기 조정 */
+  box-sizing: border-box;
+  margin-top: 13.33px; /* 4/3 크기 조정 */
+  transition: width 0.3s ease;
+}
+
+#edit-nickname-icon {
+  cursor: pointer;
+  font-size: 20px; /* 4/3 크기 조정 */
+  vertical-align: middle;
+}
 
 /* 편지지 이메일 추가 */
 .profile-email {
-    position: relative;
-    width: 100%;
-    /* 2/3 크기 조정 */
-    height: 85%;
-    /* 2/3 크기 조정 */
-}
-
-#profile-email-bg {
-    position: absolute;
-    left: -50%;
-    top: -50%;
-    height: 100%;
-    width: 100%;
+  position: relative;
+  width: 100%;
+  height: 113.33%; /* 4/3 크기 조정 */
 }
 
 .profile-contact {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -83.33px;
-    /* 2/3 크기 조정 */
-    margin-top: -83.33px;
-    /* 2/3 크기 조정 */
-    height: 166.67px;
-    /* 2/3 크기 조정 */
-    width: 166.67px;
-    /* 2/3 크기 조정 */
-    background: rgba(206, 13, 13, 0.1);
-    border-radius: 20px;
-
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -111.11px; /* 4/3 크기 조정 */
+  margin-top: -111.11px; /* 4/3 크기 조정 */
+  height: 222.22px; /* 4/3 크기 조정 */
+  width: 222.22px; /* 4/3 크기 조정 */
+  /* background: rgba(206, 13, 13, 0.1); */
+  background: transparent;
+  border-radius: 26.67px; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope {
-    position: absolute;
-    height: 62px;
-    /* 2/3 크기 조정 */
-    width: 110px;
-    /* 2/3 크기 조정 */
-    left: 50%;
-    margin-left: -55px;
-    /* 2/3 크기 조정 */
-    top: 50%;
-    margin-top: -33.33px;
-    /* 2/3 크기 조정 */
-    background: #F9F9F9;
-    transition: margin-top 300ms;
+  position: absolute;
+  height: 82.67px; /* 4/3 크기 조정 */
+  width: 146.67px; /* 4/3 크기 조정 */
+  left: 50%;
+  margin-left: -73.33px; /* 4/3 크기 조정 */
+  top: 50%;
+  margin-top: -44.44px; /* 4/3 크기 조정 */
+  background: #f9f9f9;
+  transition: margin-top 300ms;
 }
 
 .profile-contact:hover .profile-envelope {
-    transition-delay: 150ms;
-    margin-top: -13.33px;
-    /* 2/3 크기 조정 */
+  transition-delay: 150ms;
+  margin-top: -17.78px; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-top {
-    position: absolute;
-    top: -2px;
-    /* 2/3 크기 조정 */
-    left: 0px;
-    width: 100%;
-    height: 48.67px;
-    /* 2/3 크기 조정 */
-    z-index: 30;
-    overflow: hidden;
-    transform-origin: top;
-    transition: transform 300ms 150ms, z-index 0ms 150ms, height 300ms 0ms, top 300ms 0ms;
+  position: absolute;
+  top: -2.67px; /* 4/3 크기 조정 */
+  left: 0px;
+  width: 100%;
+  height: 64.89px; /* 4/3 크기 조정 */
+  z-index: 30;
+  overflow: hidden;
+  transform-origin: top;
+  transition: transform 300ms 150ms, z-index 0ms 150ms, height 300ms 0ms,
+    top 300ms 0ms;
 }
 
 .profile-contact:hover .profile-envelope .email-top {
-    transition: transform 300ms 0ms, height 300ms 150ms, top 300ms 150ms;
-    height: 6.67px;
-    /* 2/3 크기 조정 */
-    top: -40px;
-    /* 2/3 크기 조정 */
-    transform: rotateX(180deg);
+  transition: transform 300ms 0ms, height 300ms 150ms, top 300ms 150ms;
+  height: 8.89px; /* 4/3 크기 조정 */
+  top: -53.33px; /* 4/3 크기 조정 */
+  transform: rotateX(180deg);
 }
 
 .profile-contact .profile-envelope .email-outer {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    border-left: 55.33px solid transparent;
-    /* 2/3 크기 조정 */
-    border-right: 54.67px solid transparent;
-    /* 2/3 크기 조정 */
-    border-top: 46.67px solid #EEE;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border-left: 73.78px solid transparent; /* 4/3 크기 조정 */
+  border-right: 72.89px solid transparent; /* 4/3 크기 조정 */
+  border-top: 62.22px solid #eee; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-outer .email-inner {
-    position: absolute;
-    left: -54px;
-    /* 2/3 크기 조정 */
-    top: -48.67px;
-    /* 2/3 크기 조정 */
-    border-left: 54px solid transparent;
-    /* 2/3 크기 조정 */
-    border-right: 53.33px solid transparent;
-    /* 2/3 크기 조정 */
-    border-top: 45.33px solid #333;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  left: -72px; /* 4/3 크기 조정 */
+  top: -64.89px; /* 4/3 크기 조정 */
+  border-left: 72px solid transparent; /* 4/3 크기 조정 */
+  border-right: 71.11px solid transparent; /* 4/3 크기 조정 */
+  border-top: 60.44px solid #333; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-bottom {
-    position: absolute;
-    z-index: 20;
-    bottom: 0px;
-    left: 1.33px;
-    /* 2/3 크기 조정 */
-    border-left: 54px solid transparent;
-    /* 2/3 크기 조정 */
-    border-right: 53.33px solid transparent;
-    /* 2/3 크기 조정 */
-    border-bottom: 30px solid #333;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  z-index: 20;
+  bottom: 0px;
+  left: 1.78px; /* 4/3 크기 조정 */
+  border-left: 72px solid transparent; /* 4/3 크기 조정 */
+  border-right: 71.11px solid transparent; /* 4/3 크기 조정 */
+  border-bottom: 40px solid #333; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-left {
-    position: absolute;
-    z-index: 20;
-    top: 0px;
-    left: 0px;
-    border-left: 54px solid #333;
-    /* 2/3 크기 조정 */
-    border-top: 30px solid transparent;
-    /* 2/3 크기 조정 */
-    border-bottom: 30px solid transparent;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  z-index: 20;
+  top: 0px;
+  left: 0px;
+  border-left: 72px solid #333; /* 4/3 크기 조정 */
+  border-top: 40px solid transparent; /* 4/3 크기 조정 */
+  border-bottom: 40px solid transparent; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-right {
-    position: absolute;
-    z-index: 20;
-    top: 0px;
-    right: 0px;
-    border-right: 53.33px solid #333;
-    /* 2/3 크기 조정 */
-    border-top: 30px solid transparent;
-    /* 2/3 크기 조정 */
-    border-bottom: 30px solid transparent;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  z-index: 20;
+  top: 0px;
+  right: 0px;
+  border-right: 71.11px solid #333; /* 4/3 크기 조정 */
+  border-top: 40px solid transparent; /* 4/3 크기 조정 */
+  border-bottom: 40px solid transparent; /* 4/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-cover {
-    position: absolute;
-    z-index: 15;
-    bottom: 0px;
-    left: 0px;
-    height: 36.67%;
-    /* 2/3 크기 조정 */
-    width: 100%;
-    background: #EEE;
+  position: absolute;
+  z-index: 15;
+  bottom: 0px;
+  left: 0px;
+  height: 48.89%; /* 4/3 크기 조정 */
+  width: 100%;
+  background: #eee;
 }
 
 .profile-contact .profile-envelope .email-paper {
-    position: absolute;
-    height: 55.33px;
-    /* 2/3 크기 조정 */
-    padding-top: 6.67px;
-    /* 2/3 크기 조정 */
-    width: 100%;
-    top: 0px;
-    left: 0px;
-    background: #F9F9F9;
-    z-index: 10;
-    transition: margin-top 300ms 0ms;
+  position: absolute;
+  height: 73.78px; /* 4/3 크기 조정 */
+  padding-top: 8.89px; /* 4/3 크기 조정 */
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background: #f9f9f9;
+  z-index: 10;
+  transition: margin-top 300ms 0ms;
 }
 
 .profile-contact:hover .profile-envelope .email-paper {
-    margin-top: -40px;
-    /* 2/3 크기 조정 */
-    transition: margin-top 300ms 150ms;
+  margin-top: -53.33px; /* 4/3 크기 조정 */
+  transition: margin-top 300ms 150ms;
 }
 
 .profile-contact .profile-envelope .email-paper a {
-    position: relative;
-    display: block;
-    font-size: 9.33px;
-    /* 2/3 크기 조정 */
-    margin: 3.33px;
-    /* 2/3 크기 조정 */
-    margin-bottom: 0px;
-    text-align: center;
-    color: #333;
-    text-decoration: none;
+  position: relative;
+  display: block;
+  font-size: 12.44px; /* 4/3 크기 조정 */
+  margin: 4.44px; /* 4/3 크기 조정 */
+  margin-bottom: 0px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
 }
-
-
 
 .profile-contact .profile-envelope .email-paper a.mail .i {
-    position: absolute;
-    top: 0px;
-    left: 11.33px;
-    /* 2/3 크기 조정 */
-    display: inline-block;
-    font-size: 8.67px;
-    /* 2/3 크기 조정 */
-    font-weight: bold;
+  position: absolute;
+  top: 0px;
+  left: 15.11px; /* 4/3 크기 조정 */
+  display: inline-block;
+  font-size: 11.56px; /* 4/3 크기 조정 */
+  font-weight: bold;
 }
 
+.mail {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.mail svg {
+  width: 16px;
+  height: auto;
+  margin-right: 10px;
+}
 
 /* 하단 리스트 */
-
 .profile-right-list ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 .profile-right-list ul li {
-    text-align: center;
-    font-family: Exo;
-    font-size: 14px;
-    color: white;
-    list-style-type: none;
-    display: inline-block;
-    float: left;
-    width: 100%;
-    height: 100%;
-    border-right: solid 3px rgba(255, 255, 255, .2);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  text-align: center;
+  font-family: Exo;
+  font-size: 18.67px; /* 4/3 크기 조정 */
+  color: white;
+  list-style-type: none;
+  display: inline-block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  border-right: solid 4px rgba(255, 255, 255, 0.2); /* 4/3 크기 조정 */
+  text-shadow: 1.33px 1.33px 4px rgba(0, 0, 0, 0.3); /* 4/3 크기 조정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-right-list ul li:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 .profile-right-list ul li span.icon {
-    display: block;
-    margin-top: 25px;
-    color: white;
-    font-size: 12px;
-    line-height: 100%;
+  display: block;
+  margin-top: 33.33px; /* 4/3 크기 조정 */
+  color: white;
+  font-size: 16px; /* 4/3 크기 조정 */
+  line-height: 100%;
 }
+
+.pic-edit {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  margin: 33.33px 40px; /* 4/3 크기 조정 */
+}
+
+.pic-edit:after {
+  position: absolute;
+  content: "";
+  bottom: 4px; /* 4/3 크기 조정 */
+  right: 4px; /* 4/3 크기 조정 */
+  width: 26.67px; /* 4/3 크기 조정 */
+  height: 26.67px; /* 4/3 크기 조정 */
+  border: 5.33px solid #ffffff; /* 4/3 크기 조정 */
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  background: url("/media/pencil-line.png");
+  background-size: contain;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 1.33px 4px rgba(0, 0, 0, 0.1); /* 4/3 크기 조정 */
+  box-shadow: 0px 1.33px 4px rgba(0, 0, 0, 0.1); /* 4/3 크기 조정 */
+  -webkit-animation: scaleIn 0.4s 4.67s ease forwards; /* 4/3 크기 조정 */
+  animation: scaleIn 0.4s 4.67s ease forwards; /* 4/3 크기 조정 */
+}
+
+/* header 네온사인 추가 */
+#pole{
+  border-radius: 1vw 1vw 0 0;    
+  position: absolute;
+  z-index: 999;
+  top:-160px;
+  left: 10vmin;
+  height: 5vh; 
+  width: 10vw;
+  transform: translateY(160px);
+  min-width: 45px;
+  background-color: #30343f;
+  font-size: 1.5em;    
+}
+
+#right{  
+  height: 10.2vh;    
+  transform: translate(-40px, 50px);    
+  width: 24.5vw; 
+  min-width: 200px;
+  background-color: rgb(14, 13, 13); 
+  display: flex;
+  align-items: center;
+  justify-content: center;   
+  color: white;    
+  border-radius: 10px 50px 50px 10px;
+  border: 3px outset white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* 네온사인 추가 */
+#right {
+  background-size: cover;
+  margin: 0;
+}
+
+.logo {
+  text-align: center;
+  width: 50px;
+  height: 100px;
+  margin: auto;
+  position: relative;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo b{
+  position: relative;
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5vh;
+  margin-bottom: 10px;
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+}
+
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79% {
+    color: #333;
+  }
+  80% {
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
+
+/* 아이콘 적용 */
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #FFFFFF;
+  --greyLight-1: #E4EBF5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
+.icon {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  gap: 1.5rem;
+  z-index: 99999;
+}
+
+.icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: .3rem .3rem .6rem var(--greyLight-2), -.2rem -.2rem .5rem var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--greyDark);
+  transition: all .5s ease;
+  z-index: 999999;
+}
+
+.icon__account svg, .icon__home svg, .icon__chat svg, .icon__log svg, .icon__delete svg, .icon__list svg {
+  width: 16px;
+  height: 16px;
+}
+
+.icon__account:active, .icon__home:active, .icon__chat:active, .icon__log:active, .icon__delete:active, .icon__list:active {
+  box-shadow: inset .2rem .2rem .5rem var(--greyLight-2), inset -.2rem -.2rem .5rem var(--white);
+  color: var(--primary);
+}
+
+.icon__account:hover, .icon__home:hover, .icon__chat:hover, .icon__log:hover, .icon__delete:hover, .icon__list:hover {
+  color: var(--primary);
+}
+
+.components {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 3rem;
+  box-shadow: .8rem .8rem 1.4rem var(--greyLight-2), -.2rem -.2rem 1.8rem var(--white);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(auto-fit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+}
+
+.send-form {
+  width: 35rem;
+  height: 10rem;
+  box-shadow: .8rem .8rem 1.4rem var(--greyLight-2), -.2rem -.2rem 1.8rem var(--white);
+  border-radius: 3rem;
+  font-size: 1.4rem;
+  background: none;
+  font-family: inherit;
+  color: var(--greyDark);
+  z-index: 99;
+  position: absolute;
+  bottom: 12rem;
+}
+
+.plus-btn {
+  width: 100vmin;
+  background: none;
+  border: none;
+}
+
+.plus-btn svg {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.64);
+  width: 2rem;
+  height: 2rem;
+  bottom: 5vh;
+  left: 5vh;
+}
+
+.plus-btn svg:hover {
+  transform: scale(1.2);
+  color: white;
+}
+
+
+.night {
+  position: relative;
+  margin-top: 70vh;
+  margin-right: 50vh;
+  width: 100%;
+  height: 100%;
+  transform: rotateZ(45deg);
+  z-index: 1;
+}
+
+.shooting_star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+  animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+  z-index: 2;
+}
+
+.shooting_star::before, 
+.shooting_star::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+  border-radius: 100%;
+  animation: shining 3000ms ease-in-out infinite;
+}
+
+.shooting_star::after {
+  transform: translateX(50%) rotateZ(-45deg);
+}
+
+@keyframes tail {
+  0% { width: 0; }
+  30% { width: 100px; }
+  100% { width: 0; }
+}
+
+@keyframes shining {
+  0% { width: 0; }
+  50% { width: 30px; }
+  100% { width: 0; }
+}
+
+@keyframes shooting {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(300px); }
+}
+
+.shooting_star:nth-child(1) { 
+  top: calc(20% - 300px); 
+  left: calc(10% - 600px); 
+  animation-delay: 100ms; 
+}
+
+.shooting_star:nth-child(2) { 
+  top: calc(10% - 400px); 
+  left: calc(20% - 800px); 
+  animation-delay: 300ms; 
+}
+
+.shooting_star:nth-child(3) { 
+  top: calc(30% - 100px); 
+  left: calc(80% - 400px); 
+  animation-delay: 500ms; 
+}
+
+.shooting_star:nth-child(4) { 
+  top: calc(40% - 500px); 
+  left: calc(60% - 900px); 
+  animation-delay: 700ms; 
+}
+
+.shooting_star:nth-child(5) { 
+  top: calc(50% - 200px); 
+  left: calc(70% - 700px); 
+  animation-delay: 900ms; 
+}
+
+.shooting_star:nth-child(6) { 
+  top: calc(60% - 600px); 
+  left: calc(40% - 100px); 
+  animation-delay: 1100ms; 
+}
+
+.shooting_star:nth-child(7) { 
+  top: calc(70% - 50px); 
+  left: calc(30% - 950px); 
+  animation-delay: 1300ms; 
+}
+
+.shooting_star:nth-child(8) { 
+  top: calc(80% - 350px); 
+  left: calc(20% - 200px); 
+  animation-delay: 1500ms; 
+}
+
+.shooting_star:nth-child(9) { 
+  top: calc(90% - 250px); 
+  left: calc(10% - 750px); 
+  animation-delay: 1700ms; 
+}
+
+.shooting_star:nth-child(10) { 
+  top: calc(100% - 550px); 
+  left: calc(50% - 450px); 
+  animation-delay: 1900ms; 
+}
+
+.shooting_star:nth-child(11) { 
+  top: calc(85% - 300px); 
+  left: calc(15% - 650px); 
+  animation-delay: 2100ms; 
+}
+
+.shooting_star:nth-child(12) { 
+  top: calc(75% - 100px); 
+  left: calc(25% - 850px); 
+  animation-delay: 2300ms; 
+}
+
+.shooting_star:nth-child(13) { 
+  top: calc(65% - 200px); 
+  left: calc(35% - 300px); 
+  animation-delay: 2500ms; 
+}
+
+.shooting_star:nth-child(14) { 
+  top: calc(55% - 400px); 
+  left: calc(45% - 500px); 
+  animation-delay: 2700ms; 
+}
+
+.shooting_star:nth-child(15) { 
+  top: calc(45% - 600px); 
+  left: calc(55% - 100px); 
+  animation-delay: 2900ms; 
+}
+
+.shooting_star:nth-child(16) { 
+  top: calc(35% - 50px); 
+  left: calc(65% - 1000px); 
+  animation-delay: 3100ms; 
+}
+
+.shooting_star:nth-child(17) { 
+  top: calc(25% - 350px); 
+  left: calc(75% - 250px); 
+  animation-delay: 3300ms; 
+}
+
+.shooting_star:nth-child(18) { 
+  top: calc(15% - 250px); 
+  left: calc(85% - 850px); 
+  animation-delay: 3500ms; 
+}
+
+.shooting_star:nth-child(19) { 
+  top: calc(5% - 550px); 
+  left: calc(95% - 550px); 
+  animation-delay: 3700ms; 
+}
+
+.shooting_star:nth-child(20) { 
+  top: calc(50% - 450px); 
+  left: calc(50% - 400px); 
+  animation-delay: 3900ms; 
+}
+
+
+/* 모바일 반응형 시작 */
+.mobile-profile-container {
+  display: none;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  #pole, .icon, .mountains, .mountains-base, .light-base, .profile-card {
+    display: none;
+  }
+
+  html, body {
+    height: 100vh;
+    width: 100vmin;
+    border: none;
+    padding: 0;
+    margin: 0;
+    transform: none;
+    text-transform: none;
+
+  }
+  
+  .mobile-profile-container {
+    display: flex;
+    height: 100vh;
+    width: 100vmin;
+    border: none;
+
+  }
+  .mobile-card {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    animation: card-ani 1s;
+    transition-delay: 1s;
+    transition-timing-function: easeOutCirc;
+    position: relative; 
+    
+  }
+  .mobile-card .front {
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+  }
+
+  .mobile-card .front .top {
+        background-image: url(/media/logo.png);
+        background-size: cover;
+        border-radius: 10px 10px 0 0;
+        height: 400px;
+       }
+
+  .mobile-card .front .bottom {
+        color: white;
+        height: 700px;
+        width: 100%;
+        background: rgb(255, 231, 252);
+        border-radius: 0 0 10px 10px;
+        text-align: center; 
+      }
+  .mobile-card .front .bottom .info {
+          vertical-align: middle;
+          text-align: center; 
+        }
+          .mobile-card .front .bottom .name {
+          padding: 45px 0px 0px 0px;
+          font-size: 25px; }
+          .mobile-card .front .bottom .work {
+          font-size: 15px;
+          font-weight: 900;
+          color: #EEA9A9;
+          padding: 5px 0 0 0; }
+          .mobile-card .front .bottom .porfolio {
+          padding: 40px; }
+
+
+          .mobile-card .front .picc {
+            position: absolute;
+            top:14%;
+            left: calc(50% - 80px);
+        margin: auto;
+        /* margin-top: -500px; */
+        /* width: 114px; */
+        /* height: 114px; */
+        border: none;
+        border-radius: 100%;
+        /* box-shadow: 0 0 0 3px; */
+        /* background-image: url(https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80); */
+        /* background-size: cover; 
+        color: white; */
+          }
+
+      
+  
+  .mobile-container #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; }
+    
+    .profile-email {
+      height: 300px;
+    }
+
+    .user-name {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      font-size: 2em;
+      color: #060010;
+    }
+}
+
+
+
