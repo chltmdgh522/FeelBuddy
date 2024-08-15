@@ -27,7 +27,7 @@
 
   
   <body>
-    
+
     <!-- 모바일 반응형-footer 시작 -->
 <nav class="mobile-footer" role="menulist">
   <a href="{% url 'users:main' %}" role="menuitem" aria-describedby="nav-current">
@@ -62,6 +62,63 @@
   </a>
   <i class="line" id="nav-current">current item</i>
 </nav>
+
+<div class="mobile-profile-container">
+  <div id="background">
+      <div id="background-image"></div>
+  </div>
+  <div class="mobile-card">
+      <div class="front">
+          <div class="top"> </div>
+          <div class="bottom">
+            <p class="user-name">
+              <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
+              <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
+              <i class="ri-pencil-line" id="edit-nickname-icon"></i>
+            </p>
+            <div class="profile-email">
+              <div class="profile-contact">
+                <div class="profile-envelope">
+                  <div class="email-top">
+                    <div class="email-outer">
+                      <div class="email-inner"></div>
+                    </div>
+                  </div>
+                  <div class="email-bottom"></div>
+                  <div class="email-left"></div>
+                  <div class="email-right"></div>
+                  <div class="email-cover"></div>
+                  <div class="email-paper">
+                    <a class="mail" href="#">
+                      <div class="i"></div>
+                      {{ user.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <!-- <div class="info name">lorem</div> -->
+              <!-- <div class="info work">Lorem ipsum dolor sit amet.</div> -->
+              <div class="info porfolio"> </div>
+          </div>
+          <div class="picc">
+            <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="user-image-container">
+                <img
+                  id="profile-picture-preview"
+                  src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
+                  class="user-image"
+                />
+                <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
+                <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
+              </div>
+            </form>
+          </div>
+      </div>
+      <div class="back"></div>
+  </div>
+</div>
 <!-- 모바일 반응형 - footer 끝 -->
     <div id="pole">
       <div id="right">
@@ -127,7 +184,7 @@
     
 
     
-    
+      
       
       <button class="profile-card" id="profile-btn">
         <div class="profile-left">
@@ -144,17 +201,22 @@
                 <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
                 <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
               </div>
-            </form
+            </form>
             <p class="user-name">
               <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
               <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
               <i class="ri-pencil-line" id="edit-nickname-icon"></i>
             </p>
+            <a class="mail" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
+              <div class="i"></div>
+              {{ user.email }}
+            </a>
           </div>
         </div>
   
         <div class="profile-right">
-          <div class="profile-email">
+          <!-- <div class="profile-email">
             <div class="profile-contact">
               <div class="profile-envelope">
                 <div class="email-top">
@@ -174,15 +236,16 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="profile-right-list">
+          </div> -->
+          <!-- <div class="profile-right-list">
             <ul>
-              <li><span class=""></span>찜</li>
+              
+              <li><span class=""></span>Feedback</li>
               <li><span class=""></span>log</li>
               <li><span class=""></span>댓글</li>
               <li><span class=""></span>즐찾</li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </button>
     
@@ -192,7 +255,70 @@
  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <script>
+    var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var stars = [], // Array that contains the stars
+    FPS = 60, // Frames per second
+    x = canvas.width; // Number of stars
+
+// Push stars to array
+
+for (var i = 0; i < x; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random(),
+    vx: Math.floor(Math.random() * 10) - 5,
+    vy: Math.floor(Math.random() * 10) - 5
+  });
+}
+
+// Draw the scene
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   
+  ctx.globalCompositeOperation = "lighter";
+  
+  for (var i = 0, x = stars.length; i < x; i++) {
+    var s = stars[i];
+  
+    ctx.fillStyle = "#fff";
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+}
+
+// Update star locations
+
+function update() {
+  for (var i = 0, x = stars.length; i < x; i++) {
+    var s = stars[i];
+  
+    s.x += s.vx / FPS;
+    s.y += s.vy / FPS;
+    
+    if (s.x < 0 || s.x > canvas.width) s.x = -s.x;
+    if (s.y < 0 || s.y > canvas.height) s.y = -s.y;
+  }
+}
+
+// Update and draw
+
+function tick() {
+  draw();
+  update();
+  requestAnimationFrame(tick);
+}
+
+tick();
+  </script>
   <script>
     function Star(id, x, y){
     this.id = id;
