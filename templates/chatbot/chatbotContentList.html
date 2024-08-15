@@ -227,24 +227,27 @@
     </a>
 </div>
 
-<!-- 네온사인 표지판 추가 -->
-<div id="pole">
-    <div id="right">
-        <div class="logo">
-            <b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b>
-        </div>
-    </div>
-</div>
-<!-- 네온사인 표지판 추가 끝 -->
 
 
-<!-- 램프 효과 -->
-<input type="checkbox" name="btn" id="btn" checked>
+
+ <!-- 램프 효과 -->
+ <input type="checkbox" name="btn" id="btn" checked>
+       
 
 <div class="chat-content active" id="mobile-chat-contact">
 
+      
     <div class="chat-content-body-1">
-        
+          
+        <!-- 네온사인 표지판 추가 -->
+        <div id="pole">
+            <div id="right">
+                <div class="logo">
+                    <b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b>
+                </div>
+            </div>
+        </div>
+        <!-- 네온사인 표지판 추가 끝 -->
         <div class="chat-buildings">
             <div class="chat-window"></div>
             <div class="chat-window"></div>
@@ -256,6 +259,7 @@
         <div class="chat-ground">
             <div class="chat-sewer"></div>
         </div>
+
         <div class="chat-streetlamp">
             <div class="chat-base"></div>
             <div class="chat-basetop"></div>
@@ -263,10 +267,14 @@
             <div class="chat-poletop"></div>
             <div class="chat-head">
                 <label for="btn"></label>
+                
                 <div class="chat-top"></div>
                 <div class="chat-glass"></div>
                 <div class="chat-bot"></div>
+                
             </div>
+
+         
             <div class="chat-light"></div>
             <div class="chat-ground-light"></div>
         </div>
@@ -348,7 +356,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <!-- 원래 id="chat"이었음 -->
+            
             <div class="chat"  id="chat">
                 
                 
@@ -483,7 +491,12 @@
                             <div class="call-view__tracks">
                                 <div class="remote-track--container">
                                     <!-- 말풍선 추가 시작 -->
-                                    <p class="speech-bubble">안녕 나는 {{ character.name }}야</p>
+                                    <div class="speech-bubble-content">
+                                        <p class="speech-bubble">
+                                        
+                                         안녕 나는 {{ character.name }}야안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏㅏ
+                                        </p>
+                                    </div>
                                     <!-- 말풍선 추가 끝 -->
                                     <div class="remote-track--picture-placeholder--container">
                                         <div class="remote-track--picture-placeholder__background"
@@ -570,8 +583,9 @@
         <div class="lighthouse-sky">
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
-        <div class="lighthouse-sea"><span></span>
-             <div id="emotional-phrase" class="emotional-phrase-container"></div>  <!--------------------- 추가된 부분 : 글귀를 표시할 요소 -------------------------></div>
+        <div class="lighthouse-sea">
+                        <div id="emotional-phrase" class="emotional-phrase-container"></div>  <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
+            <span></span></div>
         <div class="lighthouse-content">
             <div class="lighthouse">
                 <div class="lighthouse-base"></div>
@@ -1155,47 +1169,72 @@ document.querySelectorAll('.logout-btn').forEach(button => {
     });
 });
 </script>
-
-<script>    ///////////////////////////////////////////// 추가된 부분 
+<script>  
+    ///////////////////////////////////////////// 추가된 부분 
     // 감성적인 문구 목록 
     const emotionalPhrases = [
-  "모든 순간이 다 찬란한 것은 아니지만, 그렇기에 더 아름답다.",
-  "구름 뒤엔 언제나 태양이 있다.",
-  "오늘도 너에게 다정한 하루가 되기를.",
-  "작은 것들이 쌓여 큰 행복이 된다.",
-  "하루의 끝, 너는 참 잘해냈다.",
-  "따뜻한 마음이 세상을 바꿀 수 있다.",
-  "지금 이 순간이 너의 이야기가 된다.",
-  "희망은 어둠 속에서 빛나는 별과 같다.",
-  "너의 꿈은 너를 향한 길을 찾을 것이다.",
-  "한 걸음 한 걸음이 모두의 마음에 닿는다.",
-  "언젠가 이 모든 것이 네게 의미 있는 추억이 될 거야.",
-  "가장 깊은 어둠 뒤에 가장 밝은 빛이 있다.",
-  "오늘의 너는 어제보다 더 나은 너일 것이다.",
-  "너의 미소는 모든 것을 밝힐 수 있다.",
-  "때론 멈추어 서는 것도 하나의 용기이다.",
-  "이 순간을 사랑하라, 이것이 너의 이야기이다.",
-  "힘들면 잠시 쉬어가도 괜찮아.",
-  "너는 너의 길을 찾아갈 것이다.",
+        "모든 순간이 다 찬란한 것은 아니지만, 그렇기에 더 아름답다.",
+        "구름 뒤엔 언제나 태양이 있다.",
+        "오늘도 너에게 다정한 하루가 되기를.",
+        "작은 것들이 쌓여 큰 행복이 된다.",
+        "하루의 끝, 너는 참 잘해냈다.",
+        "따뜻한 마음이 세상을 바꿀 수 있다.",
+        "지금 이 순간이 너의 이야기가 된다.",
+        "희망은 어둠 속에서 빛나는 별과 같다.",
+        "너의 꿈은 너를 향한 길을 찾을 것이다.",
+        "한 걸음 한 걸음이 모두의 마음에 닿는다.",
+        "언젠가 이 모든 것이 네게 의미 있는 추억이 될 거야.",
+        "가장 깊은 어둠 뒤에 가장 밝은 빛이 있다.",
+        "오늘의 너는 어제보다 더 나은 너일 것이다.",
+        "너의 미소는 모든 것을 밝힐 수 있다.",
+        "때론 멈추어 서는 것도 하나의 용기이다.",
+        "이 순간을 사랑하라, 이것이 너의 이야기이다.",
+        "힘들면 잠시 쉬어가도 괜찮아.",
+        "너는 너의 길을 찾아갈 것이다.",
+        "바람이 강할수록 나무는 더 깊게 뿌리를 내린다.",
+        "너의 오늘이 내일의 너를 빛나게 할 것이다.",
+        "작은 친절이 큰 기적을 만들 수 있다.",
+        "오늘도 너의 빛이 누군가의 어둠을 밝힐 거야.",
+        "무지개는 비 뒤에 나타난다.",
+        "네가 선택한 길이 너를 더 강하게 만들 거야.",
+        "마음의 따뜻함은 차가운 세상도 녹일 수 있다.",
+        "네가 믿는 만큼 꿈은 현실이 된다.",
+        "작은 승리들이 모여 큰 성취를 이룬다.",
+        "지금의 노력은 네 미래의 빛이 될 것이다.",
+        "시간이 지나면 오늘의 어려움도 지나간다.",
+        "매일 조금씩 나아가는 것이 중요하다.",
+        "네가 가는 길이 언제나 옳다.",
+        "어제의 실수가 오늘의 교훈이 된다.",
+        "내일의 태양은 더 밝게 빛날 것이다.",
+        "너의 열정은 끝없는 가능성을 만든다.",
+        "희망은 언제나 네 안에 있다.",
+        "네가 하는 모든 일이 의미가 있다.",
+        "가장 큰 용기는 자신을 믿는 것이다.",
+        "너의 따뜻한 마음이 세상을 더 아름답게 만든다."
     ];
   
     // 랜덤으로 문구 선택하는 함수
     function getRandomPhrase() {
-      const randomIndex = Math.floor(Math.random() * emotionalPhrases.length);
-      return emotionalPhrases[randomIndex];
+        const randomIndex = Math.floor(Math.random() * emotionalPhrases.length);
+        return emotionalPhrases[randomIndex];
     }
   
     // 문구를 페이지에 표시하는 함수
     function displayRandomPhrase() {
-      const phraseElement = document.getElementById('emotional-phrase');
-      if (phraseElement) {
-        phraseElement.textContent = getRandomPhrase();
-      }
+        const phraseElement = document.getElementById('emotional-phrase');
+        if (phraseElement) {
+            phraseElement.textContent = getRandomPhrase();
+        }
     }
   
     // 페이지 로드 시 문구 표시
-    document.addEventListener('DOMContentLoaded', displayRandomPhrase);
-  </script>  <!-- ------------------------여기까지 추가된 부분-------------------------- -->
+    document.addEventListener('DOMContentLoaded', () => {
+        displayRandomPhrase();
+        // 5초마다 문구 변경
+        setInterval(displayRandomPhrase, 10000);
+    });
+</script>  
+<!-- ------------------------여기까지 추가된 부분-------------------------- -->
 </body>
 
 </html>

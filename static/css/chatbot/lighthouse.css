@@ -634,6 +634,7 @@ label[for=night]:before {
 	cursor: pointer;
 }
 
+
 /* 감성글귀 작성을 위한 css */  /*추가된 부분 *************************************************/
 .emotional-phrase-container {
     font-size: 2em; /* 글자 크기 조절 */
