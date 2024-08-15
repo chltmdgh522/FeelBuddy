@@ -22,6 +22,11 @@
 
 
     <style>
+        /* 전체 페이지의 스크롤바 숨기기 (모든 브라우저에서 작동) */
+        .room-building {
+            overflow: hidden;
+        }
+
         a {
             text-decoration: none;
         }
@@ -67,8 +72,8 @@
     </style>
 </head>
 <body>
-    
-            
+
+
 <div class="door">
     <div id="lock"></div>
     <span id="keylock" class="off">Feelbuddy</span>
@@ -182,7 +187,8 @@
                                 </a>
 
                                 <form method="post"
-                                      action="{% url 'character:trash_delete' character.pk %}" onsubmit="return confirmDelete();" >
+                                      action="{% url 'character:trash_delete' character.pk %}"
+                                      onsubmit="return confirmDelete();">
                                     {% csrf_token %}
                                     <button style="
                                     cursor: pointer;
@@ -195,11 +201,15 @@
                                 </form>
 
                                 <a href="{% url 'character:character_detail' character.pk %}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path>
+                                    </svg>
                                 </a>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg>
-                                
-                                
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+                                </svg>
+
+
                             </div>
                         </div>
                         <div class="table-back"></div>
@@ -917,14 +927,21 @@
 <script src="{% static '/js/character/character_list/nav.js' %}"></script>
 
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-11991680-4', 'ianlunn.github.io');
     ga('send', 'pageview');
-  </script>
+</script>
 
 
 <script>
@@ -970,6 +987,33 @@
             }
         });
     });
+</script>
+<script>
+document.querySelectorAll('.logout-btn').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();  // 기본 동작 막기
+        
+        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+
+        fetch(logoutUrl, {
+            method: 'POST',  // POST 방식으로 요청
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+            },
+            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+            } else {
+                console.error('로그아웃 실패');
+            }
+        })
+        .catch(error => console.error('에러 발생:', error));
+    });
+});
 </script>
 </body>
 </html>

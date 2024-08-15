@@ -1126,7 +1126,33 @@
 <script src="{% static '/js/chatbot/chatbot.js' %}"></script>
 <audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
 <script src="{% static '/js/chatbot/music.js' %}"></script>
+<script>
+document.querySelectorAll('.logout-btn').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();  // 기본 동작 막기
+        
+        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
 
+        fetch(logoutUrl, {
+            method: 'POST',  // POST 방식으로 요청
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+            },
+            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+            } else {
+                console.error('로그아웃 실패');
+            }
+        })
+        .catch(error => console.error('에러 발생:', error));
+    });
+});
+</script>
 </body>
 
 </html>

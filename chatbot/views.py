@@ -71,14 +71,15 @@ def chatbot_content_list(request, pk):
             messagesLast = last_messages[:10]
         else:
             messagesLast = []  # `grouped_contents`가 비어있거나 마지막 메시지가 없는 경우 빈 리스트
-
+        first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
         context = {
             'grouped_contents': grouped_contents,
             'character': character,
             'characters': characters,
             'last_time': last_time_formatted,
             'messagesLast': messagesLast,
-            'pk': pk
+            'pk': pk,
+            'first_item': first_item
         }
         return render(request, 'chatbot/chatbotContentList.html', context)
     else:
@@ -324,10 +325,12 @@ def emotion(request):
 
     emotion_counts = calculate_emotion_counts(user, emotions)  # 감정별 전체 대화량
     weekly_emotion_counts = calculate_weekly_emotion_counts(user, emotions)  # 감정별 주간 대화량
+    first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
 
     return render(request, 'chatbot/log.html', {
         'emotion_counts': emotion_counts,
         'weekly_emotion_counts': weekly_emotion_counts,
+        'first_item': first_item
     })
 
 
