@@ -226,24 +226,27 @@
     </a>
 </div>
 
-<!-- 네온사인 표지판 추가 -->
-<div id="pole">
-    <div id="right">
-        <div class="logo">
-            <b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b>
-        </div>
-    </div>
-</div>
-<!-- 네온사인 표지판 추가 끝 -->
 
 
-<!-- 램프 효과 -->
-<input type="checkbox" name="btn" id="btn" checked>
+
+ <!-- 램프 효과 -->
+ <input type="checkbox" name="btn" id="btn" checked>
+       
 
 <div class="chat-content active" id="mobile-chat-contact">
 
+      
     <div class="chat-content-body-1">
-        
+          
+        <!-- 네온사인 표지판 추가 -->
+        <div id="pole">
+            <div id="right">
+                <div class="logo">
+                    <b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b>
+                </div>
+            </div>
+        </div>
+        <!-- 네온사인 표지판 추가 끝 -->
         <div class="chat-buildings">
             <div class="chat-window"></div>
             <div class="chat-window"></div>
@@ -255,6 +258,7 @@
         <div class="chat-ground">
             <div class="chat-sewer"></div>
         </div>
+
         <div class="chat-streetlamp">
             <div class="chat-base"></div>
             <div class="chat-basetop"></div>
@@ -262,10 +266,14 @@
             <div class="chat-poletop"></div>
             <div class="chat-head">
                 <label for="btn"></label>
+                
                 <div class="chat-top"></div>
                 <div class="chat-glass"></div>
                 <div class="chat-bot"></div>
+                
             </div>
+
+         
             <div class="chat-light"></div>
             <div class="chat-ground-light"></div>
         </div>
@@ -347,7 +355,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <!-- 원래 id="chat"이었음 -->
+            
             <div class="chat"  id="chat">
                 
                 
@@ -482,7 +490,12 @@
                             <div class="call-view__tracks">
                                 <div class="remote-track--container">
                                     <!-- 말풍선 추가 시작 -->
-                                    <p class="speech-bubble">안녕 나는 {{ character.name }}야안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏㅏ</p>
+                                    <div class="speech-bubble-content">
+                                        <p class="speech-bubble">
+                                        
+                                         안녕 나는 {{ character.name }}야안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏㅏ
+                                        </p>
+                                    </div>
                                     <!-- 말풍선 추가 끝 -->
                                     <div class="remote-track--picture-placeholder--container">
                                         <div class="remote-track--picture-placeholder__background"
@@ -966,68 +979,32 @@
     });
 </script>
 
+
 <script>
-    $(document).ready(function () {
-        $('#record-btn').click(function () {
-            // 첫 번째 알림창 표시
-            alert("녹음을 준비중입니다! 잠시만 기다려주세요!");
+    document.getElementById('record-btn').addEventListener('click', function () {
+        const inputElement = document.getElementById('user-content2');
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'ko-KR'; // 한국어로 설정
+        recognition.interimResults = false; // 중간 결과는 표시하지 않음
+        recognition.maxAlternatives = 1; // 하나의 대안만 제공
 
-            // 10초 후에 두 번째 알림창 표시
-            setTimeout(function () {
-                // 서버에 요청 전송
-                $.ajax({
-                    url: '{% url "chatbot:tts" %}',
-                    method: 'POST',
-                    headers: {'X-CSRFToken': getCookie('csrftoken')},
-                    data: {'start': 'true'}, // 서버에 음성 인식을 시작하라는 메시지 전송
-                    success: function (response) {
-                        if (response.message) {
-                            alert(response.message); // 서버로부터 받은 메시지를 알림창으로 표시
-                        }
+        // 녹음 시작 전에 알림창 표시
+        alert("녹음을 시작합니다! 준비하세요.");
+        recognition.start(); // 음성 인식 시작
 
-                        // 5초 후에 실제 음성 인식을 시작하기 위한 요청 전송
-                        setTimeout(function () {
-                            $.ajax({
-                                url: '{% url "chatbot:tts" %}',
-                                method: 'POST',
-                                headers: {'X-CSRFToken': getCookie('csrftoken')},
-                                success: function (response) {
-                                    if (response.text) {
-                                        console.log(response.text);
-                                        $('#user-content2').val(response.text);
-                                        // 서버로부터 받은 응답을 알림창으로 표시
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    console.error("오류 발생:", error);
-                                    alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
-                                }
-                            });
-                        }, 5000); // 5초(5000ms) 후 실행
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("오류 발생:", error);
-                        alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
-                    }
-                });
-            }, 10000); // 10초(10000ms) 후 실행
-        });
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            inputElement.value = transcript; // 인식된 내용을 input 요소에 표시
+            console.log('Confidence:', event.results[0][0].confidence); // 신뢰도 출력
+        };
 
-        // CSRF 토큰 가져오는 함수
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                let cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    let cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
+        recognition.onerror = function (event) {
+            alert(`오류 발생: ${event.error}`);
+        };
+
+        recognition.onspeechend = function () {
+            recognition.stop(); // 음성 인식 종료
+        };
     });
 </script>
 <script>
@@ -1159,11 +1136,36 @@
         }
     });
 </script>
-
 <script src="{% static '/js/chatbot/chatbot.js' %}"></script>
 <audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
 <script src="{% static '/js/chatbot/music.js' %}"></script>
+<script>
+document.querySelectorAll('.logout-btn').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();  // 기본 동작 막기
+        
+        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
 
+        fetch(logoutUrl, {
+            method: 'POST',  // POST 방식으로 요청
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+            },
+            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+            } else {
+                console.error('로그아웃 실패');
+            }
+        })
+        .catch(error => console.error('에러 발생:', error));
+    });
+});
+</script>
 </body>
 
 </html>
