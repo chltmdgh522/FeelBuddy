@@ -6,11 +6,12 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
 </head>
 <body>
+
 <div class="main">
     <div class="container a-container" id="a-container">
         <form id="a-form" class="form" method="post" action="{% url 'users:signup' %}">
@@ -45,8 +46,7 @@
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
             </div>
-            <span class="form__span">or use your email account</span>
-            {% if error %}
+             {% if error %}
                 <div class="form__error" style="color: red;">{{ error }}</div>
             {% endif %}
     
