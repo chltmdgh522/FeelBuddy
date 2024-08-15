@@ -5,38 +5,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>챗봇 페이지</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>FeelBuddy</title>
+    <link rel="icon" href="/media/joy.png" type="image/png">
     <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- jQuery 라이브러리 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/character/character_list/blueback.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/bulb.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/camp.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/character_list.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/charbox.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/desk.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/icon.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/lighthouse1.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/shut1.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/window.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/mochatlist.css' %}">
+    <link rel="stylesheet" href="{% static '/css/character/character_list/nav.css' %}">
 
-    <!-- jQuery UI 라이브러리 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 
-    <!-- Ionicons 라이브러리 -->
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-
-
-    <link rel="stylesheet" href="{% static '/css/chatbot/icon.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/chatbotcall.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/chatbot.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/music.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/mochatbot.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/nav.css' %}">
-    <link rel="stylesheet" href="{% static '/css/chatbot/lighthouse.css' %}">
-
-    <!-- header 아이콘 추가 시작 -->
-    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,300,700'>
-    <link rel='stylesheet prefetch' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
-    <!-- header 아이콘 추가 시작 -->
     <style>
+              /* 전체 페이지의 스크롤바 숨기기 (모든 브라우저에서 작동) */
+        .room-building {
+            overflow: hidden;
+        }
 
         a {
             text-decoration: none;
@@ -46,1123 +37,1163 @@
             text-decoration: none;
         }
 
-        /* 기본 resizable 핸들 숨기기 */
-        .ui-resizable-handle {
-            display: none;
-        }
-
-        /* chat 요소에 커서 변경 추가 */
-        #chat {
-
-
-        }
-
-        /* 커서가 chat 요소의 모서리에 위치할 때 커서 모양 변경 */
-        #chat:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 20px;
-            height: 20px;
-            cursor: se-resize;
-        }
-
-        .chat-arrow {
-            position: absolute;
-            /* 화면에 고정된 위치에 배치 */
+        .arrow {
+            position: fixed;
             top: 50%;
-            /* 화면의 세로 중앙에 배치 */
             transform: translateY(-50%);
-            /* 세로 중앙 정렬을 위해 Y축 변환 */
             font-size: 2em;
-            /* 화살표의 크기 */
             cursor: pointer;
-            /* 커서를 손 모양으로 변경 */
             z-index: 10;
-            /* 다른 요소들 위에 표시 */
             color: white;
-            /* 화살표 색상 */
-            background-color: rgba(0, 0, 0, 0.5);
-            /* 배경 색상 및 투명도 */
+            /* background-color: rgba(0, 0, 0, 0.5);  */
             padding: 10px;
-            /* 여백 추가 */
             border-radius: 50%;
-            /* 둥근 모서리 */
         }
 
-        .chat-arrow.left {
-            left: 10vmin;
-            /* 왼쪽 화살표의 위치 */
+        .arrow svg {
+            color: white;
+            width: 2rem;
+            height: auto;
         }
 
-        .chat-arrow.right {
-            right: 10vmin;
-            /* 오른쪽 화살표의 위치 */
+        .arrow.left {
+            left: 0;
         }
 
-        .chat-content {
+        .arrow.right {
+            right: 0;
+        }
+
+        .room {
             display: none;
-            /* 기본적으로 모든 방을 보이지 않게 설정 */
         }
 
-        .chat-content.active {
+        .room.active {
             display: block;
-            /* active 클래스가 있는 방만 보이도록 설정 */
         }
     </style>
 </head>
 
 <body>
-<!-- 모바일 반응형 header 시작 -->
-<header class="chat-header" id="header">
-    <div class="header-left">
-        <!-- header에서 나머지는 다 자바스크립트고, 오빠가 백 연결해야 할 부분은 오직 button!! - button 누르면 chatlist로 가게 하면 됩니다.  -->
-        <button>
-            <a href="{% url 'character:character_list' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
-            </a>
+
+
+    <div class="door">
+        <div id="lock"></div>
+        <span id="keylock" class="off">Feelbuddy</span>
+        <span id="movement" class="off">lock</span>
+        <button class="plus-btn" onclick="window.location.href='create';">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3 4 4 4ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z">
+                </path>
+            </svg>
         </button>
-        <i class="fas fa-chevron-left"></i>
-    </div>
-    <span><p>Feel Buddy</p></span>
-    <div class="header-right">
-        <div class="nav bounceInDown animated">
-            <a href="#profile" class="nav-item nav-count-1">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-                </svg>
-                <span class="invisible"></span></a>
-            <a href="#compose" class="nav-item nav-count-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14 10.25L17 8V14L14 11.75V14H7V8H14V10.25ZM5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
-                </svg>
-                </i><span class="invisible"></span></a>
-            <a href="#Play" class="nav-item nav-count-3">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path>
-                </svg>
-                <span class="invisible"></span></a>
-            <a href="#welcome" class="nav-item nav-count-4"><i class="ion-music-note"></i><span
-                    class="invisible"></span></a>
-            <a href="#toggle" class="mask"><i class="ion-plus-round"></i></a>
-        </div>
-    </div>
 
-</header>
+    <div class="icon">
+            <a href="{% url 'users:main' %}">
+                <div class="icon__home">
 
-<!-- 모바일 반응형 header 끝-->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                        </path>
+                    </svg>
 
+                </div>
+            </a>
+            <a href="{% url 'users:profile' %}">
+                <div class="icon__account">
 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                        </path>
+                    </svg>
 
-
-
-<div class="chat-arrow left">&larr;</div>
-<div class="chat-arrow right">&rarr;</div>
-<!-- 모바일 반응형-footer 시작 -->
-<nav class="mobile-footer" role="menulist">
-    <a href="{% url 'users:main' %}" role="menuitem" aria-describedby="nav-current">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-        </svg>
-        Home
-    </a>
-    <a href="{% url 'chatbot:chatbot_content_list' pk %}" role="menuitem" class="active">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
-        </svg>
-        Chat
-    </a>
-    <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-        </svg>
-        Log
-    </a>
-    <a href="{% url 'character:character_list' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
-        </svg>
-        List
-    </a>
-    <a href="{% url 'users:profile' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-        </svg>
-        Profile
-    </a>
-    <i class="line" id="nav-current">current item</i>
-</nav>
-<!-- 모바일 반응형 - footer 끝 -->
-
-<div class="icon">
-    <a href="{% url 'users:main' %}" role="menuitem">
-        <div class="icon__home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-            </svg>
-        </div>
-    </a>
-    <a href="{% url 'users:profile' %}" role="menuitem">
-        <div class="icon__account">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-            </svg>
-        </div>
-    </a>
-    <a href="{% url 'character:character_list' %}" role="menuitem">
-        <div class="icon__list">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 4H21V6H8V4ZM3 3.5H6V6.5H3V3.5ZM3 10.5H6V13.5H3V10.5ZM3 17.5H6V20.5H3V17.5ZM8 11H21V13H8V11ZM8 18H21V20H8V18Z"></path>
-            </svg>
-        </div>
-    </a>
-    <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <div class="icon__log">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-            </svg>
-        </div>
-    </a>
-</div>
-
-<!-- 네온사인 표지판 추가 -->
-<div id="pole">
-    <div id="right">
-        <div class="logo">
-            <b>FE<span>EL</span>&nbsp;BU<span>D</span>DY</b>
-        </div>
-    </div>
-</div>
-<!-- 네온사인 표지판 추가 끝 -->
-
-
-<!-- 램프 효과 -->
-<input type="checkbox" name="btn" id="btn" checked>
-
-<div class="chat-content active" id="mobile-chat-contact">
-
-    <div class="chat-content-body-1">
-        
-        <div class="chat-buildings">
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-        </div>
-        <div class="chat-ground">
-            <div class="chat-sewer"></div>
-        </div>
-        <div class="chat-streetlamp">
-            <div class="chat-base"></div>
-            <div class="chat-basetop"></div>
-            <div class="chat-pole"></div>
-            <div class="chat-poletop"></div>
-            <div class="chat-head">
-                <label for="btn"></label>
-                <div class="chat-top"></div>
-                <div class="chat-glass"></div>
-                <div class="chat-bot"></div>
-            </div>
-            <div class="chat-light"></div>
-            <div class="chat-ground-light"></div>
-        </div>
-        <!-- <div class="chat-lamp-header">
-            <p>Feelbuddy</p>
-        </div> -->
-
-        <!-- css 수정하면서 html도 같이 수정함 -->
-        <div class="chat-character-lamp">
-            {% if character.adminCharacter.emotion == '기쁨' %}
-                <img src="/media/joy.png" alt="" class="chat-character">
-            {% elif character.adminCharacter.emotion == '분노' %}
-                <img src="/media/anger.png" alt="" class="chat-character">
-            {% elif character.adminCharacter.emotion == '슬픔' %}
-                <img src="/media/sad.png" alt="" class="chat-character">
-            {% elif character.adminCharacter.emotion == '불안' %}
-                <img src="/media/anxiety.png" alt="" class="chat-character">
-            {% elif character.adminCharacter.emotion == '두려움' %}
-                <img src="/media/fear.png" alt="" class="chat-character">
-            {% endif %}
-        </div>
-        <div class="chat-center" id="chat-center">
-            
-
-            <div class="contacts" id="mobile-contacts">
-                
-                <!-- <i class="fas fa-bars fa-2x"></i> -->
-                <h2>Contacts</h2>
-
-
-                {% for character in characters %}
-                    <div class="contact">
-                        
-
-                        {% if character.adminCharacter.emotion == '기쁨' %}
-
-                            <div class="chat-pic joy"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message"
-                                     id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '분노' %}
-
-                            <div class="chat-pic anger"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message"
-                                     id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '불안' %}
-                            <div class="chat-pic anxiety"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message"
-                                     id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '슬픔' %}
-                            <div class="chat-pic sad"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message"
-                                     id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
-                            </a>
-                        {% elif character.adminCharacter.emotion == '두려움' %}
-                            <div class="chat-pic fear"></div>
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
-                                <div class="name">{{ character.name }}</div>
-                                <div class="message"
-                                     id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
-                            </a>
-                        {% endif %}
-
+                </div>
+            </a>
+            {% if first_item %}
+                <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+                    <div class="icon__chat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                            </path>
+                        </svg>
                     </div>
-                {% endfor %}
-            </div>
-            <!-- 원래 id="chat"이었음 -->
-            <div class="chat"  id="chat">
-                
-                
-               
-
-                <div class="contact bar">
-                    {% if character.adminCharacter.emotion == '기쁨' %}
-                        <div class="chat-pic joy"></div>
-                        <div class="chat-name">{{ character.name }}</div>
-                        <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
-                    {% elif character.adminCharacter.emotion == '분노' %}
-                        <div class="chat-pic anger"></div>
-                        <div class="chat-name">{{ character.name }}</div>
-                        <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }} </div>
-                    {% elif character.adminCharacter.emotion == '불안' %}
-                        <div class="chat-pic anxiety"></div>
-                        <div class="chat-name">{{ character.name }}</div>
-                        <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
-                    {% elif character.adminCharacter.emotion == '슬픔' %}
-                        <div class="chat-pic sad"></div>
-                        <div class="chat-name">{{ character.name }}</div>
-                        <div class="seen" id="latest-time-{{ character.id }}">Last at {{ last_time }}</div>
-                    {% elif character.adminCharacter.emotion == '두려움' %}
-                        <div class="chat-pic fear"></div>
-                        <div class="chat-name">{{ character.name }}</div>
-                        <div class="seen" id="latest-time-{{ character.id }}">Last at 12:56</div>
-                    {% endif %}
+                </a>
+            {% endif %}
+            <a href="{% url 'chatbot:emotion' %}">
+                <div class="icon__log">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                        </path>
+                    </svg>
                 </div>
-                <div id="messages" class="messages">
-                    {% for group in grouped_contents %}
-                        <div class="time">{{ group.date }}</div> <!-- 날짜 표시 -->
-                        {% for content in group.messages %}
-                            {% if content.type == 'user' %}
-                                <div class="message parker">{{ content.content }}</div>
-                            {% else %}
-                                <div class="message stark">{{ content.content }}</div>
-                            {% endif %}
-                        {% endfor %}
+            </a>
+            <a href="{% url 'character:trash' %}">
+                <div class="icon__delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                        </path>
+                    </svg>
+                </div>
+            </a>
+            <!-- 여기 로그아웃 링크 클래스명 달아주세요! -->
+            <a href="로그아웃">
+                <div class="icon__logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
+                    </svg>
+
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+    <main class="room-building">
+
+        <div class="arrow left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
+                </path>
+            </svg>
+        </div>
+        <div class="arrow right">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
+                </path>
+            </svg>
+        </div>
+        <!-- <div class="arrow right">&rarr;</div> -->
+
+
+
+
+
+
+        <section class="room active" id="room1">
+
+
+            <!-- 모바일 반응형에 따른 캐릭터 scene -->
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+                    
+                    <!-- wrapper 시작 -->
+                    {% for character in user_characters %}
+                    <div class="card">
+                        <button class="mobile-button-edit">
+                            <a href="{% url 'character:character_detail' character.pk %}" class="mobile-hover-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </button>
+
+                        <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                            onsubmit="return confirmDelete();" class="table-button-shadow">
+                            {% csrf_token %}
+                            <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                <a href="" class="mobile-hover-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </button>
+                        </form>
+
+                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
+                            class="">
+                    </div>
                     {% endfor %}
-                </div>
 
-                <div class="input">
-                    <div class="type-message-bottom">
-                        <i class="fas fa-microphone" id="record-btn"></i>
-                        <input type="text" id="user-content2" placeholder="Type a message...">
-                        <a class="send">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M1.94619 9.31543C1.42365 9.14125 1.41953 8.86022 1.95694 8.68108L21.0431 2.31901C21.5716 2.14285 21.8747 2.43866 21.7266 2.95694L16.2734 22.0432C16.1224 22.5716 15.8178 22.59 15.5945 22.0876L12 14L18 6.00005L10 12L1.94619 9.31543Z"></path>
-                            </svg>
+
+
+                </div>
+            </div>
+            <div class="character-main" id="characterMain">
+                {% for character in user_characters %}
+
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+
+                                <!-- 그림자 효과 추가 -->
+
+                                <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                <button class="table-button-edit">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+
+                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                    onsubmit="return confirmDelete();" class="table-button-shadow">
+                                    {% csrf_token %}
+                                    <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                        <a href="" class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor">
+                                                <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+                                </form>
+
+                                <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                alt="{{ character.adminCharacter.emotion }}" class="">
                         </a>
                     </div>
                 </div>
+
+                {% endfor %}
+
+
             </div>
-        </div>
-    </div>
-</div>
+            <div class="room1-walls">
 
 
-<div class="chat-content" id="chat-content-1">
-
-   
-    <div class="chat-content-body-2">
-        <div class="chat-buildings">
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-            <div class="chat-window"></div>
-        </div>
-        <div class="chat-ground">
-            <div class="chat-sewer"></div>
-        </div>
-        <!-- 두 번째 테마 시작 -->
-        <div class="main-container">
-            <div class="main-header">
-                <div class="header-logo">Feelbuddy</div>
-                <div class="header-left">
-                    <i class="fas fa-chevron-left"></i>
-                    <a class="service">chatbot</a>
-                    <div class="group-button button">
-                        <i class="fas fa-users"></i>
-                        <a>Emotions</a>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="header-right-box">
-                        <div class="box border-10 bg-icon"></div>
-                        <div class="box flex-col">
-                            <div class="box-1 lg-box"></div>
-                            <div class="dark-green"></div>
-                            <div class="light-green"></div>
-                        </div>
-                        <div class="box  flex">
-                            <div class="box-1 sm-box"></div>
-                            <div class="box-2 sm-box"></div>
-                            <div class="box-3 sm-box"></div>
-                            <div class="box-4 sm-box"></div>
+                <div id="blueback-scene">
+                    <div class="blueback-sky">
+                        <div class="blueback-stars layer" data-depth="0.3">
+                            <div class="blueback-star"></div>
+                            <div class="blueback-star"></div>
+                            <div class="blueback-star"></div>
                         </div>
                     </div>
-                    <div class="header-right-buttons">
-                        <div class="chat-button button">
-                            <i class="far fa-comment-dots"></i>
-                            <a>Chat</a>
-                        </div>
-                        <div class="parti-button button">
-                            <i class="fas fa-users"></i>
-                            <a>Characters</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="main-chat-content">
-                <div class="left-side">
-                    <div class="left-side-menu">
-                        <i class="fas fa-home icon-color"></i>
-                        <i class="fas fa-video  icon-active"></i>
-                        {% for character in characters %}
-                            <a href="/chatbot/{{ character.id }}">
-                                <div class="left-side-image{{ forloop.counter }} icon-color">
-                                    <img src="{{ character.adminCharacter.image.url }}"
-                                         alt="{{ character.adminCharacter.emotion }}"
-                                         class="">
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="middle">
-                    <div class="middle-img">
-                        <div class="call-view">
-                            <div class="call-view__tracks">
-                                <div class="remote-track--container">
-                                    <!-- 말풍선 추가 시작 -->
-                                    <p class="speech-bubble">안녕 나는 {{ character.name }}야안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏ안녕ㅎ미나어히마넝리마ㅓㄴ이;라머ㅣㄴ아러;미ㅏㄴ어림;ㅓㄴㅇ리ㅏㅏ</p>
-                                    <!-- 말풍선 추가 끝 -->
-                                    <div class="remote-track--picture-placeholder--container">
-                                        <div class="remote-track--picture-placeholder__background"
-                                             style="background-image: url('{{ character.adminCharacter.image.url }}');"></div>
-                                        <div class="remote-track--picture-placeholder"
-                                             style="background-image: url('{{ character.adminCharacter.image.url }}');">
-
-                                        </div>
+                    <div class="blueback-container">
+                        <div class="blueback-top layer" data-depth="0.1">
+                            <div class="blueback-light-house">
+                                <div class="blueback-top-triangle">
+                                    <div class="blueback-top-triangle-circle-top"></div>
+                                    <div class="blueback-top-triangle-circle-middle"></div>
+                                    <div class="blueback-top-triangle-circle"></div>
+                                    <div class="blueback-glow layer" data-depth="0.01"></div>
+                                    <div class="blueback-shining-lights-container">
+                                        <div class="blueback-shining-light-left"></div>
+                                        <div class="blueback-shining-light-right"></div>
                                     </div>
-                                    <div class="input-status-container">
-                                        <div class="input-status">
-                                            <i class="fas fa-video" style="color: #FAFAFA;"></i>
-                                        </div>
-                                        <div class="input-status">
-                                            <i class="fas fa-volume-mute" style="color: #FAFAFA;"></i>
-                                        </div>
+                                    <div class="blueback-top-ledge"></div>
+                                    <div class="blueback-top-bars">
+                                        <div class="blueback-top-bar-1 topbar"></div>
+                                        <div class="blueback-top-bar-2 topbar"></div>
+                                        <div class="blueback-top-bar-3 topbar"></div>
+                                        <div class="blueback-top-bar-4 topbar"></div>
+                                        <div class="blueback-top-bar-5 topbar"></div>
+                                        <div class="blueback-top-bar-6 topbar"></div>
                                     </div>
-                                    <div class="call-view__controls-container">
-                                        <div class="call-view__controls">
-                                            <div id="btn--end-call" class="call-view__controls__icon-btn important">
-                                                <i class="fas fa-video" style="color: #FAFAFA;"></i>
-                                            </div>
-                                            <div id="btn--toggle-mic" class="call-view__controls__icon-btn">
-                                                <i class="fas fa-volume-up" style="color: #FF3346;"></i>
-                                            </div>
-                                            <div id="btn--toggle-screen-sharing" class="call-view__controls__icon-btn">
-                                                <i class="fas fa-square" style="color: #27A4FD;"></i>
-                                            </div>
-                                            <div id="btn--settings" class="call-view__controls__icon-btn">
-                                                <i class="fas fa-ellipsis-h" style="color: #27A4FD;"></i>
-                                            </div>
+                                    <div class="blueback-top-railings">
+                                        <div class="blueback-top-railing-1 railing"></div>
+                                        <div class="blueback-top-railing-2 railing"></div>
+                                        <div class="blueback-top-railing-3 railing"></div>
+                                        <div class="blueback-top-railing-4 railing"></div>
+                                        <div class="blueback-top-railing-5 railing"></div>
+                                        <div class="blueback-top-railing-6 railing"></div>
+                                    </div>
+                                    <div class="blueback-mid-ledge"></div>
+                                    <div class="blueback-mid-railings">
+                                        <div class="blueback-overlay"></div>
+                                        <div class="blueback-mid-railings-rail">
+                                            <div class="blueback-mid-rail blueback-mid-rail-1"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-2"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-3"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-5"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-6"></div>
                                         </div>
+                                        <div class="blueback-left-mid-railings"></div>
+                                        <div class="blueback-right-mid-railings"></div>
                                     </div>
                                 </div>
+                                <div class="blueback-panel-container" id="rotate-x">
+                                    <div class="blueback-left-mid-roof"></div>
+                                    <div class="blueback-left-mid-roof-2"></div>
+                                    <div class="blueback-panel"></div>
+                                </div>
+                                <div class="blueback-light"></div>
+                                <div class="blueback-right-attachment">
+                                    <div class="blueback-right-roof"></div>
+                                    <div class="blueback-right-building"></div>
+                                </div>
+                                <div class="blueback-lighthouse-lights">
+                                    <div class="blueback-light-right-top blueback-light"></div>
+                                    <div class="blueback-light-left-middle blueback-light"></div>
+                                </div>
+                                <div class="blueback-lighthouse-bottom-lights">
+                                    <div class="blueback-light-right-bottom blueback-light"></div>
+                                    <div class="blueback-light-left-bottom blueback-light"></div>
+                                </div>
+                                <div class="blueback-back-rocks">
+                                    <div class="blueback-back-rock-1"></div>
+                                    <div class="blueback-back-rock-2"></div>
+                                    <div class="blueback-back-rock-3"></div>
+                                </div>
+                                <div class="blueback-front-rocks">
+                                    <div class="blueback-front-rock-1"></div>
+                                    <div class="blueback-satellite"></div>
+                                    <div class="blueback-front-rock-2"></div>
+                                    <div class="blueback-front-rock-3"></div>
+                                </div>
+                                <div class="blueback-shooting-stars"></div>
+                                <div class="blueback-glow-shine-container blueback-layer" data-depth="0.1">
+                                    <div class="blueback-glow-shine-5 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-4 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-3 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-1 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-2 blueback-shine-circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blueback-bottom">
+                            <div class="blueback-ocean">
+                                <div class="blueback-top-tier-1 ocean-layer"></div>
+                                <div class="blueback-top-tier-2 ocean-layer"></div>
+                                <div class="blueback-top-tier-3 ocean-layer"></div>
+                                <div class="blueback-top-tier-4 ocean-layer"></div>
+                                <div class="blueback-top-tier-5 ocean-layer"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="right-side">
-                    <div class="chat-box" id="chatphone" data-username="{{ user.username }}"
-                         data-charactername="{{ character.name }}">
-                        {% for group in grouped_contents %}
-                            {% for content in group.messages %}
-                                {% if content.type == 'user' %}
-                                    <!-- 채팅 내꺼 추가 시작-->
-                                    <div class="chat-box-title">
-                                        <a></a>
-                                        <a style="margin-right: 15px;" class="username22">{{ user.username }}</a>
-                                    </div>
-                                    <p class="chat-message-me">{{ content.content }}</p>
-                                {% else %}
 
-                                    <div class="chat-box-title">
-                                        <a class="charactername22">{{ character.name }}</a>
-                                    </div>
-                                    <p class="chat-message">{{ content.content }}</p>
+                <!-- 모바일 반응형에 따른 단상 추가 -->
+                <div class='room1-stairs'>
+                    <div class='stair stair1'>
 
-                                {% endif %}
+                        <div class='face top'></div>
+                        <div class='face front'></div>
 
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-                    <div class="type-message">
-                        <div class="type-message-bottom">
-                            <i class="fas fa-microphone" id="record-btn-2"></i>
-                            <input type="text" id="user-content22" placeholder="Type a message...">
-                            <a class="send" id="send22">Send</a>
-                        </div>
                     </div>
                 </div>
+
+
             </div>
-        </div>
-    </div>
-</div>
+        </section>
 
-
-<div class="chat-content" id="chat-content-2">
-
-    <div class="chat-content-body-3">
-
-        <!-- checkbox 안 보이게 수정(아래 두 줄) -->
-        <input type="checkbox" name="light" id="light" class="light-checkbox">
-        <input type="checkbox" name="night" id="night" class="night-checkbox">
-        <div class="lighthouse-sky">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-        <div class="lighthouse-sea"><span></span></div>
-        <div class="lighthouse-content">
-            <div class="lighthouse">
-                <div class="lighthouse-base"></div>
-                <div class="lighthouse-tower"></div>
-                <div class="lighthouse-top"></div>
-                <div class="lighthouse-roof"></div>
-                <div class="lighthouse-light"></div>
-            </div>
-            <div class="lighthouse">
-                <div class="lighthouse-base"></div>
-                <div class="lighthouse-tower"></div>
-            </div>
-            <label for="light"></label>
-        </div>
-        <label for="night"></label>
-    </div>
-
-</div>
-
-
-<div class="chat-content" id="chat-content-3">
-   
-    <div class="chat-content-body-4">
-        <div class="night">
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-            <div class="shooting_star"></div>
-          </div>
-        
-        <div class="music-wrap">
-            
-            <div class="music-player">
-                <div class="music-left">
-                    <div class="music-buttons" id="playPauseButton">
-                        <div class="music-buttons-left"></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+        <section class="room" id="room2">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+                    {% for character in user_characters %}
+                    <a href="{% url 'character:character_detail' character.pk %}">
+                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
+                            class="">
+                    </a>
+                    {% endfor %}
                 </div>
-                <div class="music-front"></div>
-                <div class="music-top"></div>
-                <div class="music-bottom">
-                    <div class="music-disc">
-                        <div class="music-light"></div>
-                        <div class="music-label">
-                            <div class="music-text">
-                                <span>F</span>
-                                <span>e</span>
-                                <span>e</span>
-                                <span>l</span>
-                                <span>&nbsp;</span>
-                                <span>B</span>
-                                <span>u</span>
-                                <span>d</span>
-                                <span>d</span>
-                                <span>y</span>
+            </div>
+            <div class="character-main" id="characterMain">
+                {% for character in user_characters %}
+
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
                             </div>
                         </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+
+                                <!-- 그림자 효과 추가 -->
+
+                                <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                <button class="table-button-edit">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+
+                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                    onsubmit="return confirmDelete();" class="table-button-shadow">
+                                    {% csrf_token %}
+                                    <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                        <a href="" class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor">
+                                                <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+                                </form>
+
+                                <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
                     </div>
-                    <div class="music-op">
-                        <div class="music-handle"></div>
+                    <div class="cheese hidden">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                alt="{{ character.adminCharacter.emotion }}" class="">
+                        </a>
                     </div>
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+            <div class="room2-walls">
+                <!-- 열기구 창문 시작 -->
+                <div class="balloon-container">
+                    <div class="sun sun-1"></div>
+                    <div class="sun sun-2"></div>
+                    <div class="sun sun-3"></div>
+                    <div class="sun sun-4"></div>
+                    <div class="landscape landscape-1"></div>
+                    <div class="landscape landscape-2"></div>
+                    <div class="landscape landscape-3"></div>
+                    <div class="landscape landscape-4"></div>
+                    <div class="landscape landscape-5"></div>
+                    <div class="tree tree-1"></div>
+                    <div class="tree tree-2"></div>
+                    <div class="tree tree-3"></div>
+                    <div class="tree tree-4"></div>
+                    <div class="tree tree-5"></div>
+                    <div class="tree tree-6"></div>
+                    <div class="tree tree-7"></div>
+                    <div class="moon-1"></div>
+                    <div class="moon-2"></div>
+                    <div class="baloon">
+                        <div class="baloon-1">
+                            <div class="strip-1">
+                                <div class="strip-2"></div>
+                            </div>
+                            <div class="bottom-strip"></div>
+                        </div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                        <div class="line line-4"></div>
+                        <div class="basket">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 열기구 창문 끝 -->
+
+                <div class='room2-stairs'>
+                    <div class='stair stair2'>
+
+                        <div class='face top'></div>
+                        <div class='face front'></div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- <section class="room" id="room3">
+        <div class="mobile-character-center">
+            <div class="mobile-character-main">
+                <img src="/media/anger.png">
+                <div class="mobile-char-shadow"></div>
+                <img src="/media/sad.png">
+                <img src="/media/anxiety.png">
+            </div>
+        </div>
+        <div class="character-main" id="characterMain">
+            <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="table-toggle">
+                                    <input type="checkbox" id="table-btn">
+                                    <label for="btn">
+                                        <span class="table-thumb"></span>
+                                    </label>
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-1" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-1" class="Fav-label"><span class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="/joy.png" alt="" class="">
+                    </div>
+            </div>
+            <div class="character-scene">
+
+
+                    <div class="table2 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+                                <div class="table-toggle">
+                                    <input type="checkbox" id="table-btn">
+                                    <label for="btn">
+                                        <span class="table-thumb"></span>
+                                    </label>
+                                </div>
+                                <div class="favorite-content">
+                                    <div class="Fav">
+                                        <input id="fav-checkbox-2" class="Fav-checkbox" type="checkbox">
+                                        <label for="fav-checkbox-2" class="Fav-label"><span class="Fav-label-text">Favourite</span></label>
+                                        <div class="Fav-bloom"></div>
+                                        <div class="Fav-sparkle">
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        <div class="Fav-sparkle-line"></div>
+                                        </div>
+                                        <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <title>Star Icon</title>
+                                        <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <img src="/fear.png" alt="" class="">
+                    </div>
+            </div>
+            <div class="character-scene">
+                <div class="table3 hidden">
+                    <div class="table-top">
+                        <div class="top-slider">
+                            <div class="shadow-sandwich"></div>
+                        </div>
+                    </div>
+                    <div class="table-bottom"></div>
+                    <div class="table-left"></div>
+                    <div class="table-right"></div>
+                    <div class="table-front">
+                        <div class="table-button">
+                            <div class="table-toggle">
+                                <input type="checkbox" id="table-btn">
+                                <label for="btn">
+                                    <span class="table-thumb"></span>
+                                </label>
+                            </div>
+                            <div class="favorite-content">
+                                <div class="Fav">
+                                    <input id="fav-checkbox-3" class="Fav-checkbox" type="checkbox">
+                                    <label for="fav-checkbox-3" class="Fav-label"><span class="Fav-label-text">Favourite</span></label>
+                                    <div class="Fav-bloom"></div>
+                                    <div class="Fav-sparkle">
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    <div class="Fav-sparkle-line"></div>
+                                    </div>
+                                    <svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                    <title>Star Icon</title>
+                                    <path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-back"></div>
+                </div>
+                <div class="cheese hidden">
+                    <img src="/anger.png" alt="" class="">
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="room3-walls">
+            <div class='room3-stairs'>
+                <div class='stair stair3'>
+
+                  <div class='face top'></div>
+                  <div class='face front'></div>
+
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+        <section class="room" id="room4">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+                    {% for character in user_characters %}
+                    <a href="{% url 'character:character_detail' character.pk %}">
+                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
+                            class="">
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="character-main" id="characterMain">
+
+                {% for character in user_characters %}
+
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+
+                                <!-- 그림자 효과 추가 -->
+
+                                <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                <button class="table-button-edit">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+
+                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                    onsubmit="return confirmDelete();" class="table-button-shadow">
+                                    {% csrf_token %}
+                                    <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                        <a href="" class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor">
+                                                <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+                                </form>
+
+                                <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
 
 
-<script src="{% static '/js/chatbot/menu.js' %}"></script>
-<script src="{% static '/js/chatbot/nav.js' %}"></script>
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                alt="{{ character.adminCharacter.emotion }}" class="">
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+            <div class="room4-walls">
+                <div class="desk-wrapper">
+                    <div>
+                        <div class="window">
+                            <div>
+                                <div class="window__inner-1">
+                                    <div class="top-square">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="bottom-right bottom-right--1"></div>
+                                    <div class="bottom-right bottom-right--2"></div>
+                                    <div class="left-square"></div>
+                                    <div class="small-window">
+                                        <div class="grid mb-12">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items "></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                        </div>
+                                        <div class="grid">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="window__inner-2">
+                                    <div class="bottom-right bottom-right--1"></div>
+                                    <div class="bottom-right bottom-right--2"></div>
+                                    <div class="big-window">
+                                        <div class="grid">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on "></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class=" grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on-ans"></div>
+                                            <div class=" grid__items ligth-on "></div>
+                                            <div class=" grid__items ligth-on "></div>
+                                        </div>
+                                        <div class=" grid">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on "></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="window__inner-3">
+                                    <div class="grid">
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                    </div>
+
+                                </div>
+                                <div class="bottom-right--3rd"></div>
+                                <div class="bottom-right--4rd">
+                                    <div class="grid">
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                    </div>
+                                </div>
+                                <div class="skew-w"></div>
+                            </div>
+                        </div>
+                        <div class="laptop"></div>
+                    </div>
+                    <div class="lamp">
+                        <div class="lamp__ligth"></div>
+                        <div class="lamp__top"></div>
+                        <div class="lamp__middle"></div>
+                        <div class="lamp__bottom"></div>
+                    </div>
+                    <div class="desk-top"></div>
+                    <div class="desk-bottom"></div>
+                    <div class="coffe-cup">
+                        <div class="cup">
+                            <div class="cloud cloud--1"></div>
+                            <div class="cloud cloud--2"></div>
+                            <div class="cloud cloud--3"></div>
+                            <div class="cloud cloud--4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class='room4-stairs'>
+                    <div class='stair stair4'>
+
+                        <div class='face top'></div>
+                        <div class='face front'></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="room" id="room5">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+                    {% for character in user_characters %}
+                    <a href="{% url 'character:character_detail' character.pk %}">
+                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
+                            class="">
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="character-main" id="characterMain">
+
+                {% for character in user_characters %}
+
+                <div class="character-scene">
+                    <div class="table1 hidden">
+                        <div class="table-top">
+                            <div class="top-slider">
+                                <div class="shadow-sandwich"></div>
+                            </div>
+                        </div>
+                        <div class="table-bottom"></div>
+                        <div class="table-left"></div>
+                        <div class="table-right"></div>
+                        <div class="table-front">
+                            <div class="table-button">
+
+                                <!-- 그림자 효과 추가 -->
+
+                                <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                <button class="table-button-edit">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+
+                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                    onsubmit="return confirmDelete();" class="table-button-shadow">
+                                    {% csrf_token %}
+                                    <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                        <a href="" class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor">
+                                                <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+                                </form>
+
+                                <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
 
 
-<script>
-    $(document).ready(function () {
-        function scrollChatBox() {
-            $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                            </div>
+                        </div>
+                        <div class="table-back"></div>
+                    </div>
+                    <div class="cheese hidden">
+                        <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                alt="{{ character.adminCharacter.emotion }}" class="">
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+            <div id="bulb" class="bulb">
+                <div class="bulb__holder"></div>
+                <div class="bulb__body"></div>
+            </div>
+
+            <div id="toggle" class="toggle">
+                <button class="toggle__btn">
+                    <span class="toggle__toggler"></span>
+                </button>
+            </div>
+            <div class="room5-walls">
+                <div class="clock">
+                    <div class="hour">
+                        <div id="hr" class="hr"></div>
+                    </div>
+
+                    <div class="min">
+                        <div id="mn" class="mn"></div>
+                    </div>
+
+                    <div class="sec">
+                        <div id="sc" class="sc"></div>
+                    </div>
+                </div>
+                <div class='room5-stairs'>
+                    <div class='stair stair5'>
+
+                        <div class='face top'></div>
+                        <div class='face front'></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <nav class="mobile-footer" role="menulist">
+        <a href="{% url 'users:main' %}" role="menuitem" class="active" aria-describedby="nav-current">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                </path>
+            </svg>
+            Home
+        </a>
+        {% if first_item %}
+        <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                </path>
+            </svg>
+            Chat
+        </a>
+        {% endif %}
+        <a href="{% url 'chatbot:emotion' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                </path>
+            </svg>
+            Log
+        </a>
+        <a href="{% url 'character:trash' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                </path>
+            </svg>
+            Trash
+        </a>
+        <a href="{% url 'users:profile' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                </path>
+            </svg>
+            Profile
+        </a>
+        <i class="line" id="nav-current">current item</i>
+    </nav>
+
+
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    <script src="{% static '/js/character/character_list/blueback.js' %}"></script>
+    <script src="{% static '/js/character/character_list/bulb.js' %}"></script>
+    <script src="{% static '/js/character/character_list/clock.js' %}"></script>
+    <script src="{% static '/js/character/character_list/wall.js' %}"></script>
+    <script src="{% static '/js/character/character_list/nav.js' %}"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-11991680-4', 'ianlunn.github.io');
+        ga('send', 'pageview');
+    </script>
+
+
+    <script>
+        function confirmDelete() {
+            return confirm("휴지통에 버리시겠습니까?");
         }
+    </script>
 
-        // 페이지 로드 시 스크롤을 맨 아래로 이동
-        scrollChatBox();
+    <script>
+        const rooms = document.querySelectorAll('.room'); // 모든 방 요소를 선택
+        const leftArrow = document.querySelector('.arrow.left'); // 왼쪽 화살표 버튼을 선택
+        const rightArrow = document.querySelector('.arrow.right'); // 오른쪽 화살표 버튼을 선택
+        let currentRoom = 0; // 현재 보이는 방의 인덱스를 추적
 
-        // 메시지 전송 로직을 함수로 분리
-        function sendMessage() {
-            let userContent = $('#user-content2').val();
-
-            if (userContent.trim() !== "") {
-                // 사용자 메시지를 바로 추가하기
-                $('#messages').append(
-                    `<div class="message parker">
-                        ${userContent}
-                    </div>`
-                );
-                $('#user-content2').val('');
-                scrollChatBox();
-
-                // Typing 애니메이션을 추가하기
-                $('#messages').append(
-                    `<div class="message stark typing">
-                        <div class="typing typing-1"></div>
-                        <div class="typing typing-2"></div>
-                        <div class="typing typing-3"></div>
-                    </div>`
-                );
-                scrollChatBox();
-
-                // 사용자 메시지를 서버에 전송
-                $.ajax({
-                    type: 'POST',
-                    url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
-                    data: {
-                        'user_content': userContent,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function () {
-                        // AI 응답을 서버에 요청
-                        $.ajax({
-                            type: 'POST',
-                            url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
-                            data: {
-                                'user_input': userContent,
-                                'csrfmiddlewaretoken': '{{ csrf_token }}'
-                            },
-                            success: function (response) {
-                                // 2초 후에 Typing 애니메이션을 제거하고 AI 메시지를 추가
-                                setTimeout(function () {
-                                    // Typing 애니메이션을 제거합니다.
-                                    $('.typing').remove();
-
-                                    // AI 메시지를 추가합니다.
-                                    $('#messages').append(
-                                        `<div class="message stark">
-                                            ${response.ai_content}
-                                        </div>`
-                                    );
-
-                                    let aiContent = response.ai_content;
-                                    let truncatedContent = aiContent.length > 10 ? aiContent.slice(0, 10) + '...' : aiContent;
-
-                                    let time = response.time1;
-                                    // 메시지 업데이트
-                                    $('#latest-message-' + response.id2).text(truncatedContent);
-                                    // 시간 업데이트
-                                    $('#latest-time-' + response.id2).text('Last at ' + time);
-
-                                    scrollChatBox();
-                                }, 2000); // 2초 딜레이
-                            }
-                        });
-                    }
-                });
-            }
-        }
-
-        // Enter 키를 눌렀을 때 메시지 전송
-        $('#user-content2').on('keypress', function (event) {
-            if (event.which === 13) { // Enter 키를 감지
-                event.preventDefault(); // 기본 Enter 동작을 막기
-                sendMessage();
-            }
-        });
-
-        // a 버튼을 클릭했을 때 메시지 전송
-        $('.send').on('click', function (event) {
-            event.preventDefault(); // a 태그의 기본 동작을 막기
-            sendMessage();
-        });
-
-        // Resizable 설정
-        $("#chat").resizable({
-            minWidth: 400,
-            minHeight: 400
-        });
-    });
-</script>
-
-
-<!-- 두 번째 스크립트 코드 -->
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            const mobileContacts = document.getElementById('mobile-contacts');
-            const mobileChatContacts = document.getElementById('mobile-chat-contact');
-            const mobileChat = document.getElementById('chat');
-            const chatContent1 = document.getElementById('chat-content-1');
-            const chatContent2 = document.getElementById('chat-content-2');
-            const chatContent3 = document.getElementById('chat-content-3');
-            const headerLeftIcon = document.querySelector('.header-left i');
-            const backLeftSvg = document.querySelector('.header-left button a');
-            const headerRight = document.querySelector('.header-right');
-            const navItems = document.querySelectorAll('.nav-item');
-
-            let currentChatContent = ''; // 현재 표시된 채팅 콘텐츠를 저장하는 변수
-
-            function hideAll() {
-                mobileChat.style.display = 'none';
-                chatContent1.style.display = 'none';
-                chatContent2.style.display = 'none';
-                chatContent3.style.display = 'none';
-            }
-
-            // 초기 상태
-            mobileContacts.style.display = 'block';
-            hideAll();
-            headerLeftIcon.style.display = 'none';
-            headerRight.style.display = 'none';
-            backLeftSvg.style.display = 'block';
-
-            // contact 클릭 시 chat 화면으로 전환
-            document.querySelectorAll('.contact a').forEach(link => {
-                link.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    const chatUrl = this.getAttribute('href');
-                    $.ajax({
-                        url: chatUrl,
-                        success: function (data) {
-                            mobileContacts.style.display = 'none';
-                            hideAll();
-                            mobileChat.style.display = 'block';
-                            headerLeftIcon.style.display = 'block';
-                            headerRight.style.display = 'block';
-                            backLeftSvg.style.display = 'none';
-                            currentChatContent = $(data).find('#chat').html(); // 현재 표시된 chat 내용을 저장
-                            $('#chat').html($(data).find('#chat').html());
-                        },
-                        error: function () {
-                            console.error("Chat 내용을 불러오는 데 실패했습니다.");
-                        }
-                    });
-                });
+        function showRoom(index) {
+            rooms.forEach((room, i) => {
+                room.classList.toggle('active', i === index); // 인덱스가 일치하는 방에 active 클래스를 추가
             });
-
-            // nav-item 클릭 시 해당 chat-content로 전환
-            navItems.forEach((navItem, index) => {
-                navItem.addEventListener('click', function () {
-                    hideAll();
-                    switch (index) {
-                        case 0:
-                            mobileChatContacts.style.display = 'block'; 
-                            mobileContacts.style.display = 'none';
-                            hideAll();
-                            mobileChat.style.display = 'block';
-                            if (currentChatContent) {
-                                $('#chat').html(currentChatContent); // 저장된 chat 내용을 다시 표시
-                            }
-                            break;
-
-                        case 1:
-                            chatContent1.style.display = 'block';
-                            mobileChatContacts.style.display = 'none'; // 듀얼 화면 해결
-
-                            headerLeftIcon.addEventListener('click', function () {
-                                mobileChatContacts.style.display = 'block';
-                                mobileContacts.style.display = 'block';
-                                hideAll();
-                                headerLeftIcon.style.display = 'none';
-                                headerRight.style.display = 'none';
-                                backLeftSvg.style.display = 'block';
-                            });
-                            break;
-                        case 2:
-                            chatContent2.style.display = 'block';
-                            mobileChatContacts.style.display = 'none'; // 듀얼 화면 해결
-
-                            headerLeftIcon.addEventListener('click', function () {
-                                mobileChatContacts.style.display = 'block';
-                                mobileContacts.style.display = 'block';
-                                hideAll();
-                                headerLeftIcon.style.display = 'none';
-                                headerRight.style.display = 'none';
-                                backLeftSvg.style.display = 'block';
-                            });
-                            break;
-                        case 3:
-                            chatContent3.style.display = 'block';
-                            mobileChatContacts.style.display = 'none'; // 듀얼 화면 해결
-
-                            headerLeftIcon.addEventListener('click', function () {
-                                mobileChatContacts.style.display = 'block';
-                                mobileContacts.style.display = 'block';
-                                hideAll();
-                                headerLeftIcon.style.display = 'none';
-                                headerRight.style.display = 'none';
-                                backLeftSvg.style.display = 'block';
-                            });
-                            break;
-                    }
-                });
-            });
-
-            // header-left i 클릭 시 contacts로 전환
-            headerLeftIcon.addEventListener('click', function () {
-                mobileContacts.style.display = 'block';
-                hideAll();
-                headerLeftIcon.style.display = 'none';
-                headerRight.style.display = 'none';
-                backLeftSvg.style.display = 'block';
-            });
         }
-    });
-</script>
-
-
-
-<!-- 웹 환경일 때 -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chats = document.querySelectorAll('.chat-content');
-        const navItems = document.querySelectorAll('.nav-item');
-        const nav = document.querySelector('.nav');
-        const contacts = document.querySelector('.contacts');
-        const headerLeftIcon = document.querySelector('.header-left i');
-        const backLeftSvg = document.querySelector('.header-left button a');
-
-        // Function to show the chat content based on index
-        function showChat(index) {
-            chats.forEach((chat, i) => {
-                chat.classList.toggle('active', i === index);
-            });
-            localStorage.setItem('currentChat', index); // Save current chat index
-        }
-
-        // Retrieve the saved chat index from localStorage or default to 0
-        let currentChat = localStorage.getItem('currentChat');
-        if (currentChat === null) {
-            currentChat = 0;
-        } else {
-            currentChat = parseInt(currentChat, 10);
-        }
-
-        const leftArrow = document.querySelector('.chat-arrow.left');
-        const rightArrow = document.querySelector('.chat-arrow.right');
 
         leftArrow.addEventListener('click', () => {
-            currentChat = (currentChat - 1 + chats.length) % chats.length;
-            showChat(currentChat);
+            currentRoom = (currentRoom - 1 + rooms.length) % rooms.length; // 왼쪽 화살표 클릭 시 이전 방으로 이동
+            showRoom(currentRoom); // 새로운 현재 방을 표시
         });
 
         rightArrow.addEventListener('click', () => {
-            currentChat = (currentChat + 1) % chats.length;
-            showChat(currentChat);
+            currentRoom = (currentRoom + 1) % rooms.length; // 오른쪽 화살표 클릭 시 다음 방으로 이동
+            showRoom(currentRoom); // 새로운 현재 방을 표시
         });
 
-        showChat(currentChat); // Show the chat based on the stored index
-    });
-</script>
-
-
-
-<script>
-    document.getElementById('record-btn-2').addEventListener('click', function () {
-        const inputElement = document.getElementById('user-content22');
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'ko-KR'; // 한국어로 설정
-        recognition.interimResults = false; // 중간 결과는 표시하지 않음
-        recognition.maxAlternatives = 1; // 하나의 대안만 제공
-
-        // 녹음 시작 전에 알림창 표시
-        alert("녹음을 시작합니다! 준비하세요.");
-        recognition.start(); // 음성 인식 시작
-
-        recognition.onresult = function (event) {
-            const transcript = event.results[0][0].transcript;
-            inputElement.value = transcript; // 인식된 내용을 input 요소에 표시
-            console.log('Confidence:', event.results[0][0].confidence); // 신뢰도 출력
-        };
-
-        recognition.onerror = function (event) {
-            alert(`오류 발생: ${event.error}`);
-        };
-
-        recognition.onspeechend = function () {
-            recognition.stop(); // 음성 인식 종료
-        };
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $('#record-btn').click(function () {
-            // 첫 번째 알림창 표시
-            alert("녹음을 준비중입니다! 잠시만 기다려주세요!");
-
-            // 10초 후에 두 번째 알림창 표시
-            setTimeout(function () {
-                // 서버에 요청 전송
-                $.ajax({
-                    url: '{% url "chatbot:tts" %}',
-                    method: 'POST',
-                    headers: {'X-CSRFToken': getCookie('csrftoken')},
-                    data: {'start': 'true'}, // 서버에 음성 인식을 시작하라는 메시지 전송
-                    success: function (response) {
-                        if (response.message) {
-                            alert(response.message); // 서버로부터 받은 메시지를 알림창으로 표시
-                        }
-
-                        // 5초 후에 실제 음성 인식을 시작하기 위한 요청 전송
-                        setTimeout(function () {
-                            $.ajax({
-                                url: '{% url "chatbot:tts" %}',
-                                method: 'POST',
-                                headers: {'X-CSRFToken': getCookie('csrftoken')},
-                                success: function (response) {
-                                    if (response.text) {
-                                        console.log(response.text);
-                                        $('#user-content2').val(response.text);
-                                        // 서버로부터 받은 응답을 알림창으로 표시
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    console.error("오류 발생:", error);
-                                    alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
-                                }
-                            });
-                        }, 5000); // 5초(5000ms) 후 실행
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("오류 발생:", error);
-                        alert("서버와의 통신 중 오류가 발생했습니다."); // 오류 발생 시 알림창
-                    }
-                });
-            }, 10000); // 10초(10000ms) 후 실행
-        });
-
-        // CSRF 토큰 가져오는 함수
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                let cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    let cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
+        showRoom(currentRoom); // 페이지 로드 시 첫 번째 방을 표시
+    </script>
+    <script>
+        document.getElementById('deleteButton').addEventListener('click', () => {
+            const characters = document.querySelectorAll('.character-scene');
+            characters.forEach(character => {
+                if (!character.classList.contains('hidden')) {
+                    character.classList.add('fall');
+                    setTimeout(() => {
+                        character.classList.add('hidden');
+                        character.classList.remove('fall');
+                    }, 1000); // 애니메이션 지속 시간 이후에 hidden 클래스를 추가
                 }
-            }
-            return cookieValue;
-        }
-    });
-</script>
-<script>
-    let isTTSActive = true; // TTS 활성화 상태를 추적
-
-    // TTS 음성 변환 함수
-    function speakText(text) {
-        if ('speechSynthesis' in window && isTTSActive) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ko-KR'; // 언어를 설정합니다.
-
-            // 음성의 속도 설정 (0.1에서 10까지의 값 가능)
-            utterance.rate = 1.2;
-
-            // 음성의 톤 설정 (0에서 2까지의 값 가능)
-            utterance.pitch = 1.5;
-
-            // 음성의 볼륨 설정 (0에서 1까지의 값 가능)
-            utterance.volume = 1.0;
-
-            speechSynthesis.speak(utterance);
-        } else {
-            console.warn('Speech synthesis not supported in this browser or TTS is disabled.');
-        }
-    }
-
-    // TTS 음성을 중지하는 함수
-    function stopSpeech() {
-        if ('speechSynthesis' in window) {
-            speechSynthesis.cancel();
-        }
-    }
-
-    $(window).on('load', function () {
-
-        function sendMessage2() {
-            let userContent = $('#user-content22').val();
-            let username = $('#chatphone').data('username');
-            let charactername = $('#chatphone').data('charactername');
-
-            if (userContent.trim() !== "") {
-                $('#chatphone').append(
-                    `<div class="chat-box-title">
-                            <a></a>
-                            <a style="margin-right: 15px;">${username}</a>
-                        </div>
-                        <p class="chat-message-me">${userContent}</p>`
-                );
-                $('#user-content22').val('');
-
-
-                $.ajax({
-                    type: 'POST',
-                    url: `{% url 'chatbot:chatbot_user_create' pk=character.id %}`,
-                    data: {
-                        'user_content': userContent,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function () {
-                        $.ajax({
-                            type: 'POST',
-                            url: `{% url 'chatbot:chatbot_ai_create' pk=character.id %}`,
-                            data: {
-                                'user_input': userContent,
-                                'csrfmiddlewaretoken': '{{ csrf_token }}'
-                            },
-                            success: function (response) {
-                                setTimeout(function () {
-                                    $('.typing').remove();
-
-                                    $('#chatphone').append(
-                                        `<div class="chat-box-title">
-                                                <a>${charactername}</a>
-                                            </div>
-                                            <p class="chat-message">${response.ai_content}</p>
-                                            <div class="profile-picture">
-                                                <img src="/media/joy.png" alt="">
-                                            </div>`
-                                    );
-
-                                    // 스피치 버블 내용 업데이트
-                                    $('.speech-bubble').text(`${response.ai_content}`);
-                                    // 텍스트 음성 변환
-                                    speakText(response.ai_content);
-
-                                }, 2000);
-                            }
-                        });
-                    }
-                });
-            }
-        }
-
-        $('#user-content22').on('keypress', function (event) {
-            if (event.key === 'Enter') {
-                sendMessage2();
-            }
+            });
         });
-
-        $('#send22').on('click', function (event) {
-            event.preventDefault();
-            sendMessage2();
-        });
-    });
-
-    // 페이지 로드 및 이동 시 TTS 음성을 중지
-    $(window).on('beforeunload', function () {
-        stopSpeech();
-    });
-
-    $(window).on('load', function () {
-        stopSpeech(); // 페이지 로드 시 TTS 중지
-    });
-
-    // 버튼 클릭 시 TTS 토글 기능
-    $('#btn--toggle-mic').on('click', function () {
-        isTTSActive = !isTTSActive; // TTS 활성화 상태 토글
-        const icon = isTTSActive ? 'fa-volume-up' : 'fa-volume-mute';
-        const color = isTTSActive ? '#FF3346' : '#666';
-
-        // 아이콘과 색상 업데이트
-        $('#btn--toggle-mic i').removeClass('fa-volume-up fa-volume-mute')
-            .addClass(icon)
-            .css('color', color);
-
-        // TTS를 비활성화한 경우 음성을 중지
-        if (!isTTSActive) {
-            stopSpeech();
-        }
-    });
-</script>
-<script src="{% static '/js/chatbot/chatbot.js' %}"></script>
-<audio id="audioPlayer" src="/media/lofi-music.mp3"></audio>
-<script src="{% static '/js/chatbot/music.js' %}"></script>
-
+    </script>
 </body>
 
 </html>

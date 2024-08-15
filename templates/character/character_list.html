@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캐릭터 리스트 페이지</title>
+    <title>FeelBuddy</title>
+    <link rel="icon" href="/media/joy.png" type="image/png">
     <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static '/css/character/character_list/blueback.css' %}">
@@ -94,19 +95,19 @@
         <button class="plus-btn" onclick="window.location.href='create';">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3 4 4 4ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z">
+                        d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3 4 4 4ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z">
                 </path>
             </svg>
         </button>
 
 
         <div class="icon">
-            <a href="{% url 'users:main' %}">
+            <a href="{% url 'character:character_list' %}">
                 <div class="icon__home">
 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path
-                            d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                                d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
                         </path>
                     </svg>
 
@@ -117,28 +118,28 @@
 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path
-                            d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                                d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
                         </path>
                     </svg>
 
                 </div>
             </a>
             {% if first_item %}
-            <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
-                <div class="icon__chat">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
-                        </path>
-                    </svg>
-                </div>
-            </a>
+                <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+                    <div class="icon__chat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                            </path>
+                        </svg>
+                    </div>
+                </a>
             {% endif %}
             <a href="{% url 'chatbot:emotion' %}">
                 <div class="icon__log">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path
-                            d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                                d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
                         </path>
                     </svg>
                 </div>
@@ -147,22 +148,22 @@
                 <div class="icon__delete">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path
-                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
                         </path>
                     </svg>
                 </div>
             </a>
             <!-- 여기 로그아웃 링크 클래스명 달아주세요! -->
-            <a href="로그아웃">
+            <a class="logout-btn" style="cursor: pointer;">
                 <div class="icon__logout">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
                     </svg>
-      
+
                 </div>
             </a>
 
-              </div>
+        </div>
 
     </div>
     <main class="room-building">
@@ -170,22 +171,18 @@
         <div class="arrow left">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
+                        d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
                 </path>
             </svg>
         </div>
         <div class="arrow right">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
+                        d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
                 </path>
             </svg>
         </div>
         <!-- <div class="arrow right">&rarr;</div> -->
-
-
-
-
 
 
         <section class="room active" id="room1">
@@ -194,42 +191,43 @@
             <!-- 모바일 반응형에 따른 캐릭터 scene -->
             <div class="mobile-character-center">
                 <div class="mobile-character-main">
-                    
+
                     <!-- wrapper 시작 -->
                     {% for character in user_characters %}
-                    <div class="card">
-                        <button class="mobile-button-edit">
-                            <a href="{% url 'character:character_detail' character.pk %}" class="mobile-hover-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
-                                    </path>
-                                </svg>
-                            </a>
-                        </button>
-
-                        <form method="post" action="{% url 'character:trash_delete' character.pk %}"
-                            onsubmit="return confirmDelete();" class="table-button-shadow">
-                            {% csrf_token %}
-                            <button style="
-                   cursor: pointer;
-                   background-color: transparent;
-                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
-                                <a href="" class="mobile-hover-button">
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path
-                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
                                         </path>
                                     </svg>
                                 </a>
                             </button>
-                        </form>
 
-                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
-                            class="">
-                    </div>
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
+
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </div>
                     {% endfor %}
-
 
 
                 </div>
@@ -237,22 +235,22 @@
             <div class="character-main" id="characterMain">
                 {% for character in user_characters %}
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
 
-                                <!-- 그림자 효과 추가 -->
+                                    <!-- 그림자 효과 추가 -->
 
-                                <!-- <button class="table-button-shadow">
+                                    <!-- <button class="table-button-shadow">
                                     <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -261,53 +259,55 @@
                                     </a>
                                 </button> -->
 
-                                <button class="table-button-edit">
-                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                            <path
-                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </button>
-
-                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
-                                    onsubmit="return confirmDelete();" class="table-button-shadow">
-                                    {% csrf_token %}
-                                    <button style="
-                                        cursor: pointer;
-                                        background-color: transparent;
-                                        border: none; padding: 0;" type="submit" class="table-button-delete">
-                                        <a href="" class="hover-button">
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor">
+                                                 fill="currentColor">
                                                 <path
-                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
                                                 </path>
                                             </svg>
                                         </a>
                                     </button>
-                                </form>
 
-                                <!-- <div class="table-button-shadow">
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
                                     <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
                                     </a>
                                 </div> -->
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
 
 
+                                </div>
                             </div>
+                            <div class="table-back"></div>
                         </div>
-                        <div class="table-back"></div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
                     </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                alt="{{ character.adminCharacter.emotion }}" class="">
-                        </a>
-                    </div>
-                </div>
 
                 {% endfor %}
 
@@ -435,33 +435,66 @@
         <section class="room" id="room2">
             <div class="mobile-character-center">
                 <div class="mobile-character-main">
+
+                    <!-- wrapper 시작 -->
                     {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
-                            class="">
-                    </a>
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </button>
+
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
+
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </div>
                     {% endfor %}
+
+
                 </div>
             </div>
             <div class="character-main" id="characterMain">
                 {% for character in user_characters %}
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
 
-                                <!-- 그림자 효과 추가 -->
+                                    <!-- 그림자 효과 추가 -->
 
-                                <!-- <button class="table-button-shadow">
+                                    <!-- <button class="table-button-shadow">
                                     <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -470,53 +503,55 @@
                                     </a>
                                 </button> -->
 
-                                <button class="table-button-edit">
-                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                            <path
-                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </button>
-
-                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
-                                    onsubmit="return confirmDelete();" class="table-button-shadow">
-                                    {% csrf_token %}
-                                    <button style="
-                                        cursor: pointer;
-                                        background-color: transparent;
-                                        border: none; padding: 0;" type="submit" class="table-button-delete">
-                                        <a href="" class="hover-button">
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor">
+                                                 fill="currentColor">
                                                 <path
-                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
                                                 </path>
                                             </svg>
                                         </a>
                                     </button>
-                                </form>
 
-                                <!-- <div class="table-button-shadow">
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
                                     <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
                                     </a>
                                 </div> -->
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
 
 
+                                </div>
                             </div>
+                            <div class="table-back"></div>
                         </div>
-                        <div class="table-back"></div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
                     </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                alt="{{ character.adminCharacter.emotion }}" class="">
-                        </a>
-                    </div>
-                </div>
 
                 {% endfor %}
 
@@ -739,34 +774,67 @@
         <section class="room" id="room4">
             <div class="mobile-character-center">
                 <div class="mobile-character-main">
+
+                    <!-- wrapper 시작 -->
                     {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
-                            class="">
-                    </a>
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </button>
+
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
+
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </div>
                     {% endfor %}
+
+
                 </div>
             </div>
             <div class="character-main" id="characterMain">
 
                 {% for character in user_characters %}
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
 
-                                <!-- 그림자 효과 추가 -->
+                                    <!-- 그림자 효과 추가 -->
 
-                                <!-- <button class="table-button-shadow">
+                                    <!-- <button class="table-button-shadow">
                                     <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -775,53 +843,55 @@
                                     </a>
                                 </button> -->
 
-                                <button class="table-button-edit">
-                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                            <path
-                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </button>
-
-                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
-                                    onsubmit="return confirmDelete();" class="table-button-shadow">
-                                    {% csrf_token %}
-                                    <button style="
-                                        cursor: pointer;
-                                        background-color: transparent;
-                                        border: none; padding: 0;" type="submit" class="table-button-delete">
-                                        <a href="" class="hover-button">
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor">
+                                                 fill="currentColor">
                                                 <path
-                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
                                                 </path>
                                             </svg>
                                         </a>
                                     </button>
-                                </form>
 
-                                <!-- <div class="table-button-shadow">
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
                                     <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
                                     </a>
                                 </div> -->
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
 
 
+                                </div>
                             </div>
+                            <div class="table-back"></div>
                         </div>
-                        <div class="table-back"></div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
                     </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                alt="{{ character.adminCharacter.emotion }}" class="">
-                        </a>
-                    </div>
-                </div>
 
                 {% endfor %}
 
@@ -970,34 +1040,67 @@
         <section class="room" id="room5">
             <div class="mobile-character-center">
                 <div class="mobile-character-main">
+
+                    <!-- wrapper 시작 -->
                     {% for character in user_characters %}
-                    <a href="{% url 'character:character_detail' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}" alt="{{ character.adminCharacter.emotion }}"
-                            class="">
-                    </a>
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </button>
+
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
+
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </div>
                     {% endfor %}
+
+
                 </div>
             </div>
             <div class="character-main" id="characterMain">
 
                 {% for character in user_characters %}
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
 
-                                <!-- 그림자 효과 추가 -->
+                                    <!-- 그림자 효과 추가 -->
 
-                                <!-- <button class="table-button-shadow">
+                                    <!-- <button class="table-button-shadow">
                                     <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -1006,53 +1109,55 @@
                                     </a>
                                 </button> -->
 
-                                <button class="table-button-edit">
-                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                            <path
-                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </button>
-
-                                <form method="post" action="{% url 'character:trash_delete' character.pk %}"
-                                    onsubmit="return confirmDelete();" class="table-button-shadow">
-                                    {% csrf_token %}
-                                    <button style="
-                                        cursor: pointer;
-                                        background-color: transparent;
-                                        border: none; padding: 0;" type="submit" class="table-button-delete">
-                                        <a href="" class="hover-button">
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor">
+                                                 fill="currentColor">
                                                 <path
-                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
                                                 </path>
                                             </svg>
                                         </a>
                                     </button>
-                                </form>
 
-                                <!-- <div class="table-button-shadow">
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
                                     <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
                                     </a>
                                 </div> -->
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
 
 
+                                </div>
                             </div>
+                            <div class="table-back"></div>
                         </div>
-                        <div class="table-back"></div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
                     </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                alt="{{ character.adminCharacter.emotion }}" class="">
-                        </a>
-                    </div>
-                </div>
 
                 {% endfor %}
 
@@ -1064,7 +1169,7 @@
 
             <div id="toggle" class="toggle">
                 <button class="toggle__btn">
-                    <span class="toggle__toggler"></span>
+
                 </button>
             </div>
             <div class="room5-walls">
@@ -1094,29 +1199,29 @@
 
     </main>
     <nav class="mobile-footer" role="menulist">
-        <a href="{% url 'users:main' %}" role="menuitem" class="active" aria-describedby="nav-current">
+        <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                        d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
                 </path>
             </svg>
             Home
         </a>
         {% if first_item %}
-        <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+            <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
 
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
-                </path>
-            </svg>
-            Chat
-        </a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                            d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                    </path>
+                </svg>
+                Chat
+            </a>
         {% endif %}
         <a href="{% url 'chatbot:emotion' %}" role="menuitem">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                        d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
                 </path>
             </svg>
             Log
@@ -1124,7 +1229,7 @@
         <a href="{% url 'character:trash' %}" role="menuitem">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                        d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
                 </path>
             </svg>
             Trash
@@ -1132,21 +1237,22 @@
         <a href="{% url 'users:profile' %}" role="menuitem">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                        d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
                 </path>
             </svg>
             Profile
         </a>
         <i class="line" id="nav-current">current item</i>
     </nav>
+</div>
 
 
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script src="{% static '/js/character/character_list/blueback.js' %}"></script>
-    <script src="{% static '/js/character/character_list/bulb.js' %}"></script>
-    <script src="{% static '/js/character/character_list/clock.js' %}"></script>
-    <script src="{% static '/js/character/character_list/wall.js' %}"></script>
-    <script src="{% static '/js/character/character_list/nav.js' %}"></script>
+<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+<script src="{% static '/js/character/character_list/blueback.js' %}"></script>
+<script src="{% static '/js/character/character_list/bulb.js' %}"></script>
+<script src="{% static '/js/character/character_list/clock.js' %}"></script>
+<script src="{% static '/js/character/character_list/wall.js' %}"></script>
+<script src="{% static '/js/character/character_list/nav.js' %}"></script>
 
 
 <script>
@@ -1166,47 +1272,51 @@
     ga('send', 'pageview');
 </script>
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-11991680-4', 'ianlunn.github.io');
-        ga('send', 'pageview');
-    </script>
+    ga('create', 'UA-11991680-4', 'ianlunn.github.io');
+    ga('send', 'pageview');
+</script>
 
 
+<script>
+    function confirmDelete() {
+        return confirm("휴지통에 버리시겠습니까?");
+    }
+</script>
 
-    <script>
-        function confirmDelete() {
-            return confirm("휴지통에 버리시겠습니까?");
-        }
-    </script>
+<script>
+    const rooms = document.querySelectorAll('.room'); // 모든 방 요소를 선택
+    const leftArrow = document.querySelector('.arrow.left'); // 왼쪽 화살표 버튼을 선택
+    const rightArrow = document.querySelector('.arrow.right'); // 오른쪽 화살표 버튼을 선택
+    let currentRoom = 0; // 현재 보이는 방의 인덱스를 추적
 
-    <script>
-        const rooms = document.querySelectorAll('.room'); // 모든 방 요소를 선택
-        const leftArrow = document.querySelector('.arrow.left'); // 왼쪽 화살표 버튼을 선택
-        const rightArrow = document.querySelector('.arrow.right'); // 오른쪽 화살표 버튼을 선택
-        let currentRoom = 0; // 현재 보이는 방의 인덱스를 추적
-
-        function showRoom(index) {
-            rooms.forEach((room, i) => {
-                room.classList.toggle('active', i === index); // 인덱스가 일치하는 방에 active 클래스를 추가
-            });
-        }
-
-        leftArrow.addEventListener('click', () => {
-            currentRoom = (currentRoom - 1 + rooms.length) % rooms.length; // 왼쪽 화살표 클릭 시 이전 방으로 이동
-            showRoom(currentRoom); // 새로운 현재 방을 표시
+    function showRoom(index) {
+        rooms.forEach((room, i) => {
+            room.classList.toggle('active', i === index); // 인덱스가 일치하는 방에 active 클래스를 추가
         });
+    }
 
-        rightArrow.addEventListener('click', () => {
-            currentRoom = (currentRoom + 1) % rooms.length; // 오른쪽 화살표 클릭 시 다음 방으로 이동
-            showRoom(currentRoom); // 새로운 현재 방을 표시
-        });
+    leftArrow.addEventListener('click', () => {
+        currentRoom = (currentRoom - 1 + rooms.length) % rooms.length; // 왼쪽 화살표 클릭 시 이전 방으로 이동
+        showRoom(currentRoom); // 새로운 현재 방을 표시
+    });
+
+    rightArrow.addEventListener('click', () => {
+        currentRoom = (currentRoom + 1) % rooms.length; // 오른쪽 화살표 클릭 시 다음 방으로 이동
+        showRoom(currentRoom); // 새로운 현재 방을 표시
+    });
 
 </script>
 <script>
