@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
+
+from character.models import UserCharacter
 from .forms import SignUpForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -94,8 +96,11 @@ def login(request):
     return render(request, 'user/signup.html')
 
 
+@login_required
 def logout(request):
-    auth_logout(request)
+    if request.method == "POST":
+        auth_logout(request)
+        return redirect('users:main')
     return redirect('users:main')
 
 @login_required
@@ -118,17 +123,11 @@ def profile(request):
             'profile_picture_url': profile.profile_picture.url if profile.profile_picture else ''
         }
         return JsonResponse(response_data)
-
+    first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
     context = {
         'user': user,
         'profile': profile,
-    }
-
-    return render(request, 'user/profile.html', context)
-
-    context = {
-        'user': user,
-        'profile': profile,
+        'first_item':first_item
     }
 
     return render(request, 'user/profile.html', context)

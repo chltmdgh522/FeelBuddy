@@ -1,15 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+
+from character.models import UserCharacter
 from .models import Community, Comment, Like
 from .forms import FeedbackForm, CommentForm
 from .models import Review
 from django.http import JsonResponse
 
+
 @login_required
 def feedback_list(request):
     feedbacks = Review.objects.all()  # 모든 리뷰 가져오기
-    return render(request, 'feedback/feedback_list.html', {'feedbacks': feedbacks})
+    first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
+    context = {
+        'feedbacks': feedbacks,
+        'first_item': first_item
+    }
+    return render(request, 'feedback/feedback_list.html', context)
+
 
 @login_required
 def feedback_create(request):
@@ -24,16 +33,23 @@ def feedback_create(request):
             )
     return redirect('feedback:feedback_list')
 
+
 @login_required
 def feedback_delete(request, pk):
     review = get_object_or_404(Review, pk=pk, user=request.user)
     review.delete()
     return redirect('feedback:feedback_list')
 
+
 @login_required
 def feedback_detail(request, pk):
     review = get_object_or_404(Review, pk=pk)
-    return render(request, 'feedback/feedback_detail.html', {'review': review})
+    first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
+    context = {
+        'review': review,
+        'first_item': first_item
+    }
+    return render(request, 'feedback/feedback_detail.html', context)
 # def feedback_list(request):
 #     feedbacks = Community.objects.all()
 #     return render(request, 'feedback/feedback1.html', {'feedbacks': feedbacks})
@@ -122,4 +138,3 @@ def feedback_detail(request, pk):
 #     if like:
 #         like.delete()
 #     return JsonResponse({'likes_count': feedback.like_set.count()})
-
