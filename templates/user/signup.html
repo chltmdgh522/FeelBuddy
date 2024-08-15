@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="{% static '/css/user/login.css' %}">
 </head>
@@ -21,7 +21,7 @@
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
             </div>
-            <span class="form__span">or use email for registration</span>
+            <!-- <span class="form__span">or use email for registration</span> -->
 
             <!-- 오류 메시지 표시 -->
             {% if error %}
@@ -39,7 +39,7 @@
     <div class="container b-container" id="b-container">
         <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
             {% csrf_token %}
-            <h2 class="form_title title">Login in to Website</h2>
+            <h2 class="form_title title">Login in to FeelBuddy</h2>
             <div class="form__icons">
                 <img class="form__icon" src="#" alt="">
                 <img class="form__icon" src="#" alt="">
@@ -58,20 +58,29 @@
         </form>
     
         <!-- 소셜 로그인 부분을 다른 form과 분리 -->
-        <div>
+        <div class="social-container">
+        {% load socialaccount %}
             <form action="{% provider_login_url 'google' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">login with Google</button>
+                <button class="p-0" type="submit" style="border: 0; background: transparent">
+                    <img src="/media/social-btn/google_btn.png" height=38px width=155px alt="Log In With google"/>
+                </button>
             </form>
             <form action="{% provider_login_url 'naver' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">login with Naver</button>
+                <button class="p-0" type="submit" style="border: 0; background: transparent">
+                    <img src="/media/social-btn/btnG_official.png" height=38px width=155px alt="Log In With naver"/>
+                </button>
             </form>
             <form action="{% provider_login_url 'kakao' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">login with Kakao</button>
+                <button class="p-0" type="submit" style="border: 0; background: transparent">
+                    <img src="/media/social-btn/kakao_login_medium_narrow.png" height=38px alt="Log In With Kakao"/>
+                </button>
             </form>
         </div>
+        <!-- 소셜 로그인 끝 -->
+
     </div>
 
     
@@ -80,14 +89,18 @@
         <div class="switch__circle switch__circle--t"></div>
         <div class="switch__container" id="switch-c1">
             <h2 class="switch__title title">Welcome Back !</h2>
-            <p class="switch__description description">To keep connected with us please login with your personal
-                info</p>
-            <button class="switch__button button switch-btn">SIGN IN</button>
+            <img src="/media/joy.png">
+            <!-- <p class="switch__description description">To keep connected with us please login with your personal
+                info</p> -->
+            
+            <button class="switch__button button-2 switch-btn">SIGN IN</button>
         </div>
         <div class="switch__container is-hidden" id="switch-c2">
             <h2 class="switch__title title">Hello Friend !</h2>
-            <p class="switch__description description">Enter your personal details and start journey with us</p>
-            <button class="switch__button button switch-btn">SIGN UP</button>
+            <img src="/media/joy.png">
+            
+            <!-- <p class="switch__description description">Enter your personal details and start journey with us</p> -->
+            <button class="switch__button button-2 switch-btn">SIGN UP</button>
         </div>
     </div>
 </div>
