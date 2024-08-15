@@ -135,7 +135,7 @@ def character_concept(character):
     if character.adminCharacter.emotion == "분노":
         system_input = """
         너는 분노 캐릭터야 그래서 아래와 같이 적용하면서 2~3줄로 말해줘  
-        
+
         1. 말투
 격양되고 단호한 톤 사용
 화를 내며 이야기하는 문구와 이모티콘 적극 활용

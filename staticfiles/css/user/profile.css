@@ -1,400 +1,613 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    text-transform: uppercase;
-    box-sizing: inherit;
-    font-size: 10.5px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 2px rgba(0, 0, 0, .5),
-        -1px -1px 1px rgba(179, 179, 179, .5),
-        1px 1px 0 rgba(255, 255, 255, 0.55),
-        0 1px 3px white;
-    overflow: hidden;
-    color: #191919;
-    /* background-color: azure; */
-    background-color: azure;
+  text-transform: uppercase;
+  box-sizing: inherit;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5),
+    -1px -1px 1px rgba(179, 179, 179, 0.5), 1px 1px 0 rgba(255, 255, 255, 0.55),
+    0 1px 3px white;
+  overflow: hidden;
+  color: #191919;
+  background-color: azure;
+  /* background-color: #806278; */
 }
 
 #profile-btn {
-    display: block;
-    position: relative;
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    text-transform: inherit;
-    letter-spacing: inherit;
-    text-shadow: inherit;
-    cursor: pointer;
-    outline: inherit;
-    z-index: 10;
+  display: block;
+  position: relative;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+  outline: inherit;
+  z-index: 10;
+  background-color: #191919;
 }
 
 .profile-card {
-    /* background-color: #f4f1eb;
+  /* background-color: #f4f1eb;
   background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png"); */
-    height: 280px;
-    /* 2/3 크기 조정 */
-    width: 490px;
-    /* 2/3 크기 조정 */
-    margin: 20vh auto 0 auto;
-    padding: 13.33px 6.67px 6.67px 6.67px;
-    /* 2/3 크기 조정 */
-    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
-    box-shadow: 0;
-    transition: transform .4s ease, box-shadow .4s ease;
-    display: flex;
-    flex-direction: row;
+  height: 280px;
+  /* 2/3 크기 조정 */
+  width: 490px;
+  /* 2/3 크기 조정 */
+  margin: 20vh auto 0 auto;
+  padding: 13.33px 6.67px 6.67px 6.67px;
+  /* 2/3 크기 조정 */
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg);
+  box-shadow: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: row;
 }
 
 .profile-card:hover {
-    cursor: pointer;
-    transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg) translateZ(10px);
-    box-shadow: 20px 20px 20px rgba(0, 0, 0, .4);
+  cursor: pointer;
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg) translateZ(10px);
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.4);
 }
 
 .profile-card:focus {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, .4);
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 .profile-card:focus::before {
-    transform: skewX(0deg) translateX(0px) translateY(0px);
-    height: 0px;
+  transform: skewX(0deg) translateX(0px) translateY(0px);
+  height: 0px;
 }
 
 .profile-card:focus::after {
-    transform: skewY(0deg) translateX(0px) translateY(0px);
-    width: 0px;
+  transform: skewY(0deg) translateX(0px) translateY(0px);
+  width: 0px;
 }
 
 .profile-card::before,
 .profile-card::after {
-    content: "";
-    position: absolute;
-    display: block;
-    /* background-color: grey; */
-    transition: transform .4s ease, height .4s ease, width .4s ease;
+  content: "";
+  position: absolute;
+  display: block;
+  /* background-color: grey; */
+  transition: transform 0.4s ease, height 0.4s ease, width 0.4s ease;
 }
 
 .profile-card::before {
-    width: 100%;
-    height: 4px;
-    /* 2/3 크기 조정 */
-    bottom: 0;
-    left: 0;
-    transform: skewX(45deg) translateX(-2px) translateY(4px);
-    /* 2/3 크기 조정 */
+  width: 100%;
+  height: 4px;
+  /* 2/3 크기 조정 */
+  bottom: 0;
+  left: 0;
+  transform: skewX(45deg) translateX(-2px) translateY(4px);
+  /* 2/3 크기 조정 */
 }
 
 .profile-card::after {
-    height: 100%;
-    width: 4px;
-    /* 2/3 크기 조정 */
-    top: 0;
-    right: 0;
-    transform: skewY(45deg) translateX(4px) translateY(-2px);
-    /* 2/3 크기 조정 */
+  height: 100%;
+  width: 4px;
+  /* 2/3 크기 조정 */
+  top: 0;
+  right: 0;
+  transform: skewY(45deg) translateX(4px) translateY(-2px);
+  /* 2/3 크기 조정 */
 }
 
 .profile-left {
-    position: relative;
-    width: 40%;
-    height: 100%;
-    /* background-color: azure; */
-    /* background:  rgba(206, 13, 13, 0.1); */
-    background: rgb(248, 236, 249);
-    /* background-color: #1A1C40; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  width: 40%;
+  height: 100%;
+  /* background-color: azure; */
+  /* background:  rgba(206, 13, 13, 0.1); */
+  background: rgb(248, 236, 249);
+  /* background-color: #1A1C40; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60%;
-    height: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-right-list {
-    width: 100%;
-    height: 15%;
-    position: relative;
-    background: #d2c9f5;
+  width: 100%;
+  height: 15%;
+  position: relative;
+  background: #d2c9f5;
+}
+
+.user-image-container {
+  position: relative;
+  display: inline-block;
+  width: 120px; /* 이미지와 동일한 크기 */
+  height: 120px; /* 이미지와 동일한 크기 */
+  margin-bottom: 25px;
 }
 
 .user-image {
-    margin: auto;
-    margin-top: 20px;
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-    border: 3px solid #1A1C40;
-    background-color: white;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #1a1c40;
+  background-color: white;
 }
 
+#edit-profile-pic-icon {
+  position: absolute;
+  bottom: 5px; /* 아이콘을 프로필 이미지 경계선의 아래쪽에 배치 */
+  right: 5px; /* 아이콘을 프로필 이미지 경계선의 오른쪽에 배치 */
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 2px; /* 아이콘의 크기를 조정 */
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#edit-profile-pic-icon:hover {
+  background: #f0f0f0;
+}
+
+/* .user-name {
+  margin: 0;
+  margin-top: 50px;
+  text-align: center;
+  color: #1a1c40;
+}
+
+#edit-nickname-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#nickname-input {
+  font-size: 16px;
+  border: 1px solid #ddd;
+  padding: 2px;
+  margin-left: 5px;
+} */
+
+#nickname-input {
+  width: 80%; /* 원하는 너비로 조정 (예: 80%) */
+  padding: 5px; /* 내부 여백 추가 */
+  font-size: 14px; /* 텍스트 크기 조정 */
+  border: 1px solid #ccc; /* 테두리 스타일 */
+  border-radius: 5px; /* 테두리 둥글게 */
+  box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 설정 */
+  margin-top: 10px; /* 위쪽 여백 추가 */
+  transition: width 0.3s ease; /* 크기 전환 애니메이션 */
+}
 
 .user-name {
-    margin: 0;
-    margin-top: 20px;
-    text-align: center;
-    color: #1A1C40;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 아이콘과 텍스트 간격 조정 */
 }
 
+#edit-nickname-icon {
+  cursor: pointer;
+  font-size: 15px;
+  vertical-align: middle; /* 텍스트와 수평 정렬 */
+}
 
 /* 편지지 이메일 추가 */
 .profile-email {
-    position: relative;
-    width: 100%;
-    /* 2/3 크기 조정 */
-    height: 85%;
-    /* 2/3 크기 조정 */
+  position: relative;
+  width: 100%;
+  /* 2/3 크기 조정 */
+  height: 85%;
+  /* 2/3 크기 조정 */
 }
 
 #profile-email-bg {
-    position: absolute;
-    left: -50%;
-    top: -50%;
-    height: 100%;
-    width: 100%;
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  height: 100%;
+  width: 100%;
 }
 
 .profile-contact {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -83.33px;
-    /* 2/3 크기 조정 */
-    margin-top: -83.33px;
-    /* 2/3 크기 조정 */
-    height: 166.67px;
-    /* 2/3 크기 조정 */
-    width: 166.67px;
-    /* 2/3 크기 조정 */
-    background: rgba(206, 13, 13, 0.1);
-    border-radius: 20px;
-
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -83.33px;
+  /* 2/3 크기 조정 */
+  margin-top: -83.33px;
+  /* 2/3 크기 조정 */
+  height: 166.67px;
+  /* 2/3 크기 조정 */
+  width: 166.67px;
+  /* 2/3 크기 조정 */
+  background: rgba(206, 13, 13, 0.1);
+  border-radius: 20px;
 }
 
 .profile-contact .profile-envelope {
-    position: absolute;
-    height: 62px;
-    /* 2/3 크기 조정 */
-    width: 110px;
-    /* 2/3 크기 조정 */
-    left: 50%;
-    margin-left: -55px;
-    /* 2/3 크기 조정 */
-    top: 50%;
-    margin-top: -33.33px;
-    /* 2/3 크기 조정 */
-    background: #F9F9F9;
-    transition: margin-top 300ms;
+  position: absolute;
+  height: 62px;
+  /* 2/3 크기 조정 */
+  width: 110px;
+  /* 2/3 크기 조정 */
+  left: 50%;
+  margin-left: -55px;
+  /* 2/3 크기 조정 */
+  top: 50%;
+  margin-top: -33.33px;
+  /* 2/3 크기 조정 */
+  background: #f9f9f9;
+  transition: margin-top 300ms;
 }
 
 .profile-contact:hover .profile-envelope {
-    transition-delay: 150ms;
-    margin-top: -13.33px;
-    /* 2/3 크기 조정 */
+  transition-delay: 150ms;
+  margin-top: -13.33px;
+  /* 2/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-top {
-    position: absolute;
-    top: -2px;
-    /* 2/3 크기 조정 */
-    left: 0px;
-    width: 100%;
-    height: 48.67px;
-    /* 2/3 크기 조정 */
-    z-index: 30;
-    overflow: hidden;
-    transform-origin: top;
-    transition: transform 300ms 150ms, z-index 0ms 150ms, height 300ms 0ms, top 300ms 0ms;
+  position: absolute;
+  top: -2px;
+  /* 2/3 크기 조정 */
+  left: 0px;
+  width: 100%;
+  height: 48.67px;
+  /* 2/3 크기 조정 */
+  z-index: 30;
+  overflow: hidden;
+  transform-origin: top;
+  transition: transform 300ms 150ms, z-index 0ms 150ms, height 300ms 0ms,
+    top 300ms 0ms;
 }
 
 .profile-contact:hover .profile-envelope .email-top {
-    transition: transform 300ms 0ms, height 300ms 150ms, top 300ms 150ms;
-    height: 6.67px;
-    /* 2/3 크기 조정 */
-    top: -40px;
-    /* 2/3 크기 조정 */
-    transform: rotateX(180deg);
+  transition: transform 300ms 0ms, height 300ms 150ms, top 300ms 150ms;
+  height: 6.67px;
+  /* 2/3 크기 조정 */
+  top: -40px;
+  /* 2/3 크기 조정 */
+  transform: rotateX(180deg);
 }
 
 .profile-contact .profile-envelope .email-outer {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    border-left: 55.33px solid transparent;
-    /* 2/3 크기 조정 */
-    border-right: 54.67px solid transparent;
-    /* 2/3 크기 조정 */
-    border-top: 46.67px solid #EEE;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border-left: 55.33px solid transparent;
+  /* 2/3 크기 조정 */
+  border-right: 54.67px solid transparent;
+  /* 2/3 크기 조정 */
+  border-top: 46.67px solid #eee;
+  /* 2/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-outer .email-inner {
-    position: absolute;
-    left: -54px;
-    /* 2/3 크기 조정 */
-    top: -48.67px;
-    /* 2/3 크기 조정 */
-    border-left: 54px solid transparent;
-    /* 2/3 크기 조정 */
-    border-right: 53.33px solid transparent;
-    /* 2/3 크기 조정 */
-    border-top: 45.33px solid #333;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  left: -54px;
+  /* 2/3 크기 조정 */
+  top: -48.67px;
+  /* 2/3 크기 조정 */
+  border-left: 54px solid transparent;
+  /* 2/3 크기 조정 */
+  border-right: 53.33px solid transparent;
+  /* 2/3 크기 조정 */
+  border-top: 45.33px solid #333;
+  /* 2/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-bottom {
-    position: absolute;
-    z-index: 20;
-    bottom: 0px;
-    left: 1.33px;
-    /* 2/3 크기 조정 */
-    border-left: 54px solid transparent;
-    /* 2/3 크기 조정 */
-    border-right: 53.33px solid transparent;
-    /* 2/3 크기 조정 */
-    border-bottom: 30px solid #333;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  z-index: 20;
+  bottom: 0px;
+  left: 1.33px;
+  /* 2/3 크기 조정 */
+  border-left: 54px solid transparent;
+  /* 2/3 크기 조정 */
+  border-right: 53.33px solid transparent;
+  /* 2/3 크기 조정 */
+  border-bottom: 30px solid #333;
+  /* 2/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-left {
-    position: absolute;
-    z-index: 20;
-    top: 0px;
-    left: 0px;
-    border-left: 54px solid #333;
-    /* 2/3 크기 조정 */
-    border-top: 30px solid transparent;
-    /* 2/3 크기 조정 */
-    border-bottom: 30px solid transparent;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  z-index: 20;
+  top: 0px;
+  left: 0px;
+  border-left: 54px solid #333;
+  /* 2/3 크기 조정 */
+  border-top: 30px solid transparent;
+  /* 2/3 크기 조정 */
+  border-bottom: 30px solid transparent;
+  /* 2/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-right {
-    position: absolute;
-    z-index: 20;
-    top: 0px;
-    right: 0px;
-    border-right: 53.33px solid #333;
-    /* 2/3 크기 조정 */
-    border-top: 30px solid transparent;
-    /* 2/3 크기 조정 */
-    border-bottom: 30px solid transparent;
-    /* 2/3 크기 조정 */
+  position: absolute;
+  z-index: 20;
+  top: 0px;
+  right: 0px;
+  border-right: 53.33px solid #333;
+  /* 2/3 크기 조정 */
+  border-top: 30px solid transparent;
+  /* 2/3 크기 조정 */
+  border-bottom: 30px solid transparent;
+  /* 2/3 크기 조정 */
 }
 
 .profile-contact .profile-envelope .email-cover {
-    position: absolute;
-    z-index: 15;
-    bottom: 0px;
-    left: 0px;
-    height: 36.67%;
-    /* 2/3 크기 조정 */
-    width: 100%;
-    background: #EEE;
+  position: absolute;
+  z-index: 15;
+  bottom: 0px;
+  left: 0px;
+  height: 36.67%;
+  /* 2/3 크기 조정 */
+  width: 100%;
+  background: #eee;
 }
 
 .profile-contact .profile-envelope .email-paper {
-    position: absolute;
-    height: 55.33px;
-    /* 2/3 크기 조정 */
-    padding-top: 6.67px;
-    /* 2/3 크기 조정 */
-    width: 100%;
-    top: 0px;
-    left: 0px;
-    background: #F9F9F9;
-    z-index: 10;
-    transition: margin-top 300ms 0ms;
+  position: absolute;
+  height: 55.33px;
+  /* 2/3 크기 조정 */
+  padding-top: 6.67px;
+  /* 2/3 크기 조정 */
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background: #f9f9f9;
+  z-index: 10;
+  transition: margin-top 300ms 0ms;
 }
 
 .profile-contact:hover .profile-envelope .email-paper {
-    margin-top: -40px;
-    /* 2/3 크기 조정 */
-    transition: margin-top 300ms 150ms;
+  margin-top: -40px;
+  /* 2/3 크기 조정 */
+  transition: margin-top 300ms 150ms;
 }
 
 .profile-contact .profile-envelope .email-paper a {
-    position: relative;
-    display: block;
-    font-size: 9.33px;
-    /* 2/3 크기 조정 */
-    margin: 3.33px;
-    /* 2/3 크기 조정 */
-    margin-bottom: 0px;
-    text-align: center;
-    color: #333;
-    text-decoration: none;
+  position: relative;
+  display: block;
+  font-size: 9.33px;
+  /* 2/3 크기 조정 */
+  margin: 3.33px;
+  /* 2/3 크기 조정 */
+  margin-bottom: 0px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
 }
-
-
 
 .profile-contact .profile-envelope .email-paper a.mail .i {
-    position: absolute;
-    top: 0px;
-    left: 11.33px;
-    /* 2/3 크기 조정 */
-    display: inline-block;
-    font-size: 8.67px;
-    /* 2/3 크기 조정 */
-    font-weight: bold;
+  position: absolute;
+  top: 0px;
+  left: 11.33px;
+  /* 2/3 크기 조정 */
+  display: inline-block;
+  font-size: 8.67px;
+  /* 2/3 크기 조정 */
+  font-weight: bold;
 }
-
 
 /* 하단 리스트 */
 
 .profile-right-list ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 .profile-right-list ul li {
-    text-align: center;
-    font-family: Exo;
-    font-size: 14px;
-    color: white;
-    list-style-type: none;
-    display: inline-block;
-    float: left;
-    width: 100%;
-    height: 100%;
-    border-right: solid 3px rgba(255, 255, 255, .2);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  text-align: center;
+  font-family: Exo;
+  font-size: 14px;
+  color: white;
+  list-style-type: none;
+  display: inline-block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  border-right: solid 3px rgba(255, 255, 255, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-right-list ul li:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 .profile-right-list ul li span.icon {
-    display: block;
-    margin-top: 25px;
-    color: white;
-    font-size: 12px;
-    line-height: 100%;
+  display: block;
+  margin-top: 25px;
+  color: white;
+  font-size: 12px;
+  line-height: 100%;
+}
+
+.pic-edit {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  margin: 25px 30px;
+}
+
+.pic-edit:after {
+  position: absolute;
+  content: "";
+  bottom: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #ffffff;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  background: url("/media/pencil-line.png");
+  background-size: contain;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-animation: scaleIn 0.3s 3.5s ease forwards;
+  animation: scaleIn 0.3s 3.5s ease forwards;
+}
+
+
+
+
+/* header 네온사인 추가 */
+
+
+
+#pole{
+  border-radius: 1vw 1vw 0 0;    
+  position: absolute;
+  z-index: 999;
+  top:-160px;
+  left: 10vmin;
+  height: 5vh; 
+  width: 10vw;
+  transform: translateY(160px);
+  min-width: 45px;
+  background-color: #30343f;
+  font-size: 1.5em;    
+  /* @media (max-height: 400px){
+    transform: unset;
+    height: 400px;
+  } */
+}
+
+#right{  
+  height: 10.2vh;    
+  transform: translate(-40px, 50px);    
+  width: 24.5vw; 
+  min-width: 200px;
+  background-color: rgb(14, 13, 13); 
+  display: flex;
+  align-items: center;
+  justify-content: center;   
+  color: white;    
+  border-radius: 10px 50px 50px 10px;
+  border: 3px outset white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+
+
+
+/*네온사인 추가*/
+
+
+
+#right {
+  /* background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat; */
+  background-size:cover;
+  margin:0
+}
+.logo {
+
+  text-align: center;
+  width: 50px;
+  height: 100px;
+  margin: auto;
+  position: relative;
+  /* top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+   user-select: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.logo b{
+  position: relative;
+  /* font: 400 5vh "Vibur"; */
+
+  /* font-family: "Bungee Tint", sans-serif;
+  font-weight: 400;
+  font-style: normal; */
+  /* font-family: "New Amsterdam", sans-serif;
+  
+  font-weight: 400;
+  font-style: normal; */
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5vh;
+  margin-bottom: 10px;
+  color: #fee;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+}
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
 }

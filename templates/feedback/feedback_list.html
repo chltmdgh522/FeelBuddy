@@ -125,6 +125,7 @@
                   <span>{{ review.created_at|date:"Y-m-d H:i" }}</span>
                   <!-- 사용자가 작성한 리뷰에만 삭제 아이콘 표시 -->
                   {% if review.user == request.user %}
+                  
                   <i
                     class="ri-delete-bin-line delete-icon"
                     onclick="deleteReview({{ review.pk }})"
