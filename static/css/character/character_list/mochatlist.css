@@ -306,15 +306,22 @@ box-shadow: none;
 @media screen and (max-width: 768px) {
   .icon{
       display: none;
-}
-
-
-    
+}    
 }
 
 
 
 @media screen and (max-width: 768px) {
+
+/* room1 배경 수정 */
+
+.blueback-container {
+  margin-right: 10vh;
+}
+
+.blueback-top-layer {
+  margin-right: 10vh;
+}
 /* room2 배경 수정 */
 .balloon-container {
   width: 160px;

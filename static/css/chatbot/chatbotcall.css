@@ -46,6 +46,25 @@ body {
     line-height: 24px;
     background-color: #fff;
     z-index: 999;
+    overflow-y: auto; /* 스크롤바가 필요할 때만 나타나도록 설정 */
+    max-height: 50px; /* 요소의 최대 높이를 설정 */
+
+}
+
+/* 스크롤바 숨기기 */
+.speech-bubble::-webkit-scrollbar {
+    width: 0; /* 세로 스크롤바 숨기기 */
+    height: 0; /* 가로 스크롤바 숨기기 */
+}
+
+/* 스크롤바 트랙 숨기기 */
+.speech-bubble::-webkit-scrollbar-track {
+    background: transparent; /* 배경색 투명하게 설정 */
+}
+
+/* 스크롤바 핸들 숨기기 */
+.speech-bubble::-webkit-scrollbar-thumb {
+    background: transparent; /* 핸들 색상을 투명하게 설정 */
 }
 
 .speech-bubble:after {
@@ -54,7 +73,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 4px;
     -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-    bottom: -10px;
+    bottom: -30px;
     right: 50px;
     border-width: 10px;
     border-style: solid;
@@ -289,7 +308,8 @@ body {
     }
 }
 
-.left-side-image1, .left-side-image2, .left-side-image3, .left-side-image4 {
+.left-side-image1, .left-side-image2, .left-side-image3, .left-side-image4,
+.left-side-image5 {
     width: 20px;
     height: 20px;
     display: flex;
@@ -300,7 +320,8 @@ body {
 .left-side-image1 img,
 .left-side-image2 img,
 .left-side-image3 img,
-.left-side-image4 img {
+.left-side-image4 img,
+.left-side-image5 img {
     width: 40px;
     height: 40px;
     object-fit: cover;
@@ -491,12 +512,13 @@ body {
             height: auto;
             cursor: pointer;
         }
+
         #record-btn-2:hover {
             color: black;
             margin-right: 20px;
             width: 32px;
             height: auto;
-                cursor: pointer;
+            cursor: pointer;
         }
 
         .send {
@@ -699,7 +721,6 @@ body {
 .input-status > i {
     font-size: 18px;
 }
-
 
 
 /* 스크롤바 전체 */
