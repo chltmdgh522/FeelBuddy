@@ -1295,3 +1295,20 @@ span.thumb:after {
 }
 
 
+@media screen and (max-width: 768px) {
+  article {
+  height: 70vmin;
+  left: calc(50% - 30vmin);
+  position: absolute;
+  top: 40vh;
+  width: 60vmin;
+
+  & > button {
+    /* font-size: 3vmin; */
+  }
+  }
+  .canvas-center {
+    top:20vh;
+  }
+  
+}
