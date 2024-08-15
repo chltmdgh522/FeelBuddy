@@ -340,7 +340,7 @@ body {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
   /* Main container and scaling */
   .main {
     width: 100%;
