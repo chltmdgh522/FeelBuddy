@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캐릭터 리스트 페이지</title>
+    <title>FeelBuddy</title>
+    <link rel="icon" href="/media/joy.png" type="image/png">
     <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static '/css/character/character_list/blueback.css' %}">
@@ -350,7 +351,7 @@
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 {% for character in user_characters %}
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
                              class="">
@@ -612,7 +613,7 @@
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 {% for character in user_characters %}
-                                   <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                         <img src="{{ character.adminCharacter.image.url }}"
                              alt="{{ character.adminCharacter.emotion }}"
                              class="">
