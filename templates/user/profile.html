@@ -168,17 +168,7 @@
 
                 </div>
             </a>
-            <a href="{% url 'users:profile' %}">
-                <div class="icon__account">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                                d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
-                        </path>
-                    </svg>
-
-                </div>
-            </a>
+            
             {% if first_item %}
                 <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
                     <div class="icon__chat">
@@ -192,11 +182,9 @@
             {% endif %}
             <a href="{% url 'chatbot:emotion' %}">
                 <div class="icon__log">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                                d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
-                        </path>
-                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path>
+                </svg>
                 </div>
             </a>
             <a href="{% url 'character:trash' %}">
