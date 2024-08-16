@@ -17,6 +17,7 @@ EMOTION_CHOICES = [
 class AdminCharacter(models.Model):
     emotion = models.CharField(max_length=10, choices=EMOTION_CHOICES, unique=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
+    gif = models.FileField(upload_to='images/', blank=True, null=True)
 
 
 class UserCharacter(models.Model):

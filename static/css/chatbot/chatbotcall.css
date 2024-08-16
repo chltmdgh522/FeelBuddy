@@ -33,12 +33,12 @@ body {
 
 /* 말풍선 시작 */
 .speech-bubble-content {
-  position: absolute;
-  animation: float1 2s 2s infinite;
-  top: 60px;
-  left: 50px;
-  width: 50%;
-  z-index: 999;
+    position: absolute;
+    animation: float1 2s 2s infinite;
+    top: 60px;
+    left: 50px;
+    width: 50%;
+    z-index: 999;
 
 
 }
@@ -51,7 +51,7 @@ body {
     border-radius: 15px;
     color: #302f2f;
     width: 100%;
-    
+
     margin: 0 auto;
     font-size: 14px;
     /* font-family: "Dongle", sans-serif; */
@@ -60,22 +60,22 @@ body {
     font-style: normal;
     line-height: 18px;
     background-color: rgba(255, 255, 255, 0.5);
-    
+
     overflow-y: auto; /* 스크롤바가 필요할 때만 나타나도록 설정 */
     max-height: 50px; /* 요소의 최대 높이를 설정 */
     z-index: 2;
 }
 
 @keyframes float1 {
-  0% {
-    transform: translateX(0) translateY(0) scale(1.0);
-  }
-  50% {
-    transform: translateX(0) translateY(-10px) scale(1.05);
-  }
-  100% {
-    transform: translateX(0) translateY(0) scale(1.0);
-  }
+    0% {
+        transform: translateX(0) translateY(0) scale(1.0);
+    }
+    50% {
+        transform: translateX(0) translateY(-10px) scale(1.05);
+    }
+    100% {
+        transform: translateX(0) translateY(0) scale(1.0);
+    }
 }
 
 
@@ -776,4 +776,12 @@ body {
 /* 스크롤바 핸들에 마우스 올렸을 때 */
 .chat-box::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* 스크롤바 색상 (더 어두운 회색) */
+}
+
+.gif {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    width: 400px;
+    height: 400px;
 }
