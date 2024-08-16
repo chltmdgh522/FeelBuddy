@@ -165,8 +165,8 @@ left: 3px;
   
 @media screen and (max-width: 768px) {
   .card {
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
   }
 
   /* 룸 반응형 시작 */
