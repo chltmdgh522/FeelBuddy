@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+
 :root {
 	--red: #972627;
 	--red-2: #c17d7d;
@@ -634,19 +637,45 @@ label[for=night]:before {
 	cursor: pointer;
 }
 
-
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Myeongjo&display=swap');
 /* 감성글귀 작성을 위한 css */  /*추가된 부분 *************************************************/
 .emotional-phrase-container {
-    font-size: 2em; /* 글자 크기 조절 */
-    color: #fff; /* 글자 색상 */
-    text-align: center; /* 중앙 정렬 */
+    font-size: 25px; 
+    color: #fff; 
+    text-align: center; 
     position: absolute;
-    top: 50%; /* 위에서부터 50% 아래에 위치 */
-    left: 50%; /* 왼쪽에서부터 50% 오른쪽에 위치 */
-    transform: translate(-50%, -50%); /* 중앙 정렬을 위한 변환 */
-    z-index: 2; /* after 위에 글귀가 보이도록 조정 */
-    pointer-events: none; /* 마우스 이벤트가 이 요소에 영향을 주지 않도록 설정 */
+    top: 40%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 2;
+    pointer-events: none; 
+
+	font-family: "Nanum Brush Script", cursive;
+	/* font-family: "Nanum Myeongjo", serif; */
+  font-weight: 400;
+  font-style: normal;
 }
+@media screen and (max-width: 768px) {
+	.emotional-phrase-container {
+		font-size: 18px;
+		top:36%;
+		min-width: 360px;
+		text-align: center;
+	  }
+}
+
+/* .emotional-phrase-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: transparent;
+	position: absolute;
+	top:40%;
+	font-size: 16px;
+	
+} */
 
 /* 기존 버튼 숨기기 */
 .light-checkbox, .night-checkbox {

@@ -69,6 +69,33 @@
             cursor: se-resize;
         }
 
+        .arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3em;
+            cursor: pointer;
+            z-index: 10;
+            color: white;
+            /* background-color: rgba(0, 0, 0, 0.5);  */
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .arrow svg {
+            color: white;
+            width: 3rem;
+            height: auto;
+        }
+
+        .arrow.left {
+            left: 20px;
+        }
+
+        .arrow.right {
+            right: 20px;
+        }
+
         .chat-arrow {
             position: absolute;
             /* 화면에 고정된 위치에 배치 */
@@ -111,6 +138,7 @@
             display: block;
             /* active 클래스가 있는 방만 보이도록 설정 */
         }
+       
     </style>
 </head>
 
@@ -157,8 +185,24 @@
 <!-- 모바일 반응형 header 끝-->
 
 
-<div class="chat-arrow left">&larr;</div>
-<div class="chat-arrow right">&rarr;</div>
+
+
+<div class="arrow left">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path
+            d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
+        </path>
+    </svg>
+</div>
+<div class="arrow right">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path
+            d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
+        </path>
+    </svg>
+</div>
+<!-- <div class="chat-arrow left">&larr;</div>
+<div class="chat-arrow right">&rarr;</div> -->
 <!-- 모바일 반응형-footer 시작 -->
 <nav class="mobile-footer" role="menulist">
     <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
@@ -174,9 +218,8 @@
         Chat
     </a>
     <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
+           
         Log
     </a>
         <a href="{% url 'character:trash' %}" role="menuitem">
@@ -524,7 +567,8 @@
                                     <div class="speech-bubble-content">
                                         <p class="speech-bubble">
 
-                                            안녕 나는 {{ character.name }}야     </p>
+                                            안녕 나는 {{ character.name }}야
+                                        </p>
                                     </div>
                                     <!-- 말풍선 추가 끝 -->
                                     <div class="remote-track--picture-placeholder--container">
@@ -613,9 +657,11 @@
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
         <div class="lighthouse-sea">
-            <div id="emotional-phrase" class="emotional-phrase-container"></div>
-            <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
-            <span></span></div>
+            <!-- <div class="emotional-phrase-container"> -->
+                <div id="emotional-phrase" class="emotional-phrase-container"></div>
+                <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
+                <span></span></div>
+            <!-- </div> -->
         <div class="lighthouse-content">
             <div class="lighthouse">
                 <div class="lighthouse-base"></div>
@@ -888,8 +934,8 @@
             currentChat = parseInt(currentChat, 10);
         }
 
-        const leftArrow = document.querySelector('.chat-arrow.left');
-        const rightArrow = document.querySelector('.chat-arrow.right');
+        const leftArrow = document.querySelector('.arrow.left');
+        const rightArrow = document.querySelector('.arrow.right');
 
         leftArrow.addEventListener('click', () => {
             currentChat = (currentChat - 1 + chats.length) % chats.length;
