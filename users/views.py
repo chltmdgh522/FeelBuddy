@@ -7,7 +7,7 @@ from .forms import SignUpForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Profile, User
+from .models import Profile, User, validate_username
 from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -19,6 +19,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
+from django.core.exceptions import ValidationError
 #닉네임 랜덤 생성
 from django.core.exceptions import ObjectDoesNotExist
 import random
@@ -59,6 +60,9 @@ def signup(request):
         if User.objects.filter(email=email).exists():
             return render(request, 'user/signup.html', {'error': '이미 사용 중인 이메일 주소입니다.'})
         try:
+            # 아이디가 영문자와 숫자로 이루어졌는지 확인
+            validate_username(username)
+
             user = User.objects.create(
                 username=username,
                 email=email,
@@ -74,6 +78,9 @@ def signup(request):
                 profile.save()
 
             return redirect('users:login')
+        except ValidationError as e:
+            error_message = " ".join(e.messages)
+            return render(request, 'user/signup.html', {'error': f'회원가입에 실패했습니다: {error_message}'})
         except Exception as e:
             return render(request, 'user/signup.html', {'error': f'회원가입에 실패했습니다: {str(e)}'})
 
