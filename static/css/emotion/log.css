@@ -1444,23 +1444,36 @@ span.thumb:after {
 }
 
 
-
-
+.chat-header {
+  display: none;
+}
+@media screen and (max-width: 950px) {
+  #pole {
+    display: none ;
+  }
+}
 @media screen and (max-width: 768px) {
   :root {
     /* --sz: 10vmin; */
-      --sz: 5vmin;
+      --sz: 3vmin;
+  }
+  html, body {
+    width: 100vmin;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    
   }
 
   .toggle {
     position: absolute;
-    top:-3vh;
+    top:-1vh;
   }
   #pole {
     display: none;
   }
   article {
-  height: 100vmin;
+  height: 60vmin;
   left: calc(50% - 30vmin);
   position: absolute;
   top: 27vh;
@@ -1468,10 +1481,77 @@ span.thumb:after {
 
   & > button {
     font-size: 3vmin;
+    top:71%;
   }
   }
   .canvas-center {
-    top:20vh;
+    top:15vh;
+    
+  }
+
+   /* header 헤더 시작(모바일) */
+    
+   .chat-header {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    top:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #2c3e50;
+    color: white;
+    height: 58px;
+  }
+
+  .header-feedback svg, .header-logout svg {
+    width: 26px;
+    height: 26px;
+    color: white;
   }
   
+  .chat-header .header-left {
+
+    margin-left: 1rem;
+  }
+  .chat-header span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Concert One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .chat-header span p {
+    font-size: 1.2rem;
+  }
+  
+  .chat-header .header-right {
+    margin-right: 1rem;
+
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+
+  :root {
+      --sz: 5vmin;
+  }
+  article {
+    height: 100vmin;
+  }
+  .toggle {
+    position: absolute;
+    top:-3vh;
+  }
+
+  .canvas-center {
+    top:20vh;
+  }
+
+
 }

@@ -116,11 +116,58 @@ left: 3px;
   }
 }
 
+@media screen and (max-width: 1350px) {
+  .character-main {
+    display: none;
+  }
+
+  .table1, .table2, .table3, .table4, .table5 {
+    display: none;
+  }
+
+  .mobile-character-center {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    align-items: center;
+
+  }
+  .mobile-character-main {
+      width: 600px;
+      height: 300px;
+      display: inline;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 0; 
+      top: 48vh;
+      left: 0vh;
+      text-align: center;
+  }
+
+  .card {
+    width: 7rem;
+    height: 7rem;
+  }
+
+
+
+}
+
+
 /* mobile-wrapper 추가 끝*/
 
 
   
 @media screen and (max-width: 768px) {
+  .card {
+    width: 6rem;
+    height: 6rem;
+  }
 
   /* 룸 반응형 시작 */
   .room-building {
