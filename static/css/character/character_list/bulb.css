@@ -84,7 +84,7 @@
   .toggle {
     --border-radius: max(5px, 1vw);
     position: absolute;
-    top: 13vw;
+    top: 190px;
     right: 30vw;
     width: 5vw;
     height: 5vw;
