@@ -4,6 +4,17 @@ vars
 
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Concert+One&family=Gugi&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Concert+One&family=Gugi&family=Jua&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
@@ -428,6 +439,7 @@ h1 {
     background-color: #2c3e50;
     color: white;
     height: 58px;
+    
   }
 
   .header-feedback svg, .header-logout svg {
