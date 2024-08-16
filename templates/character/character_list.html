@@ -1244,21 +1244,37 @@
 <!-- 캐릭터 개수에 따라 동적으로 width 설정하는 코드 추가 -->
 <script>
     window.addEventListener('load', function () {
-    const mobileCharacterMain = document.querySelector('.mobile-character-main');
+        const mobileCharacterMain = document.querySelector('.mobile-character-main');
 
-    // mobile-character-main 안에 있는 card 요소들의 개수 세기 - 테마 4개라서 4로 나눔
-    const cardCount = Math.ceil(document.querySelectorAll('.mobile-character-main .card').length / 4);
+        // mobile-character-main 안에 있는 card 요소들의 개수 세기 - 테마 4개라서 4로 나눔
+        const cardCount = Math.ceil(document.querySelectorAll('.mobile-character-main .card').length / 4);
 
-    let newWidth;
+        function updateWidth() {
+            let newWidth;
 
-    if (cardCount === 4) {
-        newWidth = '200px';
-    }  else {
-        newWidth = '300px';
-    }
+            if (window.innerWidth <= 768) {
+                // max-width 768px 이하일 때
+                if (cardCount === 4) {
+                    newWidth = '200px';
+                } else {
+                    newWidth = '300px';
+                }
+            } else if (window.innerWidth <= 1350) {
+                // max-width 1350px 이하일 때
+                if (cardCount === 4) {
+                    newWidth = '500px';
+                } else {
+                    newWidth = '350px';
+                }
+            }
 
-    mobileCharacterMain.style.width = newWidth;
-});
+            mobileCharacterMain.style.width = newWidth;
+        }
+
+        // 페이지 로드 시 및 윈도우 크기 변경 시 width 업데이트
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+    });
 </script>
  <!-- 캐릭터 개수에 따라 동적으로 width 설정하는 코드 추가 끝-->
 <script>

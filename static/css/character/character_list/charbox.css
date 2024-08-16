@@ -12,6 +12,7 @@
   perspective: 110em;
   perspective-origin: 50% calc(50% - 10em);
   padding: 25px;
+  
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
   justify-content: center;
@@ -365,17 +366,19 @@
   }
 
 
+ 
+
   /* 반응형 추가 */
   /* 반응형 디자인 추가 */
 @media screen and (max-width: 768px) {
-  .character-main {
+  /* .character-main {
       margin: 0 2rem;
       padding-top: 10vh;
-  }
+  } */
 
-  .character-scene {
+  /* .character-scene {
       margin: 10px;
-  }
+  } */
 
   .table1, .table2, .table3, .table4, .table5 {
     display: none;
