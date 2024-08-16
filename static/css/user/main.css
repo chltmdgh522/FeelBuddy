@@ -151,7 +151,7 @@ ul, li {
     margin-right:10px;
     /* background: #cfc6bd;  */
     border-top:2px solid rgb(252, 240, 242);
-    border-right:1px solid rgb(247, 217, 222);
+    /* border-right:1px solid rgb(247, 217, 222); */
     /* background: rgb(247, 217, 222);
     background: -moz-linear-gradient(-45deg, rgb(247, 217, 222) 0%, rgb(217, 165, 173) 100%);
     background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgb(218, 173, 181)), color-stop(100%,rgb(247, 217, 222)));
@@ -1242,7 +1242,7 @@ background: -ms-linear-gradient(top, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59, 
         pointer-events: auto; /* Ensure it can be clicked */
         z-index: 1000;
         position: relative;
-        touch-action: manipulation;
+        /* touch-action: manipulation; */
        
     }
 
