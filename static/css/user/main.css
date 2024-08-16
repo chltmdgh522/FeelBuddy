@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Concert+One&family=Gugi&family=Jua&display=swap');
 
 html {
-    height: 100vh;
+    height: 100dvh;
 }
 ul, li {
     margin:0;
@@ -24,9 +24,12 @@ ul, li {
       padding-top:130px;
     margin:0;
     /* background: #2d2828; */
-    background: radial-gradient(200% 100% at bottom center, #F7F7B6, #E96F92, #75517D, #1B2947);
+    /* background: radial-gradient(200% 100% at bottom center, #F7F7B6, #E96F92, #75517D, #1B2947); */
+    background: radial-gradient(200% 100% at bottom center,#75517D, #1B2947, #E96F92, #F7F7B6);
     background: radial-gradient(220% 105% at top center, #1B2947 10%, #75517D 40%, #E96F92 65%, #F7F7B6);
-    height: 100dvh;
+    /* height: 100dvh; */
+    overflow: visible;
+    background-color: rgb(247, 247, 182);
 
     }
     .nintendo {
@@ -1236,6 +1239,7 @@ background: -ms-linear-gradient(top, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59, 
             border: 0;
             height: 100vh;
             /* overflow: hidden; */
+            overflow: visible;
     }
 
 
@@ -2058,11 +2062,13 @@ background: -ms-linear-gradient(top, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59, 
         z-index: 9;
         width: 100%;
         height: 90%;
+       
     }
 
     .joy {
-        width: 160px;
+        width: 200px;
         height: auto;
+        transform: translateY(-20px);
     }
 
 
@@ -2798,6 +2804,7 @@ main {
     background-position: center;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+
 }
 #furiosa_poster__header__title::before {
     content: attr(data-title);
