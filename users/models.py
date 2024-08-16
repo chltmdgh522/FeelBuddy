@@ -7,7 +7,7 @@ import random
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=15, null=True)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
 
 
 # class Profile(models.Model):
@@ -25,7 +25,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.nickname:
-            random_names = ['화사한 유채꽃', '푸른 바다', '밝은 햇살', '고요한 달빛']
+            random_names = ['화사한 유채꽃', '푸른 바다', '밝은 햇살', '고요한 달빛','필버디', '돼지와 함께 춤을']
             self.nickname = random.choice(random_names)
         super().save(*args, **kwargs)
 
