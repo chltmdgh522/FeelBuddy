@@ -1,10 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캐릭터 리스트 페이지</title>
+    <title>FeelBuddy</title>
+    <link rel="icon" href="/media/joy.png" type="image/png">
     <link href="https://cdn.remixicon.com/releases/v1.2.2/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static '/css/character/character_list/blueback.css' %}">
@@ -71,6 +73,7 @@
         }
     </style>
 </head>
+
 <body>
 
 
@@ -85,370 +88,530 @@
     </button>
 
 
-    <div class="icon">
-        <a href="{% url 'users:main' %}">
-            <div class="icon__home">
+    <div class="door">
+        <div id="lock"></div>
+        <span id="keylock" class="off">Feelbuddy</span>
+        <span id="movement" class="off">lock</span>
+        <button class="plus-btn" onclick="window.location.href='create';">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3 4 4 4ZM5 5V19H19V5H5ZM11 11V7H13V11H17V13H13V17H11V13H7V11H11Z">
+                </path>
+            </svg>
+        </button>
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-                </svg>
 
-            </div>
-        </a>
-        <a href="{% url 'users:profile' %}">
-            <div class="icon__account">
+        <div class="icon">
+            <a href="{% url 'character:character_list' %}">
+                <div class="icon__home">
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-                </svg>
-
-            </div>
-        </a>
-        {% if first_item %}
-            <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
-                <div class="icon__chat">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                        <path
+                                d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                        </path>
+                    </svg>
+
+                </div>
+            </a>
+            <a href="{% url 'users:profile' %}">
+                <div class="icon__account">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                        </path>
+                    </svg>
+
+                </div>
+            </a>
+            {% if first_item %}
+                <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+                    <div class="icon__chat">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                            </path>
+                        </svg>
+                    </div>
+                </a>
+            {% endif %}
+            <a href="{% url 'chatbot:emotion' %}">
+                <div class="icon__log">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                        </path>
                     </svg>
                 </div>
             </a>
-        {% endif %}
-        <a href="{% url 'chatbot:emotion' %}">
-            <div class="icon__log">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-                </svg>
-            </div>
-        </a>
-        <a href="{% url 'character:trash' %}">
-            <div class="icon__delete">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
-                </svg>
-            </div>
-        </a>
-    </div>
+            <a href="{% url 'character:trash' %}">
+                <div class="icon__delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                                d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                        </path>
+                    </svg>
+                </div>
+            </a>
+            <!-- 여기 로그아웃 링크 클래스명 달아주세요! -->
+            <a class="logout-btn" style="cursor: pointer;">
+                <div class="icon__logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
+                    </svg>
 
-</div>
-<main class="room-building">
+                </div>
+            </a>
 
-    <div class="arrow left">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z"></path>
-        </svg>
-    </div>
-    <div class="arrow right">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z"></path>
-        </svg>
-    </div>
-    <!-- <div class="arrow right">&rarr;</div> -->
-
-    <section class="room active" id="room1">
-        <!-- 모바일 반응형에 따른 캐릭터 scene -->
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
-                {% for character in user_characters %}
-                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </a>
-                {% endfor %}
-
-            </div>
         </div>
-        <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+    </div>
+    <main class="room-building">
 
+        <div class="arrow left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
+                </path>
+            </svg>
+        </div>
+        <div class="arrow right">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
+                </path>
+            </svg>
+        </div>
+        <!-- <div class="arrow right">&rarr;</div> -->
+
+
+        <section class="room active" id="room1">
+
+
+            <!-- 모바일 반응형에 따른 캐릭터 scene -->
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+
+                    <!-- wrapper 시작 -->
+                    {% for character in user_characters %}
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
                                     </svg>
                                 </a>
+                            </button>
 
-                                <a href="{% url 'character:character_detail' character.pk %}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path>
-                                    </svg>
-                                </a>
-
-                                <form method="post"
-                                      action="{% url 'character:trash_delete' character.pk %}"
-                                      onsubmit="return confirmDelete();">
-                                    {% csrf_token %}
-                                    <button style="
-                                    cursor: pointer;
-                                    background-color: transparent;
-                                    border: none; padding: 0;" type="submit">
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
                                         </svg>
-                                    </button>
-                                </form>
+                                    </a>
+                                </button>
+                            </form>
 
-                                <a href="{% url 'character:character_detail' character.pk %}">
+                            <img src="{{ character.adminCharacter.image.url }}"
+                                 alt="{{ character.adminCharacter.emotion }}"
+                                 class="">
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            <div class="character-main" id="characterMain">
+                {% for character in user_characters %}
+
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
+                            </div>
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
+
+                                    <!-- 그림자 효과 추가 -->
+
+                                    <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                 fill="currentColor">
+                                                <path
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+
+
+                                </div>
+                            </div>
+                            <div class="table-back"></div>
+                        </div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+            <div class="room1-walls">
+
+
+                <div id="blueback-scene">
+                    <div class="blueback-sky">
+                        <div class="blueback-stars layer" data-depth="0.3">
+                            <div class="blueback-star"></div>
+                            <div class="blueback-star"></div>
+                            <div class="blueback-star"></div>
+                        </div>
+                    </div>
+                    <div class="blueback-container">
+                        <div class="blueback-top layer" data-depth="0.1">
+                            <div class="blueback-light-house">
+                                <div class="blueback-top-triangle">
+                                    <div class="blueback-top-triangle-circle-top"></div>
+                                    <div class="blueback-top-triangle-circle-middle"></div>
+                                    <div class="blueback-top-triangle-circle"></div>
+                                    <div class="blueback-glow layer" data-depth="0.01"></div>
+                                    <div class="blueback-shining-lights-container">
+                                        <div class="blueback-shining-light-left"></div>
+                                        <div class="blueback-shining-light-right"></div>
+                                    </div>
+                                    <div class="blueback-top-ledge"></div>
+                                    <div class="blueback-top-bars">
+                                        <div class="blueback-top-bar-1 topbar"></div>
+                                        <div class="blueback-top-bar-2 topbar"></div>
+                                        <div class="blueback-top-bar-3 topbar"></div>
+                                        <div class="blueback-top-bar-4 topbar"></div>
+                                        <div class="blueback-top-bar-5 topbar"></div>
+                                        <div class="blueback-top-bar-6 topbar"></div>
+                                    </div>
+                                    <div class="blueback-top-railings">
+                                        <div class="blueback-top-railing-1 railing"></div>
+                                        <div class="blueback-top-railing-2 railing"></div>
+                                        <div class="blueback-top-railing-3 railing"></div>
+                                        <div class="blueback-top-railing-4 railing"></div>
+                                        <div class="blueback-top-railing-5 railing"></div>
+                                        <div class="blueback-top-railing-6 railing"></div>
+                                    </div>
+                                    <div class="blueback-mid-ledge"></div>
+                                    <div class="blueback-mid-railings">
+                                        <div class="blueback-overlay"></div>
+                                        <div class="blueback-mid-railings-rail">
+                                            <div class="blueback-mid-rail blueback-mid-rail-1"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-2"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-3"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-5"></div>
+                                            <div class="blueback-mid-rail blueback-mid-rail-6"></div>
+                                        </div>
+                                        <div class="blueback-left-mid-railings"></div>
+                                        <div class="blueback-right-mid-railings"></div>
+                                    </div>
+                                </div>
+                                <div class="blueback-panel-container" id="rotate-x">
+                                    <div class="blueback-left-mid-roof"></div>
+                                    <div class="blueback-left-mid-roof-2"></div>
+                                    <div class="blueback-panel"></div>
+                                </div>
+                                <div class="blueback-light"></div>
+                                <div class="blueback-right-attachment">
+                                    <div class="blueback-right-roof"></div>
+                                    <div class="blueback-right-building"></div>
+                                </div>
+                                <div class="blueback-lighthouse-lights">
+                                    <div class="blueback-light-right-top blueback-light"></div>
+                                    <div class="blueback-light-left-middle blueback-light"></div>
+                                </div>
+                                <div class="blueback-lighthouse-bottom-lights">
+                                    <div class="blueback-light-right-bottom blueback-light"></div>
+                                    <div class="blueback-light-left-bottom blueback-light"></div>
+                                </div>
+                                <div class="blueback-back-rocks">
+                                    <div class="blueback-back-rock-1"></div>
+                                    <div class="blueback-back-rock-2"></div>
+                                    <div class="blueback-back-rock-3"></div>
+                                </div>
+                                <div class="blueback-front-rocks">
+                                    <div class="blueback-front-rock-1"></div>
+                                    <div class="blueback-satellite"></div>
+                                    <div class="blueback-front-rock-2"></div>
+                                    <div class="blueback-front-rock-3"></div>
+                                </div>
+                                <div class="blueback-shooting-stars"></div>
+                                <div class="blueback-glow-shine-container blueback-layer" data-depth="0.1">
+                                    <div class="blueback-glow-shine-5 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-4 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-3 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-1 blueback-shine-circle"></div>
+                                    <div class="blueback-glow-shine-2 blueback-shine-circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blueback-bottom">
+                            <div class="blueback-ocean">
+                                <div class="blueback-top-tier-1 ocean-layer"></div>
+                                <div class="blueback-top-tier-2 ocean-layer"></div>
+                                <div class="blueback-top-tier-3 ocean-layer"></div>
+                                <div class="blueback-top-tier-4 ocean-layer"></div>
+                                <div class="blueback-top-tier-5 ocean-layer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 모바일 반응형에 따른 단상 추가 -->
+                <div class='room1-stairs'>
+                    <div class='stair stair1'>
+
+                        <div class='face top'></div>
+                        <div class='face front'></div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section class="room" id="room2">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+
+                    <!-- wrapper 시작 -->
+                    {% for character in user_characters %}
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path>
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
                                     </svg>
                                 </a>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
-                                </svg>
+                            </button>
 
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
 
-                            </div>
-                        </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                             <img src="{{ character.adminCharacter.image.url }}"
                                  alt="{{ character.adminCharacter.emotion }}"
                                  class="">
-                        </a>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-
-        </div>
-        <div class="room1-walls">
-
-
-            <div id="blueback-scene">
-                <div class="blueback-sky">
-                    <div class="blueback-stars layer" data-depth="0.3">
-                        <div class="blueback-star"></div>
-                        <div class="blueback-star"></div>
-                        <div class="blueback-star"></div>
-                    </div>
-                </div>
-                <div class="blueback-container">
-                    <div class="blueback-top layer" data-depth="0.1">
-                        <div class="blueback-light-house">
-                            <div class="blueback-top-triangle">
-                                <div class="blueback-top-triangle-circle-top"></div>
-                                <div class="blueback-top-triangle-circle-middle"></div>
-                                <div class="blueback-top-triangle-circle"></div>
-                                <div class="blueback-glow layer" data-depth="0.01"></div>
-                                <div class="blueback-shining-lights-container">
-                                    <div class="blueback-shining-light-left"></div>
-                                    <div class="blueback-shining-light-right"></div>
-                                </div>
-                                <div class="blueback-top-ledge"></div>
-                                <div class="blueback-top-bars">
-                                    <div class="blueback-top-bar-1 topbar"></div>
-                                    <div class="blueback-top-bar-2 topbar"></div>
-                                    <div class="blueback-top-bar-3 topbar"></div>
-                                    <div class="blueback-top-bar-4 topbar"></div>
-                                    <div class="blueback-top-bar-5 topbar"></div>
-                                    <div class="blueback-top-bar-6 topbar"></div>
-                                </div>
-                                <div class="blueback-top-railings">
-                                    <div class="blueback-top-railing-1 railing"></div>
-                                    <div class="blueback-top-railing-2 railing"></div>
-                                    <div class="blueback-top-railing-3 railing"></div>
-                                    <div class="blueback-top-railing-4 railing"></div>
-                                    <div class="blueback-top-railing-5 railing"></div>
-                                    <div class="blueback-top-railing-6 railing"></div>
-                                </div>
-                                <div class="blueback-mid-ledge"></div>
-                                <div class="blueback-mid-railings">
-                                    <div class="blueback-overlay"></div>
-                                    <div class="blueback-mid-railings-rail">
-                                        <div class="blueback-mid-rail blueback-mid-rail-1"></div>
-                                        <div class="blueback-mid-rail blueback-mid-rail-2"></div>
-                                        <div class="blueback-mid-rail blueback-mid-rail-3"></div>
-                                        <div class="blueback-mid-rail blueback-mid-rail-5"></div>
-                                        <div class="blueback-mid-rail blueback-mid-rail-6"></div>
-                                    </div>
-                                    <div class="blueback-left-mid-railings"></div>
-                                    <div class="blueback-right-mid-railings"></div>
-                                </div>
-                            </div>
-                            <div class="blueback-panel-container" id="rotate-x">
-                                <div class="blueback-left-mid-roof"></div>
-                                <div class="blueback-left-mid-roof-2"></div>
-                                <div class="blueback-panel"></div>
-                            </div>
-                            <div class="blueback-light"></div>
-                            <div class="blueback-right-attachment">
-                                <div class="blueback-right-roof"></div>
-                                <div class="blueback-right-building"></div>
-                            </div>
-                            <div class="blueback-lighthouse-lights">
-                                <div class="blueback-light-right-top blueback-light"></div>
-                                <div class="blueback-light-left-middle blueback-light"></div>
-                            </div>
-                            <div class="blueback-lighthouse-bottom-lights">
-                                <div class="blueback-light-right-bottom blueback-light"></div>
-                                <div class="blueback-light-left-bottom blueback-light"></div>
-                            </div>
-                            <div class="blueback-back-rocks">
-                                <div class="blueback-back-rock-1"></div>
-                                <div class="blueback-back-rock-2"></div>
-                                <div class="blueback-back-rock-3"></div>
-                            </div>
-                            <div class="blueback-front-rocks">
-                                <div class="blueback-front-rock-1"></div>
-                                <div class="blueback-satellite"></div>
-                                <div class="blueback-front-rock-2"></div>
-                                <div class="blueback-front-rock-3"></div>
-                            </div>
-                            <div class="blueback-shooting-stars"></div>
-                            <div class="blueback-glow-shine-container blueback-layer" data-depth="0.1">
-                                <div class="blueback-glow-shine-5 blueback-shine-circle"></div>
-                                <div class="blueback-glow-shine-4 blueback-shine-circle"></div>
-                                <div class="blueback-glow-shine-3 blueback-shine-circle"></div>
-                                <div class="blueback-glow-shine-1 blueback-shine-circle"></div>
-                                <div class="blueback-glow-shine-2 blueback-shine-circle"></div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="blueback-bottom">
-                        <div class="blueback-ocean">
-                            <div class="blueback-top-tier-1 ocean-layer"></div>
-                            <div class="blueback-top-tier-2 ocean-layer"></div>
-                            <div class="blueback-top-tier-3 ocean-layer"></div>
-                            <div class="blueback-top-tier-4 ocean-layer"></div>
-                            <div class="blueback-top-tier-5 ocean-layer"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    {% endfor %}
 
-            <!-- 모바일 반응형에 따른 단상 추가 -->
-            <div class='room1-stairs'>
-                <div class='stair stair1'>
-
-                    <div class='face top'></div>
-                    <div class='face front'></div>
 
                 </div>
             </div>
-
-
-        </div>
-    </section>
-
-    <section class="room" id="room2">
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
+            <div class="character-main" id="characterMain">
                 {% for character in user_characters %}
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="character-main" id="characterMain">
-            {% for character in user_characters %}
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
+
+                                    <!-- 그림자 효과 추가 -->
+
+                                    <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                 fill="currentColor">
+                                                <path
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+
 
                                 </div>
-
                             </div>
+                            <div class="table-back"></div>
                         </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                            <img src="{{ character.adminCharacter.image.url }}"
-                                 alt="{{ character.adminCharacter.emotion }}"
-                                 class="">
-                        </a>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-
-        </div>
-        <div class="room2-walls">
-            <!-- 열기구 창문 시작 -->
-            <div class="balloon-container">
-                <div class="sun sun-1"></div>
-                <div class="sun sun-2"></div>
-                <div class="sun sun-3"></div>
-                <div class="sun sun-4"></div>
-                <div class="landscape landscape-1"></div>
-                <div class="landscape landscape-2"></div>
-                <div class="landscape landscape-3"></div>
-                <div class="landscape landscape-4"></div>
-                <div class="landscape landscape-5"></div>
-                <div class="tree tree-1"></div>
-                <div class="tree tree-2"></div>
-                <div class="tree tree-3"></div>
-                <div class="tree tree-4"></div>
-                <div class="tree tree-5"></div>
-                <div class="tree tree-6"></div>
-                <div class="tree tree-7"></div>
-                <div class="moon-1"></div>
-                <div class="moon-2"></div>
-                <div class="baloon">
-                    <div class="baloon-1">
-                        <div class="strip-1">
-                            <div class="strip-2"></div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
                         </div>
-                        <div class="bottom-strip"></div>
                     </div>
-                    <div class="line line-1"></div>
-                    <div class="line line-2"></div>
-                    <div class="line line-3"></div>
-                    <div class="line line-4"></div>
-                    <div class="basket">
-                        <span></span>
+
+                {% endfor %}
+
+
+            </div>
+            <div class="room2-walls">
+                <!-- 열기구 창문 시작 -->
+                <div class="balloon-container">
+                    <div class="sun sun-1"></div>
+                    <div class="sun sun-2"></div>
+                    <div class="sun sun-3"></div>
+                    <div class="sun sun-4"></div>
+                    <div class="landscape landscape-1"></div>
+                    <div class="landscape landscape-2"></div>
+                    <div class="landscape landscape-3"></div>
+                    <div class="landscape landscape-4"></div>
+                    <div class="landscape landscape-5"></div>
+                    <div class="tree tree-1"></div>
+                    <div class="tree tree-2"></div>
+                    <div class="tree tree-3"></div>
+                    <div class="tree tree-4"></div>
+                    <div class="tree tree-5"></div>
+                    <div class="tree tree-6"></div>
+                    <div class="tree tree-7"></div>
+                    <div class="moon-1"></div>
+                    <div class="moon-2"></div>
+                    <div class="baloon">
+                        <div class="baloon-1">
+                            <div class="strip-1">
+                                <div class="strip-2"></div>
+                            </div>
+                            <div class="bottom-strip"></div>
+                        </div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                        <div class="line line-4"></div>
+                        <div class="basket">
+                            <span></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- 열기구 창문 끝 -->
+                <!-- 열기구 창문 끝 -->
 
-            <div class='room2-stairs'>
-                <div class='stair stair2'>
+                <div class='room2-stairs'>
+                    <div class='stair stair2'>
 
-                    <div class='face top'></div>
-                    <div class='face front'></div>
+                        <div class='face top'></div>
+                        <div class='face front'></div>
 
+                    </div>
                 </div>
+
+
             </div>
 
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- <section class="room" id="room3">
+        <!-- <section class="room" id="room3">
         <div class="mobile-character-center">
             <div class="mobile-character-main">
                 <img src="/media/anger.png">
@@ -608,315 +771,480 @@
         </div>
     </section> -->
 
-    <section class="room" id="room4">
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
-                {% for character in user_characters %}
-                                   <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="character-main" id="characterMain">
+        <section class="room" id="room4">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
 
-            {% for character in user_characters %}
+                    <!-- wrapper 시작 -->
+                    {% for character in user_characters %}
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </button>
 
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
 
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                             <img src="{{ character.adminCharacter.image.url }}"
                                  alt="{{ character.adminCharacter.emotion }}"
                                  class="">
-                        </a>
-                    </div>
+                        </div>
+                    {% endfor %}
+
+
                 </div>
+            </div>
+            <div class="character-main" id="characterMain">
 
-            {% endfor %}
+                {% for character in user_characters %}
 
-        </div>
-        <div class="room4-walls">
-            <div class="desk-wrapper">
-                <div>
-                    <div class="window">
-                        <div>
-                            <div class="window__inner-1">
-                                <div class="top-square">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
                                 </div>
-                                <div class="bottom-right bottom-right--1"></div>
-                                <div class="bottom-right bottom-right--2"></div>
-                                <div class="left-square"></div>
-                                <div class="small-window">
-                                    <div class="grid mb-12">
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items ligth-on"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items ligth-on"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items "></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items ligth-on"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
+                            </div>
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
+
+                                    <!-- 그림자 효과 추가 -->
+
+                                    <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                 fill="currentColor">
+                                                <path
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+
+
+                                </div>
+                            </div>
+                            <div class="table-back"></div>
+                        </div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+            <div class="room4-walls">
+                <div class="desk-wrapper">
+                    <div>
+                        <div class="window">
+                            <div>
+                                <div class="window__inner-1">
+                                    <div class="top-square">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
                                     </div>
+                                    <div class="bottom-right bottom-right--1"></div>
+                                    <div class="bottom-right bottom-right--2"></div>
+                                    <div class="left-square"></div>
+                                    <div class="small-window">
+                                        <div class="grid mb-12">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items "></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                        </div>
+                                        <div class="grid">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="window__inner-2">
+                                    <div class="bottom-right bottom-right--1"></div>
+                                    <div class="bottom-right bottom-right--2"></div>
+                                    <div class="big-window">
+                                        <div class="grid">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on "></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class=" grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on-ans"></div>
+                                            <div class=" grid__items ligth-on "></div>
+                                            <div class=" grid__items ligth-on "></div>
+                                        </div>
+                                        <div class=" grid">
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items ligth-on "></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                            <div class="grid__items"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="window__inner-3">
                                     <div class="grid">
                                         <div class="grid__items"></div>
                                         <div class="grid__items"></div>
                                         <div class="grid__items"></div>
                                         <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
+                                        <div class="grid__items"></div>
                                     </div>
+
                                 </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="window__inner-2">
-                                <div class="bottom-right bottom-right--1"></div>
-                                <div class="bottom-right bottom-right--2"></div>
-                                <div class="big-window">
+                                <div class="bottom-right--3rd"></div>
+                                <div class="bottom-right--4rd">
                                     <div class="grid">
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items ligth-on "></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class=" grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items ligth-on-ans"></div>
-                                        <div class=" grid__items ligth-on "></div>
-                                        <div class=" grid__items ligth-on "></div>
-                                    </div>
-                                    <div class=" grid">
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items ligth-on "></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
-                                        <div class="grid__items"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items ligth-on"></div>
+                                        <div class="grid__items ligth-on"></div>
                                     </div>
                                 </div>
+                                <div class="skew-w"></div>
                             </div>
                         </div>
-                        <div>
-                            <div class="window__inner-3">
-                                <div class="grid">
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                    <div class="grid__items"></div>
-                                </div>
-
-                            </div>
-                            <div class="bottom-right--3rd"></div>
-                            <div class="bottom-right--4rd">
-                                <div class="grid">
-                                    <div class="grid__items ligth-on"></div>
-                                    <div class="grid__items ligth-on"></div>
-                                    <div class="grid__items ligth-on"></div>
-                                    <div class="grid__items ligth-on"></div>
-                                </div>
-                            </div>
-                            <div class="skew-w"></div>
+                        <div class="laptop"></div>
+                    </div>
+                    <div class="lamp">
+                        <div class="lamp__ligth"></div>
+                        <div class="lamp__top"></div>
+                        <div class="lamp__middle"></div>
+                        <div class="lamp__bottom"></div>
+                    </div>
+                    <div class="desk-top"></div>
+                    <div class="desk-bottom"></div>
+                    <div class="coffe-cup">
+                        <div class="cup">
+                            <div class="cloud cloud--1"></div>
+                            <div class="cloud cloud--2"></div>
+                            <div class="cloud cloud--3"></div>
+                            <div class="cloud cloud--4"></div>
                         </div>
                     </div>
-                    <div class="laptop"></div>
                 </div>
-                <div class="lamp">
-                    <div class="lamp__ligth"></div>
-                    <div class="lamp__top"></div>
-                    <div class="lamp__middle"></div>
-                    <div class="lamp__bottom"></div>
-                </div>
-                <div class="desk-top"></div>
-                <div class="desk-bottom"></div>
-                <div class="coffe-cup">
-                    <div class="cup">
-                        <div class="cloud cloud--1"></div>
-                        <div class="cloud cloud--2"></div>
-                        <div class="cloud cloud--3"></div>
-                        <div class="cloud cloud--4"></div>
+                <div class='room4-stairs'>
+                    <div class='stair stair4'>
+
+                        <div class='face top'></div>
+                        <div class='face front'></div>
+
                     </div>
                 </div>
             </div>
-            <div class='room4-stairs'>
-                <div class='stair stair4'>
+        </section>
+        <section class="room" id="room5">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
 
-                    <div class='face top'></div>
-                    <div class='face front'></div>
+                    <!-- wrapper 시작 -->
+                    {% for character in user_characters %}
+                        <div class="card">
+                            <button class="mobile-button-edit">
+                                <a href="{% url 'character:character_detail' character.pk %}"
+                                   class="mobile-hover-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                                d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </button>
 
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="room" id="room5">
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
-                {% for character in user_characters %}
-                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
-                        <img src="{{ character.adminCharacter.image.url }}"
-                             alt="{{ character.adminCharacter.emotion }}"
-                             class="">
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="character-main" id="characterMain">
+                            <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                  onsubmit="return confirmDelete();" class="table-button-shadow">
+                                {% csrf_token %}
+                                <button style="
+                   cursor: pointer;
+                   background-color: transparent;
+                   border: none; padding: 0;" type="submit" class="mobile-button-delete">
+                                    <a href="" class="mobile-hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </button>
+                            </form>
 
-            {% for character in user_characters %}
-
-                <div class="character-scene">
-                    <div class="table1 hidden">
-                        <div class="table-top">
-                            <div class="top-slider">
-                                <div class="shadow-sandwich"></div>
-                            </div>
-                        </div>
-                        <div class="table-bottom"></div>
-                        <div class="table-left"></div>
-                        <div class="table-right"></div>
-                        <div class="table-front">
-                            <div class="table-button">
-                                <div class="">
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="table-back"></div>
-                    </div>
-                    <div class="cheese hidden">
-                        <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
                             <img src="{{ character.adminCharacter.image.url }}"
                                  alt="{{ character.adminCharacter.emotion }}"
                                  class="">
-                        </a>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            <div class="character-main" id="characterMain">
+
+                {% for character in user_characters %}
+
+                    <div class="character-scene">
+                        <div class="table1 hidden">
+                            <div class="table-top">
+                                <div class="top-slider">
+                                    <div class="shadow-sandwich"></div>
+                                </div>
+                            </div>
+                            <div class="table-bottom"></div>
+                            <div class="table-left"></div>
+                            <div class="table-right"></div>
+                            <div class="table-front">
+                                <div class="table-button">
+
+                                    <!-- 그림자 효과 추가 -->
+
+                                    <!-- <button class="table-button-shadow">
+                                    <a href="{% url 'chatbot:chatbot_content_list' character.pk %}" class="hover-button">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM12.0178 14.6997L15.3765 11.341C16.2552 10.4623 16.2552 9.03769 15.3765 8.15901C14.4978 7.28033 13.0732 7.28033 12.1945 8.15901L12.0178 8.33579L11.841 8.15901C10.9623 7.28033 9.53769 7.28033 8.65901 8.15901C7.78033 9.03769 7.78033 10.4623 8.65901 11.341L12.0178 14.6997Z"></path>
+                                        </svg>
+                                    </a>
+                                </button> -->
+
+                                    <button class="table-button-edit">
+                                        <a href="{% url 'character:character_detail' character.pk %}"
+                                           class="hover-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                 fill="currentColor">
+                                                <path
+                                                        d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </button>
+
+                                    <form method="post" action="{% url 'character:trash_delete' character.pk %}"
+                                          onsubmit="return confirmDelete();" class="table-button-shadow">
+                                        {% csrf_token %}
+                                        <button style="
+                                        cursor: pointer;
+                                        background-color: transparent;
+                                        border: none; padding: 0;" type="submit" class="table-button-delete">
+                                            <a href="" class="hover-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     fill="currentColor">
+                                                    <path
+                                                            d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                                                    </path>
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </form>
+
+                                    <!-- <div class="table-button-shadow">
+                                    <a href="{% url 'character:character_detail' character.pk %}" class="hover-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.24264 18.9967H21V20.9967H3V16.754L12.8995 6.85453L17.1421 11.0972L9.24264 18.9967ZM14.3137 5.44032L16.435 3.319C16.8256 2.92848 17.4587 2.92848 17.8492 3.319L20.6777 6.14743C21.0682 6.53795 21.0682 7.17112 20.6777 7.56164L18.5563 9.68296L14.3137 5.44032Z"></path></svg>
+                                    </a>
+                                </div> -->
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path></svg> -->
+
+
+                                </div>
+                            </div>
+                            <div class="table-back"></div>
+                        </div>
+                        <div class="cheese hidden">
+                            <a href="{% url 'chatbot:chatbot_content_list' character.pk %}">
+                                <img src="{{ character.adminCharacter.image.url }}"
+                                     alt="{{ character.adminCharacter.emotion }}" class="">
+                            </a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+            <div id="bulb" class="bulb">
+                <div class="bulb__holder"></div>
+                <div class="bulb__body"></div>
+            </div>
+
+            <div id="toggle" class="toggle">
+                <button class="toggle__btn">
+
+                </button>
+            </div>
+            <div class="room5-walls">
+                <div class="clock">
+                    <div class="hour">
+                        <div id="hr" class="hr"></div>
+                    </div>
+
+                    <div class="min">
+                        <div id="mn" class="mn"></div>
+                    </div>
+
+                    <div class="sec">
+                        <div id="sc" class="sc"></div>
                     </div>
                 </div>
+                <div class='room5-stairs'>
+                    <div class='stair stair5'>
 
-            {% endfor %}
+                        <div class='face top'></div>
+                        <div class='face front'></div>
 
-        </div>
-        <div id="bulb" class="bulb">
-            <div class="bulb__holder"></div>
-            <div class="bulb__body"></div>
-        </div>
-
-        <div id="toggle" class="toggle">
-            <button class="toggle__btn">
-                <span class="toggle__toggler"></span>
-            </button>
-        </div>
-        <div class="room5-walls">
-            <div class="clock">
-                <div class="hour">
-                    <div id="hr" class="hr"></div>
-                </div>
-
-                <div class="min">
-                    <div id="mn" class="mn"></div>
-                </div>
-
-                <div class="sec">
-                    <div id="sc" class="sc"></div>
+                    </div>
                 </div>
             </div>
-            <div class='room5-stairs'>
-                <div class='stair stair5'>
+        </section>
 
-                    <div class='face top'></div>
-                    <div class='face front'></div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main>
-<nav class="mobile-footer" role="menulist">
-    <a href="{% url 'users:main' %}" role="menuitem" class="active" aria-describedby="nav-current">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z"></path>
-        </svg>
-        Home
-    </a>
-    {% if first_item %}
-        <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
-
+    </main>
+    <nav class="mobile-footer" role="menulist">
+        <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current" class="active">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z"></path>
+                <path
+                        d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                </path>
             </svg>
-            Chat
+            Home
         </a>
-    {% endif %}
-    <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z"></path>
-        </svg>
-        Log
-    </a>
-    <a href="{% url 'character:trash' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
-        </svg>
-        Trash
-    </a>
-    <a href="{% url 'users:profile' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
-        </svg>
-        Profile
-    </a>
-    <i class="line" id="nav-current">current item</i>
-</nav>
+        {% if first_item %}
+            <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                            d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                    </path>
+                </svg>
+                Chat
+            </a>
+        {% endif %}
+        <a href="{% url 'chatbot:emotion' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
+                </path>
+            </svg>
+            Log
+        </a>
+        <a href="{% url 'character:trash' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                </path>
+            </svg>
+            Trash
+        </a>
+        <a href="{% url 'users:profile' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                </path>
+            </svg>
+            Profile
+        </a>
+        <i class="line" id="nav-current">current item</i>
+    </nav>
+</div>
 
 
 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
@@ -925,6 +1253,24 @@
 <script src="{% static '/js/character/character_list/clock.js' %}"></script>
 <script src="{% static '/js/character/character_list/wall.js' %}"></script>
 <script src="{% static '/js/character/character_list/nav.js' %}"></script>
+
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-11991680-4', 'ianlunn.github.io');
+    ga('send', 'pageview');
+</script>
 
 <script>
     (function (i, s, o, g, r, a, m) {
@@ -972,21 +1318,6 @@
         showRoom(currentRoom); // 새로운 현재 방을 표시
     });
 
-    showRoom(currentRoom); // 페이지 로드 시 첫 번째 방을 표시
-</script>
-<script>
-    document.getElementById('deleteButton').addEventListener('click', () => {
-        const characters = document.querySelectorAll('.character-scene');
-        characters.forEach(character => {
-            if (!character.classList.contains('hidden')) {
-                character.classList.add('fall');
-                setTimeout(() => {
-                    character.classList.add('hidden');
-                    character.classList.remove('fall');
-                }, 1000); // 애니메이션 지속 시간 이후에 hidden 클래스를 추가
-            }
-        });
-    });
 </script>
 <script>
     document.querySelectorAll('.logout-btn').forEach(button => {
@@ -1016,4 +1347,5 @@
     });
 </script>
 </body>
+
 </html>

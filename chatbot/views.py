@@ -1,5 +1,6 @@
 import openai
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 import pytz
@@ -23,7 +24,12 @@ from datetime import date, datetime
 @login_required
 def chatbot_content_list(request, pk):
     user = request.user
-    character = UserCharacter.objects.get(id=pk, user=user)
+
+    try:
+        character = UserCharacter.objects.get(id=pk, user=user)
+    except ObjectDoesNotExist:
+        return redirect('character:character_list')
+
     characters = UserCharacter.objects.filter(user=user, trash=False)
     ai_contents = ChatbotAIContent.objects.filter(user=user, userCharacter=character).order_by('time')
     user_contents = ChatbotUserContent.objects.filter(user=user, userCharacter=character).order_by('time')

@@ -338,3 +338,84 @@ body {
 .p-0 img{
   border-radius: 15px;
 }
+
+
+@media (max-width: 768px) {
+  /* Main container and scaling */
+  .main {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    transform: scale(0.8);
+  }
+
+  /* Containers */
+  .a-container, .b-container {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    left: 0;
+  }
+
+  /* Form input adjustments */
+  .form__input {
+    width: 100%;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+
+  /* Switch container - vertical layout */
+  .switch {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    flex-direction: column;
+    transform: translateX(0);
+  }
+
+  .switch__circle {
+    width: 200px;
+    height: 200px;
+    bottom: initial;
+    left: 50%;
+    top: -25%;
+    transform: translateX(-50%);
+  }
+
+  .switch__circle--t {
+    width: 150px;
+    height: 150px;
+    top: initial;
+    left: 50%;
+    bottom: -25%;
+    transform: translateX(-50%);
+  }
+
+  /* Switch container adjustments */
+  .switch__container {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    transform: translateY(0);
+  }
+
+  .switch__button {
+    width: 140px;
+    height: 40px;
+    font-size: 11px;
+  }
+
+  /* Adjust social container */
+  .social-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .p-0 img {
+    width: 120px;
+    height: 30px;
+  }
+}

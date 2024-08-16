@@ -106,6 +106,7 @@ body {
   transform: scale(1);
 }
 
+
 .mountains {
   position: absolute;
   height: 80px;
@@ -465,17 +466,30 @@ body {
   width: 60%;
   height: 100%;
   background: white;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background-image: url(/media/logo.png);
+        background-size: cover;
+  
 }
+
+
 
 .profile-right-list {
   width: 100%;
   height: 20%; /* 4/3 크기 조정 */
   position: relative;
   background: #d2c9f5;
+}
+
+.profile-right-list img {
+  display: flex;
+  width: 50px;
+  height: auto;
 }
 
 .user-image-container {
@@ -514,6 +528,7 @@ body {
   display: flex;
   align-items: center;
   gap: 13.33px; /* 4/3 크기 조정 */
+  justify-content: center;
 }
 
 #nickname-input {
@@ -548,7 +563,8 @@ body {
   margin-top: -111.11px; /* 4/3 크기 조정 */
   height: 222.22px; /* 4/3 크기 조정 */
   width: 222.22px; /* 4/3 크기 조정 */
-  background: rgba(206, 13, 13, 0.1);
+  /* background: rgba(206, 13, 13, 0.1); */
+  background: transparent;
   border-radius: 26.67px; /* 4/3 크기 조정 */
 }
 
@@ -682,6 +698,18 @@ body {
   display: inline-block;
   font-size: 11.56px; /* 4/3 크기 조정 */
   font-weight: bold;
+}
+
+.mail {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.mail svg {
+  width: 16px;
+  height: auto;
+  margin-right: 10px;
 }
 
 /* 하단 리스트 */
@@ -951,6 +979,7 @@ body {
   color: white;
 }
 
+
 .night {
   position: relative;
   margin-top: 70vh;
@@ -1125,3 +1154,123 @@ body {
   left: calc(50% - 400px); 
   animation-delay: 3900ms; 
 }
+
+
+/* 모바일 반응형 시작 */
+.mobile-profile-container {
+  display: none;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  #pole, .icon, .mountains, .mountains-base, .light-base, .profile-card {
+    display: none;
+  }
+
+  html, body {
+    height: 100vh;
+    width: 100vmin;
+    border: none;
+    padding: 0;
+    margin: 0;
+    transform: none;
+    text-transform: none;
+
+  }
+  
+  .mobile-profile-container {
+    display: flex;
+    height: 100vh;
+    width: 100vmin;
+    border: none;
+
+  }
+  .mobile-card {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    animation: card-ani 1s;
+    transition-delay: 1s;
+    transition-timing-function: easeOutCirc;
+    position: relative; 
+    
+  }
+  .mobile-card .front {
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+  }
+
+  .mobile-card .front .top {
+        background-image: url(/media/logo.png);
+        background-size: cover;
+        border-radius: 10px 10px 0 0;
+        height: 400px;
+       }
+
+  .mobile-card .front .bottom {
+        color: white;
+        height: 700px;
+        width: 100%;
+        background: rgb(255, 231, 252);
+        border-radius: 0 0 10px 10px;
+        text-align: center; 
+      }
+  .mobile-card .front .bottom .info {
+          vertical-align: middle;
+          text-align: center; 
+        }
+          .mobile-card .front .bottom .name {
+          padding: 45px 0px 0px 0px;
+          font-size: 25px; }
+          .mobile-card .front .bottom .work {
+          font-size: 15px;
+          font-weight: 900;
+          color: #EEA9A9;
+          padding: 5px 0 0 0; }
+          .mobile-card .front .bottom .porfolio {
+          padding: 40px; }
+
+
+          .mobile-card .front .picc {
+            position: absolute;
+            top:14%;
+            left: calc(50% - 80px);
+        margin: auto;
+        /* margin-top: -500px; */
+        /* width: 114px; */
+        /* height: 114px; */
+        border: none;
+        border-radius: 100%;
+        /* box-shadow: 0 0 0 3px; */
+        /* background-image: url(https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80); */
+        /* background-size: cover; 
+        color: white; */
+          }
+
+      
+  
+  .mobile-container #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; }
+    
+    .profile-email {
+      height: 300px;
+    }
+
+    .user-name {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      font-size: 2em;
+      color: #060010;
+    }
+}
+
+
+
