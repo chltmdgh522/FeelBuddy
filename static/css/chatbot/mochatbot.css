@@ -344,7 +344,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .icon, .chat-arrow {
+  .icon, .arrow  {
     display: none !important;
 }
     .chat-content {
