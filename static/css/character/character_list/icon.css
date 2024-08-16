@@ -131,6 +131,6 @@
 @media screen and (max-width: 768px) {
   .icon, 
   .icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list {
-    display: none;
+    display: none !important;
   }
 }

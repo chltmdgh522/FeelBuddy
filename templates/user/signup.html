@@ -15,7 +15,7 @@
 
 <div class="main">
     <div class="container a-container" id="a-container">
-        <form id="a-form" class="form" method="post" action="{% url 'users:signup' %}">
+        <form id="a-form" class="form" method="post" action="{% url 'users:signup.html' %}">
             {% csrf_token %}
             <h2 class="form_title title">Create Account</h2>
             <div class="form__icons">
@@ -39,6 +39,7 @@
     </div>
 
     <div class="container b-container" id="b-container">
+        <div class="container-image"><img src="/media/joy.png"></div>
         <form id="b-form" class="form" method="POST" action="{% url 'users:login' %}">
             {% csrf_token %}
             <h2 class="form_title title">Login in to FeelBuddy</h2>
@@ -56,6 +57,7 @@
 
             <a class="form__link" href="{% url 'users:password_reset' %}">Forgot your password?</a>
             <button class="switch__button button switch-btn" type="submit">Log IN</button>
+            <button class="switch__button button-2 switch-btn mobile-hidden">SIGN UP</button>
         </form>
 
         <!-- 소셜 로그인 부분을 다른 form과 분리 -->
@@ -93,8 +95,8 @@
             <img src="/media/joy.png">
             <!-- <p class="switch__description description">To keep connected with us please login with your personal
                 info</p> -->
-
-            <button class="switch__button button-2 switch-btn">SIGN IN</button>
+            
+            <button class="switch__button button-2 switch-btn">LOGIN</button>
         </div>
         <div class="switch__container is-hidden" id="switch-c2">
             <h2 class="switch__title title">Hello Friend !</h2>
@@ -152,5 +154,36 @@
     }
 
     window.addEventListener("load", mainF);
+</script>
+
+<script>
+    // 화면 너비가 600px 이하일 때만 이 코드 실행
+if (window.matchMedia("(max-width: 600px)").matches) {
+    // 각 요소 선택
+    let switchBtnToSignUp = document.querySelector("#b-container .switch-btn.mobile-hidden");
+    let switchBtnToLogin = document.querySelector("#a-container .switch-btn");
+    let aContainer = document.querySelector("#a-container");
+    let bContainer = document.querySelector("#b-container");
+
+    // "SIGN UP" 버튼 클릭 시 aContainer 표시
+    switchBtnToSignUp.addEventListener("click", (e) => {
+        e.preventDefault();
+        aContainer.style.display = "block";  // aContainer 보이기
+        bContainer.style.display = "none";   // bContainer 숨기기
+    });
+
+    // "SIGN UP" 버튼 클릭 시 bContainer로 돌아가기
+    switchBtnToLogin.addEventListener("click", (e) => {
+        e.preventDefault();
+        bContainer.style.display = "block";  // bContainer 보이기
+        aContainer.style.display = "none";   // aContainer 숨기기
+    });
+
+    // 페이지가 로드될 때 bContainer가 기본적으로 보이도록 설정
+    window.addEventListener("load", () => {
+        bContainer.style.display = "block";  // bContainer 기본 표시
+        aContainer.style.display = "none";   // aContainer 숨기기
+    });
+}
 </script>
 </html>

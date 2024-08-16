@@ -1,4 +1,4 @@
-{% extends "socialaccount/base_entrance.html" %}
+<!-- {% extends "socialaccount/base_entrance.html" %}
 {% load i18n %}
 {% load allauth %}
 {% block head_title %}
@@ -26,4 +26,25 @@
             {% endelement %}
         {% endslot %}
     {% endelement %}
-{% endblock content %}
+{% endblock content %} -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+<body>
+    <h1></h1>
+    <p>환영합니다! FeelBuddy를 시작하려면 다음 버튼을 눌러주세요</p>
+
+    <form method="post" action="{% url 'socialaccount_signup' %}">
+        {% csrf_token %}
+        {{ redirect_field }}
+        <!-- Form fields are omitted to skip user input -->
+
+        <button type="submit">다음</button>
+    </form>
+</body>
+</html>
