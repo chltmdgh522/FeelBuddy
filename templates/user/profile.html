@@ -29,22 +29,77 @@
   
   <body>
 
-    <!-- 모바일 반응형 header 시작 -->
-<header class="chat-header" id="header">
-  <div class="header-left">
-    <a href="피드백 페이지 링크" class="header-feedback">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path></svg>
-    </a>
-  </div>
-  <span><p>Feel Buddy</p></span>
-  <div class="header-right">
-    <a href="로그아웃" class="header-logout">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path></svg>
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
-    </a>
-  </div>
+    <!-- <div class="mobile-profile-container" id="mobile-profile-container">
+      <div id="background">
+          <div id="background-image"></div>
+      </div>
+      <div class="mobile-card">
+          <div class="front">
+              <div class="top"> </div>
+              <div class="bottom">
+                <p class="user-name">
+                  <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
+                  <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
+                  <i class="ri-pencil-line" id="edit-nickname-icon"></i>
+                </p>
+                <div class="profile-email">
+                  <div class="profile-contact">
+                    <div class="profile-envelope">
+                      <div class="email-top">
+                        <div class="email-outer">
+                          <div class="email-inner"></div>
+                        </div>
+                      </div>
+                      <div class="email-bottom"></div>
+                      <div class="email-left"></div>
+                      <div class="email-right"></div>
+                      <div class="email-cover"></div>
+                      <div class="email-paper">
+                        <a class="mail" href="#">
+                          <div class="i"></div>
+                          {{ user.email }}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="info porfolio"> </div>
+              </div>
+              <div class="picc">
+                <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="user-image-container">
+                    <img
+                      id="profile-picture-preview"
+                      src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
+                      class="user-image"
+                    />
+                    <i class="ri-pencil-line" id="edit-profile-pic-icon-2"></i>
+                    <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
+                  </div>
+                </form>
+              </div>
+          </div>
+          <div class="back"></div>
+      </div>
+    </div> -->
 
-</header>
+    <!-- 모바일 반응형 header 시작 -->
+   <header class="chat-header" id="header">
+      <div class="header-left">
+        <a href="{% url 'feedback:feedback_list' %}"  class="header-feedback">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path></svg>
+        </a>
+      </div>
+      <span><p>Feel Buddy</p></span>
+      <div class="header-right">
+        <a class="header-logout logout-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path></svg>
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
+        </a>
+      </div>
+    
+    </header>
 
 <!-- 모바일 반응형 header 끝-->
 
@@ -93,62 +148,7 @@
         <i class="line" id="nav-current">current item</i>
     </nav>
 
-<div class="mobile-profile-container">
-  <div id="background">
-      <div id="background-image"></div>
-  </div>
-  <div class="mobile-card">
-      <div class="front">
-          <div class="top"> </div>
-          <div class="bottom">
-            <p class="user-name">
-              <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
-              <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
-              <i class="ri-pencil-line" id="edit-nickname-icon"></i>
-            </p>
-            <div class="profile-email">
-              <div class="profile-contact">
-                <div class="profile-envelope">
-                  <div class="email-top">
-                    <div class="email-outer">
-                      <div class="email-inner"></div>
-                    </div>
-                  </div>
-                  <div class="email-bottom"></div>
-                  <div class="email-left"></div>
-                  <div class="email-right"></div>
-                  <div class="email-cover"></div>
-                  <div class="email-paper">
-                    <a class="mail" href="#">
-                      <div class="i"></div>
-                      {{ user.email }}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-              <!-- <div class="info name">lorem</div> -->
-              <!-- <div class="info work">Lorem ipsum dolor sit amet.</div> -->
-              <div class="info porfolio"> </div>
-          </div>
-          <div class="picc">
-            <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="user-image-container">
-                <img
-                  id="profile-picture-preview"
-                  src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
-                  class="user-image"
-                />
-                <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
-                <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
-              </div>
-            </form>
-          </div>
-      </div>
-      <div class="back"></div>
-  </div>
-</div>
+
 <!-- 모바일 반응형 - footer 끝 -->
     <div id="pole">
       <div id="right">
@@ -239,7 +239,9 @@
     
       <!-- 프로필카드 시작 -->
       <button class="profile-card" id="profile-btn">
+        <div class="profile-top"></div>
         <div class="profile-left">
+          
           <div class="profile-left-content">
             <!-- 프로필 사진 표시 -->
             <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
@@ -264,6 +266,29 @@
               <div class="i"></div>
               {{ user.email }} 
             </a>
+            <div class="profile-email">
+              <div class="profile-contact">
+                <div class="profile-envelope">
+                  <div class="email-top">
+                    <div class="email-outer">
+                      <div class="email-inner"></div>
+                    </div>
+                  </div>
+                  <div class="email-bottom"></div>
+                  <div class="email-left"></div>
+                  <div class="email-right"></div>
+                  <div class="email-cover"></div>
+                  <div class="email-paper">
+                    <a class="mail" href="#">
+                      <div class="i"></div>
+                      {{ user.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
           </div>
         </div>
   
@@ -272,7 +297,7 @@
       </button>
 
       <!-- 별똥별 -->
-    <div class="night">
+    <!-- <div class="night">
       <div class="shooting_star"></div>
       <div class="shooting_star-1"></div>
       <div class="shooting_star"></div>
@@ -293,277 +318,169 @@
       <div class="shooting_star"></div>
       <div class="shooting_star"></div>
       <div class="shooting_star"></div>
-    </div>
+    </div> -->
+    <div class="stars"></div>
     
     <!-- 프로필 카드 -->
     
- 
+    
  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+  <!-- 최종 수정 코드 -->
+
   <script>
-    var canvas = document.getElementById("canvas"),
-    ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-var stars = [], // Array that contains the stars
-    FPS = 60, // Frames per second
-    x = canvas.width; // Number of stars
-
-// Push stars to array
-
-for (var i = 0; i < x; i++) {
-  stars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random(),
-    vx: Math.floor(Math.random() * 10) - 5,
-    vy: Math.floor(Math.random() * 10) - 5
-  });
-}
-
-// Draw the scene
-
-function draw() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+    // 프로필 카드 상태를 관리하는 변수
+    var isCardStraight = false;
+    var isEditing = false;  // 편집 중인지 여부를 나타내는 변수
   
-  ctx.globalCompositeOperation = "lighter";
-  
-  for (var i = 0, x = stars.length; i < x; i++) {
-    var s = stars[i];
-  
-    ctx.fillStyle = "#fff";
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
-    ctx.fill();
-  }
-}
-
-// Update star locations
-
-function update() {
-  for (var i = 0, x = stars.length; i < x; i++) {
-    var s = stars[i];
-  
-    s.x += s.vx / FPS;
-    s.y += s.vy / FPS;
-    
-    if (s.x < 0 || s.x > canvas.width) s.x = -s.x;
-    if (s.y < 0 || s.y > canvas.height) s.y = -s.y;
-  }
-}
-
-// Update and draw
-
-function tick() {
-  draw();
-  update();
-  requestAnimationFrame(tick);
-}
-
-tick();
-  </script>
-  <script>
-    function Star(id, x, y){
-    this.id = id;
-    this.x = x;
-    this.y = y;
-    this.r = Math.floor(Math.random()*2)+1;
-    var alpha = (Math.floor(Math.random()*10)+1)/10/2;
-    this.color = "rgba(255,255,255,"+alpha+")";
-  }
-  
-  Star.prototype.draw = function() {
-    ctx.fillStyle = this.color;
-    ctx.shadowBlur = this.r * 2;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
-    ctx.closePath();
-    ctx.fill();
-  }
-  
-  Star.prototype.move = function() {
-    this.y -= .15 + params.backgroundSpeed/100;
-    if (this.y <= -10) this.y = HEIGHT + 10;
-    this.draw();
-  }
-  
-  
-  function Dot(id, x, y, r) {
-    this.id = id;
-    this.x = x;
-    this.y = y;
-    this.r = Math.floor(Math.random()*5)+1;
-    this.maxLinks = 2;
-    this.speed = .5;
-    this.a = .5;
-    this.aReduction = .005;
-    this.color = "rgba(255,255,255,"+this.a+")";
-    this.linkColor = "rgba(255,255,255,"+this.a/4+")";
-  
-    this.dir = Math.floor(Math.random()*140)+200;
-  }
-  
-  Dot.prototype.draw = function() {
-    ctx.fillStyle = this.color;
-    ctx.shadowBlur = this.r * 2;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
-    ctx.closePath();
-    ctx.fill();
-  }
-  
-  Dot.prototype.link = function() {
-    if (this.id == 0) return;
-    var previousDot1 = getPreviousDot(this.id, 1);
-    var previousDot2 = getPreviousDot(this.id, 2);
-    var previousDot3 = getPreviousDot(this.id, 3);
-    if (!previousDot1) return;
-    ctx.strokeStyle = this.linkColor;
-    ctx.moveTo(previousDot1.x, previousDot1.y);
-    ctx.beginPath();
-    ctx.lineTo(this.x, this.y);
-    if (previousDot2 != false) ctx.lineTo(previousDot2.x, previousDot2.y);
-    if (previousDot3 != false) ctx.lineTo(previousDot3.x, previousDot3.y);
-    ctx.stroke();
-    ctx.closePath();
-  }
-  
-  function getPreviousDot(id, stepback) {
-    if (id == 0 || id - stepback < 0) return false;
-    if (typeof dots[id - stepback] != "undefined") return dots[id - stepback];
-    else return false;//getPreviousDot(id - stepback);
-  }
-  
-  Dot.prototype.move = function() {
-    this.a -= this.aReduction;
-    if (this.a <= 0) {
-      this.die();
-      return
+    // 화면 크기 확인 함수
+    function isMobile() {
+      return window.innerWidth <= 768;
     }
-    this.color = "rgba(255,255,255,"+this.a+")";
-    this.linkColor = "rgba(255,255,255,"+this.a/4+")";
-    this.x = this.x + Math.cos(degToRad(this.dir))*(this.speed+params.dotsSpeed/100),
-    this.y = this.y + Math.sin(degToRad(this.dir))*(this.speed+params.dotsSpeed/100);
   
-    this.draw();
-    this.link();
-  }
-  
-  Dot.prototype.die = function() {
-      dots[this.id] = null;
-      delete dots[this.id];
-  }
-  
-  
-  var canvas  = document.getElementById('canvas'),
-    ctx = canvas.getContext('2d'),
-    WIDTH,
-    HEIGHT,
-    mouseMoving = false,
-    mouseMoveChecker,
-    mouseX,
-    mouseY,
-    stars = [],
-    initStarsPopulation = 80,
-    dots = [],
-    dotsMinDist = 2,
-    params = {
-      maxDistFromCursor: 50,
-      dotsSpeed: 0,
-      backgroundSpeed: 0
-    };
-  
-  var gui;
-  gui = new dat.GUI();
-  gui.add(params, 'maxDistFromCursor').min(0).max(100).step(10).name('Size');
-  gui.add(params, 'dotsSpeed').min(0).max(100).step(.5).name('Speed');
-  gui.add(params, 'backgroundSpeed').min(0).max(150).step(1).name('Sky speed');
-  gui.open();
-  
-  setCanvasSize();
-  init();
-  
-  function setCanvasSize() {
-    WIDTH = document.documentElement.clientWidth,
-      HEIGHT = document.documentElement.clientHeight;                      
-  
-    canvas.setAttribute("width", WIDTH);
-    canvas.setAttribute("height", HEIGHT);
-  }
-  
-  function init() {
-    ctx.strokeStyle = "white";
-    ctx.shadowColor = "white";
-    for (var i = 0; i < initStarsPopulation; i++) {
-      stars[i] = new Star(i, Math.floor(Math.random()*WIDTH), Math.floor(Math.random()*HEIGHT));
-      //stars[i].draw();
-    }
-    ctx.shadowBlur = 0;
-    animate();
-  }
-  
-  function animate() {
-      ctx.clearRect(0, 0, WIDTH, HEIGHT);
-  
-      for (var i in stars) {
-        stars[i].move();
+    // 프로필 카드 상태를 설정하는 함수
+    function setCardState(straight) {
+      var profileBtn = document.getElementById('profile-btn');
+      
+      // 모바일 화면에서는 transform을 적용하지 않음
+      if (isMobile()) {
+        profileBtn.style.transform = 'none';
+        profileBtn.style.boxShadow = 'none';
+        return;
       }
-      for (var i in dots) {
-        dots[i].move();
+  
+      if (straight) {
+        profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
+        profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
+      } else {
+        profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
+        profileBtn.style.boxShadow = '0';
       }
-      drawIfMouseMoving();
-      requestAnimationFrame(animate);
-  }
-  
-  window.onmousemove = function(e){
-    mouseMoving = true;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    clearInterval(mouseMoveChecker);
-    mouseMoveChecker = setTimeout(function() {
-      mouseMoving = false;
-    }, 100);
-  }
-  
-  
-  function drawIfMouseMoving(){
-    if (!mouseMoving) return;
-  
-    if (dots.length == 0) {
-      dots[0] = new Dot(0, mouseX, mouseY);
-      dots[0].draw();
-      return;
     }
   
-    var previousDot = getPreviousDot(dots.length, 1);
-    var prevX = previousDot.x; 
-    var prevY = previousDot.y; 
+    // 페이지 로드 시 카드를 누워있는 상태로 설정
+    window.addEventListener('load', function() {
+      setCardState(false);
+    });
   
-    var diffX = Math.abs(prevX - mouseX);
-    var diffY = Math.abs(prevY - mouseY);
+    // 프로필 카드를 클릭했을 때 똑바로 세우는 기능
+    document.getElementById('profile-btn').addEventListener('click', function(event) {
+      if (!isCardStraight) {
+        setCardState(true);
+        isCardStraight = true;
+      }
+    });
   
-    if (diffX < dotsMinDist || diffY < dotsMinDist) return;
+    // 페이지의 다른 부분을 클릭했을 때 카드를 원래 상태로 돌리는 기능
+    document.addEventListener('click', function(event) {
+      var profileBtn = document.getElementById('profile-btn');
+      if (isCardStraight && !profileBtn.contains(event.target) && !isEditing) {
+        setCardState(false);
+        isCardStraight = false;
+      }
+    });
   
-    var xVariation = Math.random() > .5 ? -1 : 1;
-    xVariation = xVariation*Math.floor(Math.random()*params.maxDistFromCursor)+1;
-    var yVariation = Math.random() > .5 ? -1 : 1;
-    yVariation = yVariation*Math.floor(Math.random()*params.maxDistFromCursor)+1;
-    dots[dots.length] = new Dot(dots.length, mouseX+xVariation, mouseY+yVariation);
-    dots[dots.length-1].draw();
-    dots[dots.length-1].link();
-  }
-  //setInterval(drawIfMouseMoving, 17);
+    // 프로필 사진 수정 기능
+    document.getElementById('edit-profile-pic-icon').addEventListener('click', function(event) {
+      event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+      document.getElementById('profile-pic-input').click();
+      isEditing = true;  // 편집 중 상태로 설정
+    });
   
-  function degToRad(deg) {
-    return deg * (Math.PI / 180);
-  }
+    document.getElementById('profile-pic-input').addEventListener('change', function(event) {
+      var formData = new FormData();
+      formData.append('profile_picture', event.target.files[0]);
+      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+      
+      // 닉네임도 함께 전송
+      var nicknameInput = document.getElementById('nickname-input');
+      formData.append('nickname', nicknameInput.value);
   
+      $.ajax({
+        url: "{% url 'users:profile' %}",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          // 프로필 사진 미리보기 업데이트
+          document.getElementById('profile-picture-preview').src = response.profile_picture_url;
+          // 닉네임도 업데이트 (닉네임이 사라지지 않도록)
+          document.getElementById('nickname-display').innerText = response.nickname;
+          
+          // 저장이 완료되면 카드를 원래 상태로 돌림
+          setCardState(false);
+          isCardStraight = false;
+          isEditing = false;  // 편집 상태 종료
+        },
+        error: function() {
+          alert('프로필 사진을 업데이트하는 중 오류가 발생했습니다.');
+        }
+      });
+    });
   
+    // 닉네임 수정 기능
+    document.getElementById('edit-nickname-icon').addEventListener('click', function(event) {
+      event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+      var nicknameDisplay = document.getElementById('nickname-display');
+      var nicknameInput = document.getElementById('nickname-input');
+      
+      nicknameDisplay.style.display = 'none';
+      nicknameInput.style.display = 'inline';
+      nicknameInput.focus();
+      
+      // 닉네임 수정 중에는 카드가 똑바로 서 있도록 함
+      setCardState(true);
+      isCardStraight = true;
+      isEditing = true;  // 편집 중 상태로 설정
+    });
+  
+    document.getElementById('nickname-input').addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // 기본 엔터 동작(폼 제출)을 막음
+        saveNickname();
+      }
+    });
+  
+    document.getElementById('nickname-input').addEventListener('blur', function() {
+      saveNickname();
+    });
+  
+    function saveNickname() {
+      var nicknameDisplay = document.getElementById('nickname-display');
+      var nicknameInput = document.getElementById('nickname-input');
+      
+      var formData = new FormData();
+      formData.append('nickname', nicknameInput.value);
+      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+  
+      $.ajax({
+        url: "{% url 'users:profile' %}",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          nicknameDisplay.innerText = response.nickname;
+          nicknameDisplay.style.display = 'inline';
+          nicknameInput.style.display = 'none';
+          
+          // 저장이 완료되면 카드를 원래 상태로 돌림
+          setCardState(false);
+          isCardStraight = false;
+          isEditing = false;  // 편집 상태 종료
+        },
+        error: function() {
+          alert('닉네임을 업데이트하는 중 오류가 발생했습니다.');
+        }
+      });
+    }
   </script>
-  <script>
+  
+  
+  <!-- <script>
     // 프로필 카드 상태를 관리하는 변수
     var isCardStraight = false;
     var isEditing = false;  // 편집 중인지 여부를 나타내는 변수
@@ -697,7 +614,9 @@ tick();
         }
       });
     }
-  </script>
+  </script> -->
+
+  <!-- 최종 수정 코드 끝 -->
 <!-- <script>
   // 프로필 카드 상태를 관리하는 변수
   var isCardStraight = false;
