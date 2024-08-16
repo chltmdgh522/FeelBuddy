@@ -1026,7 +1026,7 @@ body {
   z-index: 1;
 }
 
-.shooting_star {
+.shooting_star, .shooting_star-1 {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1038,8 +1038,16 @@ body {
   z-index: 2;
 }
 
+.shooting_star-1 {
+  position: absolute;
+  left: 20%;
+  top: 60%;
+}
+
 .shooting_star::before, 
-.shooting_star::after {
+.shooting_star::after,
+.shooting_star-1::before, 
+.shooting_star-1::after {
   content: '';
   position: absolute;
   top: calc(50% - 1px);
@@ -1050,8 +1058,18 @@ body {
   animation: shining 3000ms ease-in-out infinite;
 }
 
+.shooting_star-1::before, 
+.shooting_star-1::after {
+  top:calc(50%);
+  right: 100px;
+}
+
 .shooting_star::after {
   transform: translateX(50%) rotateZ(-45deg);
+}
+
+.shooting_star-1::after {
+  transform: translateX(50%) rotateZ(-20deg);
 }
 
 @keyframes tail {

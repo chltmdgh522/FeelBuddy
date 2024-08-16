@@ -136,11 +136,8 @@
             {% endif %}
             <a href="{% url 'chatbot:emotion' %}">
                 <div class="icon__log">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
-                        </path>
-                    </svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
+           
                 </div>
             </a>
             <a href="{% url 'character:trash' %}">
@@ -158,7 +155,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
                     </svg>
-      
+                    
                 </div>
             </a>
 
@@ -1244,7 +1241,26 @@
     <script src="{% static '/js/character/character_list/wall.js' %}"></script>
     <script src="{% static '/js/character/character_list/nav.js' %}"></script>
 
+<!-- 캐릭터 개수에 따라 동적으로 width 설정하는 코드 추가 -->
+<script>
+    window.addEventListener('load', function () {
+    const mobileCharacterMain = document.querySelector('.mobile-character-main');
 
+    // mobile-character-main 안에 있는 card 요소들의 개수 세기 - 테마 4개라서 4로 나눔
+    const cardCount = Math.ceil(document.querySelectorAll('.mobile-character-main .card').length / 4);
+
+    let newWidth;
+
+    if (cardCount === 4) {
+        newWidth = '200px';
+    }  else {
+        newWidth = '300px';
+    }
+
+    mobileCharacterMain.style.width = newWidth;
+});
+</script>
+ <!-- 캐릭터 개수에 따라 동적으로 width 설정하는 코드 추가 끝-->
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
