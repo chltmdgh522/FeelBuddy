@@ -777,3 +777,11 @@ body {
 .chat-box::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* 스크롤바 색상 (더 어두운 회색) */
 }
+
+.gif {
+  position: absolute;
+  left: -100px;
+  top: -100px;
+  width: 400px;
+  height:400px;
+}
