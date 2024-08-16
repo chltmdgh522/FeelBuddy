@@ -308,8 +308,6 @@ height: 16px;
   text-transform: uppercase;
   animation: flicker 1.5s infinite alternate;
 
-  z-index: 9999999999999999999;     
-
   z-index: 9999999999999999999;
 
 }
@@ -380,7 +378,8 @@ height: 16px;
 }
 
 .chat-content-body-2 {
-  background:rgb(13, 12, 12);
+  /* background:rgb(13, 12, 12); */
+  background: linear-gradient(180deg, #17175f, #ffd844);
 }
 
 
@@ -486,9 +485,9 @@ height: 16px;
 
 .chat-character-lamp {
    width: 80px;
-    height: 72vh;
+    height: 52vh;
     position: absolute;
-    top: 15vh;
+    top: 35vh;
     margin-left: 55%;
     z-index: 1;
 }
@@ -679,7 +678,7 @@ label[for=btn] {
 	position: absolute;
 	width: 80%;
 	height: 55%;
-	z-index: 5;
+	z-index: 99999999999;
 	top: 45%;
 	left: 11%;
 	border-radius: 50% 50% 100% 150%;
@@ -712,7 +711,7 @@ label[for=btn] {
     left: 40vh;
 	min-width: 80px;
     transform: translate(-50%, -50%);
-    z-index: 999;
+    z-index: 990000009999;
     color: white;
     font-size: 5rem;
     filter: brightness(0.7);
