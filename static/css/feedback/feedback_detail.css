@@ -74,6 +74,16 @@ body {
   background-color: #24262b;
 }
 
+.delete-icon {
+  vertical-align: middle; /* 또는 bottom으로 조정 */
+  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+}
+
+.ri-pencil-line {
+  vertical-align: middle; /* delete-icon과 동일한 값으로 설정 */
+  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+}
+
 .supaview__stars {
   margin-bottom: 15px;
   font-size: 25px;
