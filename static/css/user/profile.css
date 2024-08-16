@@ -1215,15 +1215,143 @@ body {
   display: none;
 }
 
-.chat-header{
+.chat-header, .profile-top, .profile-email {
   display: none;
 
 }
 
 
-
-
 @media screen and (max-width: 768px) {
+  #pole, .icon, .mountains, .mountains-base, .light-base {
+    display: none;
+  }
+
+  html, body {
+    height: 100vh;
+    width: 100vmin;
+    border: none;
+    padding: 0;
+    margin: 0;
+    transform: none;
+    text-transform: none;
+    display: flex;
+    background-color: #000;
+    background: #000;
+
+  }
+
+  .chat-header {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    top:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #2c3e50;
+    color: white;
+    height: 58px;
+  }
+
+  .header-feedback svg, .header-logout svg {
+    width: 26px;
+    height: 26px;
+    color: white;
+  }
+  
+  .chat-header .header-left {
+
+    margin-left: 1rem;
+  }
+  .chat-header span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Concert One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .chat-header span p {
+    font-size: 1.2rem;
+  }
+  
+  .chat-header .header-right {
+    margin-right: 1rem;
+
+  }
+
+  .profile-right {
+    display: none;
+  }
+
+  #profile-btn {
+    display: flex;
+    text-transform: none;
+    position: absolute;
+    left: 0;
+    top: 58px;
+    margin-top: 0;
+    width: 100%;
+    height: calc(100vh - 138px);
+    text-shadow: none;
+    flex-direction: column;
+  }
+  .profile-top {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 55%;
+    background-image: url(/media/logo.png);
+    background-size: cover;
+    border-radius: 10px 10px 0 0;
+    padding-bottom: 80px;
+
+  }
+  .profile-left {
+    position: relative;
+    width: 100%;
+    height: 45%;
+    background: rgb(248, 236, 249);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-left-content {
+    width: 100%;
+    height: 100%;
+  }
+  .user-image-container {
+    position: absolute;
+    top: -280px;
+    right: calc(50% - 80px);
+    width: 160px;
+    height: 160px;
+    /* margin-bottom: 15px; */
+  }
+
+  .user-name {
+    position: relative;
+    width: 100%;
+    font-size: 1.3em;
+    z-index: 9999;
+
+  }
+  .mail {
+    display: none;
+  }
+
+  .profile-email {
+    display: flex;
+    height: 70%;
+  }
+
+}
+
+/* @media screen and (max-width: 768px) {
   #pole, .icon, .mountains, .mountains-base, .light-base, .profile-card {
     display: none;
   }
@@ -1304,15 +1432,9 @@ body {
             top:145px;
             left: calc(50% - 80px);
         margin: auto;
-        /* margin-top: -500px; */
-        /* width: 114px; */
-        /* height: 114px; */
+
         border: none;
         border-radius: 100%;
-        /* box-shadow: 0 0 0 3px; */
-        /* background-image: url(https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80); */
-        /* background-size: cover; 
-        color: white; */
           }
 
       
@@ -1341,7 +1463,7 @@ body {
       padding: 20px 0;
     }
 
-    /* header 헤더 시작(모바일) */
+    
     
     .chat-header {
       position: fixed;
@@ -1385,7 +1507,72 @@ body {
       margin-right: 1rem;
 
     }
+} */
+
+/* star 추가 */
+
+.stars {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  box-shadow: 
+    1447px 402px hsl(90, 0%, 81%),
+    1121px 186px hsl(90, 0%, 88%),
+    -1256px -426px hsl(90, 0%, 83%),
+    1297px 28px hsl(90, 0%, 95%),
+    -1483px -390px hsl(90, 0%, 91%),
+    -1375px 158px hsl(90, 0%, 79%),
+    1241px 391px hsl(90, 0%, 96%),
+    -857px 39px hsl(90, 0%, 92%),
+    -295px -442px hsl(90, 0%, 94%),
+    833px 205px hsl(90, 0%, 74%);
+  animation: fly 3s linear infinite;
+  transform-style: preserve-3d;
 }
 
+.stars:before, .stars:after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  box-shadow: inherit;
+}
 
+.stars:before {
+  transform: translateZ(-300px);
+  animation: fade1 3s linear infinite;
+}
 
+.stars:after {
+  transform: translateZ(-600px);
+  animation: fade2 3s linear infinite;
+}
+
+@keyframes fly {
+  from {
+    transform: translateZ(0px);
+  }
+  to {
+    transform: translateZ(300px);
+  }
+}
+
+@keyframes fade1 {
+  from {
+    opacity: .5;
+  }
+  to {
+    opacity: 1;
+  }  
+}
+
+@keyframes fade2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .5;
+  }  
+}
