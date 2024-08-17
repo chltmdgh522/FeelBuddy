@@ -1,35 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>FeelBuddy</title>
     <link rel="icon" href="/media/joy.png" type="image/png">
     <link rel="stylesheet" href="{% static '/css/chatbot/icon.css' %}">
-    <link rel="stylesheet" href="{% static '/css/user/profile.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/user/profile.css' %}"/>
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
-      rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+            rel="stylesheet"
     />
     <link rel="stylesheet" href="{% static '/css/character/character_list/nav.css' %}">
 
     <style>
-      input[readonly] {
-        border: none;
-        background-color: transparent;
-      }
-      input.editable {
-        border: 1px solid #000;
-        background-color: #fff;
-      }
+        input[readonly] {
+            border: none;
+            background-color: transparent;
+        }
+
+        input.editable {
+            border: 1px solid #000;
+            background-color: #fff;
+        }
     </style>
-  </head>
+</head>
 
-  
-  <body>
 
-    <!-- <div class="mobile-profile-container" id="mobile-profile-container">
+<body>
+
+<!-- <div class="mobile-profile-container" id="mobile-profile-container">
       <div id="background">
           <div id="background-image"></div>
       </div>
@@ -84,391 +85,416 @@
       </div>
     </div> -->
 
-    <!-- 모바일 반응형 header 시작 -->
+<!-- 모바일 반응형 header 시작 -->
 <header class="chat-header" id="header">
-  <div class="header-left">
-    <a href="피드백 페이지 링크" class="header-feedback">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path></svg>
-    </a>
-  </div>
-  <span><p>Feel Buddy</p></span>
-  <div class="header-right">
-    <a href="로그아웃" class="header-logout">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path></svg>
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
-    </a>
-  </div>
+    <div class="header-left">
+        <a href="{% url 'feedback:feedback_list' %}" class="header-feedback">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path>
+            </svg>
+        </a>
+    </div>
+    <span><p>Feel Buddy</p></span>
+    <div class="header-right">
+        <a class="header-logout logout-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
+            </svg>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
+        </a>
+    </div>
 
 </header>
 
+
 <!-- 모바일 반응형 header 끝-->
 
-    <!-- 모바일 반응형-footer 시작 -->
-    <nav class="mobile-footer" role="menulist">
-        <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
+<!-- 모바일 반응형-footer 시작 -->
+<nav class="mobile-footer" role="menulist">
+    <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
                     d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-                </path>
-            </svg>
-            Home
-        </a>
-        {% if first_item %}
+            </path>
+        </svg>
+        Home
+    </a>
+    {% if first_item %}
         <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                        d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
                 </path>
             </svg>
             Chat
         </a>
-        {% endif %}
-        <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
-     
-            Log
-        </a>
-        <a href="{% url 'character:trash' %}" role="menuitem" >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
+    {% endif %}
+    <a href="{% url 'chatbot:emotion' %}" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path>
+        </svg>
+
+        Log
+    </a>
+    <a href="{% url 'character:trash' %}" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
                     d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
-                </path>
-            </svg>
-            Trash
-        </a>
-        <a href="{% url 'users:profile' %}" role="menuitem" class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
+            </path>
+        </svg>
+        Trash
+    </a>
+    <a href="{% url 'users:profile' %}" role="menuitem" class="active">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
                     d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
-                </path>
-            </svg>
-            Profile
-        </a>
-        <i class="line" id="nav-current">current item</i>
-    </nav>
+            </path>
+        </svg>
+        Profile
+    </a>
+    <i class="line" id="nav-current">current item</i>
+</nav>
 
 
 <!-- 모바일 반응형 - footer 끝 -->
-    <div id="pole">
-      <div id="right">
-          <div class="logo"><b>P<span>ro</span>f<span>i</span>le</b></div>
-      </div>
+<div id="pole">
+    <div id="right">
+        <div class="logo"><b>P<span>ro</span>f<span>i</span>le</b></div>
     </div>
-    <!-- 헤더 아이콘 -->
-  <div class="icon">
-            <a href="{% url 'character:character_list' %}">
-                <div class="icon__home">
+</div>
+<!-- 헤더 아이콘 -->
+<div class="icon">
+    <a href="{% url 'character:character_list' %}">
+        <div class="icon__home">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                                d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-                        </path>
-                    </svg>
-
-                </div>
-            </a>
-            
-            {% if first_item %}
-                <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
-                    <div class="icon__chat">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
-                            </path>
-                        </svg>
-                    </div>
-                </a>
-            {% endif %}
-            <a href="{% url 'chatbot:emotion' %}">
-                <div class="icon__log">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path>
-                </svg>
-                </div>
-            </a>
-            <a href="{% url 'character:trash' %}">
-                <div class="icon__delete">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                                d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
-                        </path>
-                    </svg>
-                </div>
-            </a>
-  
-  
-            <!-- 여기 로그아웃 링크 클래스명 달아주세요! -->
-            <a class="logout-btn" style="cursor: pointer;">
-                <div class="icon__delete">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
-                    </svg>
-
-                </div>
-            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+                </path>
+            </svg>
 
         </div>
-    
+    </a>
+    <a href="{% url 'users:profile' %}">
+        <div class="icon__account">
 
-    
-      <div class="mountains">
-        <div class="mountain-1"></div>
-        <div class="mountain-2"></div>
-        <div class="land-1"></div>
-        <div class="land-2"></div>
-        <div class="land-3"></div>
-      </div>
-      <div class="mountains-base"></div>
-      <div class="light-base"></div>
-    
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
+                </path>
+            </svg>
 
-    
-    
-      <!-- 프로필카드 시작 -->
-      <button class="profile-card" id="profile-btn">
-        <div class="profile-top"></div>
-        <div class="profile-left">
-          
-          <div class="profile-left-content">
+        </div>
+    </a>
+    {% if first_item %}
+        <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
+            <div class="icon__chat">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                            d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                    </path>
+                </svg>
+            </div>
+        </a>
+    {% endif %}
+    <a href="{% url 'feedback:feedback_list' %}">
+        <div class="icon__log">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path>
+            </svg>
+
+        </div>
+    </a>
+    <a href="{% url 'chatbot:emotion' %}">
+        <div class="icon__log">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path>
+            </svg>
+
+        </div>
+    </a>
+    <a href="{% url 'character:trash' %}">
+        <div class="icon__delete">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                        d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
+                </path>
+            </svg>
+        </div>
+    </a>
+    <!-- 여기 로그아웃 링크 클래스명 달아주세요! -->
+    <a class="logout-btn" style="cursor: pointer;">
+        <div class="icon__logout">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
+            </svg>
+
+        </div>
+    </a>
+
+</div>
+
+
+<div class="mountains">
+    <div class="mountain-1"></div>
+    <div class="mountain-2"></div>
+    <div class="land-1"></div>
+    <div class="land-2"></div>
+    <div class="land-3"></div>
+</div>
+<div class="mountains-base"></div>
+<div class="light-base"></div>
+
+
+<!-- 프로필카드 시작 -->
+<button class="profile-card" id="profile-btn">
+    <div class="profile-top"></div>
+    <div class="profile-left">
+
+        <div class="profile-left-content">
             <!-- 프로필 사진 표시 -->
             <form id="profile-pic-form" action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="user-image-container">
-                <img
-                  id="profile-picture-preview"
-                  src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
-                  class="user-image"
-                />
-                <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
-                <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;" accept="image/*">
-              </div>
+                {% csrf_token %}
+                <div class="user-image-container">
+                    <img
+                            id="profile-picture-preview"
+                            src="
+                                    {% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}/media/joy.png{% endif %}"
+                            class="user-image"
+                    />
+                    <i class="ri-pencil-line" id="edit-profile-pic-icon"></i>
+                    <input type="file" id="profile-pic-input" name="profile_picture" style="display: none;"
+                           accept="image/*">
+                </div>
             </form>
             <p class="user-name">
-              <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
-              <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}" style="display:none;">
-              <i class="ri-pencil-line" id="edit-nickname-icon"></i>
+                <span id="nickname-display">{{ profile.nickname|default:"닉네임 없음" }}</span>
+                <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}"
+                       style="display:none;">
+                <i class="ri-pencil-line" id="edit-nickname-icon"></i>
             </p>
             <a class="mail" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
-              <div class="i"></div>
-              {{ user.email }} 
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path>
+                </svg>
+                <div class="i"></div>
+                {{ user.email }}
             </a>
             <div class="profile-email">
-              <div class="profile-contact">
-                <div class="profile-envelope">
-                  <div class="email-top">
-                    <div class="email-outer">
-                      <div class="email-inner"></div>
+                <div class="profile-contact">
+                    <div class="profile-envelope">
+                        <div class="email-top">
+                            <div class="email-outer">
+                                <div class="email-inner"></div>
+                            </div>
+                        </div>
+                        <div class="email-bottom"></div>
+                        <div class="email-left"></div>
+                        <div class="email-right"></div>
+                        <div class="email-cover"></div>
+                        <div class="email-paper">
+                            <a class="mail" href="#">
+                                <div class="i"></div>
+                                {{ user.email }}
+                            </a>
+                        </div>
                     </div>
-                  </div>
-                  <div class="email-bottom"></div>
-                  <div class="email-left"></div>
-                  <div class="email-right"></div>
-                  <div class="email-cover"></div>
-                  <div class="email-paper">
-                    <a class="mail" href="#">
-                      <div class="i"></div>
-                      {{ user.email }}
-                    </a>
-                  </div>
                 </div>
-              </div>
             </div>
 
-            
-          </div>
-        </div>
-  
-        <div class="profile-right">
-        </div>
-      </button>
 
-      <!-- 별똥별 -->
-    <div class="night">
-      <div class="shooting_star"></div>
-      <div class="shooting_star-1"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
+        </div>
     </div>
-    <!-- <div class="stars"></div> -->
-    
-    <!-- 프로필 카드 -->
-    
-    
- 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <div class="profile-right">
+    </div>
+</button>
+
+<!-- 별똥별 -->
+<div class="night">
+    <div class="shooting_star"></div>
+    <div class="shooting_star-1"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+    <div class="shooting_star"></div>
+</div>
+<!-- <div class="stars"></div> -->
+
+<!-- 프로필 카드 -->
 
 
-  <!-- 최종 수정 코드 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <script>
+
+<!-- 최종 수정 코드 -->
+
+<script>
     // 프로필 카드 상태를 관리하는 변수
     var isCardStraight = false;
     var isEditing = false;  // 편집 중인지 여부를 나타내는 변수
-  
+
     // 화면 크기 확인 함수
     function isMobile() {
-      return window.innerWidth <= 768;
+        return window.innerWidth <= 768;
     }
-  
+
     // 프로필 카드 상태를 설정하는 함수
     function setCardState(straight) {
-      var profileBtn = document.getElementById('profile-btn');
-      
-      // 모바일 화면에서는 transform을 적용하지 않음
-      if (isMobile()) {
-        profileBtn.style.transform = 'none';
-        profileBtn.style.boxShadow = 'none';
-        return;
-      }
-  
-      if (straight) {
-        profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
-        profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
-      } else {
-        profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
-        profileBtn.style.boxShadow = '0';
-      }
+        var profileBtn = document.getElementById('profile-btn');
+
+        // 모바일 화면에서는 transform을 적용하지 않음
+        if (isMobile()) {
+            profileBtn.style.transform = 'none';
+            profileBtn.style.boxShadow = 'none';
+            return;
+        }
+
+        if (straight) {
+            profileBtn.style.transform = 'rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(10px)';
+            profileBtn.style.boxShadow = '0px 10px 10px rgba(0, 0, 0, 0.4)';
+        } else {
+            profileBtn.style.transform = 'rotateX(60deg) rotateY(0deg) rotateZ(45deg)';
+            profileBtn.style.boxShadow = '0';
+        }
     }
-  
+
     // 페이지 로드 시 카드를 누워있는 상태로 설정
-    window.addEventListener('load', function() {
-      setCardState(false);
+    window.addEventListener('load', function () {
+        setCardState(false);
     });
-  
+
     // 프로필 카드를 클릭했을 때 똑바로 세우는 기능
-    document.getElementById('profile-btn').addEventListener('click', function(event) {
-      if (!isCardStraight) {
+    document.getElementById('profile-btn').addEventListener('click', function (event) {
+        if (!isCardStraight) {
+            setCardState(true);
+            isCardStraight = true;
+        }
+    });
+
+    // 페이지의 다른 부분을 클릭했을 때 카드를 원래 상태로 돌리는 기능
+    document.addEventListener('click', function (event) {
+        var profileBtn = document.getElementById('profile-btn');
+        if (isCardStraight && !profileBtn.contains(event.target) && !isEditing) {
+            setCardState(false);
+            isCardStraight = false;
+        }
+    });
+
+    // 프로필 사진 수정 기능
+    document.getElementById('edit-profile-pic-icon').addEventListener('click', function (event) {
+        event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+        document.getElementById('profile-pic-input').click();
+        isEditing = true;  // 편집 중 상태로 설정
+    });
+
+    document.getElementById('profile-pic-input').addEventListener('change', function (event) {
+        var formData = new FormData();
+        formData.append('profile_picture', event.target.files[0]);
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+        // 닉네임도 함께 전송
+        var nicknameInput = document.getElementById('nickname-input');
+        formData.append('nickname', nicknameInput.value);
+
+        $.ajax({
+            url: "{% url 'users:profile' %}",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // 프로필 사진 미리보기 업데이트
+                document.getElementById('profile-picture-preview').src = response.profile_picture_url;
+                // 닉네임도 업데이트 (닉네임이 사라지지 않도록)
+                document.getElementById('nickname-display').innerText = response.nickname;
+
+                // 저장이 완료되면 카드를 원래 상태로 돌림
+                setCardState(false);
+                isCardStraight = false;
+                isEditing = false;  // 편집 상태 종료
+            },
+            error: function () {
+                alert('프로필 사진을 업데이트하는 중 오류가 발생했습니다.');
+            }
+        });
+    });
+
+    // 닉네임 수정 기능
+    document.getElementById('edit-nickname-icon').addEventListener('click', function (event) {
+        event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
+        var nicknameDisplay = document.getElementById('nickname-display');
+        var nicknameInput = document.getElementById('nickname-input');
+
+        nicknameDisplay.style.display = 'none';
+        nicknameInput.style.display = 'inline';
+        nicknameInput.focus();
+
+        // 닉네임 수정 중에는 카드가 똑바로 서 있도록 함
         setCardState(true);
         isCardStraight = true;
-      }
+        isEditing = true;  // 편집 중 상태로 설정
     });
-  
-    // 페이지의 다른 부분을 클릭했을 때 카드를 원래 상태로 돌리는 기능
-    document.addEventListener('click', function(event) {
-      var profileBtn = document.getElementById('profile-btn');
-      if (isCardStraight && !profileBtn.contains(event.target) && !isEditing) {
-        setCardState(false);
-        isCardStraight = false;
-      }
-    });
-  
-    // 프로필 사진 수정 기능
-    document.getElementById('edit-profile-pic-icon').addEventListener('click', function(event) {
-      event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
-      document.getElementById('profile-pic-input').click();
-      isEditing = true;  // 편집 중 상태로 설정
-    });
-  
-    document.getElementById('profile-pic-input').addEventListener('change', function(event) {
-      var formData = new FormData();
-      formData.append('profile_picture', event.target.files[0]);
-      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-      
-      // 닉네임도 함께 전송
-      var nicknameInput = document.getElementById('nickname-input');
-      formData.append('nickname', nicknameInput.value);
-  
-      $.ajax({
-        url: "{% url 'users:profile' %}",
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          // 프로필 사진 미리보기 업데이트
-          document.getElementById('profile-picture-preview').src = response.profile_picture_url;
-          // 닉네임도 업데이트 (닉네임이 사라지지 않도록)
-          document.getElementById('nickname-display').innerText = response.nickname;
-          
-          // 저장이 완료되면 카드를 원래 상태로 돌림
-          setCardState(false);
-          isCardStraight = false;
-          isEditing = false;  // 편집 상태 종료
-        },
-        error: function() {
-          alert('프로필 사진을 업데이트하는 중 오류가 발생했습니다.');
+
+    document.getElementById('nickname-input').addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 기본 엔터 동작(폼 제출)을 막음
+            saveNickname();
         }
-      });
     });
-  
-    // 닉네임 수정 기능
-    document.getElementById('edit-nickname-icon').addEventListener('click', function(event) {
-      event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
-      var nicknameDisplay = document.getElementById('nickname-display');
-      var nicknameInput = document.getElementById('nickname-input');
-      
-      nicknameDisplay.style.display = 'none';
-      nicknameInput.style.display = 'inline';
-      nicknameInput.focus();
-      
-      // 닉네임 수정 중에는 카드가 똑바로 서 있도록 함
-      setCardState(true);
-      isCardStraight = true;
-      isEditing = true;  // 편집 중 상태로 설정
-    });
-  
-    document.getElementById('nickname-input').addEventListener('keypress', function(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault(); // 기본 엔터 동작(폼 제출)을 막음
+
+    document.getElementById('nickname-input').addEventListener('blur', function () {
         saveNickname();
-      }
     });
-  
-    document.getElementById('nickname-input').addEventListener('blur', function() {
-      saveNickname();
-    });
-  
+
     function saveNickname() {
-      var nicknameDisplay = document.getElementById('nickname-display');
-      var nicknameInput = document.getElementById('nickname-input');
-      
-      var formData = new FormData();
-      formData.append('nickname', nicknameInput.value);
-      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-  
-      $.ajax({
-        url: "{% url 'users:profile' %}",
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          nicknameDisplay.innerText = response.nickname;
-          nicknameDisplay.style.display = 'inline';
-          nicknameInput.style.display = 'none';
-          
-          // 저장이 완료되면 카드를 원래 상태로 돌림
-          setCardState(false);
-          isCardStraight = false;
-          isEditing = false;  // 편집 상태 종료
-        },
-        error: function() {
-          alert('닉네임을 업데이트하는 중 오류가 발생했습니다.');
-        }
-      });
+        var nicknameDisplay = document.getElementById('nickname-display');
+        var nicknameInput = document.getElementById('nickname-input');
+
+        var formData = new FormData();
+        formData.append('nickname', nicknameInput.value);
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+        $.ajax({
+            url: "{% url 'users:profile' %}",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                nicknameDisplay.innerText = response.nickname;
+                nicknameDisplay.style.display = 'inline';
+                nicknameInput.style.display = 'none';
+
+                // 저장이 완료되면 카드를 원래 상태로 돌림
+                setCardState(false);
+                isCardStraight = false;
+                isEditing = false;  // 편집 상태 종료
+            },
+            error: function () {
+                alert('닉네임을 업데이트하는 중 오류가 발생했습니다.');
+            }
+        });
     }
-  </script>
-  
-  
-  <!-- <script>
+</script>
+
+
+<!-- <script>
     // 프로필 카드 상태를 관리하는 변수
     var isCardStraight = false;
     var isEditing = false;  // 편집 중인지 여부를 나타내는 변수
@@ -604,7 +630,7 @@
     }
   </script> -->
 
-  <!-- 최종 수정 코드 끝 -->
+<!-- 최종 수정 코드 끝 -->
 <!-- <script>
   // 프로필 카드 상태를 관리하는 변수
   var isCardStraight = false;
@@ -838,31 +864,31 @@
 </script> -->
 
 <script>
-document.querySelectorAll('.logout-btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();  // 기본 동작 막기
-        
-        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
-        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+    document.querySelectorAll('.logout-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();  // 기본 동작 막기
 
-        fetch(logoutUrl, {
-            method: 'POST',  // POST 방식으로 요청
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
-            },
-            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
-            } else {
-                console.error('로그아웃 실패');
-            }
-        })
-        .catch(error => console.error('에러 발생:', error));
+            const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+            const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+
+            fetch(logoutUrl, {
+                method: 'POST',  // POST 방식으로 요청
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+                },
+                body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+                    } else {
+                        console.error('로그아웃 실패');
+                    }
+                })
+                .catch(error => console.error('에러 발생:', error));
+        });
     });
-});
 </script>
 </body>
 </html>

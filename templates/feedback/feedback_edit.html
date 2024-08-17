@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeelBuddy</title>
-    <link rel="icon" href="/media/joy.png" type="image/png">
+    <link rel="icon" href="/media/joy.png" type="image/png" />
     <link
       rel="stylesheet"
-      href="{% static '/css/feedback/feedback_detail.css' %}"
+      href="{% static '/css/feedback/feedback_edit.css' %}"
     />
     <!-- Font Awesome CDN for star icons -->
     <link
@@ -48,21 +48,37 @@
               </div>
             </div>
 
+            <!-- 폼 시작 -->
+            <form
+              id="reviewForm"
+              method="POST"
+              action="{% url 'feedback:feedback_edit' review.pk %}"
+            >
+            {% csrf_token %}
             <!-- 별점 표시 부분 -->
-            <div class="supaview__stars">
-              {% for i in "12345" %}
-              <i
-                class="fas fa-star {% if forloop.counter <= review.rate %}filled{% else %}empty{% endif %}"
-              ></i>
+            <fieldset class="supaview__rating">
+              {% for i in "54321" %}
+              <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}" {% if review.rate == i %}checked{% endif %} />
+              <label for="star{{ i }}"></label>
               {% endfor %}
-            </div>
+            </fieldset>
 
-            <!-- 리뷰 메시지 표시 -->
-            <div class="supaview__copy">
-              <textarea name="message" placeholder="Message" rows="18" readonly>
+              <!-- 리뷰메시지 부분 -->
+              <div class="supaview__copy">
+                <textarea name="message" placeholder="Message" rows="18">
 {{ review.message }}</textarea
-              >
-            </div>
+                >
+              </div>
+
+              <!-- 저장 아이콘 -->
+              <div class="save-icon-container">
+                <i
+                  class="ri-save-3-line save-icon"
+                  onclick="document.getElementById('reviewForm').submit();"
+                ></i>
+              </div>
+            </form>
+            <!-- 폼 끝 -->
           </div>
         </div>
       </div>

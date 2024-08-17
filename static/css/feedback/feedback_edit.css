@@ -106,11 +106,12 @@ body {
 }
 
 .supaview__rating {
-  display: block;
-  float: left;
+  display: flex;
+  flex-direction: row-reverse;
   padding: 0;
   margin-bottom: 15px;
   border: none;
+  justify-content: center;
 }
 
 .supaview__rating input {
@@ -119,32 +120,30 @@ body {
 
 .supaview__rating label:before {
   display: inline-block;
-  margin-right: 5px;
   font-family: "Font Awesome 5 Free";
-  font-size: 25px;
   font-weight: 900;
   content: "\f005";
+  font-size: 25px;
+  color: #1c1e20;
 }
 
 .supaview__rating label {
-  float: right;
-  color: #1c1e20;
+  margin-right: 5px;
   cursor: pointer;
-  transition: 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 
-.supaview__rating input:checked ~ label,
-.supaview__rating:not(:checked) > label:hover,
-.supaview__rating:not(:checked) > label:hover ~ label {
+.supaview__rating input:checked + label:before {
   color: #6ecb90;
-  text-shadow: 0 0 6px #4da76ebd;
 }
 
-.supaview__rating input:checked + label:hover,
-.supaview__rating input:checked ~ label:hover,
-.supaview__rating label:hover ~ input:checked ~ label,
-.supaview__rating input:checked ~ label:hover ~ label {
-  color: #4da76ebd;
+.supaview__rating input:checked + label ~ label:before {
+  color: #6ecb90;
+}
+
+.supaview__rating label:hover:before,
+.supaview__rating label:hover ~ label:before {
+  color: #6ecb90;
 }
 
 .supaview__title {
@@ -287,10 +286,6 @@ body {
   margin-top: 10px; /* 별점과의 간격 조정 */
 }
 
-.supaview__stars {
-  text-align: center;
-  margin-top: 10px; /* 닉네임과의 간격 조정 */
-}
 
 /* 기타 레이아웃 조정 */
 .client-info {
@@ -347,29 +342,18 @@ body {
   width: 30px;
 }
 
-/* 밑에 슬라이더 영역 별 아이콘 */
-/* 별 아이콘 간격 추가 */
-.supaview__stars {
-  margin-top: 20px; /* 별 아이콘과 텍스트 사이 간격 추가 */
-  text-align: center; /* 별 아이콘을 중앙 정렬 */
-}
-
-.supaview__stars i {
-  font-size: 20px;
-  margin: 0 2px; /* 별 아이콘 간의 간격 조정 */
-}
-
-.supaview__stars .empty {
-  color: #444; /* 비활성화된 별은 어두운 회색으로 설정 */
-}
-
-.supaview__stars .filled {
-  color: #6ecb90; /* 초록색으로 색칠된 별 */
-}
-
 .delete-icon {
   color: #fff;
   display: inline-block; /* 필요한 경우 추가 */
   vertical-align: middle; /* 텍스트와 수평 정렬 */
   cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+}
+.save-icon-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.save-icon {
+  font-size: 24px;
+  cursor: pointer;
 }

@@ -549,8 +549,11 @@ body {
   vertical-align: middle; /* 텍스트와 수평 정렬 */
   cursor: pointer; /* 클릭할 수 있는 커서 모양 */
 }
-
-
+.ri-pencil-line {
+  color: #fff;
+  vertical-align: middle; /* delete-icon과 동일한 값으로 설정 */
+  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+}
 
 /* header 네온사인 추가 */
 
