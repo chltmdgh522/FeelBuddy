@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FeelBuddy</title>
-    <link rel="icon" href="/media/joy.png" type="image/png">
+    <link rel="icon" href="/media/joy.png" type="image/png" />
     <link
       rel="stylesheet"
       href="{% static '/css/feedback/feedback_list.css' %}"
@@ -238,8 +238,7 @@
           <div class="testimonial-content owl-carousel">
             {% for review in feedbacks %}
 
-            <div
-              class="single-testimonial">
+            <div class="single-testimonial">
               <!-- 별점 표시 부분 -->
               <div class="supaview__stars">
                 {% for i in "12345" %}
@@ -250,7 +249,10 @@
               </div>
 
               <!-- 리뷰 메시지 표시 -->
-              <div class="review-message-container" onclick="location.href='{% url 'feedback:feedback_detail' review.pk %}'">
+              <div
+                class="review-message-container"
+                onclick="location.href='{% url 'feedback:feedback_detail' review.pk %}'"
+              >
                 <p class="review-message" data-review-id="{{ review.pk }}">
                   {{ review.message }}
                 </p>
@@ -277,6 +279,10 @@
                   <i
                     class="ri-delete-bin-line delete-icon"
                     onclick="deleteReview({{ review.pk }})"
+                  ></i>
+                  <i
+                    class="ri-pencil-line edit-icon"
+                    onclick="location.href='{% url 'feedback:feedback_edit' review.pk %}'"
                   ></i>
                   {% endif %}
                 </div>
@@ -336,12 +342,12 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var reviewMessages = document.querySelectorAll(".review-message");
-    
+
         reviewMessages.forEach(function (message) {
           var fullText = message.textContent.trim();
           var maxLength = 100; // 최대 글자 수 설정
           var truncatedText = fullText.slice(0, maxLength);
-    
+
           if (fullText.length > maxLength) {
             message.textContent = truncatedText + "...";
           } else {

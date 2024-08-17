@@ -289,8 +289,7 @@ h1 {
 
 /* header 네온사인 추가 */
 
-
-
+/* header 네온사인 추가 */
 #pole{
     border-radius: 1vw 1vw 0 0;    
     position: absolute;
@@ -302,17 +301,15 @@ h1 {
     transform: translateY(160px);
     min-width: 45px;
     background-color: #30343f;
-    font-size: 1.5em;    
-    /* @media (max-height: 400px){
-      transform: unset;
-      height: 400px;
-    } */
+    font-size: 1.5em;  
+    border-right: 3px solid white;
+    border-left: 3px solid white;    
   }
   
   #right{  
-    height: 10.2vh;    
-    transform: translate(-40px, 50px);    
-    width: 24.5vw; 
+    height: 10vh;    
+    transform: translate(-5vh, 5vh);    
+    width: 24vw; 
     min-width: 200px;
     background-color: rgb(14, 13, 13); 
     display: flex;
@@ -321,74 +318,53 @@ h1 {
     color: white;    
     border-radius: 10px 50px 50px 10px;
     border: 3px outset white;
-    font-family: 'Exo 2', sans-serif;
   }
   
-  
-  
-  
-  /*네온사인 추가*/
-  
-  
-  
+  /* 네온사인 추가 */
   #right {
-    /* background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat; */
-    background-size:cover;
-    margin:0
+    background-size: cover;
+    margin: 0;
   }
-  .logo {
   
+  .logo {
     text-align: center;
-    width: 50px;
-    height: 100px;
+    width: 100%;
+    height: 10vh;
     margin: auto;
     position: relative;
-    /* top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; */
-     user-select: none;
-     display: flex;
-     justify-content: center;
-     align-items: center;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .logo b{
     position: relative;
-    /* font: 400 5vh "Vibur"; */
-  
-    /* font-family: "Bungee Tint", sans-serif;
-    font-weight: 400;
-    font-style: normal; */
-    /* font-family: "New Amsterdam", sans-serif;
-    
-    font-weight: 400;
-    font-style: normal; */
     font-family: "Black Ops One", system-ui;
     font-weight: 400;
     font-style: normal;
     font-size: 5vh;
-    margin-bottom: 10px;
     color: #fee;
     text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ecd9d9, 0 0 0.5em #a69898, 0 0 0.1em #453c3c, 0 10px 3px #000;
-    /* text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000; */
-  }
+}
+  
   .logo b span{
     animation: blink linear infinite 2s;
   }
+  
   .logo b span:nth-of-type(2){
     animation: blink linear infinite 3s;
   }
+
   @keyframes blink {
     78% {
       color: inherit;
       text-shadow: inherit;
     }
-    79%{
-       color: #333;
+    79% {
+      color: #333;
     }
     80% {
-      
       text-shadow: none;
     }
     81% {
@@ -412,6 +388,18 @@ h1 {
       text-shadow: inherit;
     }
   }
+  
+  @media screen and (max-width:1200px) {
+    .logo b {
+      font-size: 3.5vh;
+    }
+  
+    #right, .logo {
+      height: 8vh;
+    }
+    
+  }
+  
 
 
 
