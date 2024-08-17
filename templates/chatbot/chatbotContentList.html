@@ -138,7 +138,7 @@
             display: block;
             /* active 클래스가 있는 방만 보이도록 설정 */
         }
-
+       
     </style>
 </head>
 
@@ -185,17 +185,19 @@
 <!-- 모바일 반응형 header 끝-->
 
 
+
+
 <div class="arrow left">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <path
-                d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
+            d="M4.83578 12L11.0429 18.2071L12.4571 16.7929L7.66421 12L12.4571 7.20712L11.0429 5.79291L4.83578 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
         </path>
     </svg>
 </div>
 <div class="arrow right">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <path
-                d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
+            d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
         </path>
     </svg>
 </div>
@@ -216,20 +218,18 @@
         Chat
     </a>
     <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path>
-        </svg>
-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
+           
         Log
     </a>
-    <a href="{% url 'character:trash' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
+        <a href="{% url 'character:trash' %}" role="menuitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
                     d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
-            </path>
-        </svg>
-        Trash
-    </a>
+                </path>
+            </svg>
+            Trash
+        </a>
     <a href="{% url 'users:profile' %}" role="menuitem">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
@@ -310,6 +310,7 @@
     </a>
 
 </div>
+
 
 
 <!-- 램프 효과 -->
@@ -582,8 +583,8 @@
                                         <!-- <div class="remote-track--picture-placeholder__background"
                                              style="background-image: url('{{ character.adminCharacter.image.url }}');"></div>
                                         <div class="remote-track--picture-placeholder" -->
-                                        <!-- style="background-image: url('{{ character.adminCharacter.image.url }}');"></div> -->
-                                        <img class="gif" src="{{ character.adminCharacter.gif.url }}">
+                                             <!-- style="background-image: url('{{ character.adminCharacter.image.url }}');"></div> -->
+                                            <img class="gif"  src="{{ character.adminCharacter.gif.url }}">
                                     </div>
                                     <div class="input-status-container">
                                         <div class="input-status">
@@ -664,10 +665,10 @@
         </div>
         <div class="lighthouse-sea">
             <!-- <div class="emotional-phrase-container"> -->
-            <div id="emotional-phrase" class="emotional-phrase-container"></div>
-            <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
-            <span></span></div>
-        <!-- </div> -->
+                <div id="emotional-phrase" class="emotional-phrase-container"></div>
+                <!--------------------- 추가된 부분 : 글귀를 표시할 요소 ------------------------->
+                <span></span></div>
+            <!-- </div> -->
         <div class="lighthouse-content">
             <div class="lighthouse">
                 <div class="lighthouse-base"></div>

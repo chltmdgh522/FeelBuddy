@@ -1,6 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Concert+One&family=Gugi&family=Jua&display=swap');
+
+
 * {
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
 }
 
 body {
@@ -20,12 +30,12 @@ body {
 
 .supaviews {
   position: relative;
-  max-width: 500px; /* 너비는 그대로 유지 */
-  margin: 125px auto 50px auto;
+  max-width: 450px; /* 너비는 그대로 유지 */
+  margin: 180px auto 50px auto;
   color: #ffffff;
   background-color: #1c1e20;
-  padding: 40px; /* 기존 패딩에서 40px으로 조정하여 섹션을 키움 */
-  min-height: 600px; /* 최소 높이를 설정하여 섹션이 더 커지도록 함 */
+  padding: 30px; /* 기존 패딩에서 40px으로 조정하여 섹션을 키움 */
+  min-height: 400px; /* 최소 높이를 설정하여 섹션이 더 커지도록 함 */
 }
 
 .first-container {
@@ -33,12 +43,7 @@ body {
   padding: 0 20px; /* 양쪽 여백 추가 */
 }
 
-/* supaviews의 너비 제한을 없애고 상위 요소에 따라 확장되도록 설정 */
-@media (min-width: 768px) {
-  .supaviews {
-    width: 50%; /* 더 큰 화면에서는 반응형으로 조정 */
-  }
-}
+
 
 .supaviews__logo {
   position: absolute;
@@ -161,6 +166,7 @@ body {
   color: #ffffff;
   background-color: transparent;
   outline: none;
+  overflow-y: scroll;
 }
 
 .supaview__copy input:focus,
@@ -373,3 +379,194 @@ body {
   vertical-align: middle; /* 텍스트와 수평 정렬 */
   cursor: pointer; /* 클릭할 수 있는 커서 모양 */
 }
+
+.back-arrow {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top:50px;
+  left: 50px;
+}
+
+.back-arrow svg {
+  width: 36px;
+  height: auto;
+  color: white;
+}
+.back-arrow svg:hover {
+  color: #64b883;
+  transform: scale(1.4);
+}
+
+@media (max-width: 1000px) {
+  .container {
+    margin: 0 20px;
+  }
+
+  .testimonial-content {
+    max-width: 700px;
+  }
+
+  .single-testimonial {
+    margin-bottom: 50px;
+  }
+
+  .sec-title h2 {
+    font-size: 30px;
+    padding-left: 50px;
+  }
+
+  .sec-title p {
+    font-size: 15px;
+    padding-left: 50px;
+  }
+  .sec-title::after {
+    left: 50px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  html, body {
+    width: 100vmin;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .testimonial-content {
+    max-width: 500px;
+  }
+  .icon, #pole, .icon__home, .icon__account{
+    display: none !important;
+}
+.first-container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: scroll;
+}
+}
+
+.chat-header{
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .testimonial-content {
+    max-width: 500px;
+  }
+  .icon, .pole {
+    display: none;
+}
+/* header 헤더 시작(모바일) */
+
+.chat-header {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  top:0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #2c3e50;
+  font-family: "Concert One", sans-serif;
+  color: white;
+  height: 38px;
+}
+
+.header-feedback svg, .header-logout svg {
+  width: 26px;
+  height: 26px;
+  color: white;
+}
+
+.chat-header .header-left {
+
+  margin-left: 20px;
+}
+.chat-header span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Concert One", sans-serif;
+  /* font-family: "Jua", sans-serif; */
+  font-weight: 400;
+  font-style: normal;
+}
+.chat-header span p {
+  font-size: 1.2rem;
+}
+
+.chat-header .header-right {
+  margin-right: 20px;
+
+}
+
+.chat-header .header-left svg {
+  width: 24px;
+  height: auto;
+  color: white;
+
+}
+
+
+
+
+}
+
+@media (max-width: 600px) {
+  .supaviews {
+    max-width: 300px ;
+    margin: 210px auto 50px auto;
+  }
+  .supaviews__logo {
+    width: 150px;
+    right: 97px;
+    top: -120px;
+  }
+  .supaview {
+    margin: -22px;
+  }
+  .supaview__rating {
+    margin-left: 54px;
+  }
+  .container {
+    margin: 0;
+    max-width: 360px;
+  }
+
+  .single-testimonial {
+    border: 3px solid #fff;
+    min-height:150px;
+  }
+  .review-message {
+    min-height: 10px;
+  }
+  .back-arrow {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top:30px;
+    left: 30px;
+  }
+  
+  .back-arrow svg {
+    width: 24px;
+    height: auto;
+    color: white;
+  }
+  .back-arrow svg:hover {
+    color: #64b883;
+    transform: scale(1.4);
+  }
+
+
+
+}
+

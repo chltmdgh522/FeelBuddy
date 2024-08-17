@@ -11,7 +11,8 @@ from django.http import JsonResponse
 
 @login_required
 def feedback_list(request):
-    feedbacks = Review.objects.all()  # 모든 리뷰 가져오기
+    feedbacks = Review.objects.all().order_by('-created_at')
+    # feedbacks = Review.objects.all()  # 모든 리뷰 가져오기
     first_item = UserCharacter.objects.filter(user=request.user, trash=False).first()
     context = {
         'feedbacks': feedbacks,
