@@ -20,12 +20,12 @@ body {
 
 .supaviews {
   position: relative;
-  max-width: 500px; /* 너비는 그대로 유지 */
+  max-width: 450px; /* 너비는 그대로 유지 */
   margin: 125px auto 50px auto;
   color: #ffffff;
   background-color: #1c1e20;
-  padding: 40px; /* 기존 패딩에서 40px으로 조정하여 섹션을 키움 */
-  min-height: 600px; /* 최소 높이를 설정하여 섹션이 더 커지도록 함 */
+  padding: 30px; /* 기존 패딩에서 40px으로 조정하여 섹션을 키움 */
+  min-height: 400px; /* 최소 높이를 설정하여 섹션이 더 커지도록 함 */
 }
 
 .first-container {
@@ -160,6 +160,7 @@ body {
   color: #ffffff;
   background-color: transparent;
   outline: none;
+  overflow-y: scroll;
 }
 
 .supaview__copy input:focus,
@@ -349,11 +350,31 @@ body {
   cursor: pointer; /* 클릭할 수 있는 커서 모양 */
 }
 .save-icon-container {
-  text-align: center;
-  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .save-icon {
-  font-size: 24px;
+  cursor: pointer; 
+  padding: 10px 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #64b883;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
+  outline: none;
+  transition: 0.2s ease-in-out;
+  margin-top: 15px;
+  text-align: center;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-icon:hover {
+  transform: scale(1.2);
 }

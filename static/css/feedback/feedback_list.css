@@ -547,12 +547,24 @@ body {
   color: #fff;
   display: inline-block; /* 필요한 경우 추가 */
   vertical-align: middle; /* 텍스트와 수평 정렬 */
-  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+  cursor: pointer; 
+  margin-left: 5px;
 }
-.ri-pencil-line {
+
+.delete-icon:hover {
+  color: #64b883;
+  transform: scale(1.2);
+}
+.edit-icon {
   color: #fff;
   vertical-align: middle; /* delete-icon과 동일한 값으로 설정 */
-  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+  cursor: pointer; 
+  margin-left: 5px;
+}
+
+.edit-icon:hover {
+  color: #64b883;
+  transform: scale(1.2);
 }
 
 /* header 네온사인 추가 */
