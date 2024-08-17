@@ -192,15 +192,14 @@
     <!-- <div class="arrow right">&rarr;</div> -->
 
 
-    <section class="room active" id="room1">
 
 
-        <!-- 모바일 반응형에 따른 캐릭터 scene -->
-        <div class="mobile-character-center">
-            <div class="mobile-character-main">
-
-                <!-- wrapper 시작 -->
-                {% for character in user_characters %}
+        <section class="room active" id="room1">
+            <div class="mobile-character-center">
+                <div class="mobile-character-main">
+                    
+                    <!-- wrapper 시작 -->
+                    {% for character in user_characters %}
                     <div class="card">
                         <button class="mobile-button-edit">
                             <a href="{% url 'character:character_detail' character.pk %}"
@@ -243,7 +242,7 @@
         <div class="character-main" id="characterMain">
             {% for character in user_characters %}
 
-                <div class="character-scene">
+                <div class="character-scene" data-character-id="{{ character.id }}">
                     <div class="table1 hidden">
                         <div class="table-top">
                             <div class="top-slider">
@@ -488,7 +487,7 @@
         <div class="character-main" id="characterMain">
             {% for character in user_characters %}
 
-                <div class="character-scene">
+                <div class="character-scene" data-character-id="{{ character.id }}">
                     <div class="table1 hidden">
                         <div class="table-top">
                             <div class="top-slider">
@@ -829,7 +828,7 @@
 
             {% for character in user_characters %}
 
-                <div class="character-scene">
+                <div class="character-scene" data-character-id="{{ character.id }}">
                     <div class="table1 hidden">
                         <div class="table-top">
                             <div class="top-slider">
@@ -1097,7 +1096,7 @@
 
             {% for character in user_characters %}
 
-                <div class="character-scene">
+                <div class="character-scene" data-character-id="{{ character.id }}">
                     <div class="table1 hidden">
                         <div class="table-top">
                             <div class="top-slider">
@@ -1232,11 +1231,8 @@
         </a>
     {% endif %}
     <a href="{% url 'chatbot:emotion' %}" role="menuitem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                    d="M4 4C4 3.44772 4.44772 3 5 3H10C10.5523 3 11 3.44772 11 4L11 16C11 16.5523 10.5523 17 10 17H5C4.44772 17 4 16.5523 4 16L4 4ZM14 7C13.4477 7 13 7.44772 13 8V16C13 16.5523 13.4477 17 14 17H19C19.5523 17 20 16.5523 20 16V8C20 7.44772 19.5523 7 19 7L14 7ZM21 19L3 19V21H21V19Z">
-            </path>
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
+   
         Log
     </a>
     <a href="{% url 'character:trash' %}" role="menuitem">
@@ -1267,6 +1263,32 @@
 <script src="{% static '/js/character/character_list/wall.js' %}"></script>
 <script src="{% static '/js/character/character_list/nav.js' %}"></script>
 
+
+<!-- 캐릭터당 animation 한 번씩만 적용되게 하기 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const characters = document.querySelectorAll('.character-scene');
+
+    characters.forEach(character => {
+        const characterId = character.getAttribute('data-character-id');
+
+        // LocalStorage에서 이 캐릭터의 애니메이션 완료 여부를 확인
+        const isAnimated = localStorage.getItem(`character-${characterId}-animated`);
+
+        if (!isAnimated) {
+            // 애니메이션이 아직 실행되지 않은 경우 애니메이션 적용
+            character.classList.add('new-character');
+
+            // 애니메이션이 끝나면 LocalStorage에 기록
+            character.addEventListener('animationend', function () {
+                localStorage.setItem(`character-${characterId}-animated`, 'true');
+                character.classList.remove('new-character');
+            });
+        }
+    });
+});
+
+</script>
 <!-- 캐릭터 개수에 따라 동적으로 width 설정하는 코드 추가 -->
 <script>
     window.addEventListener('load', function () {

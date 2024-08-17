@@ -158,6 +158,26 @@ body {
   color: #ffffff;
   background-color: transparent;
   outline: none;
+  resize: none;
+}
+/* 스크롤바 스타일 */
+.supaview__copy textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.supaview__copy textarea::-webkit-scrollbar-track {
+  background: #2c2f33;
+  border-radius: 5px;
+}
+
+.supaview__copy textarea::-webkit-scrollbar-thumb {
+  background-color: #7289da;
+  border-radius: 5px;
+  border: 2px solid #2c2f33;
+}
+
+.supaview__copy textarea::-webkit-scrollbar-thumb:hover {
+  background-color: #99aab5;
 }
 
 .supaview__copy input:focus,
@@ -466,7 +486,7 @@ body {
 
 .client-info {
   position: absolute; /* 절대 위치 설정 */
-  bottom: 40px; /* 하단 border로부터 30px 위로 위치 */
+  bottom: 24px; /* 하단 border로부터 30px 위로 위치 */
   left: 50%;
   transform: translateX(-50%); /* 가운데 정렬 */
   z-index: 3;
@@ -475,7 +495,9 @@ body {
   justify-content: center;
   text-align: left;
 }
-
+.client-details {
+  min-width: 150px;
+}
 .client-info a {
   width: 40px;
   height: 40px;
@@ -547,13 +569,28 @@ body {
   color: #fff;
   display: inline-block; /* 필요한 경우 추가 */
   vertical-align: middle; /* 텍스트와 수평 정렬 */
-  cursor: pointer; /* 클릭할 수 있는 커서 모양 */
+  cursor: pointer; 
+  margin-left: 5px;
 }
 
+.delete-icon:hover {
+  color: #64b883;
+  transform: scale(1.2);
+}
+.edit-icon {
+  color: #fff;
+  vertical-align: middle; /* delete-icon과 동일한 값으로 설정 */
+  cursor: pointer; 
+  margin-left: 5px;
+}
 
+.edit-icon:hover {
+  color: #64b883;
+  transform: scale(1.2);
+}
 
 /* header 네온사인 추가 */
-
+/* header 네온사인 추가 */
 #pole{
   border-radius: 1vw 1vw 0 0;    
   position: absolute;
@@ -561,19 +598,20 @@ body {
   top:-160px;
   left: 10vmin;
   height: 5vh; 
-  width: 6vw;
+  width: 5vw;
   transform: translateY(160px);
   min-width: 45px;
-  background-color: #272726;
-  font-size: 1.5em;    
-  display: flex;
+  background-color: #30343f;
+  font-size: 1.5em;  
+  border-right: 3px solid white;
+  border-left: 3px solid white;    
 }
 
 #right{  
   height: 10vh;    
-  transform: translate(-40px, 50px);    
-  width: 20vw; 
-  min-width: 350px; 
+  transform: translate(-5vh, 5vh);    
+  width: 24vw; 
+  min-width: 200px;
   background-color: rgb(14, 13, 13); 
   display: flex;
   align-items: center;
@@ -581,75 +619,53 @@ body {
   color: white;    
   border-radius: 10px 50px 50px 10px;
   border: 3px outset white;
-  font-family: 'Exo 2', sans-serif;
-  display: flex;
-
 }
 
-
-
-
-/*네온사인 추가*/
-
-
-
+/* 네온사인 추가 */
 #right {
-  /* background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat; */
-  background-size:cover;
-  margin:0
+  background-size: cover;
+  margin: 0;
 }
-.logo {
 
+.logo {
   text-align: center;
-  width: 50px;
-  height: 100px;
+  width: 100%;
+  height: 10vh;
   margin: auto;
   position: relative;
-  /* top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; */
-   user-select: none;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo b{
   position: relative;
-  /* font: 400 5vh "Vibur"; */
-
-  /* font-family: "Bungee Tint", sans-serif;
-  font-weight: 400;
-  font-style: normal; */
-  /* font-family: "New Amsterdam", sans-serif;
-  font-weight: 400;
-  font-style: normal; */
   font-family: "Black Ops One", system-ui;
   font-weight: 400;
   font-style: normal;
   font-size: 5vh;
-  margin-bottom: 10px;
   color: #fee;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #e9d16d, 0 0 0.5em #d5c99c, 0 0 0.1em #ff4444, 0 10px 3px #000;
-  /* text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000; */
-}
+  }
+
 .logo b span{
   animation: blink linear infinite 2s;
 }
+
 .logo b span:nth-of-type(2){
   animation: blink linear infinite 3s;
 }
+
 @keyframes blink {
   78% {
     color: inherit;
     text-shadow: inherit;
   }
-  79%{
-     color: #333;
+  79% {
+    color: #333;
   }
   80% {
-    
     text-shadow: none;
   }
   81% {
@@ -674,6 +690,16 @@ body {
   }
 }
 
+@media screen and (max-width:1200px) {
+  .logo b {
+    font-size: 3.5vh;
+  }
+
+  #right, .logo {
+    height: 8vh;
+  }
+  
+}
 
 
 
@@ -834,7 +860,7 @@ body {
   padding: 10px;
   background-color: #2c3e50;
   color: white;
-  height: 58px;
+  height: 38px;
 }
 
 .header-feedback svg, .header-logout svg {
@@ -894,7 +920,9 @@ body {
     min-height:150px;
   }
   .review-message {
-    min-height: 40px;
+    min-height: 10px;
+    height: 10px;
+    
   }
   
 

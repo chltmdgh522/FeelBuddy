@@ -186,8 +186,8 @@ ul, li {
 
     #game-and-watch-left {
     float:left;
-    margin-right:10px;
-    margin-left:20px;
+    margin-right:15px;
+    margin-left:15px;
     }
 
     #game-and-watch-screen {
@@ -233,7 +233,8 @@ ul, li {
     /* background: #d8bbc8;; */
     /* background: #e1dedf; */
     /* background: #f9dae4; */
-    background: #e4d7db;
+    /* background: #e4d7db; */
+    background: #f2f2f2;
 
 
     padding:1px 5px 5px 5px;
@@ -250,7 +251,8 @@ ul, li {
     #game-and-watch-screen-top {
     /* border-top:10px solid #777; */
     /* border-top:10px solid  #c9b9c1; */
-    border-top:10px solid  #e3c9d6;
+    /* border-top:10px solid  #e3c9d6; */
+    border-top: 10px solid rgb(241 223 223);
     
 
     border-left:7px solid transparent;
@@ -266,7 +268,8 @@ ul, li {
 
     #game-and-watch-screen-bottom {
     /* border-bottom:10px solid #222; */
-    border-bottom:10px solid #ae92a0;
+    /* border-bottom:10px solid #ae92a0; */
+    border-bottom: 10px solid #caafaf;
     border-left:7px solid transparent;
     border-right:7px solid transparent;
     height: 0;
@@ -408,18 +411,20 @@ ul, li {
     #game-and-watch-badge {
     width:62px;
     height:40px;
-    padding:6px 10px 10px;
+    padding:0;
     line-height:1em;
     font-size:1em;
     color:#222;
     font-style:italic;
     font-weight:bold;
-    margin-top:25px;
+    margin-top:30px;
     margin-bottom:50px;
 
     -webkit-border-radius:6px;
     -moz-border-radius:6px;
     border-radius:6px;
+
+
     }
 
     #game-and-watch-leftbutton {
@@ -522,13 +527,21 @@ background: linear-gradient(to bottom, rgba(169, 145, 155, 1) 0%, rgba(134, 109,
  background: linear-gradient(to bottom, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%);
   */
 
-  background: #e16785;
+  background: #e15b75;
+  background: -moz-linear-gradient(top, #e96f92 0%, #b0445b 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#b0445b));
+  background: -webkit-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+  background: -o-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+  background: -ms-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+  background: linear-gradient(to bottom, #e96f92 0%,#b0445b 100%);
+
+  /* background: #e16785;
 background: -moz-linear-gradient(top, #e96f92 0%, #c85571 100%);
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#c85571));
 background: -webkit-linear-gradient(top, #e96f92 0%,#c85571 100%);
 background: -o-linear-gradient(top, #e96f92 0%,#c85571 100%);
 background: -ms-linear-gradient(top, #e96f92 0%,#c85571 100%);
-background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%); */
  
  
  
@@ -623,14 +636,21 @@ background: -o-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1
 background: -ms-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%);
 background: linear-gradient(to bottom, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%);
     */
-
-    background: #e16785;
+    background: #e15b75;
+background: -moz-linear-gradient(top, #e96f92 0%, #b0445b 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#b0445b));
+background: -webkit-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -o-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -ms-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#b0445b 100%);
+    
+    /* background: #e16785;
     background: -moz-linear-gradient(top, #e96f92 0%, #c85571 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#c85571));
     background: -webkit-linear-gradient(top, #e96f92 0%,#c85571 100%);
     background: -o-linear-gradient(top, #e96f92 0%,#c85571 100%);
     background: -ms-linear-gradient(top, #e96f92 0%,#c85571 100%);
-    background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%);
+    background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%); */
      
 
 
@@ -694,15 +714,22 @@ background: -webkit-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 
 background: -o-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%);
 background: -ms-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%);
 background: linear-gradient(to bottom, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%); */
+background: #e15b75;
+background: -moz-linear-gradient(top, #e96f92 0%, #b0445b 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#b0445b));
+background: -webkit-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -o-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -ms-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#b0445b 100%);
 
 
-background: #e16785;
+/* 이전버튼background: #e16785;
 background: -moz-linear-gradient(top, #e96f92 0%, #c85571 100%);
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#c85571));
 background: -webkit-linear-gradient(top, #e96f92 0%,#c85571 100%);
 background: -o-linear-gradient(top, #e96f92 0%,#c85571 100%);
 background: -ms-linear-gradient(top, #e96f92 0%,#c85571 100%);
-background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%); */
  
 
 float:left;
@@ -764,14 +791,21 @@ background: -o-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1
 background: -ms-linear-gradient(top, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%);
 background: linear-gradient(to bottom, rgba(184, 72, 89, 1) 0%, rgba(160, 62, 79, 1) 100%); */
 
+background: #e15b75;
+background: -moz-linear-gradient(top, #e96f92 0%, #b0445b 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#b0445b));
+background: -webkit-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -o-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -ms-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#b0445b 100%);
 
-background: #e16785;
+/* 이전버튼background: #e16785;
 background: -moz-linear-gradient(top, #e96f92 0%, #c85571 100%);
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#c85571));
 background: -webkit-linear-gradient(top, #e96f92 0%,#c85571 100%);
 background: -o-linear-gradient(top, #e96f92 0%,#c85571 100%);
 background: -ms-linear-gradient(top, #e96f92 0%,#c85571 100%);
-background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#c85571 100%); */
  
 float:right;
     margin-top:-62px;
@@ -835,6 +869,23 @@ background: -webkit-linear-gradient(top, #e96f92 0%,#b0445b 100%);
 background: -o-linear-gradient(top, #e96f92 0%,#b0445b 100%);
 background: -ms-linear-gradient(top, #e96f92 0%,#b0445b 100%);
 background: linear-gradient(to bottom, #e96f92 0%,#b0445b 100%);
+
+      /* 살구background: #eab0a1;
+      background: -moz-linear-gradient(top, #FFD2C6 0%, #FF947B 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD2C6), color-stop(100%, #FF947B));
+      background: -webkit-linear-gradient(top, #FFD2C6 0%, #FF947B 100%);
+      background: -o-linear-gradient(top, #FFD2C6 0%, #FF947B 100%);
+      background: -ms-linear-gradient(top, #FFD2C6 0%, #FF947B 100%);
+      background: linear-gradient(to bottom, #FFD2C6 0%, #FF947B 100%); */
+      
+
+    /* 이전버튼  background: #e15b75;
+background: -moz-linear-gradient(top, #e96f92 0%, #b0445b 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e96f92), color-stop(100%,#b0445b));
+background: -webkit-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -o-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: -ms-linear-gradient(top, #e96f92 0%,#b0445b 100%);
+background: linear-gradient(to bottom, #e96f92 0%,#b0445b 100%); */
 
     /* 버건디 버튼 색 */
     /* background: rgb(160, 62, 79);
@@ -1047,6 +1098,8 @@ background: -ms-linear-gradient(top, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59, 
     /* background: #efe7d2; */
     /* background: #f1dfe7; */
     background: #fbc1d2;
+    /* background: #F2E9E4; */
+    /* background: #f4dcd7; */
     margin-bottom:5px;
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
@@ -1135,7 +1188,8 @@ background: -ms-linear-gradient(top, rgba(164, 52, 69, 1) 0%, rgba(140, 42, 59, 
     /* background: #ded3db; */
     /* background: #eeeeee; */
     /* background: #FFF2E9; */
-    background: #fff2fb;
+    /* background: #fff2fb; */
+    background: white;
 
 
 
