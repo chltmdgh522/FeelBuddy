@@ -1260,7 +1260,7 @@ body {
     height: 26px;
     color: white;
   }
-
+  
   .chat-header .header-left {
 
     margin-left: 1rem;
@@ -1277,7 +1277,7 @@ body {
   .chat-header span p {
     font-size: 1.2rem;
   }
-
+  
   .chat-header .header-right {
     margin-right: 1rem;
 
@@ -1370,7 +1370,7 @@ body {
     text-transform: none;
 
   }
-
+  
   .mobile-profile-container {
     display: flex;
     height: 100vh;
@@ -1385,11 +1385,11 @@ body {
     animation: card-ani 1s;
     transition-delay: 1s;
     transition-timing-function: easeOutCirc;
-    position: relative;
-
+    position: relative; 
+    
   }
   .mobile-card .front {
-      display: flex;
+      display: flex; 
       flex-direction: column;
       justify-content: center;
       text-align: center;
@@ -1409,11 +1409,11 @@ body {
         width: 100%;
         background: rgb(255, 231, 252);
         border-radius: 0 0 10px 10px;
-        text-align: center;
+        text-align: center; 
       }
   .mobile-card .front .bottom .info {
           vertical-align: middle;
-          text-align: center;
+          text-align: center; 
         }
           .mobile-card .front .bottom .name {
           padding: 45px 0px 0px 0px;
@@ -1437,15 +1437,15 @@ body {
         border-radius: 100%;
           }
 
-
-
+      
+  
   .mobile-container #background {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%; }
-
+    
     .profile-email {
       height: 300px;
     }
@@ -1463,8 +1463,8 @@ body {
       padding: 20px 0;
     }
 
-
-
+    
+    
     .chat-header {
       position: fixed;
       width: 100%;
@@ -1485,7 +1485,7 @@ body {
       height: 26px;
       color: white;
     }
-
+    
     .chat-header .header-left {
 
       margin-left: 1rem;
@@ -1502,7 +1502,7 @@ body {
     .chat-header span p {
       font-size: 1.2rem;
     }
-
+    
     .chat-header .header-right {
       margin-right: 1rem;
 
@@ -1517,7 +1517,7 @@ body {
   left: 50%;
   width: 2px;
   height: 2px;
-  box-shadow:
+  box-shadow: 
     1447px 402px hsl(90, 0%, 81%),
     1121px 186px hsl(90, 0%, 88%),
     -1256px -426px hsl(90, 0%, 83%),
@@ -1565,7 +1565,7 @@ body {
   }
   to {
     opacity: 1;
-  }
+  }  
 }
 
 @keyframes fade2 {
@@ -1574,5 +1574,5 @@ body {
   }
   to {
     opacity: .5;
-  }
+  }  
 }

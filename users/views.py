@@ -50,8 +50,7 @@ def signup(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        #name = request.POST.get('name')
-        print("gsdgafsdfasdfasdf")
+        name = request.POST.get('name')
         # 사용자 존재 여부 확인
         if User.objects.filter(username=username).exists():
             return render(request, 'user/signup.html', {'error': '이미 사용 중인 사용자 이름입니다.'})
@@ -62,6 +61,7 @@ def signup(request):
             user = User.objects.create(
                 username=username,
                 email=email,
+                name=name,
             )
             user.set_password(password)  # 비밀번호 해시화
             user.save()

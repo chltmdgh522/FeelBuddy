@@ -1016,7 +1016,7 @@ outline: none;
   align-items: center;
   overflow-y: auto;
   flex-direction: row;
-  padding: 20px 5px 0 20px;
+  padding: 10px 5px 10px 20px;
   width: 100%;  /* Ensures the input container takes up the full width of the chat */
   flex-direction: row;
   transition: width 0.3s ease;  /* Smooth transition when resizing */
