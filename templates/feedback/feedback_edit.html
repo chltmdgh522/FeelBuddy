@@ -58,10 +58,16 @@
             <!-- 별점 표시 부분 -->
             <fieldset class="supaview__rating">
               {% for i in "54321" %}
-              <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}" {% if review.rate == i %}checked{% endif %} />
+              <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}" {% if review.rate|stringformat:"i" == i %}checked{% endif %} />
               <label for="star{{ i }}"></label>
               {% endfor %}
             </fieldset>
+            <!-- <fieldset class="supaview__rating">
+              {% for i in "54321" %}
+              <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}" {% if review.rate == i %}checked{% endif %} />
+              <label for="star{{ i }}"></label>
+              {% endfor %}
+            </fieldset> -->
 
               <!-- 리뷰메시지 부분 -->
               <div class="supaview__copy">
