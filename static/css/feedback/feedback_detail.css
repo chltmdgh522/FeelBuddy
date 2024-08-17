@@ -1,6 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=Single+Day&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bungee+Tint&family=Edu+VIC+WA+NT+Beginner:wght@400..700&family=New+Amsterdam&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Concert+One&family=Gugi&family=Jua&display=swap');
+
+
 * {
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
 }
 
 body {
@@ -459,8 +469,9 @@ body {
   align-items: center;
   padding: 10px;
   background-color: #2c3e50;
+  font-family: "Concert One", sans-serif;
   color: white;
-  height: 58px;
+  height: 38px;
 }
 
 .header-feedback svg, .header-logout svg {
@@ -479,6 +490,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: "Concert One", sans-serif;
+  /* font-family: "Jua", sans-serif; */
   font-weight: 400;
   font-style: normal;
 }
@@ -490,6 +502,15 @@ body {
   margin-right: 20px;
 
 }
+
+.chat-header .header-left svg {
+  width: 24px;
+  height: auto;
+  color: white;
+
+}
+
+
 
 
 }
@@ -520,9 +541,26 @@ body {
     min-height:150px;
   }
   .review-message {
-    min-height: 40px;
+    min-height: 10px;
+  }
+  .back-arrow {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top:30px;
+    left: 30px;
   }
   
+  .back-arrow svg {
+    width: 24px;
+    height: auto;
+    color: white;
+  }
+  .back-arrow svg:hover {
+    color: #64b883;
+    transform: scale(1.4);
+  }
 
 
 
