@@ -1,159 +1,78 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>FeelBuddy</title>
-    <link rel="icon" href="/media/joy.png" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="{% static '/css/feedback/feedback_edit.css' %}"
-    />
+    <link rel="icon" href="/media/joy.png" type="image/png"/>
+    <link rel="stylesheet" href="{% static '/css/feedback/feedback_edit.css' %}"/>
     <!-- Font Awesome CDN for star icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/static/css/chatbot/nav.css">
-  </head>
+</head>
 
-  <body>
-    <header class="chat-header" id="header">
-      <div class="header-left">
-        <a href="{% url 'feedback:feedback_list' %}">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
-        </a>
-      </div>
-      <span><p>Feel Buddy</p></span>
-      <div class="header-right">
-        <a class="header-logout logout-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path></svg>
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
-        </a>
-      </div>
-    
-    </header>
-    <nav class="mobile-footer" role="menulist">
-      <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                  d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-              </path>
-          </svg>
-          Home
-      </a>
-      {% if first_item %}
-      <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
-
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                  d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
-              </path>
-          </svg>
-          Chat
-      </a>
-      {% endif %}
-      <a href="{% url 'chatbot:emotion' %}" role="menuitem" >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
-   
-          Log
-      </a>
-      <a href="{% url 'character:trash' %}" role="menuitem">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                  d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
-              </path>
-          </svg>
-          Trash
-      </a>
-      <a href="{% url 'users:profile' %}" role="menuitem">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                  d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
-              </path>
-          </svg>
-          Profile
-      </a>
-      <i class="line" id="nav-current">current item</i>
-  </nav>
-    <div class="back-arrow">
-      <a href="{% url 'feedback:feedback_list' %}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
-      </a>
-    </div>
-    <div class="first-container">
-      <div class="supaviews">
-        <img class="supaviews__logo" src="/media/joy.png" />
+<body>
+<header class="chat-header" id="header">
+    <!-- Header Content -->
+</header>
+<nav class="mobile-footer" role="menulist">
+    <!-- Navigation Content -->
+</nav>
+<div class="first-container">
+    <div class="supaviews">
+        <img class="supaviews__logo" src="/media/joy.png"/>
         <div class="supaviews__gradient"></div>
         <div class="supaviews__add">
-          <div class="supaview">
-            <!-- 작성자 정보 -->
-            <div class="client-info">
-              <div class="client-video">
-                <a href="#">
-                  {% if review.user.profile.profile_picture %}
-                  <img
-                    src="{{ review.user.profile.profile_picture.url }}"
-                    alt=""
-                  />
-                  {% else %}
-                  <img src="/media/joy.png" alt="Default Profile Picture" />
-                  {% endif %}
-                </a>
-              </div>
-              <div class="client-details">
-                <h6>{{ review.user.profile.nickname }}</h6>
-                <span>{{ review.created_at|date:"Y-m-d H:i" }}</span>
-              </div>
-            </div>
+            <div class="supaview">
+                <!-- 작성자 정보 -->
+                <div class="client-info">
+                    <!-- Client Info Content -->
+                </div>
 
-            <!-- 폼 시작 -->
-            <form
-              id="reviewForm"
-              method="POST"
-              action="{% url 'feedback:feedback_edit' review.pk %}"
-            >
-            {% csrf_token %}
-            <!-- 별점 표시 부분 -->
-            <fieldset class="supaview__rating">
-              {% for i in "54321" %}
-              <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}" {% if review.rate|stringformat:"i" == i %}checked{% endif %} />
-              <label for="star{{ i }}"></label>
-              {% endfor %}
-            </fieldset>
-            <!-- <fieldset class="supaview__rating">
-              {% for i in "54321" %}
-              <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}" {% if review.rate == i %}checked{% endif %} />
-              <label for="star{{ i }}"></label>
-              {% endfor %}
-            </fieldset> -->
-
-              <!-- 리뷰메시지 부분 -->
-              <div class="supaview__copy">
-                <textarea name="message" placeholder="Message" rows="10">
-{{ review.message }}</textarea
+                <!-- 폼 시작 -->
+                <form
+                    id="reviewForm"
+                    method="POST"
+                    action="{% url 'feedback:feedback_edit' review.pk %}"
+                    onsubmit="return validateForm()"
                 >
-              </div>
+                    {% csrf_token %}
+                    <!-- 별점 표시 부분 -->
+                    <fieldset class="supaview__rating">
+                        {% for i in "54321" %}
+                        <input type="radio" id="star{{ i }}" name="rate" value="{{ i }}"
+                               {% if review.rate|stringformat:"i" == i %}checked{% endif %}/>
+                        <label for="star{{ i }}"></label>
+                        {% endfor %}
+                    </fieldset>
 
-              <!-- 저장 아이콘 -->
-              <div class="save-icon-container">
-                <i
-                  class="ri-save-3-line save-icon"
-                  onclick="document.getElementById('reviewForm').submit();"
-                >&nbsp;&nbsp;Save</i>
-              </div>
-            </form>
-            <!-- 폼 끝 -->
-          </div>
+                    <!-- 리뷰 메시지 부분 -->
+                    <div class="supaview__copy">
+                        <textarea name="message" placeholder="Message" rows="10" required>{{ review.message }}</textarea>
+                    </div>
+
+                    <!-- 저장 버튼 -->
+                    <button type="submit" class="supaview__submit">
+                        Save
+                    </button>
+                </form>
+                <!-- 폼 끝 -->
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </body>
+<script>
+function validateForm() {
+    const message = document.querySelector('textarea[name="message"]').value.trim();
+    if (!message) {
+        alert("Please enter a message.");
+        return false; // 폼 제출을 막음
+    }
+    return true; // 폼 제출을 진행함
+}
+</script>
+</body>
 </html>

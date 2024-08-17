@@ -1,112 +1,118 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>FeelBuddy</title>
-    <link rel="icon" href="/media/joy.png" type="image/png" />
+    <link rel="icon" href="/media/joy.png" type="image/png"/>
     <link
-      rel="stylesheet"
-      href="{% static '/css/feedback/feedback_list.css' %}"
+            rel="stylesheet"
+            href="{% static '/css/feedback/feedback_list.css' %}"
     />
     <!-- Font Awesome CDN for star icons -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
 
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
     />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
-      rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+            rel="stylesheet"
     />
     <link rel="stylesheet" href="/static/css/chatbot/icon.css">
     <link rel="stylesheet" href="/static/css/chatbot/nav.css">
 
-  </head>
+</head>
 
-  <body>
-
-
-    <header class="chat-header" id="header">
-      <div class="header-left">
-        <a href="{% url 'feedback:feedback_list' %}"  class="header-feedback">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path></svg>
-        </a>
-      </div>
-      <span><p>Feel Buddy</p></span>
-      <div class="header-right">
-        <a class="header-logout logout-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path></svg>
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
-        </a>
-      </div>
-    
-    </header>
+<body>
 
 
-     <!-- 네온사인 표지판 추가 -->
-     <div id="pole">
-      <div id="right">
-          <div class="logo">
-              <b>FE<span>E</span>DB<span>A</span>CK</b>
-          </div>
-      </div>
-    </div>
-    <!-- 네온사인 표지판 추가 끝 -->
-
-        <!-- 모바일 반응형-footer 시작 -->
-   <nav class="mobile-footer" role="menulist">
-        <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
+<header class="chat-header" id="header">
+    <div class="header-left">
+        <a href="{% url 'feedback:feedback_list' %}" class="header-feedback">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-                </path>
+                <path d="M21.9024 10.5976C21.4442 10.5333 20.976 10.5 20.5 10.5C17.2404 10.5 14.3455 12.0604 12.5212 14.471C12.3501 14.4887 12.1763 14.4978 12 14.4978C10.7188 14.4978 9.55217 14.0172 8.66691 13.2248L7.33309 14.7151C8.41871 15.6868 9.81141 16.3253 11.3466 16.4676C10.8023 17.7016 10.5 19.0662 10.5 20.5C10.5 20.976 10.5333 21.4442 10.5976 21.9024C5.7387 21.2205 2 17.0469 2 12C2 6.47715 6.47715 2 12 2C17.0469 2 21.2205 5.7387 21.9024 10.5976ZM21.8707 12.617C21.4254 12.5401 20.9674 12.5 20.5 12.5C17.7656 12.5 15.3512 13.8709 13.9068 15.9675C13.0194 17.2556 12.5 18.8156 12.5 20.5C12.5 20.9674 12.5401 21.4254 12.617 21.8707L21.8707 12.617ZM8.5 11.5C9.32843 11.5 10 10.8284 10 10C10 9.17157 9.32843 8.5 8.5 8.5C7.67157 8.5 7 9.17157 7 10C7 10.8284 7.67157 11.5 8.5 11.5ZM15.5 11.5C16.3284 11.5 17 10.8284 17 10C17 9.17157 16.3284 8.5 15.5 8.5C14.6716 8.5 14 9.17157 14 10C14 10.8284 14.6716 11.5 15.5 11.5Z"></path>
             </svg>
-            Home
         </a>
-        {% if first_item %}
+    </div>
+    <span><p>Feel Buddy</p></span>
+    <div class="header-right">
+        <a class="header-logout logout-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"></path>
+            </svg>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg> -->
+        </a>
+    </div>
+
+</header>
+
+
+<!-- 네온사인 표지판 추가 -->
+<div id="pole">
+    <div id="right">
+        <div class="logo">
+            <b>FE<span>E</span>DB<span>A</span>CK</b>
+        </div>
+    </div>
+</div>
+<!-- 네온사인 표지판 추가 끝 -->
+
+<!-- 모바일 반응형-footer 시작 -->
+<nav class="mobile-footer" role="menulist">
+    <a href="{% url 'character:character_list' %}" role="menuitem" aria-describedby="nav-current">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+            </path>
+        </svg>
+        Home
+    </a>
+    {% if first_item %}
         <a href="{% url 'chatbot:chatbot_content_list' first_item.pk %}">
 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path
-                    d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
+                        d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3Z">
                 </path>
             </svg>
             Chat
         </a>
-        {% endif %}
-        <a href="{% url 'chatbot:emotion' %}" role="menuitem" >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path></svg>
-     
-            Log
-        </a>
-        <a href="{% url 'character:trash' %}" role="menuitem">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
+    {% endif %}
+    <a href="{% url 'chatbot:emotion' %}" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2 13H8V21H2V13ZM9 3H15V21H9V3ZM16 8H22V21H16V8Z"></path>
+        </svg>
+
+        Log
+    </a>
+    <a href="{% url 'character:trash' %}" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
                     d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z">
-                </path>
-            </svg>
-            Trash
-        </a>
-        <a href="{% url 'users:profile' %}" role="menuitem">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path
+            </path>
+        </svg>
+        Trash
+    </a>
+    <a href="{% url 'users:profile' %}" role="menuitem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
                     d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z">
-                </path>
-            </svg>
-            Profile
-        </a>
-        <i class="line" id="nav-current">current item</i>
-    </nav>
+            </path>
+        </svg>
+        Profile
+    </a>
+    <i class="line" id="nav-current">current item</i>
+</nav>
 <div class="icon">
     <a href="{% url 'character:character_list' %}">
         <div class="icon__home">
@@ -178,280 +184,301 @@
 
 </div>
 
-    <div class="first-container">
-     
-      <div class="supaviews">
-        <img class="supaviews__logo" src="/media/joy.png" />
+<div class="first-container">
+
+    <div class="supaviews">
+        <img class="supaviews__logo" src="/media/joy.png"/>
         <!-- <div class="supaviews__gradient"></div> -->
         <div class="supaviews__add">
-          <div class="supaview">
-            <h1 class="supaview__title">Add a new review</h1>
-            <form
-              id="review"
-              method="POST"
-              action="{% url 'feedback:feedback_create' %}"
-            >
-              {% csrf_token %}
-              <fieldset class="supaview__rating">
-                <input type="radio" id="star5" name="rate" value="5" /><label
-                  for="star5"
-                ></label>
-                <input type="radio" id="star4" name="rate" value="4" /><label
-                  for="star4"
-                ></label>
-                <input type="radio" id="star3" name="rate" value="3" /><label
-                  for="star3"
-                ></label>
-                <input type="radio" id="star2" name="rate" value="2" /><label
-                  for="star2"
-                ></label>
-                <input type="radio" id="star1" name="rate" value="1" /><label
-                  for="star1"
-                ></label>
-              </fieldset>
-              <div class="supaview__copy">
-                <!-- <p>{{ user.profile.nickname }}</p> -->
-                <!-- 사용자 이름 표시 -->
-                <textarea
-                  name="message"
-                  placeholder="Message"
-                  rows="10"
-                ></textarea>
-              </div>
-              <button type="submit" class="supaview__submit">
-                Submit review
-              </button>
-            </form>
-          </div>
+            <div class="supaview">
+                <h1 class="supaview__title">Add a new review</h1>
+                <form
+                        id="review"
+                        method="POST"
+                        action="{% url 'feedback:feedback_create' %}"
+
+                        onsubmit="return validateForm()"
+                >
+                    {% csrf_token %}
+                    <fieldset class="supaview__rating">
+                        <input type="radio" id="star5" name="rate" value="5"/><label
+                            for="star5"
+                    ></label>
+                        <input type="radio" id="star4" name="rate" value="4"/><label
+                            for="star4"
+                    ></label>
+                        <input type="radio" id="star3" name="rate" value="3"/><label
+                            for="star3"
+                    ></label>
+                        <input type="radio" id="star2" name="rate" value="2"/><label
+                            for="star2"
+                    ></label>
+                        <input type="radio" id="star1" name="rate" value="1"/><label
+                            for="star1"
+                    ></label>
+                    </fieldset>
+                    <div class="supaview__copy">
+                        <!-- <p>{{ user.profile.nickname }}</p> -->
+                        <!-- 사용자 이름 표시 -->
+                        <textarea
+                                name="message"
+                                placeholder="Message"
+                                rows="10"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="supaview__submit">
+                        Submit review
+                    </button>
+                </form>
+            </div>
         </div>
         <div class="supaviews__list">
-          <div class="supaview">▼&nbsp;&nbsp;  리뷰 둘러보기&nbsp;&nbsp;   ▼</div>
+            <div class="supaview">▼&nbsp;&nbsp; 리뷰 둘러보기&nbsp;&nbsp; ▼</div>
         </div>
-      </div>
-
-      <section class="testimonial-area">
-        <div class="container">
-          <div class="sec-title white-title">
-            <h2>Review</h2>
-            <p>Thank you for your feedback.</p>
-          </div>
-          <div class="testimonial-content owl-carousel">
-            {% for review in feedbacks %}
-
-            <div class="single-testimonial">
-              <!-- 별점 표시 부분 -->
-              <div class="supaview__stars">
-                {% for i in "12345" %}
-                <i
-                  class="fas fa-star {% if forloop.counter <= review.rate %}filled{% else %}empty{% endif %}"
-                ></i>
-                {% endfor %}
-              </div>
-
-              <!-- 리뷰 메시지 표시 -->
-              <div
-                class="review-message-container"
-                onclick="location.href='{% url 'feedback:feedback_detail' review.pk %}'"
-              >
-                <p class="review-message" data-review-id="{{ review.pk }}">
-                  {{ review.message }}
-                </p>
-              </div>
-
-              <div class="client-info">
-                <div class="client-video">
-                  <a href="#">
-                    {% if review.user.profile.profile_picture %}
-                    <img
-                      src="{{ review.user.profile.profile_picture.url }}"
-                      alt=""
-                    />
-                    {% else %}
-                    <img src="/media/joy.png" alt="Default Profile Picture" />
-                    {% endif %}
-                  </a>
-                </div>
-                <div class="client-details">
-                  <h6>{{ review.user.profile.nickname }}</h6>
-                  <span>{{ review.created_at|date:"Y-m-d H:i" }}</span>
-                  <!-- 사용자가 작성한 리뷰에만 삭제 아이콘 표시 -->
-                  {% if review.user == request.user %}
-                  <i
-                    class="ri-delete-bin-line delete-icon"
-                    onclick="deleteReview({{ review.pk }})"
-                  ></i>
-                  <i
-                    class="ri-pencil-line edit-icon"
-                    onclick="location.href='{% url 'feedback:feedback_edit' review.pk %}'"
-                  ></i>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <!-- <script>
-     $(document).ready(function () {
-  $(".testimonial-content").owlCarousel({
-    loop: true,
-    margin: 20, // 항목 사이의 간격
-    dots: true,
-    nav: false,
-    autoplay: false,
-    autoplayTimeout: 4000,
-    smartSpeed: 800,
-    items: 4, // 한 줄에 4개의 항목을 표시하여 2x2 배열을 만듦
-    responsive: {
-      0: {
-        items: 1, // 작은 화면에서는 한 줄에 하나
-      },
-      768: {
-        items: 2, // 중간 화면에서는 한 줄에 두 개
-      },
-      992: {
-        items: 4, // 큰 화면에서는 한 줄에 4개 (2x2 배열)
-      }
-    }
-  });
+    <section class="testimonial-area">
+        <div class="container">
+            <div class="sec-title white-title">
+                <h2>Review</h2>
+                <p>Thank you for your feedback.</p>
+            </div>
+            <div class="testimonial-content owl-carousel">
+                {% for review in feedbacks %}
+
+                    <div class="single-testimonial">
+                        <!-- 별점 표시 부분 -->
+                        <div class="supaview__stars">
+                            {% for i in "12345" %}
+                                <i
+                                        class="fas fa-star {% if forloop.counter <= review.rate %}filled{% else %}empty{% endif %}"
+                                ></i>
+                            {% endfor %}
+                        </div>
+
+                        <!-- 리뷰 메시지 표시 -->
+                        <div
+                                class="review-message-container"
+                                onclick="location.href='{% url 'feedback:feedback_detail' review.pk %}'"
+                        >
+                            <p class="review-message" data-review-id="{{ review.pk }}">
+                                {{ review.message }}
+                            </p>
+                        </div>
+
+                        <div class="client-info">
+                            <div class="client-video">
+                                <a href="#">
+                                    {% if review.user.profile.profile_picture %}
+                                        <img
+                                                src="{{ review.user.profile.profile_picture.url }}"
+                                                alt=""
+                                        />
+                                    {% else %}
+                                        <img src="/media/joy.png" alt="Default Profile Picture"/>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="client-details">
+                                <h6>{{ review.user.profile.nickname }}</h6>
+                                <span>{{ review.created_at|date:"Y-m-d H:i" }}</span>
+                                <!-- 사용자가 작성한 리뷰에만 삭제 아이콘 표시 -->
+                                {% if review.user == request.user %}
+                                    <i
+                                            class="ri-delete-bin-line delete-icon"
+                                            onclick="deleteReview({{ review.pk }})"
+                                    ></i>
+                                    <i
+                                            class="ri-pencil-line edit-icon"
+                                            onclick="location.href='{% url 'feedback:feedback_edit' review.pk %}'"
+                                    ></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function validateForm() {
+  // 별점 선택 여부 확인
+  const rate = document.querySelector('input[name="rate"]:checked');
+  // 메시지 입력 여부 확인
+  const message = document.querySelector('textarea[name="message"]').value.trim();
+
+  if (!rate) {
+    alert("별점을 채워주세요!");
+    return false;
+  }
+
+  if (!message) {
+    alert("리뷰를 입력해주세요!");
+    return false;
+  }
+
+  return true; // 폼 제출을 진행함
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- <script>
+ $(document).ready(function () {
+$(".testimonial-content").owlCarousel({
+loop: true,
+margin: 20, // 항목 사이의 간격
+dots: true,
+nav: false,
+autoplay: false,
+autoplayTimeout: 4000,
+smartSpeed: 800,
+items: 4, // 한 줄에 4개의 항목을 표시하여 2x2 배열을 만듦
+responsive: {
+  0: {
+    items: 1, // 작은 화면에서는 한 줄에 하나
+  },
+  768: {
+    items: 2, // 중간 화면에서는 한 줄에 두 개
+  },
+  992: {
+    items: 4, // 큰 화면에서는 한 줄에 4개 (2x2 배열)
+  }
+}
 });
-    </script> -->
-    <script>
-      function deleteReview(reviewId) {
+});
+</script> -->
+<script>
+    function deleteReview(reviewId) {
         if (confirm("이 리뷰를 삭제하시겠습니까?")) {
-          fetch(`/community/delete/${reviewId}/`, {
-            method: "POST",
-            headers: {
-              "X-CSRFToken": "{{ csrf_token }}",
-            },
-          }).then((response) => {
-            if (response.ok) {
-              window.location.reload(); // 페이지를 리로드하여 변경 사항을 반영
-            } else {
-              alert("Failed to delete the review.");
-            }
-          });
+            fetch(`/community/delete/${reviewId}/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+            }).then((response) => {
+                if (response.ok) {
+                    window.location.reload(); // 페이지를 리로드하여 변경 사항을 반영
+                } else {
+                    alert("Failed to delete the review.");
+                }
+            });
         }
-      }
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
         var reviewMessages = document.querySelectorAll(".review-message");
 
         reviewMessages.forEach(function (message) {
-          var fullText = message.textContent.trim();
-          var maxLength = 100; // 최대 글자 수 설정
-          var truncatedText = fullText.slice(0, maxLength);
+            var fullText = message.textContent.trim();
+            var maxLength = 100; // 최대 글자 수 설정
+            var truncatedText = fullText.slice(0, maxLength);
 
-          if (fullText.length > maxLength) {
-            message.textContent = truncatedText + "...";
-          } else {
-            message.textContent = fullText;
-          }
-        });
-      });
-    </script>
-     <!-- <script>
-      $(document).ready(function () {
-        $(".testimonial-content").owlCarousel({
-          loop: true,
-          items: 2,
-          margin: 50,
-          dots: true,
-          nav: false,
-          mouseDrag: true,
-          autoplay: false,
-          autoplayTimeout: 4000,
-          smartSpeed: 800,
-        });
-      });
-    </script>  -->
-    <script>
-      $(document).ready(function () {
-  var owl = $(".testimonial-content");
-
-  // 기본 Owl Carousel 설정
-  owl.owlCarousel({
-    loop: true,
-    margin: 30,
-    dots: true,
-    nav: false,
-    autoplay: false,
-    autoplayTimeout: 4000,
-    smartSpeed: 800,
-    items: 2, // 한 번에 두 개의 항목을 표시
-    responsive: {
-      0: {
-        items: 1, // 작은 화면에서는 한 줄에 하나
-      },
-      768: {
-        items: 2, // 중간 화면에서는 한 줄에 두 개
-      },
-      992: {
-        items: 2, // 큰 화면에서는 한 줄에 두 개
-      }
-    }
-  });
-
-  // 창 크기에 따른 Owl Carousel 해제
-  function checkScreenWidth() {
-    if ($(window).width() <= 1000) {
-      owl.trigger('destroy.owl.carousel'); // Carousel 해제
-      owl.removeClass('owl-carousel'); // Owl Carousel 클래스 제거
-    } else {
-      owl.addClass('owl-carousel'); // Owl Carousel 클래스 추가
-      owl.owlCarousel({
-        loop: true,
-        margin: 30,
-        dots: true,
-        nav: false,
-        autoplay: false,
-        autoplayTimeout: 4000,
-        smartSpeed: 800,
-        items: 2,
-      });
-    }
-  }
-
-  // 처음 로드 시 체크
-  checkScreenWidth();
-
-  // 창 크기 변경 시 체크
-  $(window).resize(checkScreenWidth);
-});
-    </script>
-  
-  <script>
-document.querySelectorAll('.logout-btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();  // 기본 동작 막기
-        
-        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
-        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
-
-        fetch(logoutUrl, {
-            method: 'POST',  // POST 방식으로 요청
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
-            },
-            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+            if (fullText.length > maxLength) {
+                message.textContent = truncatedText + "...";
             } else {
-                console.error('로그아웃 실패');
+                message.textContent = fullText;
             }
-        })
-        .catch(error => console.error('에러 발생:', error));
+        });
     });
-});
 </script>
-  </body>
+<!-- <script>
+ $(document).ready(function () {
+   $(".testimonial-content").owlCarousel({
+     loop: true,
+     items: 2,
+     margin: 50,
+     dots: true,
+     nav: false,
+     mouseDrag: true,
+     autoplay: false,
+     autoplayTimeout: 4000,
+     smartSpeed: 800,
+   });
+ });
+</script>  -->
+<script>
+    $(document).ready(function () {
+        var owl = $(".testimonial-content");
+
+        // 기본 Owl Carousel 설정
+        owl.owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: true,
+            nav: false,
+            autoplay: false,
+            autoplayTimeout: 4000,
+            smartSpeed: 800,
+            items: 2, // 한 번에 두 개의 항목을 표시
+            responsive: {
+                0: {
+                    items: 1, // 작은 화면에서는 한 줄에 하나
+                },
+                768: {
+                    items: 2, // 중간 화면에서는 한 줄에 두 개
+                },
+                992: {
+                    items: 2, // 큰 화면에서는 한 줄에 두 개
+                }
+            }
+        });
+
+        // 창 크기에 따른 Owl Carousel 해제
+        function checkScreenWidth() {
+            if ($(window).width() <= 1000) {
+                owl.trigger('destroy.owl.carousel'); // Carousel 해제
+                owl.removeClass('owl-carousel'); // Owl Carousel 클래스 제거
+            } else {
+                owl.addClass('owl-carousel'); // Owl Carousel 클래스 추가
+                owl.owlCarousel({
+                    loop: true,
+                    margin: 30,
+                    dots: true,
+                    nav: false,
+                    autoplay: false,
+                    autoplayTimeout: 4000,
+                    smartSpeed: 800,
+                    items: 2,
+                });
+            }
+        }
+
+        // 처음 로드 시 체크
+        checkScreenWidth();
+
+        // 창 크기 변경 시 체크
+        $(window).resize(checkScreenWidth);
+    });
+</script>
+
+<script>
+    document.querySelectorAll('.logout-btn').forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();  // 기본 동작 막기
+
+            const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+            const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+
+            fetch(logoutUrl, {
+                method: 'POST',  // POST 방식으로 요청
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+                },
+                body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+                    } else {
+                        console.error('로그아웃 실패');
+                    }
+                })
+                .catch(error => console.error('에러 발생:', error));
+        });
+    });
+</script>
+</body>
 </html>
