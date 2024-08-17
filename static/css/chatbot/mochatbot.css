@@ -731,7 +731,7 @@
     width: 20px;
   }
 
-  .speech-bubble-content {
+  /* .speech-bubble-content {
     position: absolute;
     animation: float1 2s 2s infinite;
     top: 60px;
@@ -739,5 +739,5 @@
     width: 50%;
     z-index: 999;
   
-  }
+  } */
 }

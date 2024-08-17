@@ -232,7 +232,8 @@
             <div class="character-main" id="characterMain">
                 {% for character in user_characters %}
 
-                    <div class="character-scene">
+                    <!-- 캐릭터당 animation 한 번씩만 적용되게 -->
+                    <div class="character-scene"  data-character-id="{{ character.id }}">
                         <div class="table1 hidden">
                             <div class="table-top">
                                 <div class="top-slider">
@@ -1250,6 +1251,32 @@
 <script src="{% static '/js/character/character_list/wall.js' %}"></script>
 <script src="{% static '/js/character/character_list/nav.js' %}"></script>
 
+
+<!-- 캐릭터당 animation 한 번씩만 적용되게 하기 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const characters = document.querySelectorAll('.character-scene');
+
+    characters.forEach(character => {
+        const characterId = character.getAttribute('data-character-id');
+
+        // LocalStorage에서 이 캐릭터의 애니메이션 완료 여부를 확인
+        const isAnimated = localStorage.getItem(`character-${characterId}-animated`);
+
+        if (!isAnimated) {
+            // 애니메이션이 아직 실행되지 않은 경우 애니메이션 적용
+            character.classList.add('new-character');
+
+            // 애니메이션이 끝나면 LocalStorage에 기록
+            character.addEventListener('animationend', function () {
+                localStorage.setItem(`character-${characterId}-animated`, 'true');
+                character.classList.remove('new-character');
+            });
+        }
+    });
+});
+
+</script>
 <!-- 캐릭터 개수에 따라 동적으로 width 설정하는 코드 추가 -->
 <script>
     window.addEventListener('load', function () {
