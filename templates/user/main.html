@@ -15,7 +15,7 @@
     <meta property="og:title" content="Feelbuddy - 감정 치유 플랫폼"/>
     <meta property="og:description" content="Feelbuddy에서 당신의 감정을 공유하고 공감하여 마음을 치유하세요!"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="https://feelbuddy.kr/media/anger.png"/>
+    <meta property="og:image" content="https://feelbuddy.kr/media/logo.png"/>
 
 
 </head>
@@ -109,7 +109,7 @@
                     </div>
                     <div id="game-and-watch-gamea-text"></div>
                     <div id="game-and-watch-start-two">
-                        <div class="game-and-watch-start-inner"><a href="{% url 'users:signup.html' %}"><p>SignUp</p>
+                        <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"><p>SignUp</p>
                         </a></div>
                     </div>
                     {% endif %}
@@ -137,7 +137,7 @@
                     {% else %}
                     <!-- 미니 핀홀 버튼 -->
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}">Login</a></div>
-                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup.html' %}">SignUp</a></div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}">SignUp</a></div>
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a>
                     </div>
 
