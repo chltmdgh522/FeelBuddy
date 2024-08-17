@@ -1,3 +1,5 @@
+from os import environ
+
 import openai
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -13,7 +15,7 @@ from django.db.models import Count
 import speech_recognition as sr
 
 # OpenAI API 키 설정
-api_key = "sk-proj-6IG9RLPxkxyEEbH0gcTPT3BlbkFJLB3xdHyQZ0aIDD9XMdqG"
+api_key = environ.get('API_KEY')
 openai.api_key = api_key
 
 from collections import defaultdict
