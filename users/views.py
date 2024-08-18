@@ -7,7 +7,7 @@ from .forms import SignUpForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Profile, User, validate_username
+from .models import Profile, User, validate_username, NumViews
 from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -25,8 +25,12 @@ from django.core.exceptions import ObjectDoesNotExist
 import random
 # Create your views here.
 
+
 def main(request):
     user = request.user
+    num_views = NumViews.objects.get(id=1)  # 원하는 객체의 ID를 사용하세요.
+    num_views.increment()  # 조회수 1 증가
+
     if user.is_anonymous:  # 로그인하지 않은 사용자인 경우 ######
         display_name = "Anonymous User"
     else:

@@ -24,6 +24,8 @@ class User(AbstractUser):
         },
     )
 
+class NumViews(models.Model):
+    count = models.PositiveIntegerField(default=0)  # 조회수를 저장하는 필드, 기본값 0
 
 # class Profile(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
