@@ -273,6 +273,7 @@
                 <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}"
                        style="display:none;">
                 <i class="ri-pencil-line" id="edit-nickname-icon"></i>
+                 <span id="nickname-error" style="color: red; display: none;">닉네임은 10자 이내로 입력해 주세요.</span>
             </p>
             <a class="mail" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -440,10 +441,12 @@
         event.stopPropagation(); // 클릭 이벤트가 부모로 전파되지 않도록 함
         var nicknameDisplay = document.getElementById('nickname-display');
         var nicknameInput = document.getElementById('nickname-input');
+        var nicknameError = document.getElementById('nickname-error');
 
         nicknameDisplay.style.display = 'none';
         nicknameInput.style.display = 'inline';
         nicknameInput.focus();
+        nicknameError.style.display = 'none'; // 초기화
 
         // 닉네임 수정 중에는 카드가 똑바로 서 있도록 함
         setCardState(true);
@@ -465,9 +468,20 @@
     function saveNickname() {
         var nicknameDisplay = document.getElementById('nickname-display');
         var nicknameInput = document.getElementById('nickname-input');
+        var nicknameError = document.getElementById('nickname-error');
+        var nickname = nicknameInput.value;
+
+        // 닉네임 길이 검증
+        if (nickname.length > 10) {
+            nicknameError.style.display = 'inline'; // 에러 메시지 표시
+            nicknameInput.focus(); // 입력 필드에 포커스 맞추기
+            return;
+        }
+
+        nicknameError.style.display = 'none'; // 에러 메시지 숨김
 
         var formData = new FormData();
-        formData.append('nickname', nicknameInput.value);
+        formData.append('nickname', nickname);
         formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
 
         $.ajax({

@@ -9,14 +9,12 @@
     <link rel="stylesheet" href="{% static '/css/user/main.css' %}">
     <link rel="stylesheet" href="/static/mobile/momain.css">
     <link rel="icon" href="/media/joy.png" type="image/png">
-
-    <!-- Open Graph Meta Tags -->
+ <!-- Open Graph Meta Tags -->
     <meta property="og:url" content="https://www.feelbuddy.kr"/>
     <meta property="og:title" content="Feelbuddy - 감정 치유 플랫폼"/>
     <meta property="og:description" content="Feelbuddy에서 당신의 감정을 공유하고 공감하여 마음을 치유하세요!"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:image" content="https://feelbuddy.kr/media/logo.png"/>
-
+    <meta property="og:image" content="https://feelbuddy.kr/media/logo2.png"/>
 
 </head>
 
@@ -43,7 +41,7 @@
 
             <!-- #왼쪽 파트 -->
             <div id="game-and-watch-left">
-                <div id="game-and-watch-badge"><img src="/media/logo.png" alt="" class="" width="110px" height="110px">
+                <div id="game-and-watch-badge"><img src="/media/logo2.png" alt="" class="" width="110px" height="110px">
                 </div>
                 <div id="game-and-watch-character">
                     <!-- <img src="/logo1.jpeg" alt="" class="" width="80px" height="80px"> -->
@@ -97,21 +95,20 @@
             <div id="game-and-watch-right">
                 <div id="game-and-watch-game-start">
                     {% if user.is_authenticated %}
-                    <div id="game-and-watch-start-one">
-                        <div class="game-and-watch-start-inner">
+                        <div id="game-and-watch-start-one">
+                            <div class="game-and-watch-start-inner">
                             <a class="logout-btn" style="cursor: pointer;"><p>Logout</p></a>
 
+                            </div>
                         </div>
-                    </div>
                     {% else %}
-                    <div id="game-and-watch-start-one">
-                        <div class="game-and-watch-start-inner"><a href="{% url 'users:login' %}"><p>Login</p></a></div>
-                    </div>
-                    <div id="game-and-watch-gamea-text"></div>
-                    <div id="game-and-watch-start-two">
-                        <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"><p>SignUp</p>
-                        </a></div>
-                    </div>
+                        <div id="game-and-watch-start-one">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:login' %}"><p>Login</p></a></div>
+                        </div>
+                        <div id="game-and-watch-gamea-text"></div>
+                        <div id="game-and-watch-start-two">
+                            <div class="game-and-watch-start-inner"><a href="{% url 'users:signup' %}"><p>SignUp</p></a></div>
+                        </div>
                     {% endif %}
                     <div id="game-and-watch-gameb-text"></div>
                     <div id="game-and-watch-start-three">
@@ -127,27 +124,24 @@
 
                 </div>
                 <div id="game-and-watch-game-settings">
-                    {% if user.is_authenticated %}
-                    <div id="game-and-watch-game-tiny-pinhole"><a class="logout-btn" style="cursor: pointer;"><p>
-                        Logout</p></a>
-                    </div>
-                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a>
-                    </div>
+                       {% if user.is_authenticated %}
+                    <div id="game-and-watch-game-tiny-pinhole">       <a class="logout-btn" style="cursor: pointer;"><p>Logout</p></a>
+</div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a></div>
 
-                    {% else %}
+                             {% else %}
                     <!-- 미니 핀홀 버튼 -->
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}">Login</a></div>
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}">SignUp</a></div>
-                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a>
-                    </div>
+                    <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a></div>
 
-                    {% endif %}
+                              {% endif %}
                 </div>
                 <div id="game-and-watch-rightbutton">
                     <div id="mini-classic-rightbutton-text"></div>
                     <!-- 중간 start 버튼 -->
                     <div id="game-and-watch-rightbutton-in">
-                        <a href="{% url 'character:character_list' %}">
+                        <a href="{% url 'character:character_list' %}" >
                             <p>Start</p>
                         </a>
                     </div>
@@ -208,32 +202,33 @@
     <div class="interactive"></div>
 </div>
 <script>
-    document.querySelectorAll('.logout-btn').forEach(button => {
-        button.addEventListener('click', function (event) {
-            event.preventDefault();  // 기본 동작 막기
+document.querySelectorAll('.logout-btn').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();  // 기본 동작 막기
 
-            const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
-            const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
+        const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
+        const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
 
-            fetch(logoutUrl, {
-                method: 'POST',  // POST 방식으로 요청
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
-                },
-                body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
-                    } else {
-                        console.error('로그아웃 실패');
-                    }
-                })
-                .catch(error => console.error('에러 발생:', error));
-        });
+        fetch(logoutUrl, {
+            method: 'POST',  // POST 방식으로 요청
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken  // CSRF 토큰을 헤더에 포함
+            },
+            body: JSON.stringify({})  // 필요한 경우 데이터를 여기에 추가
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "/";  // 로그아웃 성공 시 리디렉션할 페이지 설정
+            } else {
+                console.error('로그아웃 실패');
+            }
+        })
+        .catch(error => console.error('에러 발생:', error));
     });
+});
 </script>
+
 
 
 <script src="{% static '/js/user/main.js' %}"></script>

@@ -429,7 +429,7 @@
                         {% elif character.adminCharacter.emotion == '두려움' %}
                             <div class="chat-pic fear"></div>
                             <a href="/chatbot/{{ character.id }}">
-                                <div class="badge">14</div>
+                                <div class="badge" style="display: none;">14</div>
                                 <div class="name">{{ character.name }}</div>
                                 <div class="message"
                                      id="latest-message-{{ character.id }}">{{ character.last_content }}</div>
@@ -875,12 +875,23 @@
             const navItem4 = document.querySelector('.nav-item.nav-count-4');
             const chats = document.querySelectorAll('.chat-content');
 
+            // Function to show the chat content based on index
             function showChat(index) {
                 chats.forEach((chat, i) => {
                     chat.classList.toggle('active', i === index);
                 });
+                localStorage.setItem('currentChat', index); // Save current chat index to localStorage
             }
 
+            // Retrieve the saved chat index from localStorage or default to 0
+            let currentChat = localStorage.getItem('currentChat');
+            if (currentChat === null) {
+                currentChat = 0;
+            } else {
+                currentChat = parseInt(currentChat, 10);
+            }
+
+            // Add click event listeners to navigation items
             navItem1.addEventListener('click', () => {
                 showChat(0);
             });
@@ -893,9 +904,13 @@
             navItem4.addEventListener('click', () => {
                 showChat(3);
             });
+
+            // Show the chat based on the stored index
+            showChat(currentChat);
         }
     });
 </script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

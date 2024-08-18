@@ -33,6 +33,9 @@ body {
   width: 100%;
   padding: 0 20px; /* 양쪽 여백 추가 */
 }
+.chat-header {
+  display: none;
+}
 
 /* supaviews의 너비 제한을 없애고 상위 요소에 따라 확장되도록 설정 */
 @media (min-width: 768px) {
@@ -184,7 +187,6 @@ body {
 .supaview__copy textarea::-webkit-scrollbar-thumb:hover {
   background-color: #99aab5;
 }
-
 
 .supaview__copy input:focus,
 .supaview__copy textarea:focus {
@@ -380,7 +382,7 @@ body {
 }
 
 .save-icon {
-  cursor: pointer; 
+  cursor: pointer;
   padding: 10px 15px;
   font-weight: 700;
   color: #ffffff;
@@ -471,10 +473,6 @@ body {
   overflow: scroll;
 }
 }
-.chat-header{
-  display: none;
-}
-
 
 @media (max-width: 768px) {
   .testimonial-content {
