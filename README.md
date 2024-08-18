@@ -23,8 +23,9 @@
 
 
 
-## ✨ FEELBUDDY의 플랫폼 
-##### 🏆 [노션]([https://feelbuddy.kr/](https://www.notion.so/Feelbuddy-6330c0b568714b6ab0a4659d635ad782))
+## ✨ FEELBUDDY의 소통 플랫폼 
+##### 🏆 [노션](https://www.notion.so/Feelbuddy-6330c0b568714b6ab0a4659d635ad782)
+##### 🏆 [ZEP](https://zep.us/)
 
 
 ## 👀 서비스 화면
@@ -207,7 +208,64 @@
 **🦊 Frontend**
 - lang: HTML5, CSS3, JAVASCRIPT
 
-- API
+**🖼️ Requirements.txt**
+```plaintext
+aiohttp==3.9.5
+aiosignal==1.3.1
+annotated-types==0.7.0
+anyio==4.4.0
+asgiref==3.8.1
+attrs==23.2.0
+certifi==2024.7.4
+cffi==1.16.0
+charset-normalizer==3.3.2
+colorama==0.4.6
+contourpy==1.2.1
+cryptography==43.0.0
+cycler==0.12.1
+distro==1.9.0
+Django==5.0.8
+django-allauth==0.63.6
+django-environ==0.11.2
+fonttools==4.53.1
+frozenlist==1.4.1
+h11==0.14.0
+httpcore==1.0.5
+httpx==0.27.0
+idna==3.7
+jwt==1.3.1
+kiwisolver==1.4.5
+matplotlib==3.9.0
+multidict==6.0.5
+mysqlclient==2.2.4
+numpy==2.0.1
+openai==0.28.0
+packaging==24.1
+pillow==10.4.0
+PyAudio==0.2.14
+pycparser==2.22
+pydantic==2.8.2
+pydantic_core==2.20.1
+pydub==0.25.1
+PyJWT==2.8.0
+PyMySQL==1.1.1
+pyparsing==3.1.2
+python-dateutil==2.9.0.post0
+pytz==2024.1
+requests==2.32.3
+setuptools==72.1.0
+six==1.16.0
+sniffio==1.3.1
+SpeechRecognition==3.10.4
+sqlparse==0.5.1
+tqdm==4.66.4
+typing_extensions==4.12.2
+tzdata==2024.1
+urllib3==2.2.2
+yarl==1.9.4
+```
+
+**🗝️ API**
     - [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)   
     - [OpenAI](https://openai.com/)
 
