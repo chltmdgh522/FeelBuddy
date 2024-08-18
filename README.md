@@ -84,11 +84,11 @@
 - 캐릭터 리스트에서 버린 캐릭터들을 볼 수 있다.
 - 여기서는 복구 및 영구 삭제를 할 수 있다. 
 <div>
-<img src="https://user-images.githubusercontent.com/33210124/193836104-9f9af9af-48df-490d-99a7-2066b999c47d.gif" width="20%">
+<img src="https://github.com/user-attachments/assets/2f525651-67e9-42da-95f6-448dc40eba47" width="20%">
 <img src="https://github.com/user-attachments/assets/2c5642fe-11b9-421d-8891-6d827256086f" width="75%">
 </div>
 
-  
+
 ### 챗봇 
 - 음성 인식을 통해 대화를 할 수 있다.
 - 영상통화 버전에서는 TTS 구현되어있다.
@@ -99,11 +99,9 @@
 </div>
 
 <div>
-<img src="https://github.com/user-attachments/assets/2afcf85a-804e-4647-819b-3a02022202e8" width="20%"/>
+<img src="https://github.com/user-attachments/assets/e8f38e20-c9c6-40e6-847e-9f00ebbedbd8" width="20%"/>
 <img src="https://github.com/user-attachments/assets/76c34384-8782-4794-b18c-1a31cd966f6f" width="75%"/>
 </div>
-
-
 
 
 ### 피드백
