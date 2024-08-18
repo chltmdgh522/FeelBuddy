@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gugi&display=swap');
+
+
+@media screen and (max-width: 768px) {
+    .door-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .door span {
+        font-size: 1.5em;
+        font-family: "Gugi", sans-serif;
+    }
+
+    #keylock {
+        margin-right: 230px;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .newcreate-scence {
+        transform: scale(0.7);
+        bottom: 21rem;
+    }
+
+    .newcreate-box {
+        height: 120px;
+        width: 120px;
+        animation: rotateY 11s infinite linear reverse;
+    }
+
+    .top, .bottom, .left, .right, .front, .back {
+        height: 120px;
+        width: 120px;
+    }
+
+
+    .newcreate-img-wrapper1, .newcreate-img-wrapper2, .newcreate-img-wrapper3, .newcreate-img-wrapper4, .newcreate-img-wrapper5 {
+        width: 120px;
+        height: 120px;
+    }
+
+    .newcreate-overlay1,
+    .newcreate-overlay2,
+    .newcreate-overlay3,
+    .newcreate-overlay4,
+    .newcreate-overlay5 {
+        width: 160px;
+        height: 160px;
+        padding: 0;
+        margin-left: 20%;
+    }
+
+
+
+    .box-char {
+        max-width: 100%;
+        bottom: -20%;
+        left: 18px;
+    }
+}

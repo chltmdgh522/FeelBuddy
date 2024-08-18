@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{% static '/css/user/main.css' %}">
     <link rel="stylesheet" href="/static/mobile/momain.css">
     <link rel="icon" href="/media/joy.png" type="image/png">
+ <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="https://www.feelbuddy.kr"/>
+    <meta property="og:title" content="Feelbuddy - 감정 치유 플랫폼"/>
+    <meta property="og:description" content="Feelbuddy에서 당신의 감정을 공유하고 공감하여 마음을 치유하세요!"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://feelbuddy.kr/media/logo2.png"/>
 
 </head>
 
@@ -35,7 +41,7 @@
 
             <!-- #왼쪽 파트 -->
             <div id="game-and-watch-left">
-                <div id="game-and-watch-badge"><img src="/media/logo.png" alt="" class="" width="110px" height="110px">
+                <div id="game-and-watch-badge"><img src="/media/logo2.png" alt="" class="" width="110px" height="110px">
                 </div>
                 <div id="game-and-watch-character">
                     <!-- <img src="/logo1.jpeg" alt="" class="" width="80px" height="80px"> -->
@@ -128,7 +134,7 @@
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:login' %}">Login</a></div>
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'users:signup' %}">SignUp</a></div>
                     <div id="game-and-watch-game-tiny-pinhole"><a href="{% url 'feedback:feedback_list' %}">Review</a></div>
-                
+
                               {% endif %}
                 </div>
                 <div id="game-and-watch-rightbutton">
@@ -199,7 +205,7 @@
 document.querySelectorAll('.logout-btn').forEach(button => {
     button.addEventListener('click', function(event) {
         event.preventDefault();  // 기본 동작 막기
-        
+
         const csrfToken = "{{ csrf_token }}";  // CSRF 토큰 가져오기 (Django 템플릿에서)
         const logoutUrl = "{% url 'users:logout' %}";  // 로그아웃 URL 가져오기
 

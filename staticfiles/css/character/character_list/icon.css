@@ -1,0 +1,136 @@
+:root {
+    --primary-light: #8abdff;
+    --primary: #6d5dfc;
+    --primary-dark: #5b0eeb;
+    --white: #FFFFFF;
+    --greyLight-1: #E4EBF5;
+    --greyLight-2: #c8d0e7;
+    --greyLight-3: #bec8e4;
+    --greyDark: #9baacf;
+}
+
+
+.icon {
+    grid-column: 3 / 4;
+    grid-row: 4 / 5;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    gap: 1.5rem;
+    z-index: 99999;
+}
+
+  .icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list, .icon__logout {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    box-shadow: .3rem .3rem .6rem var(--greyLight-2), -.2rem -.2rem .5rem var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--greyDark);
+    transition: all .5s ease;
+    z-index: 999999;
+  }
+
+  .icon__account svg, .icon__home svg, .icon__chat svg, .icon__log svg, .icon__delete svg, .icon__list svg, .icon__logout svg {
+	width: 16px;
+	height: 16px;
+  }
+
+  .icon__account:active, .icon__home:active, .icon__chat:active, .icon__log:active, .icon__delete:active, .icon__list:active, .icon__logout:active {
+    box-shadow: inset .2rem .2rem .5rem var(--greyLight-2), inset -.2rem -.2rem .5rem var(--white);
+    color: var(--primary);
+  }
+
+  .icon__account:hover, .icon__home:hover, .icon__chat:hover, .icon__log:hover, .icon__delete:hover, .icon__list:hover, .icon__logout:hover {
+    color: var(--primary);
+  }
+
+  .components {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 3rem;
+    box-shadow: .8rem .8rem 1.4rem var(--greyLight-2), -.2rem -.2rem 1.8rem var(--white);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 17.6rem 19rem 20.4rem;
+    grid-template-rows: repeat(auto-fit, min-content);
+    grid-column-gap: 5rem;
+    grid-row-gap: 2.5rem;
+    align-items: center;
+  }
+
+  .send-form {
+    width: 35rem;
+    height: 10rem;
+    box-shadow: .8rem .8rem 1.4rem var(--greyLight-2), -.2rem -.2rem 1.8rem var(--white);
+    border-radius: 3rem;
+    font-size: 1.4rem;
+    background: none;
+    font-family: inherit;
+    color: var(--greyDark);
+    z-index: 99;
+    position: absolute;
+    bottom: 12rem;
+  }
+
+
+
+
+/* .create-btn {
+    position: absolute;
+    width: 100%;
+    top:40px;
+    left: 40px;
+    z-index: 11;
+    cursor: pointer;
+    background: none;
+    border: none;
+    background-color: none;
+    font-size: 15rem;
+    color: rgb(187, 186, 186);
+  }
+.create-btn svg {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    background: none;
+    background-color: none;
+  } */
+
+  /* .create-btn svg:hover {
+    transform: scale(1.5);
+    color:white;
+} */
+
+.plus-btn {
+    width: 100vmin;
+    background: none;
+    border: none;
+  }
+
+.plus-btn svg {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.64);
+    width: 2rem;
+    height: 2rem;
+    bottom:5vh;
+    left:5vh;
+  }
+
+.plus-btn svg:hover {
+    transform: scale(1.2);
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .icon, 
+  .icon__account, .icon__home, .icon__chat, .icon__log, .icon__delete, .icon__list {
+    display: none !important;
+  }
+}
