@@ -31,19 +31,22 @@
 ## 👀 서비스 화면
 ### ✨ 모든 페이지 `모바일(아이폰 12 Pro 기준 max-width:480px)` 지원
 
+
 ### 홈
-- `fullpage`를 적용한 온보딩
-- 지구본 상호작용
-- 모바일 버전에서는 클릭을 통한 fullpage 동작
+- 닌텐도 화면 적용
+- 화면이 작아질 수록 DS - GBA - GDC 로 구현했다.
+- Start 버튼을 통해 캐릭터리스트로 갈 수 있다.
+- 로그인 및 회원가입 버튼을 누르수 있다
+  
 <div>
   <img src="https://github.com/user-attachments/assets/ece63fc2-ca98-441d-9a4c-ddc80e4b7c6b" width="75%"/>
   <img src="https://github.com/user-attachments/assets/ff5d977d-9281-4e4a-b1ce-020682c30086" width="20%"/>
 </div>
 
 
-
 ### 회원가입 & 로그인 & 로그아웃
-- `구글 메일 인증`을 통한 유저 회원가입/로그인
+- `네이버, 카카오 구글 소셜 로그인` 및 유저 회원가입/로그인
+- 로그인을 하면 캐릭터 리스트로 넘어간다.
 <div>
 <img src="https://github.com/user-attachments/assets/0e57d0ce-0ad5-4dac-9ff1-0c662a67d439" width="20%"/>
 <img src="https://github.com/user-attachments/assets/b97d5b9e-feef-414d-9360-d90527ecb66f" width="75%">
@@ -52,7 +55,7 @@
 
 ### 마이페이지
 - `프로필 이미지 변경`
-- 내가 `스크랩한 기사, 나만의 단어장, 내가 획득한 뱃지, 내 관심 카테고리` 표현
+- `닉넴임 변경`
 <div>
 <img src="https://github.com/user-attachments/assets/34053b7f-a080-4a15-9e72-bcdf90e28dd0" width="75%">
 <img src="https://github.com/user-attachments/assets/5e5e1139-14d8-4a05-86ca-0d2a9ad82018" width="20%">
@@ -60,7 +63,7 @@
 
 
 ### 캐릭터 리스트
-- `출석`, `레벨`, `게임`, `단어장 추가`, `기사 스크랩` 에 대한 배지 부여
+- 생성, 삭제, 편집 버튼을 이용해 캐릭터 관리 
 <div>
 <img src="https://github.com/user-attachments/assets/b153ded0-f9ce-4879-a4b9-a610c65515ce" width="20%">
 <img src="https://github.com/user-attachments/assets/9a6c0d05-4b62-4656-bb69-3878b0e4e9e7" width="75%">
@@ -69,10 +72,8 @@
 
 
 ### 캐릭터 생성
-- 사용자의 카테고리, 레벨에 따른 `사용자 추천(USER FIT) 기사` 제공
-- 하루 중 `가장 많은 조회수를 기록한 기사(HOT TOPIC)` 제공
-- 하루의 뉴스 기사에서 추출한 `데일리 워드 클라우드` 제공
-    - 해당 워드 클라우드 기사들 함께 제공
+- 5개의 캐릭터 중 하나를 뽑는다. 하지만 이미 생성된 캐릭터는 못 고른다.
+- 캐릭터의 이름과 선택한 이유를 적으면 생성이 된다.
 <div>
 <img src="https://github.com/user-attachments/assets/30e88da7-8b5b-40be-b4dc-1df85bc1b333" width="75%">
 <img src="https://github.com/user-attachments/assets/80557388-2081-4a7a-8b18-91fce71355fa" width="20%">
@@ -80,8 +81,8 @@
 
 
 ### 휴지통
-- 6단계의 영단어 제시를 통해 나만의 영어 레벨 확인하기
-- `유럽연합 공통언어 표준등급(CEFR)`을 기준으로 영단어 레벨화
+- 캐릭터 리스트에서 버린 캐릭터들을 볼 수 있다.
+- 여기서는 복구 및 영구 삭제를 할 수 있다. 
 <div>
 <img src="https://user-images.githubusercontent.com/33210124/193836104-9f9af9af-48df-490d-99a7-2066b999c47d.gif" width="20%">
 <img src="https://github.com/user-attachments/assets/2c5642fe-11b9-421d-8891-6d827256086f" width="75%">
@@ -89,9 +90,9 @@
 
   
 ### 챗봇 
-- `선별된 난이도`에 따른 기사 목록 제공 
-- `카테고리 대,소분류 필터`를 통한 필터 기사 제공
-- 모든 기사 목록 페이지에 `더보기` 구현
+- 음성 인식을 통해 대화를 할 수 있다.
+- 영상통화 버전에서는 TTS 구현되어있다.
+- Ajax를 통해 실시간으로 캐릭터와 채팅! 
 <div>
 <img src="https://github.com/user-attachments/assets/3d1a2ca3-fcb7-49c9-b991-172636f5c0c2" width="75%"/>
 <img src="https://github.com/user-attachments/assets/2afcf85a-804e-4647-819b-3a02022202e8" width="20%"/>
@@ -106,9 +107,8 @@
 
 
 ### 피드백
-- `번역`, `TTS`, `스크랩` 기능 제공
-- 기사 내 `최다 빈출 단어` 제공 및 저장 기능
-- 핵심 단어에서 `TF-IDF` 계산한 결과로 코사인 유사도 계산해 `관련 기사` 제공
+- 별점 및 리뷰를 통해 해당 에플리케이션의 평가를 알 수 있다.
+- 피드백을 통해 추후 계속 업데이트 할 예정이다.
  <div>
 <img src="https://github.com/user-attachments/assets/27097924-b693-4c12-aca7-93dc3a93b3c2" width="75%">
 <img src="https://github.com/user-attachments/assets/444327ce-8070-4f2b-9b6d-242c0661db92" width="20%">
@@ -117,44 +117,14 @@
 
 
 ### 감정 로그
-- 한 문제당 10초의 제한시간을 두고 영단어 맞추기
-- 처음 5초는 영어 설명으로 정답 유추
-- 이후 5초는 한글 뜻 추가하여 유추
-- `사용자 경험을 위해 엔터와 백스페이스를 통한 input 전환`
-- 해결 시간에 따른 `뱃지 획득`
-- 게임 종료 후 입력 답안 비교, 해당 `단어 추가 기능` 제공
+- 5개의 캐릭터들과 챗봇을 통해 나온 결과를 보여준다.
+- 주간 및 누적 기능이 있어 감저의 정보를 쉽게 파악할 수 있다.
 <div>
 <img src="https://github.com/user-attachments/assets/9aa369fc-a257-4693-a5ce-6772540210e2" width="20%">
 <img src="https://github.com/user-attachments/assets/44cad03c-362b-4fc8-a86a-7e844ceb8c20" width="75%">
 </div>
 
   
-### 영어 게임 - 낱말 퍼즐
-- `직접 구현한 낱말 퍼즐 생성 알고리즘`을 통해 게임판 생성
-- 영어 뜻으로 제공되는 힌트를 보고 가로와 세로 퍼즐 해결
-- 사용자 경험을 위해 엔터와 백스페이스를 통한 input 전환
-- 게임 종료 후 입력 답안 비교, 해당 `단어 추가 기능` 제공
-<div>
-<img src="https://user-images.githubusercontent.com/33210124/193836091-939becd8-138f-4a9b-9e0d-d051cee8bf55.gif" width="75%">
-<img src="https://user-images.githubusercontent.com/33210124/193836127-ebcc135d-b4b4-4c54-9929-9184a4c600f4.gif" width="20%">
-</div>
-
-### 검색
-- `키워드, 카테고리 필터, 기간, 레벨`에 따른 기사 검색 결과 제공
-- 검색 키워드가 어느 카테고리에 많이 발생했는지 `차트`로 시각적 효과 제공
-<div>
-<img src="https://user-images.githubusercontent.com/28249948/193999952-9ecf4de8-d9a2-418d-a3b1-608350b914d0.gif" width="75%">
-<img src="https://user-images.githubusercontent.com/28249948/193999958-2ff920c2-3794-4fda-abb7-cf402ae0bd9c.gif" width="20%">
-</div>
-
-### 오늘의 단어
-- 사용자가 오늘 하루 알면 좋은 10개의 단어
-- 오늘 발행된 기사 중 `최다 빈출`된 단어 상위 10개를 뽑아 제공
-<div>
-<img src="https://user-images.githubusercontent.com/33210124/195591727-7c3dceac-528e-4afa-a24e-22a886fccfbf.gif" width="75%">
-<img src="https://user-images.githubusercontent.com/33210124/195591721-2a824603-5c87-4b8e-b944-53c367105376.gif" width="20%">
-</div>
-
 ## ✨ 주요 기능
 
 - `캐릭터 기능`
@@ -192,7 +162,7 @@
 ## 🖥️ 개발 환경
 
 **Management Tool**
-- 형상 관리 : Gitlab
+- 형상 관리 : Git
 - 이슈 관리 : Jira
 - 커뮤니케이션 : Zep, Notion
 - 디자인 : Figma
@@ -202,7 +172,7 @@
 - Django `4.2.x`
 - Django Rest Framework `3.12.x`
 - pipenv or poetry (패키지 관리 도구)
-- MySQL (or PostgreSQL) `x.x.x`
+- MySQL  `8.0.4`
 - Gunicorn `20.1.0` (배포용 WSGI 서버)
 - Swagger (`drf-yasg`)
 - Django Rest Framework SimpleJWT (JWT 인증)
