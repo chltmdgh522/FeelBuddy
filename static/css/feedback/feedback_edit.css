@@ -165,7 +165,29 @@ body {
   background-color: transparent;
   outline: none;
   overflow-y: scroll;
+  resize: none;
 }
+
+/* 스크롤바 스타일 */
+.supaview__copy textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.supaview__copy textarea::-webkit-scrollbar-track {
+  background: #2c2f33;
+  border-radius: 5px;
+}
+
+.supaview__copy textarea::-webkit-scrollbar-thumb {
+  background-color: #7289da;
+  border-radius: 5px;
+  border: 2px solid #2c2f33;
+}
+
+.supaview__copy textarea::-webkit-scrollbar-thumb:hover {
+  background-color: #99aab5;
+}
+
 
 .supaview__copy input:focus,
 .supaview__copy textarea:focus {
@@ -452,6 +474,10 @@ body {
   overflow: scroll;
 }
 }
+.chat-header{
+  display: none;
+}
+
 
 @media (max-width: 768px) {
   .testimonial-content {

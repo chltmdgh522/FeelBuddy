@@ -40,7 +40,7 @@
        <input class="form__input" type="text" placeholder="name" name="name" required>
          
             <input class="form__input" type="text" 
-                   oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')"
+                   oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                    placeholder="ID" name="username" required>
             <input class="form__input" type="password" placeholder="Password" name="password" required>
             <button class="switch__button button switch-btn" type="submit">SIGN UP</button>
@@ -62,7 +62,7 @@
             {% endif %}
 
             <input class="form__input" type="text" 
-                     oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')"
+                     oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')"
                    placeholder="ID" name="username">
             <input class="form__input" type="password" placeholder="Password" name="password">
 
