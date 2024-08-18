@@ -241,42 +241,36 @@
 
 # 📂 기획 및 설계 산출물
 
-### [💭 요구사항 정의 및 기능 명세](https://www.notion.so/newstudy7/e6ffdd72d60d428c90bf8be329c8feeb)
+### [💭 요구사항 정의 및 기능 명세](https://www.notion.so/Feelbuddy-6330c0b568714b6ab0a4659d635ad782)
 
-<img width="100%" alt="요구사항 정의 및 기능 명세" src="https://user-images.githubusercontent.com/33210124/192975077-963176ec-93da-4488-97d1-301f60756b59.png"><br>
-
-### [🎨 화면 설계서](https://www.figma.com/file/0O6Jf104BaADRs1zbJ6QJl/%EB%89%B4%EC%8A%A4%ED%84%B0%EB%94%94?node-id=0%3A1)
-
-<img width="100%" alt="화면설계서" src="https://user-images.githubusercontent.com/33210124/192977903-ae783f89-9ea1-4635-9c6e-62bfad14cf00.png"><br>
-
-### [✨ ER Diagram](https://www.erdcloud.com/d/jmYrXGNhwenbvKCCZ)
-
-<img width="100%" alt="erd" src="https://user-images.githubusercontent.com/33210124/194223136-4c18ae2a-445b-4813-a124-e5cef80cf9cc.png" ><br>
+![image](https://github.com/user-attachments/assets/608d90da-08f0-4e0e-bffe-09c32e2be53f)
 
 
-# ✨ Conventions 
-NEWSTUDY 팀원들의 원활한 `Gitlab`, `Jira` 사용을 위한 [✨컨벤션✨](https://www.notion.so/Conventions-76cebaa0105c4305842d111f3d58352a) 입니다 :)
+### [🎨 화면 설계서](https://www.figma.com/design/2MIHENt866R7jjAyDBO3lp/Untitled?node-id=0-1)
+
+![image](https://github.com/user-attachments/assets/ce15a380-b42c-49c6-906a-d86d37250992)
+
+
+### [✨ ER Diagram](https://www.erdcloud.com/d/p9ocstx53DrdNzupt)
+
+![image](https://github.com/user-attachments/assets/135eac39-5e08-42a9-b97f-6bf5afe6fdf4)
 
 
 # 💞 팀원 소개
-##### ❤️‍🔥 NEWSTUDY를 개발한 `싸피그룹 영어토익반` 팀원들을 소개합니다!
+##### ❤️‍🔥 FEELBUDDY를 개발한 `피로그래밍 21기` 팀원들을 소개합니다!
 
-|**[한윤석](https://github.com/hanyoonseok)**|**[김수빈](https://github.com/kimsubni)**|**[이화연](https://github.com/LeeHwayeon)**|**[육다빈](https://github.com/Dabisix)**|**[윤일준](https://github.com/SmileJune)**|**[정수빈](https://github.com/Soobin07)** |
-| :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/28249948?v=4" width="800"> | <img src="https://avatars.githubusercontent.com/u/81076792?v=4" width="800"> | <img src="https://avatars.githubusercontent.com/u/33210124?v=4" width="800"> | <img src="https://avatars.githubusercontent.com/u/80896077?v=4" width="800"> | <img src="https://avatars.githubusercontent.com/u/91049936?v=4" width="800"> | <img src="https://avatars.githubusercontent.com/u/45987276?v=4" width="800"> |
-|Leader & Frontend|Frontend|Frontend|Backend|Backend|Backend|
+| **[나예원](https://github.com/hanyoonseok)** | **[최승호](https://github.com/kimsubni)** | **[전진명](https://github.com/LeeHwayeon)** | **[이민수](https://github.com/SmileJune)** |
+| :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://avatars.githubusercontent.com/u/28249948?v=4" width="400"> | <img src="https://avatars.githubusercontent.com/u/81076792?v=4" width="400"> | <img src="https://avatars.githubusercontent.com/u/33210124?v=4" width="400"> | <img src="https://avatars.githubusercontent.com/u/91049936?v=4" width="400"> |
+| Leader & Frontend & Designer | Backend & AI | Backend | Frontend |
 
 ## 😃 팀원 역할
 
-- **한윤석**
-  - 팀장, 온보딩, 게임, 기사 상세, 나라별 기사
-- **김수빈**
-  - 디자인, UCC, 랜딩/기사목록/검색
-- **이화연**
-  - 회원관리, 다크모드, 마이페이지, 나라별 기사
-- **육다빈**
-  - 서기, 관련 기사 추천, 데이터 전처리, 단어-카테고리 관련 API
-- **윤일준**
-  - 배포, 보안, 회원 관련 API, UCC 주연 배우 
-- **정수빈**
-  - 뉴스 레벨, 워드카운트, 뉴스검색 API
+- **나예원**
+  - 팀장, 디자인, 프론트, 와이어프레임 설계, 3D CSS 설계
+- **최승호**
+  - ERD 설계, 챗봇 기능, 캐릭터 관리 기능, REST API 설계, AWS 서버 배포
+- **전진명**
+  - 회원관리, 마이페이지, 피드백, 감정 로그 
+- **이민수**
+  - 감성 글귀, 닉네임 랜덤 기능, 인스타 광고, 프론트 
