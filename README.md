@@ -294,10 +294,12 @@ yarl==1.9.4
 # 💞 팀원 소개
 ##### ❤️‍🔥 FEELBUDDY를 개발한 `피로그래밍 21기` 팀원들을 소개합니다!
 
-| **[나예원](https://github.com/hanyoonseok)** | **[최승호](https://github.com/kimsubni)** | **[전진명](https://github.com/LeeHwayeon)** | **[이민수](https://github.com/SmileJune)** |
+| **[나예원](https://github.com/Anna-user)** | **[최승호](https://github.com/chltmdgh522)** | **[전진명](https://github.com/JNMYNG)** | **[이민수](https://github.com/msoolee)** |
 | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/28249948?v=4" width="400"> | <img src="https://avatars.githubusercontent.com/u/81076792?v=4" width="400"> | <img src="https://avatars.githubusercontent.com/u/33210124?v=4" width="400"> | <img src="https://avatars.githubusercontent.com/u/91049936?v=4" width="400"> |
+| <img src="https://github.com/user-attachments/assets/77267564-6b13-4213-a28f-67acf7840f48" width="400"> | <img src="https://github.com/user-attachments/assets/e792dfc6-e2a7-4b42-b5a5-27672d4df6c7" width="400"> | <img src="https://github.com/user-attachments/assets/aec44d20-60ee-4411-9a6f-8dba81ff5403" width="400"> | <img src="https://github.com/user-attachments/assets/9e92ceed-574a-4bbb-80ff-78ea2587f4c2" width="400"> |
 | Leader & Frontend & Designer | Backend & AI | Backend | Frontend |
+
+
 
 ## 😃 팀원 역할
 
