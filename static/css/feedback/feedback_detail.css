@@ -398,7 +398,9 @@ body {
   color: #64b883;
   transform: scale(1.4);
 }
-
+.chat-header {
+  display: none;
+}
 @media (max-width: 1000px) {
   .container {
     margin: 0 20px;

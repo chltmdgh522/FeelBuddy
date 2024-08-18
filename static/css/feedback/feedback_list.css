@@ -346,7 +346,7 @@ body {
 
 .review-message {
   min-height: 140px;
-  overflow: scroll; /* 넘치는 내용을 숨김 */
+  overflow: hidden; /* 넘치는 내용을 숨김 */
   white-space: wrap;
   color: wheat;
   text-overflow: ellipsis; /* 잘린 내용 뒤에 '...'을 추가 */
