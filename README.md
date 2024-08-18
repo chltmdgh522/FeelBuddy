@@ -297,7 +297,7 @@ yarl==1.9.4
 | **[나예원](https://github.com/Anna-user)** | **[최승호](https://github.com/chltmdgh522)** | **[전진명](https://github.com/JNMYNG)** | **[이민수](https://github.com/msoolee)** |
 | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/user-attachments/assets/77267564-6b13-4213-a28f-67acf7840f48" width="400"> | <img src="https://github.com/user-attachments/assets/e792dfc6-e2a7-4b42-b5a5-27672d4df6c7" width="400"> | <img src="https://github.com/user-attachments/assets/aec44d20-60ee-4411-9a6f-8dba81ff5403" width="400"> | <img src="https://github.com/user-attachments/assets/9e92ceed-574a-4bbb-80ff-78ea2587f4c2" width="400"> |
-| Leader & Frontend & Designer | Backend & AI | Backend | Frontend |
+| Leader & Frontend & Designer | Backend & AI | Backend | Frontend & Backend |
 
 
 
@@ -310,4 +310,4 @@ yarl==1.9.4
 - **전진명**
   - 회원관리, 마이페이지, 피드백, 감정 로그 
 - **이민수**
-  - 감성 글귀, 닉네임 랜덤 기능, 인스타 광고, 프론트 
+  - 감성 글귀, User 닉네임 랜덤 기능, 캐릭터 생성관리 기능, 인스타 광고, flutter webview 
