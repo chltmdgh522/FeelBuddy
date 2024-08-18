@@ -35,9 +35,9 @@
 - `fullpage`를 적용한 온보딩
 - 지구본 상호작용
 - 모바일 버전에서는 클릭을 통한 fullpage 동작
-<div style="display: flex; align-items: flex-start;">
-  <img src="https://github.com/user-attachments/assets/ece63fc2-ca98-441d-9a4c-ddc80e4b7c6b" style="width: 75%;"/>
-  <img src="https://github.com/user-attachments/assets/ff5d977d-9281-4e4a-b1ce-020682c30086" style="width: 25%;"/>
+<div>
+  <img src="https://github.com/user-attachments/assets/ece63fc2-ca98-441d-9a4c-ddc80e4b7c6b" width="75%"/>
+  <img src="https://github.com/user-attachments/assets/ff5d977d-9281-4e4a-b1ce-020682c30086" width="20%"/>
 </div>
 
 
@@ -45,28 +45,28 @@
 ### 회원가입 & 로그인 & 로그아웃
 - `구글 메일 인증`을 통한 유저 회원가입/로그인
 <div>
-<img src="https://github.com/user-attachments/assets/ece63fc2-ca98-441d-9a4c-ddc80e4b7c6b" style="width: 75%;"/>
-<img src="https://user-images.githubusercontent.com/33210124/193836125-0ec0632b-ccd0-4d4c-b8e2-05cd1b7081a9.gif" width="20%">
+<img src="https://github.com/user-attachments/assets/0e57d0ce-0ad5-4dac-9ff1-0c662a67d439" width="20%"/>
+<img src="https://github.com/user-attachments/assets/b97d5b9e-feef-414d-9360-d90527ecb66f" width="75%">
 </div>
-  
+
+
 ### 마이페이지
 - `프로필 이미지 변경`
 - 내가 `스크랩한 기사, 나만의 단어장, 내가 획득한 뱃지, 내 관심 카테고리` 표현
 <div>
-<img src="https://user-images.githubusercontent.com/33210124/195591883-974fd700-addd-4a32-8e80-ae4da2d5f99d.gif" width="20%">
-<img src="https://user-images.githubusercontent.com/33210124/195591865-c16d131c-3ada-4bd9-8221-69b4e520de00.gif" width="75%">
+<img src="https://github.com/user-attachments/assets/34053b7f-a080-4a15-9e72-bcdf90e28dd0" width="75%">
+<img src="https://github.com/user-attachments/assets/5e5e1139-14d8-4a05-86ca-0d2a9ad82018" width="20%">
 </div>
+
 
 ### 캐릭터 리스트
 - `출석`, `레벨`, `게임`, `단어장 추가`, `기사 스크랩` 에 대한 배지 부여
 <div>
-<img src="https://user-images.githubusercontent.com/33210124/194193047-55ceea30-b72c-4e22-aee6-829dca7060ce.png" width="75%">
-<img src="https://user-images.githubusercontent.com/33210124/194193041-89da59da-2417-470a-a997-c0362d14f9da.png" width="20%">
+<img src="https://github.com/user-attachments/assets/b153ded0-f9ce-4879-a4b9-a610c65515ce" width="20%">
+<img src="https://github.com/user-attachments/assets/9a6c0d05-4b62-4656-bb69-3878b0e4e9e7" width="75%">
 </div>
-<div>
-<img src="https://user-images.githubusercontent.com/33210124/194193045-9d9d4204-a72a-4e6d-aa95-105c397f4f91.png" width="75%">
-<img src="https://user-images.githubusercontent.com/33210124/194193046-157f5d78-8d46-47c3-9e81-1d075398fbc7.png" width="20%">
-</div>
+
+
 
 ### 캐릭터 생성
 - 사용자의 카테고리, 레벨에 따른 `사용자 추천(USER FIT) 기사` 제공
@@ -74,43 +74,47 @@
 - 하루의 뉴스 기사에서 추출한 `데일리 워드 클라우드` 제공
     - 해당 워드 클라우드 기사들 함께 제공
 <div>
-<img src="https://user-images.githubusercontent.com/33210124/194319730-d5212912-ff4f-4179-b419-8c066c5b2e57.gif" width="20%">
-<img src="https://user-images.githubusercontent.com/33210124/194319846-63bc5e01-8fe1-417b-8ab1-4432703c659d.gif" width="75%">
+<img src="https://github.com/user-attachments/assets/30e88da7-8b5b-40be-b4dc-1df85bc1b333" width="75%">
+<img src="https://github.com/user-attachments/assets/80557388-2081-4a7a-8b18-91fce71355fa" width="20%">
 </div>
+
 
 ### 휴지통
 - 6단계의 영단어 제시를 통해 나만의 영어 레벨 확인하기
 - `유럽연합 공통언어 표준등급(CEFR)`을 기준으로 영단어 레벨화
 <div>
 <img src="https://user-images.githubusercontent.com/33210124/193836104-9f9af9af-48df-490d-99a7-2066b999c47d.gif" width="20%">
-<img src="https://user-images.githubusercontent.com/33210124/193836121-90703a08-835c-479a-8873-65fad0025185.gif" width="75%">
+<img src="https://github.com/user-attachments/assets/2c5642fe-11b9-421d-8891-6d827256086f" width="75%">
 </div>
+
   
 ### 챗봇 
 - `선별된 난이도`에 따른 기사 목록 제공 
 - `카테고리 대,소분류 필터`를 통한 필터 기사 제공
 - 모든 기사 목록 페이지에 `더보기` 구현
 <div>
-<img src="https://user-images.githubusercontent.com/28249948/193998226-61c3df64-b8a0-436e-9125-d4730a4b4852.gif" width="20%"/>
-<img src="https://user-images.githubusercontent.com/28249948/193998218-8a8c0019-7daa-4ee2-a434-5fb1a4a89b69.gif" width="75%"/>
+<img src="https://github.com/user-attachments/assets/3d1a2ca3-fcb7-49c9-b991-172636f5c0c2" width="75%"/>
+<img src="https://github.com/user-attachments/assets/2afcf85a-804e-4647-819b-3a02022202e8" width="20%"/>
 </div>
 
-### 
-- 대분류 나라별 기사들을 `지구본 상의 마커와 리스트를 통해 시각화`하여 제공
-- 나라 선택시 해당 국가의 `상위 언급 키워드`를 오버레이와 해쉬태그 형태로 제공
 <div>
-<img src="https://user-images.githubusercontent.com/28249948/193990452-452fd2af-54ee-47bc-beb9-a5e2552e0a44.gif" width="20%"/>
-<img src="https://user-images.githubusercontent.com/28249948/193992383-23330320-a394-4a17-87d8-a56acdba6097.gif" width="75%"/>
+<img src="https://github.com/user-attachments/assets/2afcf85a-804e-4647-819b-3a02022202e8" width="20%"/>
+<img src="https://github.com/user-attachments/assets/76c34384-8782-4794-b18c-1a31cd966f6f" width="75%"/>
 </div>
+
+
+
 
 ### 피드백
 - `번역`, `TTS`, `스크랩` 기능 제공
 - 기사 내 `최다 빈출 단어` 제공 및 저장 기능
 - 핵심 단어에서 `TF-IDF` 계산한 결과로 코사인 유사도 계산해 `관련 기사` 제공
  <div>
-<img src="https://user-images.githubusercontent.com/33210124/194442218-ce98a729-bc6b-491b-bda7-90284ec2e11b.gif" width="75%">
-<img src="https://user-images.githubusercontent.com/33210124/194442222-dccfa564-4a64-4f55-a60e-5e57b72b1394.gif" width="20%">
+<img src="https://github.com/user-attachments/assets/27097924-b693-4c12-aca7-93dc3a93b3c2" width="75%">
+<img src="https://github.com/user-attachments/assets/444327ce-8070-4f2b-9b6d-242c0661db92" width="20%">
 </div>
+
+
 
 ### 감정 로그
 - 한 문제당 10초의 제한시간을 두고 영단어 맞추기
@@ -120,9 +124,10 @@
 - 해결 시간에 따른 `뱃지 획득`
 - 게임 종료 후 입력 답안 비교, 해당 `단어 추가 기능` 제공
 <div>
-<img src="https://user-images.githubusercontent.com/33210124/193836088-36f1c2c4-5b83-4e35-acff-3612c02cbee9.gif" width="75%">
-<img src="https://user-images.githubusercontent.com/33210124/193836073-8a17f443-9df4-4bf0-8d57-b3d59f920736.gif" width="20%">
+<img src="https://github.com/user-attachments/assets/9aa369fc-a257-4693-a5ce-6772540210e2" width="20%">
+<img src="https://github.com/user-attachments/assets/44cad03c-362b-4fc8-a86a-7e844ceb8c20" width="75%">
 </div>
+
   
 ### 영어 게임 - 낱말 퍼즐
 - `직접 구현한 낱말 퍼즐 생성 알고리즘`을 통해 게임판 생성
