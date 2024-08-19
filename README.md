@@ -84,11 +84,11 @@
 - 캐릭터 리스트에서 버린 캐릭터들을 볼 수 있다.
 - 여기서는 복구 및 영구 삭제를 할 수 있다. 
 <div>
-<img src="https://user-images.githubusercontent.com/33210124/193836104-9f9af9af-48df-490d-99a7-2066b999c47d.gif" width="20%">
+<img src="https://github.com/user-attachments/assets/2f525651-67e9-42da-95f6-448dc40eba47" width="20%">
 <img src="https://github.com/user-attachments/assets/2c5642fe-11b9-421d-8891-6d827256086f" width="75%">
 </div>
 
-  
+
 ### 챗봇 
 - 음성 인식을 통해 대화를 할 수 있다.
 - 영상통화 버전에서는 TTS 구현되어있다.
@@ -99,11 +99,9 @@
 </div>
 
 <div>
-<img src="https://github.com/user-attachments/assets/2afcf85a-804e-4647-819b-3a02022202e8" width="20%"/>
+<img src="https://github.com/user-attachments/assets/e8f38e20-c9c6-40e6-847e-9f00ebbedbd8" width="20%"/>
 <img src="https://github.com/user-attachments/assets/76c34384-8782-4794-b18c-1a31cd966f6f" width="75%"/>
 </div>
-
-
 
 
 ### 피드백
@@ -129,7 +127,7 @@
 
 - `캐릭터 기능`
 	- 분노, 기쁨, 불안, 두려움, 불안 총 5개의 캐릭터를 생성할 수 있다. 
-  - 생성된 캐릭터를 수정 및 휴지통에 버릴 수 있다. 
+  	- 생성된 캐릭터를 수정 및 휴지통에 버릴 수 있다. 
 	- 휴지통에 버려진 캐릭터는 다시 복구 할 수 있고 영원히 삭제할 수 있다.
 	
 - `프롬프트 설계`
@@ -296,15 +294,16 @@ yarl==1.9.4
 
 | **[나예원](https://github.com/Anna-user)** | **[최승호](https://github.com/chltmdgh522)** | **[전진명](https://github.com/JNMYNG)** | **[이민수](https://github.com/msoolee)** |
 | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://github.com/user-attachments/assets/77267564-6b13-4213-a28f-67acf7840f48" width="400"> | <img src="https://github.com/user-attachments/assets/e792dfc6-e2a7-4b42-b5a5-27672d4df6c7" width="400"> | <img src="https://github.com/user-attachments/assets/aec44d20-60ee-4411-9a6f-8dba81ff5403" width="400"> | <img src="https://github.com/user-attachments/assets/9e92ceed-574a-4bbb-80ff-78ea2587f4c2" width="400"> |
-| Leader & Frontend & Designer | Backend & AI | Backend | Frontend & Backend |
+| <img src="https://github.com/user-attachments/assets/7f6428b7-e110-40ed-98b1-be6e595c9f79" width="400"> | <img src="https://github.com/user-attachments/assets/e792dfc6-e2a7-4b42-b5a5-27672d4df6c7" width="400"> | <img src="https://github.com/user-attachments/assets/aec44d20-60ee-4411-9a6f-8dba81ff5403" width="400"> | <img src="https://github.com/user-attachments/assets/9e92ceed-574a-4bbb-80ff-78ea2587f4c2" width="400"> |
+| Leader & Frontend & Designer | Backend & AI | Frontend & Backend |  Backend |
+
 
 
 
 ## 😃 팀원 역할
 
 - **나예원**
-  - 팀장, 디자인, 프론트, 와이어프레임 설계, 3D CSS 설계
+  - 팀장, 기획, 캐릭터 및 로고 디자인, 프론트, 와이어프레임 설계, 3D CSS 설계, AI 프롬프트 설계
 - **최승호**
   - ERD 설계, 챗봇 기능, 캐릭터 관리 기능, REST API 설계, AWS 서버 배포
 - **전진명**
