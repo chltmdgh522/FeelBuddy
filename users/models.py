@@ -44,7 +44,7 @@ class NumViews(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nickname = models.CharField(max_length=10, blank=True)
+    nickname = models.CharField(max_length=20, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
 
     def save(self, *args, **kwargs):

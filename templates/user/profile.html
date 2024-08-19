@@ -273,7 +273,7 @@
                 <input type="text" id="nickname-input" name="nickname" value="{{ profile.nickname }}"
                        style="display:none;">
                 <i class="ri-pencil-line" id="edit-nickname-icon"></i>
-                 <span id="nickname-error" style="color: red; display: none;">닉네임은 10자 이내로 입력해 주세요.</span>
+                 <span id="nickname-error" style="color: red; display: none;">닉네임은 15자 이내로 입력해 주세요.</span>
             </p>
             <a class="mail" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -472,7 +472,7 @@
         var nickname = nicknameInput.value;
 
         // 닉네임 길이 검증
-        if (nickname.length > 10) {
+        if (nickname.length > 15) {
             nicknameError.style.display = 'inline'; // 에러 메시지 표시
             nicknameInput.focus(); // 입력 필드에 포커스 맞추기
             return;
