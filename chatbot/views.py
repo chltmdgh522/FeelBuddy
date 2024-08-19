@@ -120,14 +120,12 @@ def tts(request):
 
         try:
             with sr.Microphone() as source:
-                print("말씀하세요1...")
+
                 if 'start' in request.POST:
                     return JsonResponse({'message': "5초뒤에 말씀해주세요..."})
                 audio = recognizer.listen(source)
 
-            print("음성 인식 중...")
             text = recognizer.recognize_google(audio, language="ko-KR")
-            print("녹음된 내용: " + text)
             return JsonResponse({'text': text})
 
         except sr.UnknownValueError:
@@ -327,7 +325,7 @@ def character_concept(character, user):
 첫 대화는 가장 위쪽 첫 대화만 출력
 하나의 질문에 2~3줄로 짧고 간결한 답변
         """
-    print(system_input)
+
     return system_input
 
 
@@ -340,7 +338,7 @@ def chatbot_ai_create(request, pk):
             user=user,
             userCharacter=character
         ).order_by('-time').first()
-        print(user.id)
+
         system_input = character_concept(character, user)
         ai_content = ai(system_input, user_input.user_content)
         create = ChatbotAIContent.objects.create(user=user, userCharacter=character, ai_content=ai_content, )
