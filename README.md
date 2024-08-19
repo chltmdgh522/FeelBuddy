@@ -1,3 +1,4 @@
+[![Deploy to EC2](https://github.com/chltmdgh522/FeelBuddy/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/chltmdgh522/FeelBuddy/actions/workflows/deploy.yml)
 ![image](https://github.com/user-attachments/assets/01064bcd-76ba-4491-9c51-70f84f4b2a5b)
 
 # 📰 FEELBUDDY
