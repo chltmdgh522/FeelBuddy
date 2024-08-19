@@ -1,4 +1,4 @@
-[![Deploy to EC2](https://github.com/chltmdgh522/FeelBuddy/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/chltmdgh522/FeelBuddy/actions/workflows/deploy.yml)
+[![CD Pipeline](https://github.com/chltmdgh522/FeelBuddy/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/chltmdgh522/FeelBuddy/actions/workflows/deploy.yml)
 ![image](https://github.com/user-attachments/assets/01064bcd-76ba-4491-9c51-70f84f4b2a5b)
 
 # 📰 FEELBUDDY
@@ -306,7 +306,7 @@ yarl==1.9.4
 - **나예원**
   - 팀장, 기획, 캐릭터 및 로고 디자인, 프론트, 와이어프레임 설계, 3D CSS 설계, AI 프롬프트 설계
 - **최승호**
-  - ERD 설계, 챗봇 기능, 캐릭터 관리 기능, REST API 설계, AWS 서버 배포
+  - ERD 설계, 챗봇 기능, 캐릭터 관리 기능, REST API 설계, AWS 서버 배포 및 CICD 설정
 - **전진명**
   - 회원관리, 마이페이지, 피드백, 감정 로그 
 - **이민수**
