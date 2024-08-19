@@ -11,7 +11,7 @@ urlpatterns = [
     path('', main, name='main'),
 
     # 회원
-    path('signup.html/', signup, name='signup'),
+    path('signup/', signup, name='signup'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('profile/', profile, name='profile'),

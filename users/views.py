@@ -52,6 +52,7 @@ def signup(request):
         return redirect('users:main')  # 로그인된 사용자는 메인 화면으로 리디렉션
 
     if request.method == 'POST':
+        print('gd')
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')

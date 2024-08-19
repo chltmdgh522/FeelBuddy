@@ -44,7 +44,7 @@
        placeholder="ID" name="username" required>
 
             <input class="form__input" type="password" placeholder="Password" name="password" required>
-            <button class="switch__button button switch-btn" type="submit">SIGN UP</button>
+            <button class="switch__button button switch-btn sign_form" id="sign_form" type="submit">SIGN UP</button>
         </form>
     </div>
 
@@ -170,32 +170,41 @@
 
 <script>
     // 화면 너비가 600px 이하일 때만 이 코드 실행
-if (window.matchMedia("(max-width: 600px)").matches) {
-    // 각 요소 선택
-    let switchBtnToSignUp = document.querySelector("#b-container .switch-btn.mobile-hidden");
-    let switchBtnToLogin = document.querySelector("#a-container .switch-btn");
-    let aContainer = document.querySelector("#a-container");
-    let bContainer = document.querySelector("#b-container");
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        // 각 요소 선택
+        let switchBtnToSignUp = document.querySelector("#b-container .switch-btn.mobile-hidden");
+        let signUpSubmitBtn = document.querySelector("#sign_form"); // SIGN UP 버튼
+        let switchBtnToLogin = document.querySelector("#a-container .switch-btn");
+        let aContainer = document.querySelector("#a-container");
+        let bContainer = document.querySelector("#b-container");
+        let aForm = document.querySelector("#a-form"); // 회원가입 폼
 
-    // "SIGN UP" 버튼 클릭 시 aContainer 표시
-    switchBtnToSignUp.addEventListener("click", (e) => {
-        e.preventDefault();
-        aContainer.style.display = "block";  // aContainer 보이기
-        bContainer.style.display = "none";   // bContainer 숨기기
-    });
+        // "SIGN UP" 버튼 클릭 시 회원가입 폼 제출
+        signUpSubmitBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            aForm.submit();  // 폼 제출
+        });
 
-    // "SIGN UP" 버튼 클릭 시 bContainer로 돌아가기
-    switchBtnToLogin.addEventListener("click", (e) => {
-        e.preventDefault();
-        bContainer.style.display = "block";  // bContainer 보이기
-        aContainer.style.display = "none";   // aContainer 숨기기
-    });
+        // "SIGN UP" 버튼 클릭 시 aContainer 표시 (로그인 -> 회원가입 전환)
+        switchBtnToSignUp.addEventListener("click", (e) => {
+            e.preventDefault();
+            aContainer.style.display = "block";  // aContainer 보이기
+            bContainer.style.display = "none";   // bContainer 숨기기
+        });
 
-    // 페이지가 로드될 때 bContainer가 기본적으로 보이도록 설정
-    window.addEventListener("load", () => {
-        bContainer.style.display = "block";  // bContainer 기본 표시
-        aContainer.style.display = "none";   // aContainer 숨기기
-    });
-}
+        // "LOGIN" 버튼 클릭 시 bContainer로 돌아가기 (회원가입 -> 로그인 전환)
+        switchBtnToLogin.addEventListener("click", (e) => {
+            e.preventDefault();
+            bContainer.style.display = "block";  // bContainer 보이기
+            aContainer.style.display = "none";   // aContainer 숨기기
+        });
+
+        // 페이지 로드 시 기본적으로 bContainer 표시
+        window.addEventListener("load", () => {
+            bContainer.style.display = "block";  // bContainer 기본 표시
+            aContainer.style.display = "none";   // aContainer 숨기기
+        });
+    }
 </script>
+
 </html>

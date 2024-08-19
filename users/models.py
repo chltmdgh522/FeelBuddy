@@ -27,6 +27,13 @@ class User(AbstractUser):
 class NumViews(models.Model):
     count = models.PositiveIntegerField(default=0)  # 조회수를 저장하는 필드, 기본값 0
 
+    def increment(self):
+        self.count += 1
+        self.save()
+
+    def __str__(self):
+        return f'조회수: {self.count}'
+
 # class Profile(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 #     nickname = models.CharField(max_length=10, blank=True)
