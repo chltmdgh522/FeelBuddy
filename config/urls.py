@@ -22,8 +22,11 @@ from django.conf.urls.static import static
 
 
 # 404 핸들러
+from django.shortcuts import render
+
 def custom_page_not_found_view(request, exception):
-    return redirect('/')
+    return render(request, '404.html', {}, status=404)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
