@@ -24,7 +24,6 @@
 ##### 🏆 [사이트](https://feelbuddy.kr/)
 
 
-
 ## ✨ FEELBUDDY의 소통 플랫폼 
 ##### 🏆 [노션](https://www.notion.so/Feelbuddy-6330c0b568714b6ab0a4659d635ad782)
 ##### 🏆 [ZEP](https://zep.us/)
