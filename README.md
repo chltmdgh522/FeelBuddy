@@ -162,7 +162,6 @@
 
 **Management Tool**
 - 형상 관리 : Git
-- 이슈 관리 : Jira
 - 커뮤니케이션 : Zep, Notion
 - 디자인 : Figma
 
