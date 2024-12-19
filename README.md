@@ -17,7 +17,7 @@
  
 ## ✨ Overview
 
-🏆 개발 기간: 24.07.01 ~ 24.08.20
+🏆 개발 기간: 24.07.01 ~ 24.08.20<br>
 현대 사회에서 많은 사람들이 스트레스와 우울감을 경험하고 있으며, 이를 해결하기 위한 심리적 지원이 필요합니다. 하지만 정신 건강 전문가와의 상담은 비용과 시간이 많이 들고, 접근성의 문제도 있을 수 있습니다. 실시간 감정 치유 웹 서비스는 이러한 문제를 해결하기 위한 대안으로, 사용자가 각기 다른 개성을 가진 캐릭터들과 대화를 통해 감정적 지지를 받을 수 있게 합니다. 특히, 현대인들이 쉽게 접근할 수 있는 디지털 플랫폼을 통해, 언제 어디서나 감정 상태를 공유하고 위로를 받을 수 있다는 점에서 유용합니다.
 
 ## ✨ FEELBUDDY의 배포 사이트
@@ -155,35 +155,46 @@
 	- 네이버, 구글, 카카오 소셜 로그인 기능을 도입했다. 
 	- 비밀번호 재설정 기능 도입했다.  
    
-- `사용자 친화적 UI`
-	- 반응형 모바일 뷰 지원
-	- 색다른 3D CSS 도입
+- `Redis 캐싱 활용`
+	- 동일한 요청이 들어올시 데이터를 재활용하여 응답 시간 최소화하였다.
 
 ## 🖥️ 개발 환경
 
 **Management Tool**
 - 형상 관리 : Git
-- 이슈 관리 : Jira
 - 커뮤니케이션 : Zep, Notion
 - 디자인 : Figma
 
 **🐳 Backend**
 - Python `3.8.0`
 - Django `4.2.x`
-- Django Rest Framework `3.12.x`
 - pipenv or poetry (패키지 관리 도구)
-- MySQL  `8.0.4`
-- Gunicorn `20.1.0` (배포용 WSGI 서버)
-- Swagger (`drf-yasg`)
-- Django Rest Framework SimpleJWT (JWT 인증)
-- Celery `5.x.x` (비동기 작업 처리)
-- Redis `6.x.x` (캐시 및 Celery 브로커)
+- Redis `5.3.0`
 - Jupyter Notebook `6.4.12`
-- Apache Spark `3.2.1`
+
 
 
 **🦊 Frontend**
 - lang: HTML5, CSS3, JAVASCRIPT
+
+**🗝️ API**
+- [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)   
+- [OpenAI](https://openai.com/)
+
+**🗂️ DB**
+- MySQL `8.0.30`
+
+**🌐 Server**
+- AWS EC2 (Ubuntu `20.04`)
+- Nginx `1.23` (Reverse Proxy)
+- Gunicorn `20.1.0` (WSGI Application Server)
+- HTTPS (TLS `1.2`)
+- Redis `5.3.0`
+
+**🔨 IDE**
+- Pycharm `2023.2`
+- MySQL Workbench `8.0.29`
+- VSCode `1.69.2`  
 
 **🖼️ Requirements.txt**
 ```plaintext
@@ -229,6 +240,8 @@ PyMySQL==1.1.1
 pyparsing==3.1.2
 python-dateutil==2.9.0.post0
 pytz==2024.1
+redis==5.1.0
+django-redis==5.3.0
 requests==2.32.3
 setuptools==72.1.0
 six==1.16.0
@@ -240,25 +253,9 @@ typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
 yarl==1.9.4
+
 ```
 
-**🗝️ API**
-- [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)   
-- [OpenAI](https://openai.com/)
-
-**🗂️ DB**
-- MySQL `8.0.30`
-
-**🌐 Server**
-- AWS EC2 (Ubuntu `20.04`)
-- Nginx `1.23` (Reverse Proxy)
-- Gunicorn `20.1.0` (WSGI Application Server)
-- HTTPS (TLS `1.2`)
-
-**🔨 IDE**
-- Pycharm `2023.2`
-- MySQL Workbench `8.0.29`
-- VSCode `1.69.2`
 
 ## 💫 시스템 아키텍처
 
@@ -267,11 +264,8 @@ yarl==1.9.4
 
 ## ✨ 기술 특이점
 
-- **캐릭터별 고유 프롬프트**를 사용하여 사용자 경험을 맞춤화
-- 사용자가 선택한 캐릭터에 따라 다른 프롬프트가 적용되어 대화 진행
-- 각 캐릭터는 고유한 성격과 대화 스타일을 가지고 있으며, 감정 분석 결과에 따라 다양한 반응을 생성
-- OpenAI의 GPT 모델을 활용하여 실시간 감정 분석 및 캐릭터 기반 응답 제공
-- Celery를 통해 대규모 사용자 요청을 효율적으로 비동기 처리하여 서버 성능 최적화
+- 캐릭터마다 고유한 대화 스타일을 설정해 사용자에게 더 자연스럽고 개별화된 경험을 제공했습니다.
+- Redis를 활용해 동일한 요청에 대해 데이터를 재활용함으로써 불필요한 처리 시간을 줄이고 빠른 응답을 가능하게 했습니다.
 
 
 # 📂 기획 및 설계 산출물
@@ -298,8 +292,6 @@ yarl==1.9.4
 | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://github.com/user-attachments/assets/7f6428b7-e110-40ed-98b1-be6e595c9f79" width="400"> | <img src="https://github.com/user-attachments/assets/e792dfc6-e2a7-4b42-b5a5-27672d4df6c7" width="400"> | <img src="https://github.com/user-attachments/assets/aec44d20-60ee-4411-9a6f-8dba81ff5403" width="400"> | <img src="https://github.com/user-attachments/assets/9e92ceed-574a-4bbb-80ff-78ea2587f4c2" width="400"> |
 | Leader & Frontend & Designer | Backend & AI | Frontend & Backend |  Backend |
-
-
 
 
 ## 😃 팀원 역할
