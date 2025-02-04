@@ -1,5 +1,9 @@
-from linecache import cache
 from os import environ
+import hashlib
+import redis
+import openai
+from linecache import cache
+
 
 import openai
 from django.contrib.auth.decorators import login_required
@@ -96,34 +100,42 @@ def chatbot_content_list(request, pk):
 
 
 
+# Redis 연결 설정
+cache = redis.StrictRedis(host='127.0.0.1', port=6379, db=0, decode_responses=True)
 def ai(system_input, user_input):
     """
     캐싱 및 OpenAI API 호출 로직
     - system_input: 캐릭터의 성격을 정의하는 프롬프트
     - user_input: 사용자가 입력한 데이터
     """
-    cache_key = f"ai_response:{system_input}:{user_input}"
+    # 캐시 키를 해시값으로 변환 (긴 문자열 및 특수문자 문제 해결)
+    raw_key = f"ai_response:{system_input}:{user_input}"
+    cache_key = hashlib.md5(raw_key.encode()).hexdigest()  # 32자 길이의 해시값
 
     # Redis 캐시에서 기존 응답 확인
     cached_response = cache.get(cache_key)
     if cached_response:
         return cached_response  # 캐싱된 응답 반환
 
-    # GPT-4와의 대화 (OpenAI API 호출)
-    response = openai.ChatCompletion.create(
-        model="gpt-4o",
-        messages=[
-            {"role": "system", "content": system_input},  # 각 캐릭터의 프롬프트
-            {"role": "user", "content": user_input}       # 사용자의 요청
-        ],
-        max_tokens=1000
-    )
-    result = response.choices[0].message['content']
+    try:
+        # GPT-4 API 호출
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": system_input},  # 캐릭터 프롬프트
+                {"role": "user", "content": user_input}       # 사용자 입력
+            ],
+            max_tokens=1000
+        )
+        result = response["choices"][0]["message"]["content"]  # 응답 추출
 
-    # 응답을 Redis에 24시간 저장
-    cache.set(cache_key, result, timeout=86400)
+        # 응답을 Redis에 24시간(86400초) 저장
+        cache.set(cache_key, result, ex=86400)  # timeout 대신 ex 사용 (더 명확함)
 
-    return result
+        return result
+
+    except openai.error.OpenAIError as e:
+        return f"AI 응답 오류 발생: {str(e)}"  # 오류 메시지 반환
 
 
 def tts(request):
