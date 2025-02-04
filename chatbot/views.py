@@ -1,3 +1,4 @@
+from linecache import cache
 from os import environ
 
 import openai
@@ -94,22 +95,35 @@ def chatbot_content_list(request, pk):
         return redirect('users:main')
 
 
+
 def ai(system_input, user_input):
-    # GPT-4와의 대화
+    """
+    캐싱 및 OpenAI API 호출 로직
+    - system_input: 캐릭터의 성격을 정의하는 프롬프트
+    - user_input: 사용자가 입력한 데이터
+    """
+    cache_key = f"ai_response:{system_input}:{user_input}"
+
+    # Redis 캐시에서 기존 응답 확인
+    cached_response = cache.get(cache_key)
+    if cached_response:
+        return cached_response  # 캐싱된 응답 반환
+
+    # GPT-4와의 대화 (OpenAI API 호출)
     response = openai.ChatCompletion.create(
         model="gpt-4o",
         messages=[
-            {
-                "role": "system",
-                "content": system_input
-            },
-            {
-                "role": "user",
-                "content": user_input}
+            {"role": "system", "content": system_input},  # 각 캐릭터의 프롬프트
+            {"role": "user", "content": user_input}       # 사용자의 요청
         ],
         max_tokens=1000
     )
-    return response.choices[0].message['content']
+    result = response.choices[0].message['content']
+
+    # 응답을 Redis에 24시간 저장
+    cache.set(cache_key, result, timeout=86400)
+
+    return result
 
 
 def tts(request):
